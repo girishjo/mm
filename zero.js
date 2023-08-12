@@ -15,6 +15,11 @@ async function GetDetails(stockCode) {
         headers: headers
     };
 
+    fetch(url, requestOptions)
+        .then(response => response.text())
+        .then(result => console.log(result))
+        .catch(error => console.log('error', error));
+
     const response = await fetch(url, requestOptions);
     let html = await response.text();
 
