@@ -1,9 +1,18 @@
 async function GetDetails(stockCode) {
     const url = "https://stocks.zerodha.com/stocks/" + stockCode;
 
+    let headers = new Headers();
+    //headers.append('Content-Type', 'application/json');
+    //headers.append('Access-Control-Allow-Origin', 'https://girishjo.github.io/mm/');
+    //headers.append('Access-Control-Allow-Credentials', 'true');
+
+    headers.append('Accept', '*/*');
+
     var requestOptions = {
+        mode: 'no-cors',
         method: 'GET',
-        redirect: 'follow'
+        redirect: 'follow',
+        headers: headers
     };
 
     const response = await fetch(url, requestOptions);
