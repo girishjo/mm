@@ -7,15 +7,18 @@ function loadDataFromLocal() {
             addRow(rowData);
         }
         if (table.rows.length == 2) {
-            addEmptyRow(table, 1);        
+            addEmptyRow(1);
         }
-        updateRowNumber();
     }
+    else {
+        addEmptyRow(1);
+    }
+    updateRowNumber();
 }
 
 function addRow(rowData) {
     if (rowData[0]) {
-        addEmptyRow(table, table.rows.length - 1);
+        addEmptyRow(table.rows.length - 1);
         const newRow = table.rows[table.rows.length - 2];
         newRow.cells[3].innerText = rowData[0];
         newRow.cells[4].innerText = rowData[1];
@@ -36,19 +39,19 @@ table.addEventListener('click', function (e) {
     const row = cell.parentElement;
     console.log(cell.innerHTML, row.rowIndex, cell.cellIndex);
     if (cell.classList.contains('add')) {
-        addEmptyRow(table, row.rowIndex + 1);
+        addEmptyRow(row.rowIndex + 1);
         updateRowNumber();
     }
     else if (cell.classList.contains('remove')) {
         table.deleteRow(row.rowIndex);
         if (table.rows.length == 2) {
-            addEmptyRow(table, 1);
+            addEmptyRow(1);
         }
         updateRowNumber();
     }
 });
 
-function addEmptyRow(table, index = undefined) {
+function addEmptyRow(index = undefined) {
     const emptyRow = table.getElementsByClassName('hide')[0];
     var clone = emptyRow.cloneNode(true); // copy children too
     clone.classList.remove("hide");
