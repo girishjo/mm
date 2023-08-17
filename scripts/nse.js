@@ -16,5 +16,7 @@
 //         .catch(error => console.log('error', error));
 // }
 
-const response = await fetch('./data/nsedata.json');
-var nseData = await response.json();
+window.onload = async () => {
+  const response = await fetch('./data/nsedata.json');
+  var nseData = await response.json();  
+};
