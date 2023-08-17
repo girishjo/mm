@@ -15,9 +15,9 @@
 //         })
 //         .catch(error => console.log('error', error));
 // }
-
+var nseData;
 window.onload = async () => {
   const response = await fetch('./data/nsedata.json');
-  var nseData = await response.json();  
+  nseData = await response.json();
   loadDataFromLocal();
 };
