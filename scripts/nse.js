@@ -16,10 +16,5 @@
 //         .catch(error => console.log('error', error));
 // }
 
-var nseData = [];
-fetch('./data/nsedata.json')
-    .then(respond => respond.json())
-    .then(d => { nseData = d })
-    .catch(err => {
-        console.error(err)
-    })
+const response = await fetch('./data/nsedata.json');
+var nseData = await response.json();
