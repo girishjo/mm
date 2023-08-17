@@ -1,4 +1,4 @@
-async function GetDetails(stockCode) {
+async function GetOpenCloseDetails(stockCode) {
     const url = "https://stocks.zerodha.com/stocks/" + stockCode;
 
     let headers = new Headers();
