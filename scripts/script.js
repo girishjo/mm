@@ -24,6 +24,11 @@ function addRow(rowData) {
         newRow.cells[4].innerText = rowData[1];
         newRow.cells[5].innerText = rowData[2];
         newRow.cells[6].innerText = rowData[3];
+
+        const res = nseData[rowData[1]];
+        if (res) {
+            alert(res["% of Deliverable Quantity to Traded Quantity"]);
+        }
     }
 }
 
@@ -64,4 +69,24 @@ function updateRowNumber() {
     for (let index = 1; index < table.rows.length; index++) {
         table.rows[index].cells[0].innerText = index;
     }
+}
+
+function CSVToJSON(csv) {
+    const lines = csv.split('\n');
+    const keys = lines[3].split(',');
+    keys.splice(3, 0, 'secrity_type');
+    let res = lines.slice(4).map(line => {
+        return line.split(',').reduce((acc, cur, i) => {
+            const toAdd = {};
+            toAdd[keys[i]] = cur;
+            return { ...acc, ...toAdd };
+        }, {});
+    });
+
+    var a = {};
+    res.forEach(itm => {
+        a[itm['Name of Security']] = itm;
+    });
+    //Object.entries(res).forEach(itm => a[itm[2]] = { key: itm[2], value: itm });
+    return a;
 }

@@ -1,17 +1,25 @@
-async function GetNSEDeliveryDetails(date = "17082023") {
-    url = "https://archives.nseindia.com/archives/equities/mto/MTO_" + date + ".DAT";
+// async function GetNSEDeliveryDetails(date = "17082023") {
+//     url = "https://archives.nseindia.com/archives/equities/mto/MTO_" + date + ".DAT";
 
-    var requestOptions = {
-        mode: 'no-cors',
-        method: 'GET',
-        redirect: 'follow',
-        credentials: 'include'
-    };
+//     var requestOptions = {
+//         mode: 'no-cors',
+//         method: 'GET',
+//         redirect: 'follow',
+//         credentials: 'include'
+//     };
 
-    fetch(url, requestOptions)
-        .then(response => response.text())
-        .then(result => {
-            console.log(result)
-        })
-        .catch(error => console.log('error', error));
-}
+//     fetch(url, requestOptions)
+//         .then(response => response.text())
+//         .then(result => {
+//             console.log(result)
+//         })
+//         .catch(error => console.log('error', error));
+// }
+
+var nseData = [];
+fetch('./data/nsedata.json')
+    .then(respond => respond.json())
+    .then(d => { nseData = d })
+    .catch(err => {
+        console.error(err)
+    })
