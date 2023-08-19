@@ -2,81 +2,78 @@
 <html>
 
 <head>
-    <style>
-        table {
-            font-family: arial, sans-serif;
-            border-collapse: collapse;
-            width: 100%;
-        }
-
-        td,
-        th {
-            border: 1px solid #dddddd;
-            text-align: left;
-            padding: 8px;
-        }
-
-        tr:nth-child(even) {
-            background-color: #dddddd;
-        }
-
-        .icon {
-            font-size: 30px;
-        }
-
-        .hide {
-            display: none;
-        }
-    </style>
+    <link rel="stylesheet" href="styles/style.css">
 </head>
 
 <body>
+    <button type="button" class="collapsible active" data="stockListDiv">Stock List:</button>
+    <div id="stockListDiv" class="content" style="display: none;">
+        <Button onclick="saveDataOnLocal()" style="margin: 10px;">Save</Button>
+        <table class="table" id="stocksList">
+            <thead>
+                <tr>
+                    <th>No.</th>
+                    <th>Add Row</th>
+                    <th>Remove Row</th>
+                    <th>Stock Name</th>
+                    <th>NSE Code</th>
+                    <th>BSE Code</th>
+                    <th>Zerodha Code</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="hide">
+                    <td class="number">0</td>
+                    <td class="icon add">&#43;</td>
+                    <td class="icon remove">&#10539;</td>
+                    <td contenteditable="true" class="text"></td>
+                    <td contenteditable="true" class="text"></td>
+                    <td contenteditable="true" class="text"></td>
+                    <td contenteditable="true" class="text"></td>
+                </tr>
+            </tbody>
+        </table>
 
-    <h2>Stocks</h2>
-
-    <table id="stocksData">
-        <tr>
-            <th>No.</th>
-            <th>Name</th>
-            <th>Delivery</th>
-            <th>Total</th>
-            <th>Delivery %</th>
-            <th>Open</th>
-            <th>Close</th>
-            <th>Change %</th>
-        </tr>
-    </table>
-
-    <hr>
-    <Button onclick="saveDataOnLocal()">Save</Button>
-    <table class="table" id="stocksList">
-        <thead>
-            <tr>
-                <th>No.</th>
-                <th>Add Row</th>
-                <th>Remove Row</th>
-                <th>Stock Name</th>
-                <th>NSE Code</th>
-                <th>BSE Code</th>
-                <th>Zerodha Code</th>
-            </tr>
-        </thead>
-        <tbody>           
-            <tr class="hide">
-                <td class="number">0</td>
-                <td class="icon add">&#43;</td>
-                <td class="icon remove">&#10539;</td>
-                <td contenteditable="true" class="text"></td>
-                <td contenteditable="true" class="text"></td>
-                <td contenteditable="true" class="text"></td>
-                <td contenteditable="true" class="text"></td>
-            </tr>
-        </tbody>
-    </table>
+        <Button onclick="saveDataOnLocal()" style="margin: 10px;">Save</Button>
+    </div>
+    &nbsp;
+    <button type="button" class="collapsible" data="stockDataDiv">Stock Data:</button>
+    <div id="stockDataDiv" class="content" style="display: block;">
+        <input type="checkbox" id="sortData" name="sortData" value="true" onclick="sortTable(this.checked)">
+        <label for="sortData">Sort</label><br>
+        <table id="stockData">
+            <thead>
+                <tr>
+                    <th onclick="sortTable(0)">No.</th>
+                    <th onclick="sortTable(1)">Name</th>
+                    <th onclick="sortTable(2)">Delivery</th>
+                    <th onclick="sortTable(3)">Total</th>
+                    <th onclick="sortTable(4)">Delivery %</th>
+                    <th onclick="sortTable(5)">Open</th>
+                    <th onclick="sortTable(6)">Close</th>
+                    <th onclick="sortTable(7)">Change %</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="hide">
+                    <td class="number"></td>
+                    <td class="text"></td>
+                    <td class="number"></td>
+                    <td class="number"></td>
+                    <td class="text"></td>
+                    <td class="number"></td>
+                    <td class="number"></td>
+                    <td class="text"></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
 </body>
+
+<script src="scripts/ui.js"></script>
 <script src="scripts/script.js"></script>
-<script src="scripts/nse.js"></script>
+<script src="scripts/data.js"></script>
 <script src="scripts/tableToJson.js"></script>
 <script src="scripts/zero.js"></script>
-    
+
 </html>
