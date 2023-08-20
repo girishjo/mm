@@ -226,6 +226,7 @@ function sortTable(n) {
             }
         }
     }
+    updateRowNumber(dataTable);
 }
 
 function resetTable(table) {
