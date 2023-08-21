@@ -1,16 +1,61 @@
 const listTable = document.querySelector('#stocksList');
 const dataTable = document.querySelector('#stockData');
 
-function loadDataFromLocal() {
-    if (document.cookie.length != 0) {
-        var cookieArray = document.cookie.split("=");
-        const stockList = JSON.parse(cookieArray[1]);
+function saveDataOnLocal() {
+    const listTableObj = toObject(listTable);
+    const jsonStr = JSON.stringify(listTableObj);
+    window.localStorage.setItem("stocksList", jsonStr);
+}
+
+function loadDataFromLocal(data) {
+    if (data) {
+        resetTable(listTable);
+        resetTable(dataTable);
+        const stockList = JSON.parse(data);
         updateListTable(stockList);
         updateDataTable();
+    } else {
+        if (localStorage.length > 0) {
+            let stocksListValue = localStorage.getItem("stocksList");
+            if (stocksListValue) {
+                const stockList = JSON.parse(stocksListValue);
+                updateListTable(stockList);
+                updateDataTable();
+            }
+        }
     }
     if (listTable.rows.length == 2) {
         addEmptyRow(listTable);
     }
+}
+
+function downloadLocalCopy(jsnData) {
+    if (localStorage.length > 0) {
+        let stocksListValue = localStorage.getItem("stocksList");
+        var a = document.createElement("a");
+        a.href = URL.createObjectURL(
+            new Blob([stocksListValue], { type: "application/json" })
+        );
+        a.download = "stocksList.json";
+        a.click();
+    }
+    else {
+        alert('No stock in list to download');
+    }
+}
+
+
+function loadLocalCopy(e) {
+    var file = e.target.files[0];
+    if (!file) {
+        return;
+    }
+    var reader = new FileReader();
+    reader.onload = function (e) {
+        var contents = e.target.result;
+        loadDataFromLocal(contents);        
+    };
+    reader.readAsText(file);
 }
 
 function updateListTable(stockList) {
@@ -62,11 +107,6 @@ function updateDataTable() {
             updateRowNumber(dataTable);
         }
     }
-}
-
-function saveDataOnLocal() {
-    const jsonStr = JSON.stringify(toObject(listTable));
-    document.cookie = "stocksList=" + jsonStr;
 }
 
 listTable.addEventListener('click', function (e) {
