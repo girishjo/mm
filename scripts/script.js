@@ -1,9 +1,14 @@
 const listTable = document.querySelector('#stocksList');
 const dataTable = document.querySelector('#stockData');
 
-function saveDataOnLocal() {
-    const listTableObj = toObject(listTable);
-    const jsonStr = JSON.stringify(listTableObj);
+function saveDataOnLocal(data) {
+    let listTableObj;
+    if (data) {
+        listTableObj = data;
+    } else {
+        listTableObj = toObject(listTable);
+    }
+    let jsonStr = JSON.stringify(listTableObj);
     window.localStorage.setItem("stocksList", jsonStr);
     alert('List saved');
     window.location.reload();
@@ -60,6 +65,12 @@ function loadLocalCopy(e) {
         loadDataFromLocal(contents);
     };
     reader.readAsText(file);
+}
+
+function loadDefaultStockList() {
+    if (confirm("It will overwrite your existing data. Proceed?")) {
+        saveDataOnLocal(defaultStockList);
+    }
 }
 
 function updateListTable(stockList) {

@@ -14,6 +14,7 @@
     <div id="stockListDiv" class="content" style="display: none;">
         <Button onclick="saveDataOnLocal()" style="margin: 10px;">Save</Button>
         <Button onclick="downloadLocalCopy()" style="margin: 10px;">Download Stock List</Button>
+        <Button onclick="loadDefaultStockList()" style="margin: 10px;">Load Default Stock List</Button>
         <div style="width:auto; float: right;">
             <label for="localJsonFile">Select Stock List file:</label>
             <input type="file" id="localJsonFile" name="localJsonFile" onchange="loadLocalCopy(event)">
