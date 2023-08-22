@@ -1,7 +1,7 @@
 const listTable = document.querySelector('#stocksList');
 const dataTable = document.querySelector('#stockData');
 
-function saveDataOnLocal(data) {
+function saveDataOnLocal(data, silentUpdate = false) {
     let listTableObj;
     if (data) {
         listTableObj = data;
@@ -10,7 +10,9 @@ function saveDataOnLocal(data) {
     }
     let jsonStr = JSON.stringify(listTableObj);
     window.localStorage.setItem("stocksList", jsonStr);
-    alert('List saved');
+    if (!silentUpdate) {
+        alert('List saved');
+    }
     window.location.reload();
 }
 
@@ -29,6 +31,9 @@ function loadDataFromLocal(data) {
                 updateListTable(stockList);
                 updateDataTable();
             }
+        }
+        else {
+            saveDataOnLocal(defaultStockList, true);
         }
     }
     if (listTable.rows.length == 2) {
@@ -69,7 +74,7 @@ function loadLocalCopy(e) {
 
 function loadDefaultStockList() {
     if (confirm("It will overwrite your existing data. Proceed?")) {
-        saveDataOnLocal(defaultStockList);
+        saveDataOnLocal(defaultStockList , true);
     }
 }
 
