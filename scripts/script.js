@@ -5,6 +5,8 @@ function saveDataOnLocal() {
     const listTableObj = toObject(listTable);
     const jsonStr = JSON.stringify(listTableObj);
     window.localStorage.setItem("stocksList", jsonStr);
+    alert('List saved');
+    window.location.reload();
 }
 
 function loadDataFromLocal(data) {
@@ -55,7 +57,7 @@ function loadLocalCopy(e) {
     var reader = new FileReader();
     reader.onload = function (e) {
         var contents = e.target.result;
-        loadDataFromLocal(contents);        
+        loadDataFromLocal(contents);
     };
     reader.readAsText(file);
 }
