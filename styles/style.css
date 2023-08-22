@@ -9,6 +9,12 @@ th {
     border: 1px solid #dddddd;
     text-align: left;
     padding: 8px;
+    width: auto;
+}
+
+th.fitwidth {
+    width: 1px;
+    white-space: nowrap;
 }
 
 tr:nth-child(even) {
@@ -23,7 +29,7 @@ tr:nth-child(even) {
     display: none;
 }
 
-div{
+div {
     margin-bottom: 25px;
 }
 
@@ -51,7 +57,7 @@ div{
     background-color: #f1f1f1;
 }
 
-.labeldata{
+.labeldata {
     padding-top: 11px;
     padding-bottom: 11px;
     background-color: #04AA6D;

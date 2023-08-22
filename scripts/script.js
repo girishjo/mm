@@ -26,7 +26,9 @@ function loadDataFromLocal(data) {
     }
     if (listTable.rows.length == 2) {
         addEmptyRow(listTable);
+        listTable.parentElement.style.display = 'block';
     }
+    updateRowNumber(listTable);
 }
 
 function downloadLocalCopy(jsnData) {
