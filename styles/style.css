@@ -4,6 +4,10 @@ table {
     width: 100%;
 }
 
+.headerSortUp {
+    background: url("data:image/gif;base64, R0lGODlhFQAJAIAAACMtMP///yH5BAEAAAEALAAAAAAVAAkAAAIXjI+AywnaYnhUMoqt3gZXPmVg94yJVQAAOw==") no-repeat 99%;
+}
+
 td,
 th {
     border: 1px solid #dddddd;
@@ -20,6 +24,19 @@ th.fitwidth {
 tr:nth-child(even) {
     background-color: #dddddd;
 }
+
+tr.green-row {
+    color: green;
+}
+
+tr.orange-row {
+    color: orange;
+}
+
+tr.red-row {
+    color: red;
+}
+
 
 .icon {
     /* font-size: 30px; */

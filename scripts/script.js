@@ -74,7 +74,7 @@ function loadLocalCopy(e) {
 
 function loadDefaultStockList() {
     if (confirm("It will overwrite your existing data. Proceed?")) {
-        saveDataOnLocal(defaultStockList , true);
+        saveDataOnLocal(defaultStockList, true);
     }
 }
 
@@ -123,7 +123,17 @@ function updateDataTable() {
             newRow.cells[1].innerText = stockData.Name;
             newRow.cells[2].innerText = stockData.Delivery.toLocaleString('en-In');
             newRow.cells[3].innerText = stockData.Total.toLocaleString('en-In');
-            newRow.cells[4].innerText = ((stockData.Delivery / stockData.Total) * 100).toFixed(2) + " %";
+            const deliveryPercentage = ((stockData.Delivery / stockData.Total) * 100).toFixed(2);
+            newRow.cells[4].innerText = deliveryPercentage + " %";
+            if (deliveryPercentage >= 75) {
+                newRow.classList.add('green-row');
+            }
+            else if (deliveryPercentage >= 50 && deliveryPercentage < 75) {
+                newRow.classList.add('orange-row');
+            }
+            else {
+                newRow.classList.add('red-row');
+            }
             updateRowNumber(dataTable);
         }
     }
