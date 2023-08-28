@@ -101,7 +101,10 @@ function updateDataTable() {
             "Name": listRow.cells[3].innerText,
             "Delivery": 0,
             "Total": 0,
-            "DeliveryPercentage": 0
+            "DeliveryPercentage": 0,
+            "Open": 0,
+            "Close": 0,
+            "Change": 0
         }
 
         let res = nseData[listRow.cells[4].innerText];
@@ -109,6 +112,9 @@ function updateDataTable() {
             stockData.Delivery = res["Delivery"];
             stockData.Total = res["Total"];
             //stockData.DeliveryPercentage = res["DeliveryPercentage"];
+            stockData.Open = res["Open"];
+            stockData.Close = res["Close"];
+            stockData.Change = (res["Close"] - res["PrevClose"]) * 100 / res["PrevClose"];
         }
 
         res = bseData[listRow.cells[5].innerText];
@@ -134,6 +140,11 @@ function updateDataTable() {
             else {
                 newRow.classList.add('red-row');
             }
+
+            newRow.cells[5].innerText = stockData.Open.toFixed(2).toLocaleString('en-In');
+            newRow.cells[6].innerText = stockData.Close.toFixed(2).toLocaleString('en-In');
+            newRow.cells[7].innerText = stockData.Change.toFixed(2).toLocaleString('en-In') + " %";
+
             updateRowNumber(dataTable);
         }
     }
@@ -171,56 +182,6 @@ function updateRowNumber(table) {
     for (let index = 2; index < table.rows.length; index++) {
         table.rows[index].cells[0].innerText = index - 1;
     }
-}
-
-function BseCSVToJSON(csvString, separator) {
-    const lines = csvString.split('\r\n');
-    const keys = lines[0].split(separator);
-    let res = lines.slice(1).map(line => {
-        return line.split(separator).reduce((acc, cur, i) => {
-            const toAdd = {};
-            toAdd[keys[i]] = cur;
-            return { ...acc, ...toAdd };
-        }, {});
-    });
-
-    var a = {};
-    res.forEach(itm => {
-        if (itm['SCRIP CODE']) {
-            a[itm['SCRIP CODE']] = {
-                Delivery: Number(itm["DELIVERY QTY"]),
-                Total: Number(itm["DAY'S VOLUME"]),
-                DeliveryPercentage: Number(itm["DELV. PER."]),
-                "Date": itm["DATE"],
-            };
-        }
-    });
-    return a;
-}
-
-function NseCSVToJSON(csvString, separator) {
-    const lines = csvString.split('\n');
-    const keys = lines[3].split(separator);
-    keys.splice(3, 0, 'secrity_type');
-    let res = lines.slice(4).map(line => {
-        return line.split(separator).reduce((acc, cur, i) => {
-            const toAdd = {};
-            toAdd[keys[i]] = cur;
-            return { ...acc, ...toAdd };
-        }, {});
-    });
-
-    var a = {};
-    res.forEach(itm => {
-        if (itm['Name of Security']) {
-            a[itm['Name of Security']] = {
-                Delivery: Number(itm["Deliverable Quantity(gross across client level)"]),
-                Total: Number(itm["Quantity Traded"]),
-                DeliveryPercentage: Number(itm["% of Deliverable Quantity to Traded Quantity"])
-            };
-        }
-    });
-    return a;
 }
 
 function sortTable(n) {

@@ -1,3 +1,7 @@
+* {
+    margin-bottom: 15px;
+}
+
 table {
     font-family: arial, sans-serif;
     border-collapse: collapse;
@@ -46,10 +50,6 @@ tr.red-row {
     display: none;
 }
 
-div {
-    margin-bottom: 25px;
-}
-
 .collapsible {
     background-color: #777;
     color: white;
@@ -75,8 +75,7 @@ div {
 }
 
 .labeldata {
-    padding-top: 11px;
-    padding-bottom: 11px;
+    padding: 10px;    
     background-color: #04AA6D;
     color: white;
 }
