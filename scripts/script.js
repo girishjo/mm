@@ -102,9 +102,9 @@ function updateDataTable() {
             "Delivery": 0,
             "Total": 0,
             "DeliveryPercentage": 0,
-            "Open": 0,
-            "Close": 0,
-            "Change": 0
+            "Open": undefined,
+            "Close": undefined,
+            "Change": undefined
         }
 
         let res = nseData[listRow.cells[4].innerText];
@@ -121,7 +121,7 @@ function updateDataTable() {
         if (res) {
             stockData.Delivery += res["Delivery"];
             stockData.Total += res["Total"];
-            //stockData.DeliveryPercentage = res["DeliveryPercentage"];
+            //stockData.DeliveryPercentage = res["DeliveryPercentage"];           
         }
 
         if (stockData.Total > 0) {
@@ -141,9 +141,15 @@ function updateDataTable() {
                 newRow.classList.add('red-row');
             }
 
-            newRow.cells[5].innerText = stockData.Open.toFixed(2).toLocaleString('en-In');
-            newRow.cells[6].innerText = stockData.Close.toFixed(2).toLocaleString('en-In');
-            newRow.cells[7].innerText = stockData.Change.toFixed(2).toLocaleString('en-In') + " %";
+            if (stockData.Open) {
+                newRow.cells[5].innerText = stockData.Open.toFixed(2).toLocaleString('en-In');
+            }
+            if (stockData.Close) {
+                newRow.cells[6].innerText = stockData.Close.toFixed(2).toLocaleString('en-In');
+            }
+            if (stockData.Change) {
+                newRow.cells[7].innerText = stockData.Change.toFixed(2).toLocaleString('en-In') + " %";
+            }
 
             updateRowNumber(dataTable);
         }
