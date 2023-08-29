@@ -1,8 +1,9 @@
-var nseData;
-var bseData;
+var nseData = {};
+var bseData = {};
 var defaultStockList;
 
 window.onload = async () => {
+  /// NSE
   let response = await fetch('./data/nseDelivery.json');
   let nData = await response.json();
   nseData = nData.data;
@@ -21,18 +22,38 @@ window.onload = async () => {
     document.getElementById('nseOpenCloseDate').style.background = 'red';
   }
 
+  /// BSE
+  response = await fetch('./data/bseDelivery.json');
+  let bData = await response.json();
+  bseData = bData.data;
+
+  document.getElementById('bseDeliveryDate').innerText += " " + bData.deliveryTimeStamp;
+  if (new Date(bData.deliveryTimeStamp).getDate() != new Date().getDate()) {
+    document.getElementById('bseDeliveryDate').style.background = 'red';
+  }
+
+  response = await fetch('./data/bseOpenClose.json');
+  bData = await response.json();
+  bseData = MergeRecursive(bseData, bData.data);
+
+  document.getElementById('bseOpenCloseDate').innerText += " " + bData.bhavTimeStamp;
+  if (new Date(bData.bhavTimeStamp).getDate() != new Date().getDate()) {
+    document.getElementById('bseOpenCloseDate').style.background = 'red';
+  }
+  /*
   response = await fetch('./data/bsedata.json');
   bseData = await response.json();
 
-  response = await fetch('./data/defaultStockList.json');
-  defaultStockList = await response.json();
-
+  
   response = await fetch('./data/datebse.json');
   var bseDate = await response.json();
   document.getElementById('bseDeliveryDate').innerText += " " + bseDate.DateTime;
   if (new Date(bseDate.DateTime).getDate() != new Date().getDate()) {
     document.getElementById('bseDeliveryDate').style.background = 'red';
-  }
+  }*/
+
+  response = await fetch('./data/defaultStockList.json');
+  defaultStockList = await response.json();
 
   loadDataFromLocal();
 };
