@@ -121,7 +121,12 @@ function updateDataTable() {
         if (res) {
             stockData.Delivery += res["Delivery"];
             stockData.Total += res["Total"];
-            //stockData.DeliveryPercentage = res["DeliveryPercentage"];           
+            //stockData.DeliveryPercentage = res["DeliveryPercentage"];       
+            if (!stockData.Open) {
+                stockData.Open = res["Open"];
+                stockData.Close = res["Close"];
+                stockData.Change = (res["Close"] - res["PrevClose"]) * 100 / res["PrevClose"];
+            }
         }
 
         if (stockData.Total > 0) {

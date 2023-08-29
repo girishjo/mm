@@ -6,15 +6,20 @@ window.onload = async () => {
   let response = await fetch('./data/nseDelivery.json');
   let nData = await response.json();
   nseData = nData.data;
-  document.getElementById('nsedate').innerText += " " + nData.deliveryTimeStamp;
-  if (new Date(nData.timeStamp).getDate() != new Date().getDate()) {
-    document.getElementById('nsedate').style.background = 'red';
+
+  document.getElementById('nseDeliveryDate').innerText += " " + nData.deliveryTimeStamp;
+  if (new Date(nData.deliveryTimeStamp).getDate() != new Date().getDate()) {
+    document.getElementById('nseDeliveryDate').style.background = 'red';
   }
 
   response = await fetch('./data/nseOpenClose.json');
   nData = await response.json();
   nseData = MergeRecursive(nseData, nData.data);
 
+  document.getElementById('nseOpenCloseDate').innerText += " " + nData.bhavTimeStamp;
+  if (new Date(nData.bhavTimeStamp).getDate() != new Date().getDate()) {
+    document.getElementById('nseOpenCloseDate').style.background = 'red';
+  }
 
   response = await fetch('./data/bsedata.json');
   bseData = await response.json();
@@ -22,12 +27,11 @@ window.onload = async () => {
   response = await fetch('./data/defaultStockList.json');
   defaultStockList = await response.json();
 
-
   response = await fetch('./data/datebse.json');
   var bseDate = await response.json();
-  document.getElementById('bsedate').innerText += " " + bseDate.DateTime;
+  document.getElementById('bseDeliveryDate').innerText += " " + bseDate.DateTime;
   if (new Date(bseDate.DateTime).getDate() != new Date().getDate()) {
-    document.getElementById('bsedate').style.background = 'red';
+    document.getElementById('bseDeliveryDate').style.background = 'red';
   }
 
   loadDataFromLocal();

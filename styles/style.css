@@ -78,4 +78,5 @@ tr.red-row {
     padding: 10px;    
     background-color: #04AA6D;
     color: white;
+    white-space: nowrap;
 }
