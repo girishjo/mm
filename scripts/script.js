@@ -85,7 +85,6 @@ function updateListTable(stockList) {
             newRow.cells[3].innerText = stockList[i][0];
             newRow.cells[4].innerText = stockList[i][1];
             newRow.cells[5].innerText = stockList[i][2];
-            newRow.cells[6].innerText = stockList[i][3];
         }
     }
     if (listTable.rows.length == 2) {
