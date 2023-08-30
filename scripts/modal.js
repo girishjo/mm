@@ -5,6 +5,7 @@ var modal = document.getElementById("myModal");
 var span = document.getElementsByClassName("close")[0];
 
 const bulkDealsTable = document.getElementById("bulkDeals");
+const bulkDealHeader = document.getElementById("bulkDealHeader");
 
 // When the user clicks the button, open the modal 
 function OpenModal(stock) {
@@ -28,7 +29,7 @@ function OpenModal(stock) {
             maximumFractionDigits: 2
         });
     }
-
+    bulkDealHeader.innerText = stock.getAttribute('title') + " Bulk Deals";
     modal.style.display = "block";
 }
 
