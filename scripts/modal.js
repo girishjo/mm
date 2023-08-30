@@ -21,15 +21,16 @@ function OpenModal(stock) {
         const bulkDeal = bulkDeals[i];
         const newRow = addEmptyRow(bulkDealsTable);
         newRow.cells[0].innerText = i + 1;
-        newRow.cells[1].innerText = bulkDeal.ClientName;
-        newRow.cells[2].innerText = bulkDeal.BuyOrSell;
-        newRow.cells[3].innerText = bulkDeal.Quantity.toLocaleString('en-In');
-        newRow.cells[4].innerText = bulkDeal.Price.toLocaleString('en-In', {
+        newRow.cells[1].innerText = bulkDeal.Date;
+        newRow.cells[2].innerText = bulkDeal.ClientName;
+        newRow.cells[3].innerText = bulkDeal.BuyOrSell;
+        newRow.cells[4].innerText = bulkDeal.Quantity.toLocaleString('en-In');
+        newRow.cells[5].innerText = bulkDeal.Price.toLocaleString('en-In', {
             minimumFractionDigits: 2,
             maximumFractionDigits: 2
         });
     }
-    bulkDealHeader.innerText = stock.getAttribute('title') + " Bulk Deals";
+    bulkDealHeader.innerText = "Bulk Deals: " + stock.getAttribute('title');
     modal.style.display = "block";
 }
 
