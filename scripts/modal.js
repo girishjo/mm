@@ -22,8 +22,11 @@ function OpenModal(stock) {
         newRow.cells[0].innerText = i + 1;
         newRow.cells[1].innerText = bulkDeal.ClientName;
         newRow.cells[2].innerText = bulkDeal.BuyOrSell;
-        newRow.cells[3].innerText = bulkDeal.Quantity;
-        newRow.cells[4].innerText = bulkDeal.Price.toFixed(2);
+        newRow.cells[3].innerText = bulkDeal.Quantity.toLocaleString('en-In');
+        newRow.cells[4].innerText = bulkDeal.Price.toLocaleString('en-In', {
+            minimumFractionDigits: 2,
+            maximumFractionDigits: 2
+        });
     }
 
     modal.style.display = "block";

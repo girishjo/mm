@@ -115,6 +115,12 @@ function updateDataTable() {
             stockData.Open = res["Open"];
             stockData.Close = res["Close"];
             stockData.Change = (res["Close"] - res["PrevClose"]) * 100 / res["PrevClose"];
+            if (res["PrevClose"] > 0) {
+                stockData.Change = (res["Close"] - res["PrevClose"]) * 100 / res["PrevClose"];
+            }
+            else {
+                stockData.Change = "NA";
+            }
             if (res.BulkDeals && res.BulkDeals.length > 0) {
                 stockData.BulkDeals.push(...res.BulkDeals);
             }
@@ -128,7 +134,12 @@ function updateDataTable() {
             if (!stockData.Open) {
                 stockData.Open = res["Open"];
                 stockData.Close = res["Close"];
-                stockData.Change = (res["Close"] - res["PrevClose"]) * 100 / res["PrevClose"];
+                if (res["PrevClose"] > 0) {
+                    stockData.Change = (res["Close"] - res["PrevClose"]) * 100 / res["PrevClose"];
+                }
+                else {
+                    stockData.Change = "NA";
+                }
             }
             if (res.BulkDeals && res.BulkDeals.length > 0) {
                 stockData.BulkDeals.push(...res.BulkDeals);
@@ -165,13 +176,24 @@ function updateDataTable() {
             }
 
             if (stockData.Open) {
-                newRow.cells[5].innerText = stockData.Open.toFixed(2).toLocaleString('en-In');
+                newRow.cells[5].innerText = stockData.Open.toLocaleString('en-In', {
+                    minimumFractionDigits: 2,
+                    maximumFractionDigits: 2
+                });
             }
             if (stockData.Close) {
-                newRow.cells[6].innerText = stockData.Close.toFixed(2).toLocaleString('en-In');
+                newRow.cells[6].innerText = stockData.Close.toLocaleString('en-In', {
+                    minimumFractionDigits: 2,
+                    maximumFractionDigits: 2
+                });
             }
             if (stockData.Change) {
-                newRow.cells[7].innerText = stockData.Change.toFixed(2).toLocaleString('en-In') + " %";
+                if (Number(stockData.Change)) {
+                    newRow.cells[7].innerText = stockData.Change.toFixed(2).toLocaleString('en-In') + " %";
+                }
+                else {
+                    newRow.cells[7].innerText = stockData.Change;
+                }
             }
 
             updateRowNumber(dataTable);
