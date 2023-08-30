@@ -1,3 +1,4 @@
+const dataValidityTable = document.querySelector('#dataValidity');
 const listTable = document.querySelector('#stocksList');
 const dataTable = document.querySelector('#stockData');
 

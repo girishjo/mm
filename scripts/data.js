@@ -8,54 +8,50 @@ window.onload = async () => {
   let nData = await response.json();
   nseData = nData.data;
   let nseDeliveryTimeStamp = nData.deliveryTimeStamp;
-
-  document.getElementById('nseDeliveryDate').innerText += " " + nseDeliveryTimeStamp;
-  if (new Date(nseDeliveryTimeStamp).getDate() != new Date().getDate()) {
-    document.getElementById('nseDeliveryDate').style.background = 'red';
-  }
+  IsUpdateData(dataValidityTable.rows[1].cells[2], nseDeliveryTimeStamp);
 
   response = await fetch('./data/nseOpenClose.json');
   nData = await response.json();
   nseData = MergeRecursive(nseData, nData.data);
-
-  document.getElementById('nseOpenCloseDate').innerText += " " + nData.bhavTimeStamp;
-  if (new Date(nData.bhavTimeStamp).getDate() != new Date().getDate()) {
-    document.getElementById('nseOpenCloseDate').style.background = 'red';
-  }
+  IsUpdateData(dataValidityTable.rows[1].cells[1], nData.bhavTimeStamp);
 
   /// BSE
   response = await fetch('./data/bseDelivery.json');
   let bData = await response.json();
   bseData = bData.data;
   let bseDeliveryTimeStamp = bData.deliveryTimeStamp;
-
-  document.getElementById('bseDeliveryDate').innerText += " " + bseDeliveryTimeStamp;
-  if (new Date(bseDeliveryTimeStamp).getDate() != new Date().getDate()) {
-    document.getElementById('bseDeliveryDate').style.background = 'red';
-  }
+  IsUpdateData(dataValidityTable.rows[2].cells[2], bseDeliveryTimeStamp);
 
   response = await fetch('./data/bseOpenClose.json');
   bData = await response.json();
   bseData = MergeRecursive(bseData, bData.data);
-
-  document.getElementById('bseOpenCloseDate').innerText += " " + bData.bhavTimeStamp;
-  if (new Date(bData.bhavTimeStamp).getDate() != new Date().getDate()) {
-    document.getElementById('bseOpenCloseDate').style.background = 'red';
-  }
+  IsUpdateData(dataValidityTable.rows[2].cells[1], bData.bhavTimeStamp);
 
   response = await fetch('./data/bseBulkDeal.json');
   var bseBulkData = await response.json();
   MergeBulkDealData(bseData, bseBulkData, bseDeliveryTimeStamp);
+  IsUpdateData(dataValidityTable.rows[2].cells[3], bseBulkData.bulkTimeStamp);
 
   response = await fetch('./data/nseBulkDeal.json');
   var nseBulkData = await response.json();
   MergeBulkDealData(nseData, nseBulkData, nseDeliveryTimeStamp);
+  IsUpdateData(dataValidityTable.rows[1].cells[3], nseBulkData.bulkTimeStamp);
 
   response = await fetch('./data/defaultStockList.json');
   defaultStockList = await response.json();
 
   loadDataFromLocal();
 };
+
+function IsUpdateData(placeHolder, dateTimeStamp) {
+  placeHolder.innerText = dateTimeStamp;
+  if (new Date(dateTimeStamp).getDate() != new Date().getDate()) {
+    placeHolder.style.background = 'lightcoral';
+  }
+  else{
+    placeHolder.style.background = 'lightgreen';
+  }
+}
 
 function MergeBulkDealData(mainData, bseBulkData, dateTimeStamp) {
   for (let i = 0; i < bseBulkData.data.length; i++) {
