@@ -147,7 +147,7 @@ function updateDataTable() {
             }
         }
 
-        if (stockData.Total > 0) {
+        if (stockData.Name) {
             const newRow = addEmptyRow(dataTable);
             if (stockData.BulkDeals && stockData.BulkDeals.length > 0) {
                 var a = document.createElement('a');
@@ -162,18 +162,25 @@ function updateDataTable() {
             else {
                 newRow.cells[1].innerText = stockData.Name;
             }
-            newRow.cells[2].innerText = stockData.Delivery.toLocaleString('en-In');
-            newRow.cells[3].innerText = stockData.Total.toLocaleString('en-In');
-            const deliveryPercentage = ((stockData.Delivery / stockData.Total) * 100).toFixed(2);
-            newRow.cells[4].innerText = deliveryPercentage + " %";
-            if (deliveryPercentage >= 75) {
-                newRow.classList.add('green-row');
+            if (Number(stockData.Delivery)) {
+                newRow.cells[2].innerText = stockData.Delivery.toLocaleString('en-In');
             }
-            else if (deliveryPercentage >= 50 && deliveryPercentage < 75) {
-                newRow.classList.add('orange-row');
+            if (Number(stockData.Total)) {
+                newRow.cells[3].innerText = stockData.Total.toLocaleString('en-In');
             }
-            else {
-                newRow.classList.add('red-row');
+            if (stockData.Total > 0) {
+                const deliveryPercentage = ((stockData.Delivery / stockData.Total) * 100).toFixed(2);
+
+                newRow.cells[4].innerText = deliveryPercentage + " %";
+                if (deliveryPercentage >= 75) {
+                    newRow.classList.add('green-row');
+                }
+                else if (deliveryPercentage >= 50 && deliveryPercentage < 75) {
+                    newRow.classList.add('orange-row');
+                }
+                else {
+                    newRow.classList.add('red-row');
+                }
             }
 
             if (stockData.Open) {
