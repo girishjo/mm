@@ -2,7 +2,8 @@
 <html>
 
 <head>
-    <link rel="stylesheet" href="styles/style.css?d=d23">
+    <link rel="stylesheet" href="styles/style.css?d=30">
+    <link rel="stylesheet" href="styles/modal.css?d=30">
 </head>
 
 <body>
@@ -78,14 +79,52 @@
             </tbody>
         </table>
     </div>
+    <!-- The Modal -->
+    <div id="myModal" class="modal">
+
+        <!-- Modal content -->
+        <div class="modal-content">
+            <div class="modal-header">
+                <span class="close">&times;</span>
+                <h2>Bulk Deals</h2>
+            </div>
+            <div class="modal-body">
+                <table id="bulkDeals">
+                    <thead>
+                        <tr>
+                            <th>No.</th>
+                            <th>Client Name</th>
+                            <th>Deal Type</th>
+                            <th>Quantity</th>
+                            <th>Price</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="hide">
+                            <td class="number"></td>
+                            <td class="text"></td>
+                            <td class="text"></td>
+                            <td class="number"></td>
+                            <td class="number"></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <!-- <div class="modal-footer">
+                <h3>Modal Footer</h3>
+            </div> -->
+        </div>
+
+    </div>
 </body>
 
-<script src="scripts/ui.js?d=23"></script>
-<script src="scripts/script.js?d=23"></script>
-<script src="scripts/data.js?d=23"></script>
-<script src="scripts/tableToJson.js?d=23"></script>
-<script src="scripts/zero.js?d=23"></script>
+<script src="scripts/ui.js?d=30"></script>
+<script src="scripts/script.js?d=30"></script>
+<script src="scripts/data.js?d=30"></script>
+<script src="scripts/tableToJson.js?d=30"></script>
+<script src="scripts/zero.js?d=30"></script>
 
-<script src="scripts/appscript.js"></script>
+<script src="scripts/appscript.js?d=30"></script>
+<script src="scripts/modal.js?d=30"></script>
 
 </html>

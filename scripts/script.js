@@ -103,7 +103,8 @@ function updateDataTable() {
             "DeliveryPercentage": 0,
             "Open": undefined,
             "Close": undefined,
-            "Change": undefined
+            "Change": undefined,
+            "BulkDeals": [],
         }
 
         let res = nseData[listRow.cells[4].innerText];
@@ -114,6 +115,9 @@ function updateDataTable() {
             stockData.Open = res["Open"];
             stockData.Close = res["Close"];
             stockData.Change = (res["Close"] - res["PrevClose"]) * 100 / res["PrevClose"];
+            if (res.BulkDeals && res.BulkDeals.length > 0) {
+                stockData.BulkDeals.push(...res.BulkDeals);
+            }
         }
 
         res = bseData[listRow.cells[5].innerText];
@@ -126,11 +130,26 @@ function updateDataTable() {
                 stockData.Close = res["Close"];
                 stockData.Change = (res["Close"] - res["PrevClose"]) * 100 / res["PrevClose"];
             }
+            if (res.BulkDeals && res.BulkDeals.length > 0) {
+                stockData.BulkDeals.push(...res.BulkDeals);
+            }
         }
 
         if (stockData.Total > 0) {
             const newRow = addEmptyRow(dataTable);
-            newRow.cells[1].innerText = stockData.Name;
+            if (stockData.BulkDeals && stockData.BulkDeals.length > 0) {
+                var a = document.createElement('a');
+                var linkText = document.createTextNode(stockData.Name);
+                a.appendChild(linkText);
+                a.title = stockData.Name;
+                a.href = "#";
+                a.setAttribute("code", stockData.BulkDeals[0].SecurityCode);
+                a.setAttribute("onclick", "OpenModal(this);");
+                newRow.cells[1].appendChild(a);
+            }
+            else {
+                newRow.cells[1].innerText = stockData.Name;
+            }
             newRow.cells[2].innerText = stockData.Delivery.toLocaleString('en-In');
             newRow.cells[3].innerText = stockData.Total.toLocaleString('en-In');
             const deliveryPercentage = ((stockData.Delivery / stockData.Total) * 100).toFixed(2);

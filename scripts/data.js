@@ -26,9 +26,10 @@ window.onload = async () => {
   response = await fetch('./data/bseDelivery.json');
   let bData = await response.json();
   bseData = bData.data;
+  let bseDeliveryTimeStamp = bData.deliveryTimeStamp;
 
-  document.getElementById('bseDeliveryDate').innerText += " " + bData.deliveryTimeStamp;
-  if (new Date(bData.deliveryTimeStamp).getDate() != new Date().getDate()) {
+  document.getElementById('bseDeliveryDate').innerText += " " + bseDeliveryTimeStamp;
+  if (new Date(bseDeliveryTimeStamp).getDate() != new Date().getDate()) {
     document.getElementById('bseDeliveryDate').style.background = 'red';
   }
 
@@ -40,17 +41,24 @@ window.onload = async () => {
   if (new Date(bData.bhavTimeStamp).getDate() != new Date().getDate()) {
     document.getElementById('bseOpenCloseDate').style.background = 'red';
   }
-  /*
-  response = await fetch('./data/bsedata.json');
-  bseData = await response.json();
 
-  
-  response = await fetch('./data/datebse.json');
-  var bseDate = await response.json();
-  document.getElementById('bseDeliveryDate').innerText += " " + bseDate.DateTime;
-  if (new Date(bseDate.DateTime).getDate() != new Date().getDate()) {
-    document.getElementById('bseDeliveryDate').style.background = 'red';
-  }*/
+  response = await fetch('./data/bseBulkDeal.json');
+  var bseBulkData = await response.json();
+
+  for (let i = 0; i < bseBulkData.data.length; i++) {
+    const bulkDeal = bseBulkData.data[i];
+    const stockData = bseData[bulkDeal.SecurityCode];
+    if (stockData) {
+      if (new Date(bulkDeal.Date).getDate() == new Date(bseDeliveryTimeStamp).getDate()) {
+        if (!stockData.BulkDeals) {
+          stockData.BulkDeals = [];
+        }
+        //delete bulkDeal.SecurityCode;
+        delete bulkDeal.SecurityName;
+        stockData.BulkDeals.push(bulkDeal);
+      }
+    }
+  }
 
   response = await fetch('./data/defaultStockList.json');
   defaultStockList = await response.json();
