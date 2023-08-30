@@ -2,181 +2,156 @@
     [
         "Aatmaj",
         "AATMAJ",
+        ""
+    ],
+    [
+        "Bondada",
         "",
-        "AAT"
+        "543971"
+    ],
+    [
+        "Crop",
+        "CLSL",
+        ""
+    ],
+    [
+        "Shoora",
+        "",
+        "543970"
     ],
     [
         "Ahasolar",
         "",
-        "543941",
-        "AHA"
+        "543941"
     ],
     [
         "Alphalogic",
         "",
-        "543937",
-        "ALPHA"
-    ],
-    [
-        "Asarfi",
-        "",
-        "543943",
-        "ASAR"
+        "543937"
     ],
     [
         "Cloud",
         "CLOUD",
-        "",
-        "CLO"
-    ],
-    [
-        "Concord Bio",
-        "CONCORDBIO",
-        "543960",
-        "CONCO"
+        ""
     ],
     [
         "Crayons",
         "CRAYONS",
-        "",
-        "CRAY"
+        ""
     ],
     [
         "Essen",
         "ESFL",
-        "",
-        "ESF"
+        ""
     ],
     [
         "Exhicon",
         "",
-        "543895",
-        "EXH"
+        "543895"
     ],
     [
         "Global Pet",
         "GLOBALPET",
-        "",
-        "GLOBL"
+        ""
     ],
     [
         "Green Chef",
         "GREENCHEF",
-        "",
-        "GREE"
+        ""
     ],
     [
         "Kaka",
         "",
-        "543939",
-        "KAKA"
+        "543939"
     ],
     [
         "Kore Digital",
         "KDL",
-        "",
-        "KDD"
+        ""
     ],
     [
         "Krishca",
         "KRISHCA",
-        "",
-        "KRISC"
+        ""
     ],
     [
         "Magson",
         "MAGSON",
-        "",
-        "MAGSO"
+        ""
     ],
     [
         "Nirman",
         "NIRMAN",
-        "",
-        "NIRM"
+        ""
     ],
     [
         "Oriana",
         "ORIANA",
-        "",
-        "ORIA"
+        ""
     ],
     [
         "Pentagon",
         "PENTAGON",
-        "",
-        "PENTA"
+        ""
     ],
     [
         "Sangani",
         "SANGANI",
-        "",
-        "SANGA"
-    ],
-    [
-        "SBCF",
-        "SBFC",
-        "543959",
-        "SBFC"
+        ""
     ],
     [
         "Seal",
         "",
-        "543782",
-        "SEAL"
+        "543782"
     ],
     [
         "Shri Techtex",
         "SHRITECH",
-        "",
-        "SHRIT"
+        ""
     ],
     [
         "Spectrum",
         "SPECTSTM",
-        "",
-        "SPECS"
+        ""
     ],
     [
         "Srivari",
         "SSFL",
-        "",
-        "SSF"
+        ""
     ],
     [
         "Veefin",
         "",
-        "543931",
-        "VEEF"
+        "543931"
     ],
     [
         "Vinsys",
         "VINSYS",
-        "",
-        "VINS"
+        ""
     ],
     [
         "Yasons ",
         "YCCL",
-        "",
-        "YCC"
-    ],
-    [
-        "Yatharth",
-        "YATHARTH",
-        "543950",
-        "YAT"
+        ""
     ],
     [
         "Yudiz",
         "YUDIZ",
-        "",
-        "YUD"
+        ""
     ],
     [
         "Zeal Global",
         "ZEAL",
+        ""
+    ],
+    [
+        "RBM Infra",
+        "RBMINFRA",
+        ""
+    ],
+    [
+        "Insolation",
         "",
-        "ZEAL"
+        "543620"
     ]
 ]
