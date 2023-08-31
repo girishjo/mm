@@ -39,12 +39,12 @@
 }
 
 .bulkdeal {
-    -webkit-animation: bulkdeal 1s 120 alternate-reverse;
+    -webkit-animation: bulkdeal 1s 10 alternate-reverse;
     /* Safari 4+ */
-    -moz-animation: bulkdeal 1s 120 alternate-reverse;
+    -moz-animation: bulkdeal 1s 10 alternate-reverse;
     /* Fx 5+ */
-    -o-animation: bulkdeal 1s 120 alternate-reverse;
+    -o-animation: bulkdeal 1s 10 alternate-reverse;
     /* Opera 12+ */
-    animation: bulkdeal 1s 120 alternate-reverse;
+    animation: bulkdeal 1s 10 alternate-reverse;
     /* IE 10+ */
 }
