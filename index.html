@@ -4,10 +4,15 @@
 <head>
     <link rel="stylesheet" href="styles/style.css?d=30">
     <link rel="stylesheet" href="styles/modal.css?d=30">
+    <link rel="stylesheet" href="styles/sort.css?d=30">
+    <link rel="stylesheet" href="styles/bulkdeal.css?d=30">
 </head>
 
 <body>
-    <button type="button" class="collapsible active" data="dataValidityDiv">Data Validity</button>
+    <button type="button" class="collapsible" data="dataValidityDiv">Data Validity</button>
+    <button type="button" class="collapsible active" data="stockListDiv">Stock List:</button>
+    <button type="button" class="collapsible" data="stockDataDiv">Stock Data:</button>
+
     <div id="dataValidityDiv" class="content" style="display: block;">
         <table class="table" id="dataValidity">
             <thead>
@@ -34,7 +39,6 @@
             </tbody>
         </table>
     </div>
-    <button type="button" class="collapsible active" data="stockListDiv">Stock List:</button>
     <div id="stockListDiv" class="content" style="display: none;">
         <Button onclick="saveDataOnLocal()" style="margin: 10px;">Save</Button>
         <Button onclick="downloadLocalCopy()" style="margin: 10px;">Download Stock List</Button>
@@ -49,9 +53,9 @@
                     <th class="fitwidth">No.</th>
                     <th class="fitwidth">Add</th>
                     <th class="fitwidth">Remove</th>
-                    <th>Stock Name</th>
-                    <th>NSE Code</th>
-                    <th>BSE Code</th>
+                    <th class="text">Stock Name</th>
+                    <th class="text">NSE Code</th>
+                    <th class="text">BSE Code</th>
                 </tr>
             </thead>
             <tbody>
@@ -68,36 +72,36 @@
 
         <Button onclick="saveDataOnLocal()" style="margin: 10px;">Save</Button>
     </div>
-    &nbsp;
-    <button type="button" class="collapsible" data="stockDataDiv">Stock Data:</button>
     <div id="stockDataDiv" class="content" style="display: block;">
         <table id="stockData">
             <thead>
                 <tr>
-                    <th onclick="sortTable(0)" class="headerSortUp">No.</th>
-                    <th onclick="sortTable(1)" class="headerSortUp">Name</th>
-                    <th onclick="sortTable(2)" class="headerSortUp">Delivery</th>
-                    <th onclick="sortTable(3)" class="headerSortUp">Total</th>
-                    <th onclick="sortTable(4)" class="headerSortUp">Delivery %</th>
-                    <th onclick="sortTable(5)" class="headerSortUp">Open</th>
-                    <th onclick="sortTable(6)" class="headerSortUp">Close</th>
-                    <th onclick="sortTable(7)" class="headerSortUp">Change %</th>
+                    <th class="text sort"><a href="#" class="sort-by">No.</a></th>
+                    <th class="text sort"><a href="#" class="sort-by">Name<a></th>
+                    <th class="number sort"><a href="#" class="sort-by">Delivery</a></th>
+                    <th class="number sort"><a href="#" class="sort-by">Total</a></th>
+                    <th class="number sort"><a href="#" class="sort-by">Delivery %</a></th>
+                    <th class="number sort"><a href="#" class="sort-by">Open</a></th>
+                    <th class="number sort"><a href="#" class="sort-by">Close</a></th>
+                    <th class="number sort"><a href="#" class="sort-by">Change %</a></th>
                 </tr>
             </thead>
             <tbody>
                 <tr class="hide">
-                    <td class="number"></td>
+                    <td class="text"></td>
                     <td class="text"></td>
                     <td class="number"></td>
                     <td class="number"></td>
-                    <td class="text"></td>
                     <td class="number"></td>
                     <td class="number"></td>
-                    <td class="text"></td>
+                    <td class="number"></td>
+                    <td class="number"></td>
                 </tr>
             </tbody>
         </table>
     </div>
+
+
     <!-- The Modal -->
     <div id="myModal" class="modal">
 
@@ -111,17 +115,17 @@
                 <table id="bulkDeals">
                     <thead>
                         <tr>
-                            <th>No.</th>
-                            <th>Date</th>
-                            <th>Client Name</th>
-                            <th>Deal Type</th>
-                            <th>Quantity</th>
-                            <th>Price</th>
+                            <th class="text sort"><a href="#" class="sort-by">No.</a></th>
+                            <th class="text sort">Date</th>
+                            <th class="text sort"><a href="#" class="sort-by">Client Name</a></th>
+                            <th class="text sort"><a href="#" class="sort-by">Type</a></th>
+                            <th class="number sort"><a href="#" class="sort-by">Quantity</a></th>
+                            <th class="number sort"><a href="#" class="sort-by">Price</a></th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr class="hide">
-                            <td class="number"></td>
+                            <td class="text"></td>
                             <td class="text"></td>
                             <td class="text"></td>
                             <td class="text"></td>
@@ -139,13 +143,13 @@
     </div>
 </body>
 
+<script src="scripts/utils.js?d=30"></script>
 <script src="scripts/ui.js?d=30"></script>
 <script src="scripts/script.js?d=30"></script>
 <script src="scripts/data.js?d=30"></script>
 <script src="scripts/tableToJson.js?d=30"></script>
-<script src="scripts/zero.js?d=30"></script>
+<script src="scripts/modal.js?d=30"></script>
 
 <script src="scripts/appscript.js?d=30"></script>
-<script src="scripts/modal.js?d=30"></script>
 
 </html>

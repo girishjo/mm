@@ -20,6 +20,14 @@ th {
     width: auto;
 }
 
+th.number {
+    text-align: right !important;
+}
+
+td.number {
+    text-align: right !important;
+}
+
 th.fitwidth {
     width: 1px;
     white-space: nowrap;
@@ -75,7 +83,7 @@ tr.red-row {
 }
 
 .labeldata {
-    padding: 10px;    
+    padding: 10px;
     background-color: #04AA6D;
     color: white;
     white-space: nowrap;

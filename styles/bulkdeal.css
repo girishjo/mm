@@ -1,0 +1,50 @@
+@-webkit-keyframes bulkdeal {
+    from {
+        background-color: yellow;
+    }
+
+    to {
+        background-color: inherit;
+    }
+}
+
+@-moz-keyframes bulkdeal {
+    from {
+        background-color: yellow;
+    }
+
+    to {
+        background-color: inherit;
+    }
+}
+
+@-o-keyframes bulkdeal {
+    from {
+        background-color: yellow;
+    }
+
+    to {
+        background-color: inherit;
+    }
+}
+
+@keyframes bulkdeal {
+    from {
+        background-color: yellow;
+    }
+
+    to {
+        background-color: inherit;
+    }
+}
+
+.bulkdeal {
+    -webkit-animation: bulkdeal 1s 120 alternate-reverse;
+    /* Safari 4+ */
+    -moz-animation: bulkdeal 1s 120 alternate-reverse;
+    /* Fx 5+ */
+    -o-animation: bulkdeal 1s 120 alternate-reverse;
+    /* Opera 12+ */
+    animation: bulkdeal 1s 120 alternate-reverse;
+    /* IE 10+ */
+}

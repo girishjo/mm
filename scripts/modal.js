@@ -9,7 +9,7 @@ const bulkDealHeader = document.getElementById("bulkDealHeader");
 
 // When the user clicks the button, open the modal 
 function OpenModal(stock) {
-    resetTable(bulkDealsTable);
+    //event.preventDefault();
     const stockCode = stock.getAttribute('code');
     let bulkDeals = [];
     if (nseData[stockCode]) {
@@ -17,6 +17,7 @@ function OpenModal(stock) {
     } else if (bseData[stockCode]) {
         bulkDeals = bseData[stockCode].BulkDeals;
     }
+    var total = 0;
     for (let i = 0; i < bulkDeals.length; i++) {
         const bulkDeal = bulkDeals[i];
         const newRow = addEmptyRow(bulkDealsTable);
@@ -24,11 +25,30 @@ function OpenModal(stock) {
         newRow.cells[1].innerText = bulkDeal.Date;
         newRow.cells[2].innerText = bulkDeal.ClientName;
         newRow.cells[3].innerText = bulkDeal.BuyOrSell;
+        if (bulkDeal.BuyOrSell == "Buy") {
+            newRow.cells[3].style.color = 'green';
+            total += bulkDeal.Quantity;
+        }
+        else if (bulkDeal.BuyOrSell == "Sell") {
+            newRow.cells[3].style.color = 'red';
+            total -= bulkDeal.Quantity;
+            //bulkDeal.Quantity *= -1;
+        }
         newRow.cells[4].innerText = bulkDeal.Quantity.toLocaleString('en-In');
         newRow.cells[5].innerText = bulkDeal.Price.toLocaleString('en-In', {
             minimumFractionDigits: 2,
             maximumFractionDigits: 2
         });
+    }
+    const newRow = addEmptyRow(bulkDealsTable);
+    newRow.setAttribute("frozen", true);
+    newRow.cells[3].innerText = 'Total = ';
+    newRow.cells[4].innerText = total.toLocaleString('en-In');
+    if (total > 0) {
+        newRow.cells[3].style.color = 'green';
+    }
+    else if (total < 0) {
+        newRow.cells[3].style.color = 'red';
     }
     bulkDealHeader.innerText = "Bulk Deals: " + stock.getAttribute('title');
     modal.style.display = "block";
@@ -36,12 +56,25 @@ function OpenModal(stock) {
 
 // When the user clicks on <span> (x), close the modal
 span.onclick = function () {
-    modal.style.display = "none";
+    HideModal();
 }
 
 // When the user clicks anywhere outside of the modal, close it
 window.onclick = function (event) {
     if (event.target == modal) {
-        modal.style.display = "none";
+        HideModal();
     }
+}
+
+window.onkeyup = (e => {
+    if (e.key === "Escape") {
+        if (modal.style.display == "block") {
+            HideModal();
+        }
+    }
+});
+
+function HideModal() {
+    modal.style.display = "none";
+    resetTable(bulkDealsTable);
 }
