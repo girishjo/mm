@@ -33,15 +33,15 @@ window.onload = async () => {
 
   // #region Bulk Deals
 
-  response = await fetch('./data/bseBulkDeal.json');
-  var bseBulkData = await response.json();
-  MergeBulkDealData(bseData, bseBulkData, bData.deliveryTimeStamp);
-  IsUpdateData(dataValidityTable.rows[2].cells[3], bseBulkData.bulkTimeStamp);
-
   response = await fetch('./data/nseBulkDeal.json');
   var nseBulkData = await response.json();
   MergeBulkDealData(nseData, nseBulkData, nData.deliveryTimeStamp);
   IsUpdateData(dataValidityTable.rows[1].cells[3], nseBulkData.bulkTimeStamp);
+
+  response = await fetch('./data/bseBulkDeal.json');
+  var bseBulkData = await response.json();
+  MergeBulkDealData(bseData, bseBulkData, bData.deliveryTimeStamp);
+  IsUpdateData(dataValidityTable.rows[2].cells[3], bseBulkData.bulkTimeStamp);
 
   // #endregion Bulk Deals
 
