@@ -62,7 +62,7 @@ function IsUpdateData(placeHolder, dateTimeStamp) {
 }
 
 function MergeBulkDealData(mainData, bulkDealData, dateTimeStamp) {
-  bulkDealData.data.sort((a, b) => a.SecurityCode.localeCompare(b.SecurityCode) || a.ClientName.localeCompare(b.ClientName));
+  bulkDealData.data.sort((a, b) => a.SecurityCode.localeCompare(b.SecurityCode) || a.ClientName.localeCompare(b.ClientName) || a.BuyOrSell.localeCompare(b.BuyOrSell));
   for (let i = 0; i < bulkDealData.data.length; i++) {
     const bulkDeal = bulkDealData.data[i];
     const stockData = mainData[bulkDeal.SecurityCode];
