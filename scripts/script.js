@@ -115,12 +115,10 @@ function updateDataTable(table, name, nseCode, bseCode, data = undefined, rowInd
         stockData.Open = resNse["Open"];
         stockData.Close = resNse["Close"];
         stockData.Change = (resNse["Close"] - resNse["PrevClose"]) * 100 / resNse["PrevClose"];
-        if (resNse["PrevClose"] > 0) {
+        if (resNse["PrevClose"] && resNse["PrevClose"] != 0) {
             stockData.Change = (resNse["Close"] - resNse["PrevClose"]) * 100 / resNse["PrevClose"];
         }
-        else {
-            stockData.Change = "NA";
-        }
+
         if (resNse.BulkDeals && resNse.BulkDeals.length > 0) {
             stockData.BulkDeals.push(...resNse.BulkDeals);
         }
@@ -139,11 +137,8 @@ function updateDataTable(table, name, nseCode, bseCode, data = undefined, rowInd
         if (!stockData.Open) {
             stockData.Open = resBse["Open"];
             stockData.Close = resBse["Close"];
-            if (resBse["PrevClose"] > 0) {
+            if (resBse["PrevClose"] && resBse["PrevClose"] != 0) {
                 stockData.Change = (resBse["Close"] - resBse["PrevClose"]) * 100 / resBse["PrevClose"];
-            }
-            else {
-                stockData.Change = "NA";
             }
         }
         if (resBse.BulkDeals && resBse.BulkDeals.length > 0) {
@@ -169,7 +164,7 @@ function updateDataTable(table, name, nseCode, bseCode, data = undefined, rowInd
             resNse && codes.push(nseCode);
             resBse && codes.push(bseCode);
             a.setAttribute("codes", codes);
-            a.setAttribute("onclick", "ShowHistory(this);");            
+            a.setAttribute("onclick", "ShowHistory(this);");
             newRow.cells[1].appendChild(a);
         }
         else {
@@ -230,11 +225,9 @@ function updateDataTable(table, name, nseCode, bseCode, data = undefined, rowInd
             });
         }
         if (stockData.Change != undefined) {
-            if (Number(stockData.Change) != NaN) {
+            newRow.cells[7].innerText = stockData.Change;
+            if (Number(stockData.Change)) {
                 newRow.cells[7].innerText = stockData.Change.toFixed(2).toLocaleString('en-In') + " %";
-            }
-            else {
-                newRow.cells[7].innerText = stockData.Change;
             }
         }
     }
