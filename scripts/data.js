@@ -130,6 +130,11 @@ const mergeById = (a1, a2) =>
   }));
 
 function Merge(newData, oldData) {
+  if (!newData || !newData.dateTimeStamp || !oldData || !oldData.dateTimeStamp) {
+    newData = MergeRecursive(newData, oldData)
+    return newData;
+  }
+
   const oldDate = new Date(oldData.dateTimeStamp).toLocaleDateString('en-In', { weekday: "short", year: "numeric", month: "short", day: "2-digit" });
   const newDate = new Date(newData.dateTimeStamp).toLocaleDateString('en-In', { weekday: "short", year: "numeric", month: "short", day: "2-digit" });
 
@@ -154,17 +159,27 @@ function Merge(newData, oldData) {
               if (history) {
                   history = MergeRecursive(history, oldData.data[stock]);
               }
-              else {
+              else {                
                   if(oldData.data[stock].History){ 
-                    newData.data[stock].History = mergeById(newData.data[stock].History,oldData.data[stock].History);                    
-                    //newData.data[stock].History.push(...oldData.data[stock].History);
+                    for (let i = 0; i < oldData.data[stock].History.length; i++) {
+                      const oldHistory = oldData.data[stock].History[i];
+                      var history = newData.data[stock].History.find(his => his.HistoryDate == oldHistory.HistoryDate);
+                      if(history){
+                        history = {                          
+                          ...oldData.data[stock]
+                        }
+                      }          
+                      else{
+                        newData.data[stock].History.push(oldHistory);
+                      }                                                     
+                    }                   
                   }
-                  delete oldData.data[stock].History;
-                  history = {
-                      "HistoryDate": oldDate,
-                      ...oldData.data[stock]
-                  }
-                  newData.data[stock].History.push(history);
+                  // delete oldData.data[stock].History;
+                  // history = {
+                  //     "HistoryDate": oldDate,
+                  //     ...oldData.data[stock]
+                  // }
+                  // newData.data[stock].History.push(history);
                   //newData.data[stock].History.sort((a, b) => new Date(b.HistoryDate).localeCompare(new Date(a.HistoryDate)));
               }
           }
