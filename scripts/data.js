@@ -155,7 +155,10 @@ function Merge(newData, oldData) {
                   history = MergeRecursive(history, oldData.data[stock]);
               }
               else {
-                  oldData.data[stock].History && newData.data[stock].History.push(...oldData.data[stock].History);
+                  if(oldData.data[stock].History){ 
+                    newData.data[stock].History = mergeById(newData.data[stock].History,oldData.data[stock].History);                    
+                    //newData.data[stock].History.push(...oldData.data[stock].History);
+                  }
                   delete oldData.data[stock].History;
                   history = {
                       "HistoryDate": oldDate,
