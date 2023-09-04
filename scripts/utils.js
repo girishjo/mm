@@ -45,8 +45,17 @@ function sortTable(header) {
             based on the direction, asc or desc:*/
             let numX = Number(x.innerText.replace(/,/g, "").replace("%", ""));
             let numY = Number(y.innerText.replace(/,/g, "").replace("%", ""));
+            let dateX = new Date(x.innerText);
+            let dateY = new Date(y.innerText);
             if (dir == "asc") {
-                if (isNaN(numX) || isNaN(numY)) {
+                if (dateX && dateY) {
+                    if (dateX > dateY) {
+                        //if so, mark as a switch and break the loop:
+                        shouldSwitch = true;
+                        break;
+                    }
+                }
+                else if (isNaN(numX) || isNaN(numY)) {
                     if (x.innerText.toLowerCase() > y.innerText.toLowerCase()) {
                         //if so, mark as a switch and break the loop:
                         shouldSwitch = true;
@@ -61,7 +70,14 @@ function sortTable(header) {
                     }
                 }
             } else if (dir == "desc") {
-                if (isNaN(numX) || isNaN(numY)) {
+                if (dateX && dateY) {
+                    if (dateX < dateY) {
+                        //if so, mark as a switch and break the loop:
+                        shouldSwitch = true;
+                        break;
+                    }
+                }
+                else if (isNaN(numX) || isNaN(numY)) {
                     if (x.innerText.toLowerCase() < y.innerText.toLowerCase()) {
                         //if so, mark as a switch and break the loop:
                         shouldSwitch = true;
