@@ -10,12 +10,43 @@ const bulkDealHeader = document.getElementById("bulkDealHeader");
 // When the user clicks the button, open the modal 
 function OpenModal(stock) {
     //event.preventDefault();
-    const stockCode = stock.getAttribute('code');
     let bulkDeals = [];
-    if (nseData[stockCode]) {
-        bulkDeals = nseData[stockCode].BulkDeals;
-    } else if (bseData[stockCode]) {
-        bulkDeals = bseData[stockCode].BulkDeals;
+    const stockCodes = stock.getAttribute('codes');
+    const historyDate = stock.getAttribute('historyDate');
+
+    let nseCode, bseCode;
+    const codes = stockCodes.split(',');
+    if (codes.length == 2) {
+        nseCode = codes[0];
+        bseCode = codes[1];
+    }
+    else {
+        nseCode = stockCodes;
+        bseCode = stockCodes;
+    }
+    if (nseData[nseCode]) {
+        if (historyDate) {
+            nseData[nseCode].History.forEach(his => {
+                if (his.HistoryDate == historyDate) {
+                    bulkDeals = his.BulkDeals;
+                }
+            });
+        }
+        else {
+            bulkDeals = nseData[nseCode].BulkDeals;
+        }
+    }
+    if (bseData[bseCode]) {
+        if (historyDate) {
+            bseData[bseCode].History.forEach(his => {
+                if (his.HistoryDate == historyDate) {
+                    bulkDeals.push(...his.BulkDeals);
+                }
+            });
+        }
+        else {
+            bulkDeals.push(...bseData[bseCode].BulkDeals);
+        }
     }
     var total = 0;
     for (let i = 0; i < bulkDeals.length; i++) {
@@ -61,6 +92,7 @@ span.onclick = function () {
 
 // When the user clicks anywhere outside of the modal, close it
 window.onclick = function (event) {
+    event.preventDefault();
     if (event.target == modal) {
         HideModal();
     }

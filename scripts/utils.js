@@ -93,9 +93,9 @@ function sortTable(header) {
             }
         }
     }
-    if (n > 0) {
-        updateRowNumber(table);
-    }
+    // if (n > 0) {
+    //     updateRowNumber(table);
+    // }
 }
 
 function resetTable(table) {

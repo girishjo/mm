@@ -100,7 +100,34 @@
             </tbody>
         </table>
     </div>
-
+    <div id="stockHistoryDiv" class="content" style="display: none;">
+        <table id="stockHistory">
+            <thead>
+                <tr>
+                    <th class="text sort"><a href="#" class="sort-by">No.</a></th>
+                    <th class="text sort"><a href="#" class="sort-by">Date<a></th>
+                    <th class="number sort"><a href="#" class="sort-by">Delivery</a></th>
+                    <th class="number sort"><a href="#" class="sort-by">Total</a></th>
+                    <th class="number sort"><a href="#" class="sort-by">Delivery %</a></th>
+                    <th class="number sort"><a href="#" class="sort-by">Open</a></th>
+                    <th class="number sort"><a href="#" class="sort-by">Close</a></th>
+                    <th class="number sort"><a href="#" class="sort-by">Change %</a></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="hide">
+                    <td class="text"></td>
+                    <td class="text"></td>
+                    <td class="number"></td>
+                    <td class="number"></td>
+                    <td class="number"></td>
+                    <td class="number"></td>
+                    <td class="number"></td>
+                    <td class="number"></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
 
     <!-- The Modal -->
     <div id="myModal" class="modal">
@@ -149,7 +176,6 @@
 <script src="scripts/data.js?d=30"></script>
 <script src="scripts/tableToJson.js?d=30"></script>
 <script src="scripts/modal.js?d=30"></script>
-
-<script src="scripts/appscript.js?d=30"></script>
+<script src="scripts/history.js?d=03"></script>
 
 </html>

@@ -8,12 +8,12 @@ window.onload = async () => {
   let response = await fetch('./data/nseOpenClose.json');
   let nData = await response.json();
   nseData = nData.data;
-  IsUpdateData(dataValidityTable.rows[1].cells[1], nData.bhavTimeStamp);
+  IsUpdateData(dataValidityTable.rows[1].cells[1], nData.dateTimeStamp);
 
   response = await fetch('./data/bseOpenClose.json');
   let bData = await response.json();
   bseData = bData.data;
-  IsUpdateData(dataValidityTable.rows[2].cells[1], bData.bhavTimeStamp);
+  IsUpdateData(dataValidityTable.rows[2].cells[1], bData.dateTimeStamp);
 
   // #endregion Open Close
 
@@ -21,12 +21,12 @@ window.onload = async () => {
   response = await fetch('./data/nseDelivery.json');
   nData = await response.json();
   nseData = MergeRecursive(nseData, nData.data);
-  IsUpdateData(dataValidityTable.rows[1].cells[2], nData.deliveryTimeStamp);
+  IsUpdateData(dataValidityTable.rows[1].cells[2], nData.dateTimeStamp);
 
   response = await fetch('./data/bseDelivery.json');
   bData = await response.json();
   bseData = MergeRecursive(bseData, bData.data);
-  IsUpdateData(dataValidityTable.rows[2].cells[2], bData.deliveryTimeStamp);
+  IsUpdateData(dataValidityTable.rows[2].cells[2], bData.dateTimeStamp);
 
   // #endregion Delivery Data
 
@@ -35,13 +35,13 @@ window.onload = async () => {
 
   response = await fetch('./data/nseBulkDeal.json');
   var nseBulkData = await response.json();
-  MergeBulkDealData(nseData, nseBulkData, nData.deliveryTimeStamp);
-  IsUpdateData(dataValidityTable.rows[1].cells[3], nseBulkData.bulkTimeStamp);
+  MergeBulkDealData(nseData, nseBulkData, nData.dateTimeStamp);
+  IsUpdateData(dataValidityTable.rows[1].cells[3], nseBulkData.dateTimeStamp);
 
   response = await fetch('./data/bseBulkDeal.json');
   var bseBulkData = await response.json();
-  MergeBulkDealData(bseData, bseBulkData, bData.deliveryTimeStamp);
-  IsUpdateData(dataValidityTable.rows[2].cells[3], bseBulkData.bulkTimeStamp);
+  MergeBulkDealData(bseData, bseBulkData, bData.dateTimeStamp);
+  IsUpdateData(dataValidityTable.rows[2].cells[3], bseBulkData.dateTimeStamp);
 
   // #endregion Bulk Deals
 
@@ -87,7 +87,10 @@ function MergeRecursive(obj1, obj2) {
       if (obj2[p].constructor == Object) {
         obj1[p] = MergeRecursive(obj1[p], obj2[p]);
 
-      } else {
+      } else if (obj2[p].constructor == Array) {
+        obj1[p] = mergeById(obj1[p], obj2[p]);
+      }
+      else {
         obj1[p] = obj2[p];
 
       }
@@ -100,3 +103,10 @@ function MergeRecursive(obj1, obj2) {
   }
   return obj1;
 }
+
+
+const mergeById = (a1, a2) =>
+  a1.map(itm => ({
+    ...a2.find((item) => (item.HistoryDate === itm.HistoryDate) && item),
+    ...itm
+  }));

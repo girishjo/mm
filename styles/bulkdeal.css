@@ -1,4 +1,4 @@
-@-webkit-keyframes bulkdeal {
+@-webkit-keyframes highlight {
     from {
         background-color: yellow;
     }
@@ -8,7 +8,7 @@
     }
 }
 
-@-moz-keyframes bulkdeal {
+@-moz-keyframes highlight {
     from {
         background-color: yellow;
     }
@@ -18,7 +18,7 @@
     }
 }
 
-@-o-keyframes bulkdeal {
+@-o-keyframes highlight {
     from {
         background-color: yellow;
     }
@@ -28,7 +28,7 @@
     }
 }
 
-@keyframes bulkdeal {
+@keyframes highlight {
     from {
         background-color: yellow;
     }
@@ -38,13 +38,15 @@
     }
 }
 
-.bulkdeal {
-    -webkit-animation: bulkdeal 1s 10 alternate-reverse;
+.highlight {
+    -webkit-animation: highlight 1s 10 alternate-reverse;
     /* Safari 4+ */
-    -moz-animation: bulkdeal 1s 10 alternate-reverse;
+    -moz-animation: highlight 1s 10 alternate-reverse;
     /* Fx 5+ */
-    -o-animation: bulkdeal 1s 10 alternate-reverse;
+    -o-animation: highlight 1s 10 alternate-reverse;
     /* Opera 12+ */
-    animation: bulkdeal 1s 10 alternate-reverse;
+    animation: highlight 1s 10 alternate-reverse;
     /* IE 10+ */
+    margin-left: 5px;
+    float: right;
 }
