@@ -20,7 +20,7 @@ th a:active {
 
 th a,
 td a {
-    width: 100%;
+    width: auto;
 }
 
 th a.sort-by {
