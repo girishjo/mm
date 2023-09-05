@@ -109,12 +109,12 @@ function updateDataTable(table, name, nseCode, bseCode, data = undefined, rowInd
 
     let resNse = data && nseCode ? data : nseData[nseCode];
     if (resNse) {
-        stockData.Delivery = resNse["Delivery"];
-        stockData.Total = resNse["Total"];
+        resNse["Delivery"] && (stockData.Delivery = resNse["Delivery"]);
+        resNse["Total"] && (stockData.Total = resNse["Total"]);
         //stockData.DeliveryPercentage = resNse["DeliveryPercentage"];
-        stockData.Open = resNse["Open"];
-        stockData.Close = resNse["Close"];
-        stockData.Change = (resNse["Close"] - resNse["PrevClose"]) * 100 / resNse["PrevClose"];
+        resNse["Open"] && (stockData.Open = resNse["Open"]);
+        resNse["Close"] && (stockData.Close = resNse["Close"]);
+        resNse["PrevClose"] && (stockData.Change = (resNse["Close"] - resNse["PrevClose"]) * 100 / resNse["PrevClose"]);
         if (resNse["PrevClose"] && resNse["PrevClose"] != 0) {
             stockData.Change = (resNse["Close"] - resNse["PrevClose"]) * 100 / resNse["PrevClose"];
         }

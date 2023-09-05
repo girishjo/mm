@@ -1,5 +1,5 @@
-var nseData = {};
-var bseData = {};
+var nseData = {data:{}};
+var bseData = {data:{}};
 var defaultStockList;
 
 window.onload = async () => {
@@ -8,14 +8,14 @@ window.onload = async () => {
   let response = await fetch('./data/nseOpenClose.json');
   let nseDataJson = await response.json();
   let valid = IsUpdateData(dataValidityTable.rows[1].cells[1], nseDataJson.dateTimeStamp);
-  //nseData = Merge(nseData, nseDataJson);
-  nseData = nseDataJson;
+  nseData = Merge(nseData, nseDataJson);
+  //nseData = nseDataJson;
 
   response = await fetch('./data/bseOpenClose.json');
   let bseDataJson = await response.json();
   valid = IsUpdateData(dataValidityTable.rows[2].cells[1], bseDataJson.dateTimeStamp);
-  //bseData = Merge(bseData, bseDataJson);
-  bseData = bseDataJson;
+  bseData = Merge(bseData, bseDataJson);
+  //bseData = bseDataJson;
 
   // #endregion Open Close
 
@@ -84,13 +84,16 @@ function MergeBulkDeals(newData, oldData) {
         else {
             if(newData.data[stock].History){
             var history = newData.data[stock].History.find(his => his.HistoryDate == oldDate);
-            if (history) {
-              if (!history.BulkDeals) {
-                history.BulkDeals = [];
-              }
-              history.BulkDeals.push(bulkDeal);
-              //history.BulkDeals.data.sort((a, b) => a.SecurityCode.localeCompare(b.SecurityCode) || a.ClientName.localeCompare(b.ClientName) || a.BuyOrSell.localeCompare(b.BuyOrSell))
+            if(!history){
+              history = {"HistoryDate": oldDate};
+              newData.data[stock].History.push(history);              
+            }           
+            if (!history.BulkDeals) {
+              history.BulkDeals = [];
             }
+            history.BulkDeals.push(bulkDeal);
+            history.BulkDeals.sort((a, b) => a.SecurityCode.localeCompare(b.SecurityCode) || a.ClientName.localeCompare(b.ClientName) || a.BuyOrSell.localeCompare(b.BuyOrSell));
+            newData.data[stock].History.sort((a, b) => new Date(b.HistoryDate)- new Date(a.HistoryDate));
           }
         }
       }
@@ -130,19 +133,15 @@ const mergeById = (a1, a2) =>
   }));
 
 function Merge(newData, oldData) {
-  if (!newData || !newData.dateTimeStamp || !oldData || !oldData.dateTimeStamp) {
-    newData = MergeRecursive(newData, oldData)
-    return newData;
-  }
+  const oldDate = (oldData.dateTimeStamp? new Date(oldData.dateTimeStamp) : new Date()).toLocaleDateString('en-In', { weekday: "short", year: "numeric", month: "short", day: "2-digit" });
 
-  const oldDate = new Date(oldData.dateTimeStamp).toLocaleDateString('en-In', { weekday: "short", year: "numeric", month: "short", day: "2-digit" });
-  const newDate = new Date(newData.dateTimeStamp).toLocaleDateString('en-In', { weekday: "short", year: "numeric", month: "short", day: "2-digit" });
+  const newDate = (newData.dateTimeStamp ? new Date(newData.dateTimeStamp): new Date()).toLocaleDateString('en-In', { weekday: "short", year: "numeric", month: "short", day: "2-digit" });  
 
   if (oldDate == newDate) {
       newData = MergeRecursive(newData, oldData);
   }
   else {
-      for (const stock of [...Object.keys(newData.data), ...Object.keys(oldData.data)]) {
+    for (const stock of [...new Set([...Object.keys(newData.data), ...Object.keys(oldData.data)])]) {
           if (oldData.data[stock]) {
               if (!newData.data[stock]) {
                   newData.data[stock] = {};
@@ -155,49 +154,32 @@ function Merge(newData, oldData) {
                   newData.data[stock].History.shift();
               }
 
-              if(oldData.data[stock].History){
+              if (oldData.data[stock].History) {
                 for (let i = 0; i < oldData.data[stock].History.length; i++) {
-                  const oldHistory = oldData.data[stock].History[i];                  
-                  var history = newData.data[stock].History.find(his => his.HistoryDate == oldHistory.HistoryDate);
-                  if (history) {
-                    history = {...oldHistory};
-                  }
-                  else{
-                    history = {
-                        "HistoryDate": oldDate,
-                        ...oldData.data[stock]
+                    const oldHistory = oldData.data[stock].History[i];
+                    var newHist = newData.data[stock].History.find(his => his.HistoryDate == oldHistory.HistoryDate);
+                    if (newHist) {
+                        newHist = MergeRecursive(newHist, oldHistory);
                     }
-                    newData.data[stock].History.push(history);
-                  }
+                    else {
+                        newData.data[stock].History.push(oldHistory);
+                    }
                 }
-              }
+            }
 
-              // if (history) {
-              //     history = MergeRecursive(history, oldData.data[stock]);
-              // }
-              // else {                
-              //     if(oldData.data[stock].History){ 
-              //       for (let i = 0; i < oldData.data[stock].History.length; i++) {
-              //         const oldHistory = oldData.data[stock].History[i];
-              //         var history = newData.data[stock].History.find(his => his.HistoryDate == oldHistory.HistoryDate);
-              //         if(history){
-              //           history = {                          
-              //             ...oldData.data[stock]
-              //           }
-              //         }          
-              //         else{
-              //           newData.data[stock].History.push(oldHistory);
-              //         }                                                     
-              //       }                   
-              //     }
-              //     // delete oldData.data[stock].History;
-              //     // history = {
-              //     //     "HistoryDate": oldDate,
-              //     //     ...oldData.data[stock]
-              //     // }
-              //     // newData.data[stock].History.push(history);
-              //     //newData.data[stock].History.sort((a, b) => new Date(b.HistoryDate).localeCompare(new Date(a.HistoryDate)));
-              // }
+            delete oldData.data[stock].History;
+            let history = {
+                "HistoryDate": oldDate,
+                ...oldData.data[stock]
+            }
+            var newHistory = newData.data[stock].History.find(his => his.HistoryDate == history.HistoryDate);
+            if (newHistory) {
+              newHistory = MergeRecursive(newHistory, history);
+            }
+            else{
+              newData.data[stock].History.push(history);
+            }
+            newData.data[stock].History.sort((a, b) => new Date(b.HistoryDate)- new Date(a.HistoryDate));          
           }
       }
   }
