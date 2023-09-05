@@ -6,7 +6,7 @@ function MergeData(data1, data2) {
     let oldData, newData;
     let result = { dateTimeStamp: "", data: {} };
     if (date1 == date2) {
-        result = MergeRecursive(newData, oldData);
+        result = MergeRecursive(data1, data2);
     }
     else if (date1 > date2) {
         oldData = data2;
@@ -99,7 +99,21 @@ function MergeRecursive(obj1, obj2) {
                 obj1[p] = MergeRecursive(obj1[p], obj2[p]);
 
             } else if (obj2[p].constructor == Array) {
-                obj1[p] = mergeById(obj1[p], obj2[p]);
+                if (!obj1)
+                    obj1 = {};
+                if (!obj1[p])
+                    obj1[p] = [];
+
+                for (let i = 0; i < obj2[p].length; i++) {
+                    const history = obj2[p][i];
+                    let newHist = obj1[p].find(his => his.HistoryDate == history.HistoryDate);
+                    if (newHist) {
+                        newHist = Object.assign(newHist, history);
+                    }
+                    else {
+                        obj1[p].push(history);
+                    }
+                }
             }
             else {
                 obj1[p] = obj2[p];
@@ -111,9 +125,3 @@ function MergeRecursive(obj1, obj2) {
     }
     return obj1;
 }
-
-const mergeById = (a1, a2) =>
-    a1.map(itm => ({
-        ...a2.find((item) => (item.HistoryDate === itm.HistoryDate) && item),
-        ...itm
-    }));
