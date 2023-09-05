@@ -155,33 +155,49 @@ function Merge(newData, oldData) {
                   newData.data[stock].History.shift();
               }
 
-              var history = newData.data[stock].History.find(his => his.HistoryDate == oldDate);
-              if (history) {
-                  history = MergeRecursive(history, oldData.data[stock]);
-              }
-              else {                
-                  if(oldData.data[stock].History){ 
-                    for (let i = 0; i < oldData.data[stock].History.length; i++) {
-                      const oldHistory = oldData.data[stock].History[i];
-                      var history = newData.data[stock].History.find(his => his.HistoryDate == oldHistory.HistoryDate);
-                      if(history){
-                        history = {                          
-                          ...oldData.data[stock]
-                        }
-                      }          
-                      else{
-                        newData.data[stock].History.push(oldHistory);
-                      }                                                     
-                    }                   
+              if(oldData.data[stock].History){
+                for (let i = 0; i < oldData.data[stock].History.length; i++) {
+                  const oldHistory = oldData.data[stock].History[i];                  
+                  var history = newData.data[stock].History.find(his => his.HistoryDate == oldHistory.HistoryDate);
+                  if (history) {
+                    history = {...oldHistory};
                   }
-                  // delete oldData.data[stock].History;
-                  // history = {
-                  //     "HistoryDate": oldDate,
-                  //     ...oldData.data[stock]
-                  // }
-                  // newData.data[stock].History.push(history);
-                  //newData.data[stock].History.sort((a, b) => new Date(b.HistoryDate).localeCompare(new Date(a.HistoryDate)));
+                  else{
+                    history = {
+                        "HistoryDate": oldDate,
+                        ...oldData.data[stock]
+                    }
+                    newData.data[stock].History.push(history);
+                  }
+                }
               }
+
+              // if (history) {
+              //     history = MergeRecursive(history, oldData.data[stock]);
+              // }
+              // else {                
+              //     if(oldData.data[stock].History){ 
+              //       for (let i = 0; i < oldData.data[stock].History.length; i++) {
+              //         const oldHistory = oldData.data[stock].History[i];
+              //         var history = newData.data[stock].History.find(his => his.HistoryDate == oldHistory.HistoryDate);
+              //         if(history){
+              //           history = {                          
+              //             ...oldData.data[stock]
+              //           }
+              //         }          
+              //         else{
+              //           newData.data[stock].History.push(oldHistory);
+              //         }                                                     
+              //       }                   
+              //     }
+              //     // delete oldData.data[stock].History;
+              //     // history = {
+              //     //     "HistoryDate": oldDate,
+              //     //     ...oldData.data[stock]
+              //     // }
+              //     // newData.data[stock].History.push(history);
+              //     //newData.data[stock].History.sort((a, b) => new Date(b.HistoryDate).localeCompare(new Date(a.HistoryDate)));
+              // }
           }
       }
   }
