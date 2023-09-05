@@ -16,7 +16,8 @@ function MergeData(data1, data2) {
         oldData = data1;
         newData = data2;
     }
-    result.dateTimeStamp = newData.dateTimeStamp;
+
+    result.dateTimeStamp = newData.dateTimeStamp ? newData.dateTimeStamp : new Date().toLocaleDateString('en-In', { weekday: "short", year: "numeric", month: "short", day: "2-digit" });
 
     for (const stockCode of [...new Set([...Object.keys(newData.data), ...Object.keys(oldData.data)])]) {
         const res = {}
@@ -27,11 +28,14 @@ function MergeData(data1, data2) {
             HandleStockData(oldData, stockCode, res);
         }
 
-        while (res.History.length > 10) {
-            res.History.shift();
+        if (res.History) {
+            while (res.History.length > 10) {
+                res.History.shift();
+            }
+
+            res.History.sort((a, b) => new Date(b.HistoryDate) - new Date(a.HistoryDate));
         }
 
-        res.History.sort((a, b) => new Date(b.HistoryDate) - new Date(a.HistoryDate));
         result.data[stockCode] = res;
     }
 
