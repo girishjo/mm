@@ -152,7 +152,6 @@ function updateDataTable(table, name, nseCode, bseCode, data = undefined, rowInd
 
     if (stockData.Name) {
         const newRow = addEmptyRow(table, rowIndex);
-        data && (newRow.cells[0].innerText = data.HistoryDate);
 
         if (stockData.History && stockData.History.length > 0) {
             var a = document.createElement('a');
@@ -171,6 +170,8 @@ function updateDataTable(table, name, nseCode, bseCode, data = undefined, rowInd
             newRow.cells[1].innerText = stockData.Name;
         }
 
+        data && (newRow.cells[1].innerText = data.HistoryDate);
+        
         if (stockData.BulkDeals && stockData.BulkDeals.length > 0) {
             var a = document.createElement('a');
             let linkTextContent = "Bulk Deal";

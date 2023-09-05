@@ -8,10 +8,14 @@ function addEmptyRow(table, index = undefined) {
     return newRow;
 }
 
-function updateRowNumber(table) {
+function updateRowNumber(table, prefix) {
     for (let index = 2; index < table.rows.length; index++) {
         if (!table.rows[index].getAttribute('frozen')) {
-            table.rows[index].cells[0].innerText = index - 1;
+            if (prefix) {
+                table.rows[index].cells[0].innerText = prefix + "." + (index - 1);
+            } else {
+                table.rows[index].cells[0].innerText = index - 1;
+            }
         }
     }
 }
@@ -43,12 +47,16 @@ function sortTable(header) {
             y = rows[i + 1].getElementsByTagName("TD")[n];
             /*check if the two rows should switch place,
             based on the direction, asc or desc:*/
-            let numX = Number(x.innerText.replace(/,/g, "").replace("%", ""));
-            let numY = Number(y.innerText.replace(/,/g, "").replace("%", ""));
-            let dateX = new Date(x.innerText);
-            let dateY = new Date(y.innerText);
+
+            let firstText = x.firstChild.nodeValue;
+            let secondText = y.firstChild.nodeValue;
+
+            let numX = Number(firstText.replace(/,/g, "").replace("%", ""));
+            let numY = Number(secondText.replace(/,/g, "").replace("%", ""));
+            let dateX = new Date(firstText);
+            let dateY = new Date(secondText);
             if (dir == "asc") {
-                if (dateX && dateY) {
+                if (isValidDate(dateX) && isValidDate(dateY)) {
                     if (dateX > dateY) {
                         //if so, mark as a switch and break the loop:
                         shouldSwitch = true;
@@ -56,7 +64,7 @@ function sortTable(header) {
                     }
                 }
                 else if (isNaN(numX) || isNaN(numY)) {
-                    if (x.innerText.toLowerCase() > y.innerText.toLowerCase()) {
+                    if (firstText.toLowerCase() > secondText.toLowerCase()) {
                         //if so, mark as a switch and break the loop:
                         shouldSwitch = true;
                         break;
@@ -70,7 +78,7 @@ function sortTable(header) {
                     }
                 }
             } else if (dir == "desc") {
-                if (dateX && dateY) {
+                if (isValidDate(dateX) && isValidDate(dateY)) {
                     if (dateX < dateY) {
                         //if so, mark as a switch and break the loop:
                         shouldSwitch = true;
@@ -78,7 +86,7 @@ function sortTable(header) {
                     }
                 }
                 else if (isNaN(numX) || isNaN(numY)) {
-                    if (x.innerText.toLowerCase() < y.innerText.toLowerCase()) {
+                    if (firstText.toLowerCase() < secondText.toLowerCase()) {
                         //if so, mark as a switch and break the loop:
                         shouldSwitch = true;
                         break;
@@ -118,4 +126,8 @@ function resetTable(table) {
     for (let i = 2; i < table.rows.length; i) {
         table.deleteRow(i);
     }
+}
+
+function isValidDate(d) {
+    return d instanceof Date && !isNaN(d);
 }

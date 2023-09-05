@@ -31,6 +31,8 @@ function ShowHistory(stock) {
             const history = histories[i];
             updateDataTable(stockHistoryTable, stock.getAttribute('title'), nseCode, bseCode, history);
         }
+        updateRowNumber(stockHistoryTable, stock.parentElement.parentElement.rowIndex - 1);
+        
         const newRow = addEmptyRow(dataTable, stock.parentElement.parentElement.rowIndex + 1);
         const colspan = newRow.cells.length;
         while (newRow.cells.length > 0) {
