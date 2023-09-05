@@ -17,6 +17,15 @@ function MergeData(data1, data2) {
         newData = data2;
     }
 
+    if (!newData.data) {
+        newData.data = {};
+        newData.dateTimeStamp = oldData.dateTimeStamp;
+    }
+    if (!oldData.data) {
+        oldData.data = {};
+        oldData.dateTimeStamp = newData.dateTimeStamp;
+    }
+
     result.dateTimeStamp = newData.dateTimeStamp ? newData.dateTimeStamp : new Date().toLocaleDateString('en-In', { weekday: "short", year: "numeric", month: "short", day: "2-digit" });
 
     for (const stockCode of [...new Set([...Object.keys(newData.data), ...Object.keys(oldData.data)])]) {
