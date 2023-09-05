@@ -1,12 +1,20 @@
 
 function MergeData(data1, data2) {
-    const date1 = (data1.dateTimeStamp ? new Date(data1.dateTimeStamp) : new Date()).toDateString();
-    const date2 = (data2.dateTimeStamp ? new Date(data2.dateTimeStamp) : new Date()).toDateString();
+    if (!data1 || !data1.dateTimeStamp)
+        return data2;
+
+    if (!data2 || !data2.dateTimeStamp)
+        return data1;
+
+    const date1 = new Date(data1.dateTimeStamp).setHours(0, 0, 0, 0);
+    const date2 = new Date(data2.dateTimeStamp).setHours(0, 0, 0, 0);
 
     let oldData, newData;
     let result = { dateTimeStamp: "", data: {} };
+
     if (date1 == date2) {
         result = MergeRecursive(data1, data2);
+        return result;
     }
     else if (date1 > date2) {
         oldData = data2;
@@ -15,15 +23,6 @@ function MergeData(data1, data2) {
     else {
         oldData = data1;
         newData = data2;
-    }
-
-    if (!newData.data) {
-        newData.data = {};
-        newData.dateTimeStamp = oldData.dateTimeStamp;
-    }
-    if (!oldData.data) {
-        oldData.data = {};
-        oldData.dateTimeStamp = newData.dateTimeStamp;
     }
 
     result.dateTimeStamp = newData.dateTimeStamp ? newData.dateTimeStamp : new Date().toLocaleDateString('en-In', { weekday: "short", year: "numeric", month: "short", day: "2-digit" });
