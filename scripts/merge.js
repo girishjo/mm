@@ -1,9 +1,13 @@
 function MergeData(data1, data2) {
-    if (!data1 || !data1.dateTimeStamp)
+    if (!data1 || !data1.dateTimeStamp) {
+        CheckHistoryLength(data2);
         return data2;
+    }
 
-    if (!data2 || !data2.dateTimeStamp)
+    if (!data2 || !data2.dateTimeStamp) {
+        CheckHistoryLength(data1);
         return data1;
+    }
 
     const date1 = new Date(data1.dateTimeStamp).setHours(0, 0, 0, 0);
     const date2 = new Date(data2.dateTimeStamp).setHours(0, 0, 0, 0);
@@ -13,6 +17,7 @@ function MergeData(data1, data2) {
 
     if (date1 == date2) {
         result = MergeRecursive(data1, data2);
+        CheckHistoryLength(result);
         return result;
     }
     else if (date1 > date2) {
@@ -34,16 +39,23 @@ function MergeData(data1, data2) {
         if (oldData.data[stockCode]) {
             HandleStockData(oldData, stockCode, res);
         }
+        result.data[stockCode] = res;
+    }
+
+    CheckHistoryLength(result);
+    return result;
+}
+
+function CheckHistoryLength(result) {
+    for (const stockCode of Object.keys(result.data)) {
+        let res = result.data[stockCode];
         if (res.History) {
             res.History.sort((a, b) => new Date(b.HistoryDate) - new Date(a.HistoryDate));
             while (res.History.length > 10) {
                 res.History.pop();
             }
         }
-        result.data[stockCode] = res;
     }
-
-    return result;
 }
 
 function HandleStockData(data, stockCode, res) {
