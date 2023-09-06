@@ -3,8 +3,14 @@ var bseData = { data: {} };
 var defaultStockList;
 
 var today = new Date();
-if (today.getHours() < 9) {
-  today = today.setDate(today.getDate() - 1);
+if (today.getDay() == 0)
+  today = new Date(today.setDate(today.getDate() - 2));
+else if (today.getDay() == 6)
+  today = new Date(today.setDate(today.getDate() - 1));
+else if (today.getDay() == 1 && today.getHours() < 9)
+  today = new Date(today.setDate(today.getDate() - 3));
+else if (today.getHours() < 9) {
+  today = new Date(today.setDate(today.getDate() - 1));
 }
 
 window.onload = async () => {
