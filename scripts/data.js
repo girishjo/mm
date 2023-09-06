@@ -1,6 +1,11 @@
-var nseData = {data:{}};
-var bseData = {data:{}};
+var nseData = { data: {} };
+var bseData = { data: {} };
 var defaultStockList;
+
+var today = new Date();
+if (today.getHours() < 9) {
+  today = today.setDate(today.getDate() - 1);
+}
 
 window.onload = async () => {
 
@@ -77,27 +82,27 @@ function MergeBulkDeals(newData, oldData) {
       for (let i = 0; i < oldData.data[stock].length; i++) {
         const bulkDeal = oldData.data[stock][i];
         const oldDate = new Date(bulkDeal.Date).toLocaleDateString('en-In', { weekday: "short", year: "numeric", month: "short", day: "2-digit" });
-        if (oldDate == new Date().toLocaleDateString('en-In', { weekday: "short", year: "numeric", month: "short", day: "2-digit" })) {
+        if (oldDate == new Date(today).toLocaleDateString('en-In', { weekday: "short", year: "numeric", month: "short", day: "2-digit" })) {
           newData.data[stock].BulkDeals.push(bulkDeal);
           //newData.data[stock].BulkDeals.data.sort((a, b) => a.SecurityCode.localeCompare(b.SecurityCode) || a.ClientName.localeCompare(b.ClientName) || a.BuyOrSell.localeCompare(b.BuyOrSell))
         }
         else {
-            if(newData.data[stock].History){
+          if (newData.data[stock].History) {
             var history = newData.data[stock].History.find(his => his.HistoryDate == oldDate);
-            if(!history){
-              history = {"HistoryDate": oldDate};
-              newData.data[stock].History.push(history);              
-            }           
+            if (!history) {
+              history = { "HistoryDate": oldDate };
+              newData.data[stock].History.push(history);
+            }
             if (!history.BulkDeals) {
               history.BulkDeals = [];
             }
             history.BulkDeals.push(bulkDeal);
             history.BulkDeals.sort((a, b) => a.SecurityCode.localeCompare(b.SecurityCode) || a.ClientName.localeCompare(b.ClientName) || a.BuyOrSell.localeCompare(b.BuyOrSell));
-            newData.data[stock].History.sort((a, b) => new Date(b.HistoryDate)- new Date(a.HistoryDate));
+            newData.data[stock].History.sort((a, b) => new Date(b.HistoryDate) - new Date(a.HistoryDate));
           }
         }
       }
     }
-  }  
+  }
   return newData;
 }

@@ -9,16 +9,26 @@ function MergeData(data1, data2) {
         return data1;
     }
 
-    const date1 = new Date(data1.dateTimeStamp).setHours(0, 0, 0, 0);
-    const date2 = new Date(data2.dateTimeStamp).setHours(0, 0, 0, 0);
+    const date1 = new Date(data1.dateTimeStamp);
+    const date2 = new Date(data2.dateTimeStamp);
 
     let oldData, newData;
     let result = { dateTimeStamp: "", data: {} };
 
-    if (date1 == date2) {
-        result = MergeRecursive(data1, data2);
-        CheckHistoryLength(result);
-        return result;
+    if (new Date(data1.dateTimeStamp).setHours(0, 0, 0, 0) == new Date(data1.dateTimeStamp).setHours(0, 0, 0, 0)) {
+        if (new Date(data1.dateTimeStamp).setHours(0, 0, 0, 0) == new Date(today).setHours(0, 0, 0, 0)) {
+            result = MergeRecursive(data1, data2);
+            CheckHistoryLength(result);
+            return result;
+        }
+        else if (date1 > date2) {
+            oldData = data2;
+            newData = data1;
+        }
+        else {
+            oldData = data1;
+            newData = data2;
+        }
     }
     else if (date1 > date2) {
         oldData = data2;
@@ -29,12 +39,12 @@ function MergeData(data1, data2) {
         newData = data2;
     }
 
-    result.dateTimeStamp = newData.dateTimeStamp ? newData.dateTimeStamp : new Date().toLocaleDateString('en-In', { weekday: "short", year: "numeric", month: "short", day: "2-digit" });
+    result.dateTimeStamp = newData.dateTimeStamp ? newData.dateTimeStamp : new Date(today).toLocaleDateString('en-In', { weekday: "short", year: "numeric", month: "short", day: "2-digit" });
 
     for (const stockCode of [...new Set([...Object.keys(newData.data), ...Object.keys(oldData.data)])]) {
         let res = {}
         if (newData.data[stockCode]) {
-            res = newData.data[stockCode];
+            HandleStockData(newData, stockCode, res);
         }
         if (oldData.data[stockCode]) {
             HandleStockData(oldData, stockCode, res);
@@ -51,15 +61,15 @@ function CheckHistoryLength(result) {
         let res = result.data[stockCode];
         if (res.History) {
             res.History.sort((a, b) => new Date(b.HistoryDate) - new Date(a.HistoryDate));
-            while (res.History.length > 10) {
-                res.History.pop();
-            }
+            // while (res.History.length > 10) {
+            //     res.History.pop();
+            // }
         }
     }
 }
 
 function HandleStockData(data, stockCode, res) {
-    if (new Date(data.dateTimeStamp).toDateString() == new Date().toDateString()) {
+    if (new Date(data.dateTimeStamp).toDateString() == new Date(today).toDateString()) {
         res = MergeRecursive(res, data.data[stockCode]);
     }
     else {

@@ -48,8 +48,8 @@ function sortTable(header) {
             /*check if the two rows should switch place,
             based on the direction, asc or desc:*/
 
-            let firstText = x.firstChild.nodeValue;
-            let secondText = y.firstChild.nodeValue;
+            let firstText = x.firstChild.nodeValue || x.innerText || x.querySelector('a').innerText;
+            let secondText = y.firstChild.nodeValue || y.innerText || y.querySelector('a').innerText
 
             let numX = Number(firstText.replace(/,/g, "").replace("%", ""));
             let numY = Number(secondText.replace(/,/g, "").replace("%", ""));
