@@ -1,4 +1,3 @@
-
 function MergeData(data1, data2) {
     if (!data1 || !data1.dateTimeStamp)
         return data2;
@@ -28,22 +27,19 @@ function MergeData(data1, data2) {
     result.dateTimeStamp = newData.dateTimeStamp ? newData.dateTimeStamp : new Date().toLocaleDateString('en-In', { weekday: "short", year: "numeric", month: "short", day: "2-digit" });
 
     for (const stockCode of [...new Set([...Object.keys(newData.data), ...Object.keys(oldData.data)])]) {
-        const res = {}
+        let res = {}
         if (newData.data[stockCode]) {
-            HandleStockData(newData, stockCode, res);
+            res = newData.data[stockCode];
         }
         if (oldData.data[stockCode]) {
             HandleStockData(oldData, stockCode, res);
         }
-
         if (res.History) {
-            while (res.History.length > 10) {
-                res.History.shift();
-            }
-
             res.History.sort((a, b) => new Date(b.HistoryDate) - new Date(a.HistoryDate));
+            while (res.History.length > 10) {
+                res.History.pop();
+            }
         }
-
         result.data[stockCode] = res;
     }
 
@@ -89,38 +85,33 @@ function HandleStockData(data, stockCode, res) {
     }
 }
 
+function MergeRecursive(target, source) {
+    if (typeof target == "object" && typeof source == "object") {
+        for (const key in source) {
+            if (source[key] === null && (target[key] === undefined || target[key] === null)) {
+                target[key] = null;
+            } else if (source[key] instanceof Array) {
+                if (!target[key]) target[key] = [];
+                //concatenate arrays
+                //target[key] = target[key].concat(source[key]);
 
-function MergeRecursive(obj1, obj2) {
-    for (var p in obj2) {
-        try {
-            // Property in destination object set; update its value.
-            if (obj2[p].constructor == Object) {
-                obj1[p] = MergeRecursive(obj1[p], obj2[p]);
-
-            } else if (obj2[p].constructor == Array) {
-                if (!obj1)
-                    obj1 = {};
-                if (!obj1[p])
-                    obj1[p] = [];
-
-                for (let i = 0; i < obj2[p].length; i++) {
-                    const history = obj2[p][i];
-                    let newHist = obj1[p].find(his => his.HistoryDate == history.HistoryDate);
+                for (let i = 0; i < source[key].length; i++) {
+                    const history = source[key][i];
+                    let newHist = target[key].find(his => his.HistoryDate == history.HistoryDate);
                     if (newHist) {
-                        newHist = Object.assign(newHist, history);
+                        newHist = this.MergeRecursive(newHist, history);
                     }
                     else {
-                        obj1[p].push(history);
+                        target[key].push(history);
                     }
                 }
+            } else if (typeof source[key] == "object") {
+                if (!target[key]) target[key] = {};
+                this.MergeRecursive(target[key], source[key]);
+            } else {
+                target[key] = source[key];
             }
-            else {
-                obj1[p] = obj2[p];
-            }
-        } catch (e) {
-            // Property in destination object not set; create it and set its value.
-            obj1[p] = obj2[p];
         }
     }
-    return obj1;
+    return target;
 }
