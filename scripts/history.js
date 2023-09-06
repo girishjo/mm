@@ -15,32 +15,54 @@ function ShowHistory(stock) {
             bseCode = stockCodes;
         }
         if (nseData[nseCode]) {
-            histories = nseData[nseCode].History;
+            let history = {
+                "HistoryDate": new Date(today).toLocaleDateString('en-In', { weekday: "short", year: "numeric", month: "short", day: "2-digit" }),
+                ...nseData[nseCode],
+            }
+            history.History && delete history.History;
+            histories.push(history);
+            histories.push(...nseData[nseCode].History);
         }
         else {
             nseCode = undefined;
         }
         if (bseData[bseCode]) {
+            let history = {
+                "HistoryDate": new Date(today).toLocaleDateString('en-In', { weekday: "short", year: "numeric", month: "short", day: "2-digit" }),
+                ...bseData[bseCode],
+            }
+            history.History && delete history.History;
+            histories.push(history);
             histories.push(...bseData[bseCode].History);
         }
         else {
             bseCode = undefined;
         }
 
+        const rowIndex = stock.parentElement.parentElement.rowIndex;
         for (let i = 0; i < histories.length; i++) {
             const history = histories[i];
-            updateDataTable(stockHistoryTable, stock.getAttribute('title'), nseCode, bseCode, history);
+            let newRow = updateDataTable(stockHistoryTable, stock.getAttribute('title'), nseCode, bseCode, history);
+            if ((i + rowIndex) % 2 == 0) {
+                newRow.style.background = "#dddddd";
+            }
+            else {
+                newRow.style.background = "#f1f1f1";
+            }
         }
         updateRowNumber(stockHistoryTable, stock.parentElement.parentElement.cells[0].innerText);
-        
-        const newRow = addEmptyRow(dataTable, stock.parentElement.parentElement.rowIndex + 1);
+
+        const newRow = addEmptyRow(dataTable, rowIndex + 1);
+
         const colspan = newRow.cells.length;
         while (newRow.cells.length > 0) {
             newRow.deleteCell(0);
         }
         var newCell = newRow.insertCell(0);
         newCell.colSpan = colspan;
-        
+        newCell.style.border = "3px lightcoral dashed";
+        newCell.style.padding = "0";
+
         newCell.innerHTML = stockHistoryTable.parentElement.innerHTML;
         resetTable(stockHistoryTable);
         stock.setAttribute('historyShown', true);

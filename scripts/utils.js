@@ -48,11 +48,27 @@ function sortTable(header) {
             /*check if the two rows should switch place,
             based on the direction, asc or desc:*/
 
-            let firstText = x.firstChild.nodeValue || x.innerText || x.querySelector('a').innerText;
-            let secondText = y.firstChild.nodeValue || y.innerText || y.querySelector('a').innerText
+            let firstText = x.firstChild?.nodeValue || x.innerText || x.querySelector('a')?.innerText;
+            let secondText = y.firstChild?.nodeValue || y.innerText || y.querySelector('a')?.innerText;
 
-            let numX = Number(firstText.replace(/,/g, "").replace("%", ""));
-            let numY = Number(secondText.replace(/,/g, "").replace("%", ""));
+            if (firstText == undefined) {
+                if (x.classList.contains('number')) {
+                    firstText = "0.00 %";
+                } else if (x.classList.contains('text')) {
+                    firstText = "";
+                }
+            }
+
+            if (secondText == undefined) {
+                if (y.classList.contains('number')) {
+                    secondText = "0.00 %";
+                } else if (y.classList.contains('text')) {
+                    secondText = "";
+                }
+            }
+
+            let numX = Number(firstText?.replace(/,/g, "").replace("%", ""));
+            let numY = Number(secondText?.replace(/,/g, "").replace("%", ""));
             let dateX = new Date(firstText);
             let dateY = new Date(secondText);
             if (dir == "asc") {
@@ -64,7 +80,7 @@ function sortTable(header) {
                     }
                 }
                 else if (isNaN(numX) || isNaN(numY)) {
-                    if (firstText.toLowerCase() > secondText.toLowerCase()) {
+                    if (firstText?.toLowerCase() > secondText?.toLowerCase()) {
                         //if so, mark as a switch and break the loop:
                         shouldSwitch = true;
                         break;
@@ -86,7 +102,7 @@ function sortTable(header) {
                     }
                 }
                 else if (isNaN(numX) || isNaN(numY)) {
-                    if (firstText.toLowerCase() < secondText.toLowerCase()) {
+                    if (firstText?.toLowerCase() < secondText?.toLowerCase()) {
                         //if so, mark as a switch and break the loop:
                         shouldSwitch = true;
                         break;

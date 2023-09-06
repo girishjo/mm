@@ -150,8 +150,9 @@ function updateDataTable(table, name, nseCode, bseCode, data = undefined, rowInd
         }
     }
 
+    var newRow;
     if (stockData.Name) {
-        const newRow = addEmptyRow(table, rowIndex);
+        newRow = addEmptyRow(table, rowIndex);
 
         if (stockData.History && stockData.History.length > 0) {
             var a = document.createElement('a');
@@ -171,7 +172,7 @@ function updateDataTable(table, name, nseCode, bseCode, data = undefined, rowInd
         }
 
         data && (newRow.cells[1].innerText = data.HistoryDate);
-        
+
         if (stockData.BulkDeals && stockData.BulkDeals.length > 0) {
             var a = document.createElement('a');
             let linkTextContent = "Bulk Deal";
@@ -232,6 +233,8 @@ function updateDataTable(table, name, nseCode, bseCode, data = undefined, rowInd
             }
         }
     }
+
+    return newRow;
 }
 
 listTable.addEventListener('click', function (e) {
