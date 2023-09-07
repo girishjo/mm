@@ -59,16 +59,19 @@ function downloadLocalCopy(jsnData) {
 
 
 function loadLocalCopy(e) {
-    var file = e.target.files[0];
-    if (!file) {
-        return;
+    if (confirm("It will overwrite your existing data. Proceed?")) {
+        var file = e.target.files[0];
+        if (!file) {
+            return;
+        }
+        var reader = new FileReader();
+        reader.onload = function (e) {
+            var contents = e.target.result;
+            saveDataOnLocal(JSON.parse(contents), true);
+            //loadDataFromLocal(contents);
+        };
+        reader.readAsText(file);
     }
-    var reader = new FileReader();
-    reader.onload = function (e) {
-        var contents = e.target.result;
-        loadDataFromLocal(contents);
-    };
-    reader.readAsText(file);
 }
 
 function loadDefaultStockList() {

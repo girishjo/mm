@@ -149,7 +149,7 @@ function isValidDate(d) {
 }
 
 function MergeStockData(stockData1, stockData2) {
-    var stockData = { ...stockData1 };
+    var stockData = { ...stockData2, ...stockData1 };
 
     if (!stockData1 && !stockData2)
         return stockData;
@@ -158,14 +158,14 @@ function MergeStockData(stockData1, stockData2) {
     else if (!stockData1)
         return stockData2;
 
-    stockData.Open = stockData1["Open"];
-    stockData.High = stockData1["High"];
-    stockData.Low = stockData1["Low"];
-    stockData.PrevClose = stockData1["PrevClose"];
-    stockData.Close = stockData1["Close"];
+    // stockData.Open = stockData1["Open"];
+    // stockData.High = stockData1["High"];
+    // stockData.Low = stockData1["Low"];
+    // stockData.PrevClose = stockData1["PrevClose"];
+    // stockData.Close = stockData1["Close"];
 
-    stockData.Delivery = stockData1["Delivery"] + stockData2["Delivery"];
-    stockData.Total = stockData1["Total"] + stockData2["Total"];
+    stockData.Delivery = stockData1["Delivery"] ? stockData1["Delivery"] : 0 + stockData2["Delivery"] ? stockData2["Delivery"] : 0;
+    stockData.Total = stockData1["Total"] ? stockData1["Total"] : 0 + stockData2["Total"] ? stockData2["Total"] : 0;
     stockData.DeliveryPercentage = stockData.Delivery / stockData.Total;
 
     stockData.BulkDeals = [];
@@ -179,7 +179,15 @@ function MergeStockData(stockData1, stockData2) {
     if (stockData.BulkDeals.length == 0)
         delete stockData.BulkDeals;
 
-    stockData.History = MergeHistory(stockData1.History ? [...stockData1.History] : undefined, stockData2.History ? [...stockData2.History] : undefined);
+    if (!stockData1.History || !stockData2.History) {
+
+    }
+    else if (stockData1.History && stockData2.History)
+        stockData.History = MergeHistory([...stockData1.History], [...stockData2.History]);
+    else if (!stockData1.History)
+        stockData.History = [...stockData2.History];
+    else if (!stockData2.History)
+        stockData.History = [...stockData1.History];
 
     return stockData;
 }
@@ -188,7 +196,7 @@ function MergeHistory(historyData1, historyData2) {
     var History = [];
 
     if (historyData1) {
-        while (historyData2.length) {
+        while (historyData1.length) {
             const history1 = historyData1[0];
             let history2 = historyData2.find(his => his.HistoryDate == history1.HistoryDate);
             if (history2) {

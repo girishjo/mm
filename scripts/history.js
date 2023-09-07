@@ -14,7 +14,22 @@ function ShowHistory(stock) {
             bseCode = stockCodes;
         }
 
-        const histories = MergeStockData(nseData[nseCode], bseData[bseCode]).History;
+        const histories = [...MergeStockData({ ...nseData[nseCode] }, { ...bseData[bseCode] }).History];
+
+        let history1 = {
+            "HistoryDate": new Date(today).toLocaleDateString('en-In', { weekday: "short", year: "numeric", month: "short", day: "2-digit" }),
+            ...nseData[nseCode],
+        }
+        history1.History && delete history1.History;
+
+        let history2 = {
+            "HistoryDate": new Date(today).toLocaleDateString('en-In', { weekday: "short", year: "numeric", month: "short", day: "2-digit" }),
+            ...bseData[bseCode],
+        }
+        history2.History && delete history2.History;
+
+        const todaysHistory = MergeStockData(history1, history2);
+        histories.unshift(todaysHistory);
 
         const rowIndex = stock.parentElement.parentElement.rowIndex;
         for (let i = 0; i < histories.length; i++) {
