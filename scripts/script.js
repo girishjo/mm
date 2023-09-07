@@ -97,6 +97,8 @@ function updateListTable(stockList) {
 function updateDataTable(table, name, nseCode, bseCode, data = undefined, rowIndex = undefined) {
     const stockData = MergeStockData(data && nseCode ? data : nseData[nseCode], data && bseCode ? data : bseData[bseCode])
     stockData.Name = name;
+    if (stockData.PrevClose != 0)
+        stockData.Change = (stockData.Close - stockData.PrevClose) * 100 / stockData.PrevClose;
 
     var newRow;
     if (stockData.Name) {
