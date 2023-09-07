@@ -95,60 +95,8 @@ function updateListTable(stockList) {
 }
 
 function updateDataTable(table, name, nseCode, bseCode, data = undefined, rowIndex = undefined) {
-    const stockData = {
-        "Name": name,
-        "Delivery": 0,
-        "Total": 0,
-        "DeliveryPercentage": 0,
-        "Open": undefined,
-        "Close": undefined,
-        "Change": undefined,
-        "BulkDeals": [],
-        "History": [],
-    }
-
-    let resNse = data && nseCode ? data : nseData[nseCode];
-    if (resNse) {
-        resNse["Delivery"] && (stockData.Delivery = resNse["Delivery"]);
-        resNse["Total"] && (stockData.Total = resNse["Total"]);
-        //stockData.DeliveryPercentage = resNse["DeliveryPercentage"];
-        resNse["Open"] && (stockData.Open = resNse["Open"]);
-        resNse["Close"] && (stockData.Close = resNse["Close"]);
-        resNse["PrevClose"] && (stockData.Change = (resNse["Close"] - resNse["PrevClose"]) * 100 / resNse["PrevClose"]);
-        if (resNse["PrevClose"] && resNse["PrevClose"] != 0) {
-            stockData.Change = (resNse["Close"] - resNse["PrevClose"]) * 100 / resNse["PrevClose"];
-        }
-
-        if (resNse.BulkDeals && resNse.BulkDeals.length > 0) {
-            stockData.BulkDeals.push(...resNse.BulkDeals);
-        }
-
-        if (resNse.History && resNse.History.length > 0) {
-            stockData.History.push(...resNse.History);
-        }
-    }
-
-    let resBse = data && bseCode ? data : bseData[bseCode];
-
-    if (resBse) {
-        stockData.Delivery += resBse["Delivery"];
-        stockData.Total += resBse["Total"];
-        //stockData.DeliveryPercentage = resBse["DeliveryPercentage"];       
-        if (!stockData.Open) {
-            stockData.Open = resBse["Open"];
-            stockData.Close = resBse["Close"];
-            if (resBse["PrevClose"] && resBse["PrevClose"] != 0) {
-                stockData.Change = (resBse["Close"] - resBse["PrevClose"]) * 100 / resBse["PrevClose"];
-            }
-        }
-        if (resBse.BulkDeals && resBse.BulkDeals.length > 0) {
-            stockData.BulkDeals.push(...resBse.BulkDeals);
-        }
-
-        if (resBse.History && resBse.History.length > 0) {
-            stockData.History.push(...resBse.History);
-        }
-    }
+    const stockData = MergeStockData(data && nseCode ? data : nseData[nseCode], data && bseCode ? data : bseData[bseCode])
+    stockData.Name = name;
 
     var newRow;
     if (stockData.Name) {
@@ -161,8 +109,8 @@ function updateDataTable(table, name, nseCode, bseCode, data = undefined, rowInd
             a.title = stockData.Name;
             a.href = "#0";
             const codes = [];
-            resNse && codes.push(nseCode);
-            resBse && codes.push(bseCode);
+            nseCode && codes.push(nseCode);
+            bseCode && codes.push(bseCode);
             a.setAttribute("codes", codes);
             a.setAttribute("onclick", "ShowHistory(this);");
             newRow.cells[1].appendChild(a);
@@ -184,8 +132,8 @@ function updateDataTable(table, name, nseCode, bseCode, data = undefined, rowInd
             a.title = stockData.Name;
             a.href = "#0";
             const codes = [];
-            resNse && codes.push(nseCode);
-            resBse && codes.push(bseCode);
+            nseCode && codes.push(nseCode);
+            bseCode && codes.push(bseCode);
             a.setAttribute("codes", codes);
             a.setAttribute("onclick", "OpenModal(this);");
             data && a.setAttribute("historyDate", data.HistoryDate);

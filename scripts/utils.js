@@ -147,3 +147,83 @@ function resetTable(table) {
 function isValidDate(d) {
     return d instanceof Date && !isNaN(d);
 }
+
+function MergeStockData(stockData1, stockData2) {
+    var stockData = { ...stockData1 };
+
+    if (!stockData1 && !stockData2)
+        return stockData;
+    else if (!stockData2)
+        return stockData1;
+    else if (!stockData1)
+        return stockData2;
+
+    stockData.Open = stockData1["Open"];
+    stockData.High = stockData1["High"];
+    stockData.Low = stockData1["Low"];
+    stockData.PrevClose = stockData1["PrevClose"];
+    stockData.Close = stockData1["Close"];
+
+    stockData.Delivery = stockData1["Delivery"] + stockData2["Delivery"];
+    stockData.Total = stockData1["Total"] + stockData2["Total"];
+    stockData.DeliveryPercentage = stockData.Delivery / stockData.Total;
+
+    stockData.BulkDeals = [];
+    if (stockData1.BulkDeals && stockData1.BulkDeals.length > 0) {
+        stockData.BulkDeals.push(...stockData1.BulkDeals);
+    }
+
+    if (stockData2.BulkDeals && stockData2.BulkDeals.length > 0) {
+        stockData.BulkDeals.push(...stockData2.BulkDeals);
+    }
+    if (stockData.BulkDeals.length == 0)
+        delete stockData.BulkDeals;
+
+    stockData.History = MergeHistory(stockData1.History ? [...stockData1.History] : undefined, stockData2.History ? [...stockData2.History] : undefined);
+
+    return stockData;
+}
+
+function MergeHistory(historyData1, historyData2) {
+    var History = [];
+
+    if (historyData1) {
+        while (historyData2.length) {
+            const history1 = historyData1[0];
+            let history2 = historyData2.find(his => his.HistoryDate == history1.HistoryDate);
+            if (history2) {
+                var history = MergeStockData(history1, history2);
+                history.HistoryDate = history1.HistoryDate;
+                History.push(history);
+                historyData1.splice(0, 1);
+                historyData2.splice(historyData2.findIndex(e => e.HistoryDate === history2.HistoryDate), 1);
+            }
+            else {
+                History.push(history1);
+                historyData1.splice(0, 1);
+            }
+        }
+    }
+
+    if (historyData2) {
+        while (historyData2.length) {
+            const history2 = historyData2[0];
+            let history1 = historyData1.find(his => his.HistoryDate == history2.HistoryDate);
+            if (history1) {
+                var history = MergeStockData(history2, history1);
+                history.HistoryDate = history2.HistoryDate;
+                History.push(history);
+                historyData2.splice(0, 1);
+                historyData1.splice(historyData1.findIndex(e => e.HistoryDate === history1.HistoryDate), 1);
+            }
+            else {
+                History.push(history2);
+                historyData2.splice(0, 1);
+            }
+        }
+    }
+    if (History.length == 0)
+        return;
+    else
+        return History;
+}

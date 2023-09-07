@@ -2,8 +2,7 @@ var nseData = { data: {} };
 var bseData = { data: {} };
 var defaultStockList;
 
-var today = new Date().setHours(0, 0, 0, 0);
-today = new Date(today);
+var today = new Date();
 if (today.getDay() == 0)
   today = new Date(today.setDate(today.getDate() - 2));
 else if (today.getDay() == 6)
@@ -13,6 +12,8 @@ else if (today.getDay() == 1 && today.getHours() < 9)
 else if (today.getHours() < 9) {
   today = new Date(today.setDate(today.getDate() - 1));
 }
+today = new Date().setHours(0, 0, 0, 0);
+today = new Date(today);
 
 window.onload = async () => {
 

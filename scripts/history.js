@@ -2,7 +2,6 @@ const stockHistoryTable = document.getElementById("stockHistory");
 
 function ShowHistory(stock) {
     if (!stock.getAttribute('historyShown')) {
-        let histories = [];
         const stockCodes = stock.getAttribute('codes');
         let nseCode, bseCode;
         const codes = stockCodes.split(',');
@@ -14,30 +13,8 @@ function ShowHistory(stock) {
             nseCode = stockCodes;
             bseCode = stockCodes;
         }
-        if (nseData[nseCode]) {
-            let history = {
-                "HistoryDate": new Date(today).toLocaleDateString('en-In', { weekday: "short", year: "numeric", month: "short", day: "2-digit" }),
-                ...nseData[nseCode],
-            }
-            history.History && delete history.History;
-            histories.push(history);
-            histories.push(...nseData[nseCode].History);
-        }
-        else {
-            nseCode = undefined;
-        }
-        if (bseData[bseCode]) {
-            let history = {
-                "HistoryDate": new Date(today).toLocaleDateString('en-In', { weekday: "short", year: "numeric", month: "short", day: "2-digit" }),
-                ...bseData[bseCode],
-            }
-            history.History && delete history.History;
-            histories.push(history);
-            histories.push(...bseData[bseCode].History);
-        }
-        else {
-            bseCode = undefined;
-        }
+
+        const histories = MergeStockData(nseData[nseCode], bseData[bseCode]).History;
 
         const rowIndex = stock.parentElement.parentElement.rowIndex;
         for (let i = 0; i < histories.length; i++) {

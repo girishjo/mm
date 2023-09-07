@@ -27,7 +27,7 @@ function OpenModal(stock) {
     if (nseData[nseCode]) {
         if (historyDate) {
             nseData[nseCode].History && nseData[nseCode].History.forEach(his => {
-                if (his.HistoryDate == historyDate) {
+                if (his.BulkDeals && his.HistoryDate == historyDate) {
                     bulkDeals.push(...his.BulkDeals);
                 }
             });
@@ -42,7 +42,7 @@ function OpenModal(stock) {
     if (bseData[bseCode]) {
         if (historyDate) {
             bseData[bseCode].History && bseData[bseCode].History.forEach(his => {
-                if (his.HistoryDate == historyDate) {
+                if (his.BulkDeals && his.HistoryDate == historyDate) {
                     bulkDeals.push(...his.BulkDeals);
                 }
             });
