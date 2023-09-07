@@ -26,11 +26,14 @@ function OpenModal(stock) {
     }
     if (nseData[nseCode]) {
         if (historyDate) {
-            nseData[nseCode].History.forEach(his => {
+            nseData[nseCode].History && nseData[nseCode].History.forEach(his => {
                 if (his.HistoryDate == historyDate) {
-                    bulkDeals = his.BulkDeals;
+                    bulkDeals.push(...his.BulkDeals);
                 }
             });
+            if (new Date(historyDate).toDateString() == today.toDateString()) {
+                nseData[nseCode].BulkDeals && bulkDeals.push(...nseData[nseCode].BulkDeals);
+            }
         }
         else {
             bulkDeals = nseData[nseCode].BulkDeals;
@@ -38,11 +41,14 @@ function OpenModal(stock) {
     }
     if (bseData[bseCode]) {
         if (historyDate) {
-            bseData[bseCode].History.forEach(his => {
+            bseData[bseCode].History && bseData[bseCode].History.forEach(his => {
                 if (his.HistoryDate == historyDate) {
                     bulkDeals.push(...his.BulkDeals);
                 }
             });
+            if (new Date(historyDate).toDateString() == today.toDateString()) {
+                nseData[nseCode].BulkDeals && bulkDeals.push(...nseData[nseCode].BulkDeals);
+            }
         }
         else {
             bulkDeals.push(...bseData[bseCode].BulkDeals);
