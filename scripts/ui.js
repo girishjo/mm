@@ -6,8 +6,10 @@ for (var i = 0; i < coll.length; i++) {
         let content = document.getElementById(this.attributes["data"].value)
         if (content.style.display === "block") {
             content.style.display = "none";
+            this.innerText = this.innerText.replace("Hide", "Show");
         } else {
             content.style.display = "block";
+            this.innerText = this.innerText.replace("Show", "Hide");
         }
     });
 }

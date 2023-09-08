@@ -12,8 +12,7 @@ else if (today.getDay() == 1 && today.getHours() < 9)
 else if (today.getHours() < 9) {
   today = new Date(today.setDate(today.getDate() - 1));
 }
-today = new Date().setHours(0, 0, 0, 0);
-today = new Date(today);
+today = new Date(today.getFullYear(), today.getMonth(), today.getDate());
 
 window.onload = async () => {
 
@@ -51,12 +50,12 @@ window.onload = async () => {
   response = await fetch('./data/nseBulkDeal.json');
   nseDataJson = await response.json();
   valid = IsUpdateData(dataValidityTable.rows[1].cells[3], nseDataJson.dateTimeStamp);
-  nseData = MergeBulkDeals(nseData, nseDataJson);
+  nseData = MergeData(nseData, nseDataJson);
 
   response = await fetch('./data/bseBulkDeal.json');
   bseDataJson = await response.json();
   valid = IsUpdateData(dataValidityTable.rows[2].cells[3], bseDataJson.dateTimeStamp);
-  bseData = MergeBulkDeals(bseData, bseDataJson);
+  bseData = MergeData(bseData, bseDataJson);
   // #endregion Bulk Deals
 
   nseData = nseData.data;
@@ -81,7 +80,7 @@ function IsUpdateData(placeHolder, dateTimeStamp) {
 }
 
 function MergeBulkDeals(newData, oldData) {
-  for (var stock in newData.data) {
+  for (var stock in [...new Set([...Object.keys(newData.data), ...Object.keys(oldData.data)])]) {
     if (oldData.data[stock]) {
       if (!newData.data[stock].BulkDeals) {
         newData.data[stock].BulkDeals = [];

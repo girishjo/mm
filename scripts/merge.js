@@ -117,16 +117,34 @@ function MergeRecursive(target, source) {
                 //concatenate arrays
                 //target[key] = target[key].concat(source[key]);
 
-                for (let i = 0; i < source[key].length; i++) {
-                    const history = source[key][i];
-                    let newHist = target[key].find(his => his.HistoryDate == history.HistoryDate);
-                    if (newHist) {
-                        newHist = this.MergeRecursive(newHist, history);
-                    }
-                    else {
-                        target[key].push(history);
+                if (key != "BulkDeals") {
+                    for (let i = 0; i < source[key].length; i++) {
+                        const history = source[key][i];
+                        let newHist = target[key].find(his => his.HistoryDate == history.HistoryDate);
+                        if (newHist) {
+                            newHist = this.MergeRecursive(newHist, history);
+                        }
+                        else {
+                            target[key].push(history);
+                        }
                     }
                 }
+                else {
+                    for (let i = 0; i < source[key].length; i++) {
+                        const newItem = source[key][i];
+                        let bulkdeal = target[key].find(bd =>
+                            bd.Date == newItem.Date
+                            && bd.SecurityCode == newItem.SecurityCode
+                            && bd.SecurityName == newItem.SecurityName
+                            && bd.ClientName == newItem.ClientName
+                            && bd.BuyOrSell == newItem.BuyOrSell
+                            && bd.Quantity == newItem.Quantity
+                            && bd.Price == newItem.Price);
+                        if (!bulkdeal)
+                            target[key].push(newItem);
+                    }
+                }
+
             } else if (typeof source[key] == "object") {
                 if (!target[key]) target[key] = {};
                 this.MergeRecursive(target[key], source[key]);
