@@ -99,23 +99,18 @@ function IsUpdateData(placeHolder, dateTimeStamp) {
 
 (async function CheckForLatestData() {
   if (document.getElementById('updatedDataAvailable').style.display != 'block') {
-    const oldData = [
-      [dataValidityTable.rows[1].cells[1].innerText, dataValidityTable.rows[1].cells[2].innerText, dataValidityTable.rows[1].cells[3].innerText],
-      [dataValidityTable.rows[2].cells[1].innerText, dataValidityTable.rows[2].cells[2].innerText, dataValidityTable.rows[2].cells[3].innerText],
-    ];
-
     let flag = true;
     for (let j = 0; j < dataFiles[0].length; j++) {
       for (let i = 0; i < dataFiles.length; i++) {
         let response = await fetch('./data/' + dataFiles[i][j]);
         let dataJson = await response.json();
-        if (new Date(dataJson.dateTimeStamp) > new Date(oldData[i][j])) {
+        if (new Date(dataJson.dateTimeStamp) > new Date(dataValidityTable.rows[i + 1].cells[j + 1].innerText)) {
           document.getElementById('updatedDataAvailable').style.display = 'block';
           flag = false;
           break;
         }
       }
     }
-    flag && setTimeout(CheckForLatestData, 5000);
+    flag && setTimeout(CheckForLatestData, 5 * 60 * 1000);
   }
 })();
