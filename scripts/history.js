@@ -16,7 +16,7 @@ function ShowHistory(stock) {
 
         const histories = [...MergeStockData({ ...nseData[nseCode] }, { ...bseData[bseCode] }).History];
 
-        if (todayDateHour.getHours() > 16 || (todayDateHour.getHours() > 15 && todayDateHour.getMinutes() >= 30)) {
+        if (todayDateHour < new Date()) {
             let history1, history2;
             if (nseData[nseCode] && (nseData[nseCode].Total > 0 || nseData[nseCode].Open || nseData[nseCode].BulkDeals)) {
                 history1 = {

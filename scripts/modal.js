@@ -47,7 +47,7 @@ function OpenModal(stock) {
                 }
             });
             if (new Date(historyDate).toDateString() == todayDate.toDateString()) {
-                nseData[nseCode].BulkDeals && bulkDeals.push(...nseData[nseCode].BulkDeals);
+                bseData[bseCode].BulkDeals && bulkDeals.push(...bseData[bseCode].BulkDeals);
             }
         }
         else {
