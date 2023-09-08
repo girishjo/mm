@@ -50,3 +50,15 @@
     margin-left: 5px;
     float: right;
 }
+
+.blink {
+    -webkit-animation: highlight 1s infinite alternate-reverse;
+    /* Safari 4+ */
+    -moz-animation: highlight 1s infinite alternate-reverse;
+    /* Fx 5+ */
+    -o-animation: highlight 1s infinite alternate-reverse;
+    /* Opera 12+ */
+    animation: highlight 1s infinite alternate-reverse;
+    /* IE 10+ */
+    margin: 15px 0;
+}
