@@ -16,21 +16,28 @@ function ShowHistory(stock) {
 
         const histories = [...MergeStockData({ ...nseData[nseCode] }, { ...bseData[bseCode] }).History];
 
-        if (todayDate.getHours > 15 && todayDate.getMinutes() >= 30) {
-            let history1 = {
-                "HistoryDate": new Date(todayDate).toLocaleDateString('en-In', { weekday: "short", year: "numeric", month: "short", day: "2-digit" }),
-                ...nseData[nseCode],
+        if (todayDateHour.getHours() > 15 && todayDateHour.getMinutes() >= 30) {
+            let history1, history2;
+            if (nseData[nseCode] && nseData[nseCode].Total > 0) {
+                history1 = {
+                    "HistoryDate": new Date(todayDate).toLocaleDateString('en-In', { weekday: "short", year: "numeric", month: "short", day: "2-digit" }),
+                    ...nseData[nseCode],
+                }
+                history1.History && delete history1.History;
             }
-            history1.History && delete history1.History;
 
-            let history2 = {
-                "HistoryDate": new Date(todayDate).toLocaleDateString('en-In', { weekday: "short", year: "numeric", month: "short", day: "2-digit" }),
-                ...bseData[bseCode],
+            if (bseData[bseCode] && bseData[bseCode].Total > 0) {
+                history2 = {
+                    "HistoryDate": new Date(todayDate).toLocaleDateString('en-In', { weekday: "short", year: "numeric", month: "short", day: "2-digit" }),
+                    ...bseData[bseCode],
+                }
+                history2.History && delete history2.History;
             }
-            history2.History && delete history2.History;
 
-            const todaysHistory = MergeStockData(history1, history2);
-            histories.unshift(todaysHistory);
+            if (history1 || history2) {
+                const todaysHistory = MergeStockData(history1, history2);
+                histories.unshift(todaysHistory);
+            }
         }
 
         const rowIndex = stock.parentElement.parentElement.rowIndex;

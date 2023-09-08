@@ -12,6 +12,7 @@ else if (todayDate.getDay() == 1 && todayDate.getHours() < 9)
 else if (todayDate.getHours() < 9) {
   todayDate = new Date(todayDate.setDate(todayDate.getDate() - 1));
 }
+const todayDateHour = todayDate;
 todayDate = new Date(todayDate.getFullYear(), todayDate.getMonth(), todayDate.getDate());
 
 window.onload = async () => {
