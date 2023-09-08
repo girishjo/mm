@@ -15,7 +15,7 @@ function MergeData(data1, data2) {
     let oldData, newData;
     let result = { dateTimeStamp: "", data: {} };
 
-    if (new Date(data1.dateTimeStamp).setHours(0, 0, 0, 0) == new Date(data1.dateTimeStamp).setHours(0, 0, 0, 0)) {
+    if (new Date(data1.dateTimeStamp).setHours(0, 0, 0, 0) == new Date(data2.dateTimeStamp).setHours(0, 0, 0, 0)) {
         if (new Date(data1.dateTimeStamp).setHours(0, 0, 0, 0) == new Date(todayDate).setHours(0, 0, 0, 0)) {
             result = MergeRecursive(data1, data2);
             CheckHistoryLength(result);
