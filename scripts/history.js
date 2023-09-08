@@ -18,7 +18,7 @@ function ShowHistory(stock) {
 
         if (todayDateHour.getHours() > 15 && todayDateHour.getMinutes() >= 30) {
             let history1, history2;
-            if (nseData[nseCode] && nseData[nseCode].Total > 0) {
+            if (nseData[nseCode] && (nseData[nseCode].Total > 0 || nseData[nseCode].Open || nseData[nseCode].BulkDeals)) {
                 history1 = {
                     "HistoryDate": new Date(todayDate).toLocaleDateString('en-In', { weekday: "short", year: "numeric", month: "short", day: "2-digit" }),
                     ...nseData[nseCode],
@@ -26,7 +26,7 @@ function ShowHistory(stock) {
                 history1.History && delete history1.History;
             }
 
-            if (bseData[bseCode] && bseData[bseCode].Total > 0) {
+            if (bseData[bseCode] && (bseData[bseCode].Total > 0 || bseData[bseCode].Open || bseData[bseCode].BulkDeals)) {
                 history2 = {
                     "HistoryDate": new Date(todayDate).toLocaleDateString('en-In', { weekday: "short", year: "numeric", month: "short", day: "2-digit" }),
                     ...bseData[bseCode],
@@ -44,11 +44,13 @@ function ShowHistory(stock) {
         for (let i = 0; i < histories.length; i++) {
             const history = histories[i];
             let newRow = updateDataTable(stockHistoryTable, stock.getAttribute('title'), nseCode, bseCode, history);
-            if ((i + rowIndex) % 2 == 0) {
-                newRow.style.background = "#dddddd";
-            }
-            else {
-                newRow.style.background = "#f1f1f1";
+            if (newRow) {
+                if ((i + rowIndex) % 2 == 0) {
+                    newRow.style.background = "#dddddd";
+                }
+                else {
+                    newRow.style.background = "#f1f1f1";
+                }
             }
         }
         updateRowNumber(stockHistoryTable, stock.parentElement.parentElement.cells[0].innerText);
