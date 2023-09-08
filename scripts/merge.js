@@ -16,7 +16,7 @@ function MergeData(data1, data2) {
     let result = { dateTimeStamp: "", data: {} };
 
     if (new Date(data1.dateTimeStamp).setHours(0, 0, 0, 0) == new Date(data1.dateTimeStamp).setHours(0, 0, 0, 0)) {
-        if (new Date(data1.dateTimeStamp).setHours(0, 0, 0, 0) == new Date(today).setHours(0, 0, 0, 0)) {
+        if (new Date(data1.dateTimeStamp).setHours(0, 0, 0, 0) == new Date(todayDate).setHours(0, 0, 0, 0)) {
             result = MergeRecursive(data1, data2);
             CheckHistoryLength(result);
             return result;
@@ -39,7 +39,7 @@ function MergeData(data1, data2) {
         newData = data2;
     }
 
-    result.dateTimeStamp = newData.dateTimeStamp ? newData.dateTimeStamp : new Date(today).toLocaleDateString('en-In', { weekday: "short", year: "numeric", month: "short", day: "2-digit" });
+    result.dateTimeStamp = newData.dateTimeStamp ? newData.dateTimeStamp : new Date(todayDate).toLocaleDateString('en-In', { weekday: "short", year: "numeric", month: "short", day: "2-digit" });
 
     for (const stockCode of [...new Set([...Object.keys(newData.data), ...Object.keys(oldData.data)])]) {
         let res = {}
@@ -61,15 +61,15 @@ function CheckHistoryLength(result) {
         let res = result.data[stockCode];
         if (res.History) {
             res.History.sort((a, b) => new Date(b.HistoryDate) - new Date(a.HistoryDate));
-            // while (res.History.length > 10) {
-            //     res.History.pop();
-            // }
+            while (res.History.length > 10) {
+                res.History.pop();
+            }
         }
     }
 }
 
 function HandleStockData(data, stockCode, res) {
-    if (new Date(data.dateTimeStamp).toDateString() == new Date(today).toDateString()) {
+    if (new Date(data.dateTimeStamp).toDateString() == new Date(todayDate).toDateString()) {
         res = MergeRecursive(res, data.data[stockCode]);
     }
     else {

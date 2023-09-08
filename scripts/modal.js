@@ -31,7 +31,7 @@ function OpenModal(stock) {
                     bulkDeals.push(...his.BulkDeals);
                 }
             });
-            if (new Date(historyDate).toDateString() == today.toDateString()) {
+            if (new Date(historyDate).toDateString() == todayDate.toDateString()) {
                 nseData[nseCode].BulkDeals && bulkDeals.push(...nseData[nseCode].BulkDeals);
             }
         }
@@ -46,7 +46,7 @@ function OpenModal(stock) {
                     bulkDeals.push(...his.BulkDeals);
                 }
             });
-            if (new Date(historyDate).toDateString() == today.toDateString()) {
+            if (new Date(historyDate).toDateString() == todayDate.toDateString()) {
                 nseData[nseCode].BulkDeals && bulkDeals.push(...nseData[nseCode].BulkDeals);
             }
         }

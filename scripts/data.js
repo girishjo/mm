@@ -2,17 +2,17 @@ var nseData = { data: {} };
 var bseData = { data: {} };
 var defaultStockList;
 
-var today = new Date();
-if (today.getDay() == 0)
-  today = new Date(today.setDate(today.getDate() - 2));
-else if (today.getDay() == 6)
-  today = new Date(today.setDate(today.getDate() - 1));
-else if (today.getDay() == 1 && today.getHours() < 9)
-  today = new Date(today.setDate(today.getDate() - 3));
-else if (today.getHours() < 9) {
-  today = new Date(today.setDate(today.getDate() - 1));
+var todayDate = new Date();
+if (todayDate.getDay() == 0)
+  todayDate = new Date(todayDate.setDate(todayDate.getDate() - 2));
+else if (todayDate.getDay() == 6)
+  todayDate = new Date(todayDate.setDate(todayDate.getDate() - 1));
+else if (todayDate.getDay() == 1 && todayDate.getHours() < 9)
+  todayDate = new Date(todayDate.setDate(todayDate.getDate() - 3));
+else if (todayDate.getHours() < 9) {
+  todayDate = new Date(todayDate.setDate(todayDate.getDate() - 1));
 }
-today = new Date(today.getFullYear(), today.getMonth(), today.getDate());
+todayDate = new Date(todayDate.getFullYear(), todayDate.getMonth(), todayDate.getDate());
 
 window.onload = async () => {
 
@@ -77,39 +77,4 @@ function IsUpdateData(placeHolder, dateTimeStamp) {
     placeHolder.style.background = 'lightgreen';
     return true;
   }
-}
-
-function MergeBulkDeals(newData, oldData) {
-  for (var stock in [...new Set([...Object.keys(newData.data), ...Object.keys(oldData.data)])]) {
-    if (oldData.data[stock]) {
-      if (!newData.data[stock].BulkDeals) {
-        newData.data[stock].BulkDeals = [];
-      }
-
-      for (let i = 0; i < oldData.data[stock].length; i++) {
-        const bulkDeal = oldData.data[stock][i];
-        const oldDate = new Date(bulkDeal.Date).toLocaleDateString('en-In', { weekday: "short", year: "numeric", month: "short", day: "2-digit" });
-        if (oldDate == new Date(today).toLocaleDateString('en-In', { weekday: "short", year: "numeric", month: "short", day: "2-digit" })) {
-          newData.data[stock].BulkDeals.push(bulkDeal);
-          //newData.data[stock].BulkDeals.data.sort((a, b) => a.SecurityCode.localeCompare(b.SecurityCode) || a.ClientName.localeCompare(b.ClientName) || a.BuyOrSell.localeCompare(b.BuyOrSell))
-        }
-        else {
-          if (newData.data[stock].History) {
-            var history = newData.data[stock].History.find(his => his.HistoryDate == oldDate);
-            if (!history) {
-              history = { "HistoryDate": oldDate };
-              newData.data[stock].History.push(history);
-            }
-            if (!history.BulkDeals) {
-              history.BulkDeals = [];
-            }
-            history.BulkDeals.push(bulkDeal);
-            history.BulkDeals.sort((a, b) => a.SecurityCode.localeCompare(b.SecurityCode) || a.ClientName.localeCompare(b.ClientName) || a.BuyOrSell.localeCompare(b.BuyOrSell));
-            newData.data[stock].History.sort((a, b) => new Date(b.HistoryDate) - new Date(a.HistoryDate));
-          }
-        }
-      }
-    }
-  }
-  return newData;
 }
