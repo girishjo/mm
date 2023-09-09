@@ -2,17 +2,13 @@ const dataValidityTable = document.querySelector('#dataValidity');
 const listTable = document.querySelector('#stocksList');
 const dataTable = document.querySelector('#stockData');
 
-function saveDataOnLocal(data, silentUpdate = false) {
-    let listTableObj;
-    if (data) {
-        listTableObj = data;
-    } else {
-        listTableObj = toObject(listTable);
-    }
-    let jsonStr = JSON.stringify(listTableObj);
-    window.localStorage.setItem("stocksList", jsonStr);
+function saveDataOnLocal(dataStr, silentUpdate = false) {
+    if (typeof dataStr == "object")
+        dataStr = JSON.stringify(dataStr);
+
+    window.localStorage.setItem("stocksList", dataStr);
     if (!silentUpdate) {
-        alert('List saved');
+        alert('Stock list saved');
     }
     window.location.reload();
 }
@@ -57,26 +53,31 @@ function downloadLocalCopy(jsnData) {
     }
 }
 
-
-function loadLocalCopy(e) {
-    if (confirm("It will overwrite your existing data. Proceed?")) {
-        var file = e.target.files[0];
-        if (!file) {
-            return;
-        }
-        var reader = new FileReader();
-        reader.onload = function (e) {
-            var contents = e.target.result;
-            saveDataOnLocal(JSON.parse(contents), true);
-            //loadDataFromLocal(contents);
-        };
-        reader.readAsText(file);
-    }
-}
-
 function loadDefaultStockList() {
     if (confirm("It will overwrite your existing data. Proceed?")) {
         saveDataOnLocal(defaultStockList, true);
+    }
+}
+
+async function uploadStockList() {
+    if (confirm("It will overwrite your existing data. Proceed?")) {
+        const pickerOpts = {
+            types: [
+                {
+                    description: "Jsons",
+                    accept: {
+                        "json/*": [".json"],
+                    },
+                },
+            ],
+            excludeAcceptAllOption: true,
+            multiple: false,
+        };
+
+        [fileHandle] = await window.showOpenFilePicker(pickerOpts);
+        const file = await fileHandle.getFile();
+        const content = await file.text();
+        saveDataOnLocal(content, true);
     }
 }
 

@@ -1,6 +1,7 @@
-/* * {
+* {
+    width: fit-content;
     margin-bottom: 15px;
-} */
+}
 
 table {
     font-family: arial, sans-serif;
@@ -78,7 +79,7 @@ tr.red-row {
 .content {
     padding: 0 18px;
     display: none;
-    overflow: hidden;
+    overflow: auto;
     background-color: #f1f1f1;
 }
 

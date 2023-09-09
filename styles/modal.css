@@ -26,18 +26,27 @@
     animation-duration: 0.4s
 }
 
+.modal-content {
+    position: fixed;
+    margin: auto;
+    background-color: #fefefe;
+    transform: translate(0%, 50%);
+    -webkit-animation-name: slideIn;
+    -webkit-animation-duration: 0.4s;
+    animation-name: slideIn;
+    animation-duration: 0.4s
+}
+
 /* Modal Content */
+/*
 .modal-content {
     position: fixed;
     bottom: 0;
     margin-bottom: 0;
     background-color: #fefefe;
     width: 100%;
-    -webkit-animation-name: slideIn;
-    -webkit-animation-duration: 0.4s;
-    animation-name: slideIn;
-    animation-duration: 0.4s
 }
+*/
 
 /* The Close Button */
 .close {
@@ -58,10 +67,12 @@
     padding: 2px 16px;
     background-color: #5cb85c;
     color: white;
+    width: auto;
 }
 
 .modal-body {
     padding: 2px 16px;
+    margin-bottom: 0;
 }
 
 .modal-footer {
@@ -73,24 +84,24 @@
 /* Add Animation */
 @-webkit-keyframes slideIn {
     from {
-        bottom: -300px;
+        transform: translate(0%, 0%);
         opacity: 0
     }
 
     to {
-        bottom: 0;
+        transform: translate(0%, 50%);
         opacity: 1
     }
 }
 
 @keyframes slideIn {
     from {
-        bottom: -300px;
+        transform: translate(0%, 0%);
         opacity: 0
     }
 
     to {
-        bottom: 0;
+        transform: translate(0%, 50%);
         opacity: 1
     }
 }

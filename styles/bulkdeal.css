@@ -48,6 +48,7 @@
     animation: highlight 1s 10 alternate-reverse;
     /* IE 10+ */
     margin-left: 5px;
+    margin-bottom: 0%;
     float: right;
 }
 
