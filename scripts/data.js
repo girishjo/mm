@@ -20,8 +20,7 @@ else if (todayDate.getHours() < 9) {
 const todayDateHour = todayDate;
 todayDate = new Date(todayDate.getFullYear(), todayDate.getMonth(), todayDate.getDate());
 
-window.onload = async () => {
-
+window.addEventListener('load', async () => {
   for (let j = 0; j < dataFiles[0].length; j++) {
     for (let i = 0; i < dataFiles.length; i++) {
       let response = await fetch('./data/' + dataFiles[i][j]);
@@ -32,50 +31,6 @@ window.onload = async () => {
     }
   }
 
-  /*
-  // #region Open Close
-  let response = await fetch('./data/' + dataFiles[0][0]);
-  let nseDataJson = await response.json();
-  let valid = IsUpdateData(dataValidityTable.rows[1].cells[1], nseDataJson.dateTimeStamp);
-  nseData = MergeData(nseData, nseDataJson);
-  //nseData = nseDataJson;
-
-  response = await fetch('./data/' + dataFiles[1][0]);
-  let bseDataJson = await response.json();
-  valid = IsUpdateData(dataValidityTable.rows[2].cells[1], bseDataJson.dateTimeStamp);
-  bseData = MergeData(bseData, bseDataJson);
-  //bseData = bseDataJson;
-
-  // #endregion Open Close
-
-  // #region Delivery Data
-  response = await fetch('./data/' + dataFiles[0][1]);
-  nseDataJson = await response.json();
-  valid = IsUpdateData(dataValidityTable.rows[1].cells[2], nseDataJson.dateTimeStamp);
-  nseData = MergeData(nseData, nseDataJson);
-
-  response = await fetch('./data/' + dataFiles[1][1]);
-  bseDataJson = await response.json();
-  valid = IsUpdateData(dataValidityTable.rows[2].cells[2], bseDataJson.dateTimeStamp);
-  bseData = MergeData(bseData, bseDataJson);
-
-  // #endregion Delivery Data
-
-
-  // #region Bulk Deals
-
-  response = await fetch('./data/' + dataFiles[0][2]);
-  nseDataJson = await response.json();
-  valid = IsUpdateData(dataValidityTable.rows[1].cells[3], nseDataJson.dateTimeStamp);
-  nseData = MergeData(nseData, nseDataJson);
-
-  response = await fetch('./data/' + dataFiles[1][2]);
-  bseDataJson = await response.json();
-  valid = IsUpdateData(dataValidityTable.rows[2].cells[3], bseDataJson.dateTimeStamp);
-  bseData = MergeData(bseData, bseDataJson);
-  // #endregion Bulk Deals
-  */
-
   nseData = nseData.data;
   bseData = bseData.data;
 
@@ -83,7 +38,7 @@ window.onload = async () => {
   defaultStockList = await response.json();
 
   loadDataFromLocal();
-};
+});
 
 function IsUpdateData(placeHolder, dateTimeStamp) {
   placeHolder.innerText = dateTimeStamp;

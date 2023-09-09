@@ -97,14 +97,14 @@ span.onclick = function () {
 }
 
 // When the user clicks anywhere outside of the modal, close it
-window.onclick = function (event) {
+window.addEventListener('click', function (event) {
     if (event.target == modal) {
         HideModal();
     }
-}
+});
 
-window.onkeyup = (e => {
-    if (e.key === "Escape") {
+window.addEventListener('keyup', function (event) {
+    if (event.key === "Escape") {
         if (modal.style.display == "block") {
             HideModal();
         }

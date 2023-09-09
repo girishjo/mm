@@ -61,23 +61,13 @@ function loadDefaultStockList() {
 
 async function uploadStockList() {
     if (confirm("It will overwrite your existing data. Proceed?")) {
-        const pickerOpts = {
-            types: [
-                {
-                    description: "Jsons",
-                    accept: {
-                        "json/*": [".json"],
-                    },
-                },
-            ],
-            excludeAcceptAllOption: true,
-            multiple: false,
+        let input = document.createElement('input');
+        input.type = 'file';
+        input.onchange = async _ => {
+            const content = await input.files[0].text();
+            saveDataOnLocal(content, true);
         };
-
-        [fileHandle] = await window.showOpenFilePicker(pickerOpts);
-        const file = await fileHandle.getFile();
-        const content = await file.text();
-        saveDataOnLocal(content, true);
+        input.click();
     }
 }
 

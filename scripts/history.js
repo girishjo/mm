@@ -1,8 +1,12 @@
 const stockHistoryTable = document.getElementById("stockHistory");
+var historyStock, historyTable;
 
 function ShowHistory(stock) {
-    if (!stock.getAttribute('historyShown')) {
-        const stockCodes = stock.getAttribute('codes');
+    if (stock.getAttribute('historyShown') != 'true') {
+        HideHistory();
+        historyStock = stock;
+        const historyRow = historyStock.parentElement.parentElement.rowIndex;
+        const stockCodes = historyStock.getAttribute('codes');
         let nseCode, bseCode;
         const codes = stockCodes.split(',');
         if (codes.length == 2) {
@@ -40,12 +44,11 @@ function ShowHistory(stock) {
             }
         }
 
-        const rowIndex = stock.parentElement.parentElement.rowIndex;
         for (let i = 0; i < histories.length; i++) {
             const history = histories[i];
-            let newRow = updateDataTable(stockHistoryTable, stock.getAttribute('title'), nseCode, bseCode, history);
+            let newRow = updateDataTable(stockHistoryTable, historyStock.getAttribute('title'), nseCode, bseCode, history);
             if (newRow) {
-                if ((i + rowIndex) % 2 == 0) {
+                if ((i + historyRow) % 2 == 0) {
                     newRow.style.background = "#dddddd";
                 }
                 else {
@@ -53,9 +56,9 @@ function ShowHistory(stock) {
                 }
             }
         }
-        updateRowNumber(stockHistoryTable, stock.parentElement.parentElement.cells[0].innerText);
+        updateRowNumber(stockHistoryTable, historyStock.parentElement.parentElement.cells[0].innerText);
 
-        const newRow = addEmptyRow(dataTable, rowIndex + 1);
+        const newRow = addEmptyRow(dataTable, historyRow + 1);
 
         const colspan = newRow.cells.length;
         while (newRow.cells.length > 0) {
@@ -68,10 +71,27 @@ function ShowHistory(stock) {
 
         newCell.innerHTML = stockHistoryTable.parentElement.innerHTML;
         resetTable(stockHistoryTable);
-        stock.setAttribute('historyShown', true);
+        historyStock.setAttribute('historyShown', true);
+        historyTable = newRow;
     }
     else {
-        dataTable.deleteRow(stock.parentElement.parentElement.rowIndex + 1);
-        stock.removeAttribute('historyShown');
+        HideHistory();
     }
 }
+
+function HideHistory() {
+    if (historyStock && historyStock.getAttribute('historyShown')) {
+        historyStock.setAttribute('historyShown', false)
+    }
+    if (historyTable) {
+        const newRowIndex = historyTable.rowIndex;
+        dataTable.deleteRow(newRowIndex);
+        historyTable = undefined;
+    }
+}
+
+window.addEventListener('click', function (event) {
+    if (historyTable && !historyTable.contains(event.target) && !event.target.parentElement.contains(historyStock) && event.target != modal) {
+        HideHistory();
+    }
+});
