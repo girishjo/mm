@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="stylesheet" href="styles/style.css">
+</head>
+
+<body>
+    Choose Registrar:
+    <div id="divRegistrar">
+        <input type="radio" id="linintime" name="registrar" value="HTML" checked>
+        <label for="linintime">LinkInTime</label>
+        <input type="radio" id="bigshare" name="registrar" value="CSS">
+        <label for="bigshare">BigShare</label>
+        <input type="radio" id="purva" name="registrar" value="JavaScript">
+        <label for="purva">Purva</label>
+        <br>
+    </div>
+    <div id="divIPO">
+        <select id="ddlIPO" name="ddlClient" class="select form-control form-control-lg mb-3">
+            <option value="11691" selected>Ratnaveer Precision Engineering Limited - IPO</option>
+            <option value="11690">Vishnu Prakash R Punglia Limited - IPO</option>
+            <option value="11689">Aeroflex Industries Limited - IPO</option>
+        </select>
+    </div>
+    <textarea id="panCards" cols="10" rows="10">ABCDE1234F</textarea>
+    <button onclick="CheckLIT()">Check</button>
+    <div id="divResult">
+        <table id="tableLIT">
+            <thead style="background-color: #496e9b;color:white">
+                <tr>
+                    <th class="number">No.</th>
+                    <th class="text">Category</th>
+                    <th class="text">Sole / 1st Applicant</th>
+                    <th class="number">Securities applied</th>
+                    <th class="number">Cut off Price</th>
+                    <th class="number">Securities Allotted</th>
+                    <th class="number">Amount Adjusted</th>
+                    <th class="text">Remarks</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="hide">
+                    <td class="number"></td>
+                    <td class="text"></td>
+                    <td class="text"></td>
+                    <td class="number"></td>
+                    <td class="number"></td>
+                    <td class="number"></td>
+                    <td class="number"></td>
+                    <td class="text"></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+<script src="scripts/ipo-status.js"></script>
+<script src="scripts/utils.js"></script>
+
+</html>
