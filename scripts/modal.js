@@ -59,9 +59,8 @@ function OpenModal(stock) {
         const bulkDeal = bulkDeals[i];
         const newRow = addEmptyRow(bulkDealsTable);
         newRow.cells[0].innerText = i + 1;
-        newRow.cells[1].innerText = bulkDeal.Date;
-        newRow.cells[2].innerText = bulkDeal.ClientName;
-        newRow.cells[3].innerText = bulkDeal.BuyOrSell;
+        newRow.cells[1].innerText = bulkDeal.ClientName;
+        newRow.cells[2].innerText = bulkDeal.BuyOrSell;
         if (bulkDeal.BuyOrSell == "Buy") {
             newRow.cells[3].style.color = 'green';
             total += bulkDeal.Quantity;
@@ -71,8 +70,8 @@ function OpenModal(stock) {
             total -= bulkDeal.Quantity;
             //bulkDeal.Quantity *= -1;
         }
-        newRow.cells[4].innerText = bulkDeal.Quantity.toLocaleString('en-In');
-        newRow.cells[5].innerText = bulkDeal.Price.toLocaleString('en-In', {
+        newRow.cells[3].innerText = bulkDeal.Quantity.toLocaleString('en-In');
+        newRow.cells[4].innerText = bulkDeal.Price.toLocaleString('en-In', {
             minimumFractionDigits: 2,
             maximumFractionDigits: 2
         });
@@ -87,7 +86,10 @@ function OpenModal(stock) {
     else if (total < 0) {
         newRow.cells[3].style.color = 'red';
     }
-    bulkDealHeader.innerText = "Bulk Deals: " + stock.getAttribute('title');
+    bulkDealHeader.innerText = "Bulk deals: " + stock.getAttribute('title');
+    if (bulkDeals.length > 0) {
+        bulkDealHeader.innerText += " [" + bulkDeals[0].Date + "]";
+    }
     modal.style.display = "block";
 }
 

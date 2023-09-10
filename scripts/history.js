@@ -69,8 +69,11 @@ function ShowHistory(stock) {
         newCell.style.border = "3px lightcoral dashed";
         newCell.style.padding = "0";
 
+        //const existCellText = stockHistoryTable.rows[0].cells[1].innerHTML;
+        //stockHistoryTable.rows[0].cells[1].innerHTML = historyStock.getAttribute('title') + " [" + existCellText + "]";
         newCell.innerHTML = stockHistoryTable.parentElement.innerHTML;
         resetTable(stockHistoryTable);
+        //stockHistoryTable.rows[0].cells[1].innerHTML = existCellText;
         historyStock.setAttribute('historyShown', true);
         historyTable = newRow;
     }
@@ -91,7 +94,10 @@ function HideHistory() {
 }
 
 window.addEventListener('click', function (event) {
-    if (historyTable && !historyTable.contains(event.target) && !event.target.parentElement.contains(historyStock) && event.target != modal) {
+    if (((historyTable && !historyTable.contains(event.target))
+        && (event.target.parentElement && !event.target.parentElement.contains(historyStock))
+        && event.target != modal)
+        || !document.body.contains(event.target)) {
         HideHistory();
     }
 });
