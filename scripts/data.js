@@ -21,7 +21,7 @@ const todayDateHour = todayDate;
 todayDate = new Date(todayDate.getFullYear(), todayDate.getMonth(), todayDate.getDate());
 
 window.addEventListener('load', async () => {
-  settings = await GetData('setting.json');
+  settings = await GetData('settings.json');
   defaultStockList = await GetData('defaultStockList.json');
 
   for (let j = 0; j < dataFiles[0].length; j++) {
