@@ -96,7 +96,7 @@ function HideHistory() {
 window.addEventListener('click', function (event) {
     if (((historyTable && !historyTable.contains(event.target))
         && (event.target.parentElement && !event.target.parentElement.contains(historyStock))
-        && event.target != modal)
+        && !modal.contains(event.target))
         || !document.body.contains(event.target)) {
         HideHistory();
     }

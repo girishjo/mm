@@ -1,51 +1,51 @@
 @-webkit-keyframes highlight {
     from {
-        background-color: yellow;
+        background-color: inherit;
     }
 
     to {
-        background-color: inherit;
+        background-color: yellow;
     }
 }
 
 @-moz-keyframes highlight {
     from {
-        background-color: yellow;
+        background-color: inherit;
     }
 
     to {
-        background-color: inherit;
+        background-color: yellow;
     }
 }
 
 @-o-keyframes highlight {
     from {
-        background-color: yellow;
+        background-color: inherit;
     }
 
     to {
-        background-color: inherit;
+        background-color: yellow;
     }
 }
 
 @keyframes highlight {
     from {
-        background-color: yellow;
+        background-color: inherit;
     }
 
     to {
-        background-color: inherit;
+        background-color: yellow;
     }
 }
 
 .highlight {
-    -webkit-animation: highlight 1s 10 alternate-reverse;
+    -webkit-animation: highlight 1s 10 alternate-reverse forwards;
     /* Safari 4+ */
-    -moz-animation: highlight 1s 10 alternate-reverse;
+    -moz-animation: highlight 1s 10 alternate-reverse forwards;
     /* Fx 5+ */
-    -o-animation: highlight 1s 10 alternate-reverse;
+    -o-animation: highlight 1s 10 alternate-reverse forwards;
     /* Opera 12+ */
-    animation: highlight 1s 10 alternate-reverse;
+    animation: highlight 1s 10 alternate-reverse forwards;
     /* IE 10+ */
     margin-left: 5px;
     margin-bottom: 0%;

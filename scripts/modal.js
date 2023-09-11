@@ -36,7 +36,7 @@ function OpenModal(stock) {
             }
         }
         else {
-            bulkDeals = nseData[nseCode].BulkDeals;
+            nseData[nseCode].BulkDeals && bulkDeals.push(...nseData[nseCode].BulkDeals);
         }
     }
     if (bseData[bseCode]) {
@@ -51,7 +51,7 @@ function OpenModal(stock) {
             }
         }
         else {
-            bulkDeals.push(...bseData[bseCode].BulkDeals);
+            bseData[bseCode].BulkDeals && bulkDeals.push(...bseData[bseCode].BulkDeals);
         }
     }
     var total = 0;
