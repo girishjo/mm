@@ -2,11 +2,12 @@ const dataValidityTable = document.querySelector('#dataValidity');
 const listTable = document.querySelector('#stocksList');
 const dataTable = document.querySelector('#stockData');
 
-function saveDataOnLocal(dataStr, silentUpdate = false) {
-    if (typeof dataStr == "object")
-        dataStr = JSON.stringify(dataStr);
+function saveDataOnLocal(data, silentUpdate = false) {
+    let listTableObj = data ? data : toObject(listTable);
+    if (typeof listTableObj == "object")
+        listTableObj = JSON.stringify(listTableObj);
 
-    window.localStorage.setItem("stocksList", dataStr);
+    window.localStorage.setItem("stocksList", listTableObj);
     if (!silentUpdate) {
         alert('Stock list saved');
     }
