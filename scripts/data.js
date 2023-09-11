@@ -1,6 +1,6 @@
 var nseData = { data: {} };
 var bseData = { data: {} };
-var defaultStockList;
+var defaultStockList, settings;
 
 const dataFiles = [
   ['nseOpenClose.json', 'nseDelivery.json', 'nseBulkDeal.json'],
@@ -21,24 +21,28 @@ const todayDateHour = todayDate;
 todayDate = new Date(todayDate.getFullYear(), todayDate.getMonth(), todayDate.getDate());
 
 window.addEventListener('load', async () => {
+  settings = await GetData('setting.json');
+  defaultStockList = await GetData('defaultStockList.json');
+
   for (let j = 0; j < dataFiles[0].length; j++) {
     for (let i = 0; i < dataFiles.length; i++) {
-      let response = await fetch('./data/' + dataFiles[i][j]);
-      let dataJson = await response.json();
+      let dataJson = await GetData(dataFiles[i][j])
       IsUpdateData(dataValidityTable.rows[i + 1].cells[j + 1], dataJson.dateTimeStamp);
       i == 0 && (nseData = MergeData(nseData, dataJson));
       i == 1 && (bseData = MergeData(bseData, dataJson));
     }
   }
-
   nseData = nseData.data;
   bseData = bseData.data;
 
-  response = await fetch('./data/defaultStockList.json');
-  defaultStockList = await response.json();
-
   loadDataFromLocal();
 });
+
+async function GetData(fileName) {
+  let response = await fetch('./data/' + fileName);
+  let dataJson = await response.json();
+  return dataJson;
+}
 
 function IsUpdateData(placeHolder, dateTimeStamp) {
   placeHolder.innerText = dateTimeStamp;

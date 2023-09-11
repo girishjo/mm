@@ -61,7 +61,7 @@ function CheckHistoryLength(result) {
         let res = result.data[stockCode];
         if (res.History) {
             res.History.sort((a, b) => new Date(b.HistoryDate) - new Date(a.HistoryDate));
-            while (res.History.length > 10) {
+            while (res.History.length > settings.constants.historyDays) {
                 res.History.pop();
             }
         }
