@@ -52,69 +52,56 @@ function sortTable(header) {
             let firstText = x.firstChild?.nodeValue || x.innerText || x.querySelector('a')?.innerText;
             let secondText = y.firstChild?.nodeValue || y.innerText || y.querySelector('a')?.innerText;
 
-            if (firstText == undefined) {
-                if (x.classList.contains('number')) {
-                    firstText = "0.00 %";
-                } else if (x.classList.contains('text')) {
-                    firstText = "";
-                }
+            let item1, item2, type;
+            switch (true) {
+                case x.classList.contains('number'):
+                    type = 'number';
+                    if (firstText == undefined)
+                        item1 = 0;
+                    else
+                        item1 = Number(firstText?.replace(/,/g, "").replace("%", "").replace(".", ""));
+
+                    if (secondText == undefined)
+                        item1 = 0;
+                    else
+                        item2 = Number(secondText?.replace(/,/g, "").replace("%", "").replace(".", ""));
+                    break;
+                case x.classList.contains('date'):
+                    type = 'date';
+                    if (firstText == undefined)
+                        item1 = 0;
+                    else
+                        item1 = new Date(firstText);
+
+                    if (secondText == undefined)
+                        item1 = 0;
+                    else
+                        item2 = new Date(secondText);
+                    break;
+                case x.classList.contains('text'):
+                default:
+                    type = 'text';
+                    if (firstText == undefined)
+                        item1 = "";
+                    else
+                        item1 = firstText.toLowerCase();
+
+                    if (secondText == undefined)
+                        item2 = "";
+                    else
+                        item2 = secondText.toLowerCase();
+                    break;
             }
 
-            if (secondText == undefined) {
-                if (y.classList.contains('number')) {
-                    secondText = "0.00 %";
-                } else if (y.classList.contains('text')) {
-                    secondText = "";
-                }
-            }
-
-            let numX = Number(firstText?.replace(/,/g, "").replace("%", ""));
-            let numY = Number(secondText?.replace(/,/g, "").replace("%", ""));
-            let dateX = new Date(firstText);
-            let dateY = new Date(secondText);
             if (dir == "asc") {
-                if (isValidDate(dateX) && isValidDate(dateY)) {
-                    if (dateX > dateY) {
-                        //if so, mark as a switch and break the loop:
-                        shouldSwitch = true;
-                        break;
-                    }
-                }
-                else if (isNaN(numX) || isNaN(numY)) {
-                    if (firstText?.toLowerCase() > secondText?.toLowerCase()) {
-                        //if so, mark as a switch and break the loop:
-                        shouldSwitch = true;
-                        break;
-                    }
-                }
-                else {
-                    if (numX > numY) {
-                        //if so, mark as a switch and break the loop:
-                        shouldSwitch = true;
-                        break;
-                    }
+                if (item1 > item2) {
+                    shouldSwitch = true;
+                    break;
                 }
             } else if (dir == "desc") {
-                if (isValidDate(dateX) && isValidDate(dateY)) {
-                    if (dateX < dateY) {
-                        //if so, mark as a switch and break the loop:
-                        shouldSwitch = true;
-                        break;
-                    }
-                }
-                else if (isNaN(numX) || isNaN(numY)) {
-                    if (firstText?.toLowerCase() < secondText?.toLowerCase()) {
-                        //if so, mark as a switch and break the loop:
-                        shouldSwitch = true;
-                        break;
-                    }
-                }
-                else {
-                    if (numX < numY) {
-                        //if so, mark as a switch and break the loop:
-                        shouldSwitch = true;
-                        break;
-                    }
+                if (item1 < item2) {
+                    shouldSwitch = true;
+                    break;
                 }
             }
         }
