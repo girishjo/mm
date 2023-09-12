@@ -159,8 +159,8 @@ function MergeStockData(stockData1, stockData2) {
     else if (!stockData1)
         return stockData2;
 
-    stockData.Delivery = stockData1["Delivery"] ? stockData1["Delivery"] : 0 + stockData2["Delivery"] ? stockData2["Delivery"] : 0;
-    stockData.Total = stockData1["Total"] ? stockData1["Total"] : 0 + stockData2["Total"] ? stockData2["Total"] : 0;
+    stockData.Delivery = (stockData1["Delivery"] ? stockData1["Delivery"] : 0) + (stockData2["Delivery"] ? stockData2["Delivery"] : 0);
+    stockData.Total = (stockData1["Total"] ? stockData1["Total"] : 0) + (stockData2["Total"] ? stockData2["Total"] : 0);
     stockData.DeliveryPercentage = stockData.Delivery / stockData.Total;
 
     stockData.BulkDeals = [];
