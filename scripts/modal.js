@@ -78,8 +78,8 @@ function OpenModal(stock) {
     }
     const newRow = addEmptyRow(bulkDealsTable);
     newRow.setAttribute("frozen", true);
-    newRow.cells[3].innerText = 'Total = ';
-    newRow.cells[4].innerText = total.toLocaleString('en-In');
+    newRow.cells[2].innerText = 'Total = ';
+    newRow.cells[3].innerText = total.toLocaleString('en-In');
     if (total > 0) {
         newRow.cells[3].style.color = 'green';
     }

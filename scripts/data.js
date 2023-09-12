@@ -46,7 +46,7 @@ async function GetData(fileName) {
 
 function IsUpdateData(placeHolder, dateTimeStamp) {
   placeHolder.innerText = dateTimeStamp;
-  if (new Date(dateTimeStamp).getDate() != new Date().getDate()) {
+  if (new Date(dateTimeStamp).getDate() != new Date(todayDate).getDate()) {
     placeHolder.style.background = 'lightcoral';
     return false;
   }
