@@ -6,8 +6,7 @@ const dataFiles = [
   ['bseOpenClose.json', 'bseDelivery.json', 'bseBulkDeal.json'],
 ];
 
-window.addEventListener('load', async () => {
-
+async function LoadData() {
   for (let j = 0; j < dataFiles[0].length; j++) {
     for (let i = 0; i < dataFiles.length; i++) {
       let dataJson = await GetData(dataFiles[i][j]);
@@ -20,7 +19,8 @@ window.addEventListener('load', async () => {
   bseData = bseData.data;
 
   loadDataFromLocal();
-});
+  setTimeout(CheckForLatestData, settings.constants.refreshDataTimeOut);
+}
 
 function IsUpdateData(placeHolder, dateTimeStamp) {
   placeHolder.innerText = dateTimeStamp;
@@ -34,7 +34,7 @@ function IsUpdateData(placeHolder, dateTimeStamp) {
   }
 }
 
-(async function CheckForLatestData() {
+async function CheckForLatestData() {
   if (document.getElementById('updatedDataAvailable').style.display != 'block') {
     let flag = true;
 
@@ -49,6 +49,31 @@ function IsUpdateData(placeHolder, dateTimeStamp) {
         }
       }
     }
-    flag && setTimeout(CheckForLatestData, 5 * 60 * 1000);
+    flag && setTimeout(CheckForLatestData, settings.constants.refreshDataTimeOut);
   }
-})();
+};
+
+// async function CheckForLatestData() {
+//   if (document.getElementById('updatedDataAvailable').style.display != 'block') {
+
+//     let flags = new Array(2);
+//     flags[0] = new Array(3).fill(true);
+//     flags[1] = new Array(3).fill(true);
+
+//     loop1:
+//     for (let j = 0; j < dataFiles[0].length; j++) {
+//       for (let i = 0; i < dataFiles.length; i++) {
+//         let dataJson = await GetData(dataFiles[i][j]);
+//         if (new Date(dataJson.dateTimeStamp) > new Date(dataValidityTable.rows[i + 1].cells[j + 1].innerText)) {
+//           document.getElementById('updatedDataAvailable').style.display = 'block';
+//           flags[i][j] = false;
+//           break loop1;
+//         }
+//         else if (new Date(dataJson.dateTimeStamp).getTime() == new Date(dataValidityTable.rows[i + 1].cells[j + 1].innerText).getTime()) {
+//           flags[i][j] = false;
+//         }
+//       }
+//     }
+//     flags.flat().indexOf(true) != -1 && setTimeout(CheckForLatestData, settings.constants.refreshDataTimeOut);
+//   }
+// };

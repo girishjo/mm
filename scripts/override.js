@@ -1,10 +1,11 @@
-window.addEventListener('load', async () => {
-    if (location.hostname === "localhost" || location.hostname === "127.0.0.1") {
+function LoadLocalDefaults() {
+    return new Promise((res) => {
         var script = document.createElement('script');
-        // script.onload = function () {
-        // };
         script.src = '../local/local.js';
-
+        script.async = false;
+        script.onload = function () {
+            res();
+        };
         document.body.appendChild(script);
-    }
-});
+    })
+}

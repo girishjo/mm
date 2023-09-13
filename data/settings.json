@@ -1,5 +1,6 @@
 {
     "constants": {
-        "historyDays": 10
+        "historyDays": 10,
+        "refreshDataTimeOut": 5
     }
 }
