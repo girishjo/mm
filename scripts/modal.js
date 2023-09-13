@@ -90,6 +90,8 @@ function OpenModal(stock) {
     if (bulkDeals.length > 0) {
         bulkDealHeader.innerText += " [" + bulkDeals[0].Date + "]";
     }
+
+    document.body.style.overflow = "hidden";
     modal.style.display = "block";
 }
 
@@ -114,6 +116,7 @@ window.addEventListener('keyup', function (event) {
 });
 
 function HideModal() {
+    document.body.style.overflow = "auto";
     modal.style.display = "none";
     resetTable(bulkDealsTable);
 }
