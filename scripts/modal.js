@@ -54,6 +54,14 @@ function OpenModal(stock) {
             bseData[bseCode].BulkDeals && bulkDeals.push(...bseData[bseCode].BulkDeals);
         }
     }
+
+    //a.SecurityCode.localeCompare(b.SecurityCode) ||
+    bulkDeals.sort((a, b) =>
+        a.ClientName.localeCompare(b.ClientName)
+        || a.BuyOrSell.localeCompare(b.BuyOrSell)
+        || a.Quantity.localeCompare(b.Quantity)
+        || a.Price.localeCompare(b.Price));
+
     var total = 0;
     for (let i = 0; i < bulkDeals.length; i++) {
         const bulkDeal = bulkDeals[i];
@@ -76,6 +84,7 @@ function OpenModal(stock) {
             maximumFractionDigits: 2
         });
     }
+
     const newRow = addEmptyRow(bulkDealsTable);
     newRow.setAttribute("frozen", true);
     newRow.cells[2].innerText = 'Total = ';
@@ -92,6 +101,7 @@ function OpenModal(stock) {
     }
 
     document.body.style.overflow = "hidden";
+    document.body.style.paddingRight = '17px';
     modal.style.display = "block";
 }
 
@@ -117,6 +127,7 @@ window.addEventListener('keyup', function (event) {
 
 function HideModal() {
     document.body.style.overflow = "auto";
+    document.body.style.paddingRight = '';
     modal.style.display = "none";
     resetTable(bulkDealsTable);
 }

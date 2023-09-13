@@ -1,28 +1,12 @@
 var nseData = { data: {} };
 var bseData = { data: {} };
-var defaultStockList, settings;
 
 const dataFiles = [
   ['nseOpenClose.json', 'nseDelivery.json', 'nseBulkDeal.json'],
   ['bseOpenClose.json', 'bseDelivery.json', 'bseBulkDeal.json'],
 ];
 
-var todayDate = new Date();
-if (todayDate.getDay() == 0)
-  todayDate = new Date(todayDate.setDate(todayDate.getDate() - 2));
-else if (todayDate.getDay() == 6)
-  todayDate = new Date(todayDate.setDate(todayDate.getDate() - 1));
-else if (todayDate.getDay() == 1 && todayDate.getHours() < 9)
-  todayDate = new Date(todayDate.setDate(todayDate.getDate() - 3));
-else if (todayDate.getHours() < 9) {
-  todayDate = new Date(todayDate.setDate(todayDate.getDate() - 1));
-}
-const todayDateHour = todayDate;
-todayDate = new Date(todayDate.getFullYear(), todayDate.getMonth(), todayDate.getDate());
-
 window.addEventListener('load', async () => {
-  settings = await GetData('settings.json');
-  defaultStockList = await GetData('defaultStockList.json');
 
   for (let j = 0; j < dataFiles[0].length; j++) {
     for (let i = 0; i < dataFiles.length; i++) {
@@ -37,12 +21,6 @@ window.addEventListener('load', async () => {
 
   loadDataFromLocal();
 });
-
-async function GetData(fileName) {
-  let response = await fetch('./data/' + fileName);
-  let dataJson = await response.json();
-  return dataJson;
-}
 
 function IsUpdateData(placeHolder, dateTimeStamp) {
   placeHolder.innerText = dateTimeStamp;
