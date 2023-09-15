@@ -14,8 +14,8 @@ function ShowHistory(stock) {
             bseCode = codes[1];
         }
         else {
-            nseCode = stockCodes;
-            bseCode = stockCodes;
+            nseCode = nseData[stockCodes] ? stockCodes : undefined;
+            bseCode = bseData[stockCodes] ? stockCodes : undefined;
         }
 
         const histories = [...MergeStockData({ ...nseData[nseCode] }, { ...bseData[bseCode] }).History];
