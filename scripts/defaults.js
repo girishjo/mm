@@ -1,4 +1,4 @@
-var defaultStockList, settings;
+var defaultWatchlists, settings;
 
 var todayDate = new Date();
 if (todayDate.getDay() == 0)
@@ -15,7 +15,7 @@ todayDate = new Date(todayDate.getFullYear(), todayDate.getMonth(), todayDate.ge
 
 window.addEventListener('load', async () => {
     settings = await GetData('settings.json');
-    defaultStockList = await GetData('defaultStockList.json');
+    defaultWatchlists = await GetData('defaultWatchlists.json');
     if (location.hostname === "localhost" || location.hostname === "127.0.0.1") {
         LoadLocalDefaults()
             .then(() => LoadData());
