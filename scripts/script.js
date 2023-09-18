@@ -90,7 +90,7 @@ function updateListTable(stockList) {
 }
 
 function updateDataTable(table, name, nseCode, bseCode, data = undefined, rowIndex = undefined) {
-    const stockData = MergeStockData(data && nseCode ? data : nseData[nseCode], data && bseCode ? data : bseData[bseCode])
+    const stockData = data ? data : MergeStockData(nseData[nseCode], bseData[bseCode]);
     stockData.Name = name;
     if (stockData.PrevClose != undefined && stockData.PrevClose != 0)
         stockData.Change = (stockData.Close - stockData.PrevClose) * 100 / stockData.PrevClose;
@@ -176,7 +176,7 @@ function updateDataTable(table, name, nseCode, bseCode, data = undefined, rowInd
         }
         if (stockData.Change != undefined) {
             newRow.cells[7].innerText = stockData.Change;
-            if (Number(stockData.Change)) {
+            if (Number(stockData.Change) != NaN) {
                 newRow.cells[7].innerText = stockData.Change.toFixed(2).toLocaleString('en-In') + " %";
             }
         }
