@@ -14,4 +14,6 @@ function DragOver() {
         e.target.parentNode.after(row);
     else
         e.target.parentNode.before(row);
+
+    updateRowNumber(listTable);
 }

@@ -89,7 +89,7 @@ tr.red-row {
 .content {
     padding: 0 18px;
     display: none;
-    overflow: auto;
+    /* overflow: none; */
     background-color: #f1f1f1;
 }
 

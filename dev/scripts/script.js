@@ -16,7 +16,7 @@ function loadDataFromLocal() {
                 else {
                     alert('Local data not found, loading default watchlists');
                     watchlists = defaultWatchlists;
-                    saveDataOnLocal(true);
+                    saveDataOnLocal(true, true);
                 }
             }
         }
@@ -26,7 +26,7 @@ function loadDataFromLocal() {
                 const storedData = JSON.parse(stocksListValue);
                 if (storedData instanceof Array) {
                     watchlists["0"] = {
-                        name: "Default List",
+                        name: "My list",
                         data: storedData
                     }
                 }
@@ -41,7 +41,7 @@ function loadDataFromLocal() {
     else {
         alert('Local data not found, loading default watchlists');
         watchlists = defaultWatchlists;
-        saveDataOnLocal(true);
+        saveDataOnLocal(true, true);
     }
 
     // if (listTable.rows.length == 2) {
@@ -51,19 +51,23 @@ function loadDataFromLocal() {
     // updateRowNumber(listTable);
 }
 
-function saveDataOnLocal(silentUpdate = false) {
+function saveDataOnLocal(silentUpdate = false, loadDefault = false) {
     if (!silentUpdate) {
         let listTableObj = toObject(listTable);
         watchlists[activeWL].data = listTableObj;
     }
 
-    let newWatchlist = {};
-    const watchListRadios = document.querySelectorAll('input[name="stockListRadio"]');
-    for (let i = 0; i < watchListRadios.length; i++) {
-        newWatchlist[i] = watchlists[watchListRadios[i].value];
+    let newWatchlists = {};
+    if (loadDefault) {
+        newWatchlists = watchlists;
+    } else {
+        const watchListRadios = document.querySelectorAll('input[name="stockListRadio"]');
+        for (let i = 0; i < watchListRadios.length; i++) {
+            newWatchlists[i] = watchlists[watchListRadios[i].value];
+        }
     }
 
-    window.localStorage.setItem("watchlists", JSON.stringify(newWatchlist));
+    window.localStorage.setItem("watchlists", JSON.stringify(newWatchlists));
     //window.localStorage.removeItem("stocksList");
     if (!silentUpdate) {
         alert('Watchlists saved');
@@ -97,11 +101,24 @@ function AddWatchlist() {
     const watchlistName = document.getElementById('newWatchList');
     const wlName = watchlistName.value.trim();
     if (wlName != '') {
+        let i = 0;
+        for (let i = 0; i < Object.keys(watchlists).length; i++) {
+            if (watchlists[i].name == wlName) {
+                alert('Watchlist name should be unique.');
+                return false;
+            }
+        }
+
         let j = 0;
         while (document.getElementById("w" + j)) {
             j++;
         }
 
+        if (j == 10) {
+            alert('You can not add more than 10 Watchlists.');
+            watchlistName.value = '';
+            return;
+        }
         if (AddWatchlistCode(j + "", wlName)) {
             watchlists[j + ""] = {
                 name: wlName
@@ -114,13 +131,13 @@ function AddWatchlist() {
     }
 }
 
-function RemoveWatchlistData() {
+function RemoveWatchlist() {
     if (document.querySelectorAll('input[name="stockListRadio"]').length > 1) {
         const selectedWatchList = document.querySelector('input[name="stockListRadio"]:checked');
         if (confirm("It will delete Watchlist: " + activeWLName + ".\r\nProceed?")) {
-            if (RemoveWatchlist(selectedWatchList.id)) {
+            if (RemoveWatchlistCode(selectedWatchList.id)) {
                 delete watchlists[selectedWatchList.value];
-                saveDataOnLocal(true);
+                saveDataOnLocal(true, false);
             }
         }
     }
@@ -129,14 +146,14 @@ function RemoveWatchlistData() {
     }
 }
 
-function downloadLocalCopy() {
+function downloadWatchlists() {
     if (localStorage.length > 0) {
-        let stocksListValue = localStorage.getItem("stocksList");
+        let stocksListValue = localStorage.getItem("watchlists");
         var a = document.createElement("a");
         a.href = URL.createObjectURL(
             new Blob([stocksListValue], { type: "application/json" })
         );
-        a.download = "stocksList.json";
+        a.download = "watchlists.json";
         a.click();
     }
     else {
@@ -144,21 +161,21 @@ function downloadLocalCopy() {
     }
 }
 
-function loadDefaultStockList() {
+function loadDefaultWatchLists() {
     if (confirm("It will overwrite your existing data in watchlists. Proceed?")) {
         watchlists = defaultWatchlists;
-        saveDataOnLocal(true);
+        saveDataOnLocal(true, true);
     }
 }
 
-async function uploadStockList() {
+async function uploadWatchLists() {
     if (confirm("It will overwrite your existing data in watchlists. Proceed?")) {
         let input = document.createElement('input');
         input.type = 'file';
         input.onchange = async _ => {
             const content = await input.files[0].text();
-            watchlists[activeWL].data = JSON.parse(content)
-            saveDataOnLocal(true);
+            watchlists = JSON.parse(content)
+            saveDataOnLocal(true, true);
         };
         input.click();
     }

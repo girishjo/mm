@@ -43,7 +43,7 @@ function AddWatchlistCode(value, name) {
     return true;
 }
 
-function RemoveWatchlist(watchlistId) {
+function RemoveWatchlistCode(watchlistId) {
     const selectedWatchList = document.getElementById(watchlistId);
     if (selectedWatchList) {
         const selectedLabel = document.querySelector('label[for=' + selectedWatchList.id + ']')

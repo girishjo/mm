@@ -43,16 +43,18 @@
         </table>
     </div>
     <div id="watchlistDiv" style="margin-bottom: 0;">
-        <button id="addWatchlistBtn" onclick="AddWatchlist();" style="margin-left: 15px;">Add new Watchlist</button>
-        <input type="text" placeholder="New watchlist name..." id="newWatchList">
-        <button id="addWatchlistBtn" onclick="RemoveWatchlistData();" style="margin-left: 15px;float: right;">Remove
+        <label>Watchlist(s):</label>
+        <button id="addWatchlistBtn" onclick="AddWatchlist();" style="margin-left: 5px; float: right;">Add new
+            Watchlist</button>
+        <input type="text" placeholder="New watchlist name..." id="newWatchList" style=" float: right;">
+        <button id="removeWatchlistBtn" onclick="RemoveWatchlist();" style="margin-left: 15px;">Remove
             Watchlist</button>
     </div>
     <div id="stockListDiv" class="content" style="display: none;">
-        <Button onclick="saveDataOnLocal()" style="margin: 10px;">Save</Button>
-        <!-- <Button onclick="downloadLocalCopy()" style="margin: 10px;">Download Stock List</Button> -->
-        <Button onclick="loadDefaultStockList()" style="margin: 10px;">Load Default Stock List</Button>
-        <Button onclick="uploadStockList()" style="margin: 10px;">Upload Stock List</Button>
+        <Button onclick="saveDataOnLocal()" style="margin: 10px;">Save Watchlists</Button>
+        <Button onclick="downloadWatchlists()" style="margin: 10px;">Download Watchlists</Button>
+        <Button onclick="loadDefaultWatchLists()" style="margin: 10px;">Load Default Watchlists</Button>
+        <Button onclick="uploadWatchLists()" style="margin: 10px;">Upload Watchlists</Button>
         <table class="table" id="stocksList">
             <thead>
                 <tr>

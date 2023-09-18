@@ -8,6 +8,7 @@
 body {
     color: #333;
     font-size: 1em;
+    overflow: auto;
 }
 
 th a:link,
