@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="icon" type="image/x-icon" href="./images/favicon.ico">
+    <link rel="stylesheet" href="styles/style.css">
+    <link rel="stylesheet" href="styles/modal.css">
+    <link rel="stylesheet" href="styles/sort.css">
+    <link rel="stylesheet" href="styles/bulkdeal.css">
+</head>
+
+<body>
+    <button type="button" class="collapsible active" data="dataValidityDiv">Hide Data Validity</button>
+    <button type="button" class="collapsible" data="stockListDiv">Show Stock List</button>
+    <button type="button" class="collapsible active" data="stockDataDiv">Hide Stock Data</button>
+    <div id="updatedDataAvailable" class="blink" style="display: none;">
+        Updated data is now available, please refresh the page...
+    </div>
+    <div id="dataValidityDiv" class="content" style="display: block;">
+        <table class="table" id="dataValidity">
+            <thead>
+                <tr>
+                    <th>Exchanges</th>
+                    <th>Open Close</th>
+                    <th>Delivery Data</th>
+                    <th>Bulk Deals</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="text">NSE</td>
+                    <td class="text"></td>
+                    <td class="text"></td>
+                    <td class="text"></td>
+                </tr>
+                <tr>
+                    <td class="text">BSE</td>
+                    <td class="text"></td>
+                    <td class="text"></td>
+                    <td class="text"></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div id="watchlistDiv" style="margin-bottom: 0;">
+        <button id="addWatchlistBtn" onclick="AddWatchlist();" style="margin-left: 15px;">Add new Watchlist</button>
+        <input type="text" placeholder="New watchlist name..." id="newWatchList">
+        <button id="addWatchlistBtn" onclick="RemoveWatchlistData();" style="margin-left: 15px;float: right;">Remove Watchlist</button>
+    </div>
+    <div id="stockListDiv" class="content" style="display: none;">
+        <Button onclick="saveDataOnLocal()" style="margin: 10px;">Save</Button>
+        <!-- <Button onclick="downloadLocalCopy()" style="margin: 10px;">Download Stock List</Button> -->
+        <Button onclick="loadDefaultStockList()" style="margin: 10px;">Load Default Stock List</Button>
+        <Button onclick="uploadStockList()" style="margin: 10px;">Upload Stock List</Button>
+        <table class="table" id="stocksList">
+            <thead>
+                <tr>
+                    <th class="fitwidth">No.</th>
+                    <th class="fitwidth">Add</th>
+                    <th class="fitwidth">Remove</th>
+                    <th class="text">Stock Name</th>
+                    <th class="text">NSE Code</th>
+                    <th class="text">BSE Code</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="hide">
+                    <td class="number">0</td>
+                    <td class="icon add">&#43;</td>
+                    <td class="icon remove">&#10539;</td>
+                    <td contenteditable="true" class="text"></td>
+                    <td contenteditable="true" class="text"></td>
+                    <td contenteditable="true" class="text"></td>
+                </tr>
+            </tbody>
+        </table>
+
+        <Button onclick="saveDataOnLocal()" style="margin: 10px;">Save</Button>
+    </div>
+    <div id="stockDataDiv" class="content" style="display: block;">
+        <table id="stockData">
+            <thead>
+                <tr>
+                    <th class="number sort"><a href="#" class="sort-by">No.</a></th>
+                    <th class="text sort"><a href="#" class="sort-by">Name<a></th>
+                    <th class="number sort"><a href="#" class="sort-by">Delivery</a></th>
+                    <th class="number sort"><a href="#" class="sort-by">Total</a></th>
+                    <th class="number sort"><a href="#" class="sort-by">Delivery %</a></th>
+                    <th class="number sort"><a href="#" class="sort-by">Open</a></th>
+                    <th class="number sort"><a href="#" class="sort-by">Close</a></th>
+                    <th class="number sort"><a href="#" class="sort-by">Change %</a></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="hide">
+                    <td class="number"></td>
+                    <td class="text"></td>
+                    <td class="number"></td>
+                    <td class="number"></td>
+                    <td class="number"></td>
+                    <td class="number"></td>
+                    <td class="number"></td>
+                    <td class="number"></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div id="stockHistoryDiv" class="content" style="display: none;">
+        <table id="stockHistory" style="margin-bottom: 0;">
+            <thead>
+                <tr>
+                    <th class="number sort"><a href="#" class="sort-by">No.</a></th>
+                    <th class="date sort"><a href="#" class="sort-by">Date<a></th>
+                    <th class="number sort"><a href="#" class="sort-by">Delivery</a></th>
+                    <th class="number sort"><a href="#" class="sort-by">Total</a></th>
+                    <th class="number sort"><a href="#" class="sort-by">Delivery %</a></th>
+                    <th class="number sort"><a href="#" class="sort-by">Open</a></th>
+                    <th class="number sort"><a href="#" class="sort-by">Close</a></th>
+                    <th class="number sort"><a href="#" class="sort-by">Change %</a></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="hide">
+                    <td class="number"></td>
+                    <td class="date"></td>
+                    <td class="number"></td>
+                    <td class="number"></td>
+                    <td class="number"></td>
+                    <td class="number"></td>
+                    <td class="number"></td>
+                    <td class="number"></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- The Modal -->
+    <div id="myModal" class="modal">
+
+        <!-- Modal content -->
+        <div class="modal-content">
+            <div class="modal-header">
+                <span class="close">&times;</span>
+                <h2 id="bulkDealHeader">Bulk Deals</h2>
+            </div>
+            <div class="modal-body">
+                <table id="bulkDeals">
+                    <thead>
+                        <tr>
+                            <th class="number sort"><a href="#" class="sort-by">No.</a></th>
+                            <th class="text sort"><a href="#" class="sort-by">Client Name</a></th>
+                            <th class="text sort"><a href="#" class="sort-by">Type</a></th>
+                            <th class="number sort"><a href="#" class="sort-by">Quantity</a></th>
+                            <th class="number sort"><a href="#" class="sort-by">Price</a></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="hide">
+                            <td class="number"></td>
+                            <td class="text"></td>
+                            <td class="text"></td>
+                            <td class="number"></td>
+                            <td class="number"></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <!-- <div class="modal-footer">
+                <h3>Modal Footer</h3>
+            </div> -->
+        </div>
+
+    </div>
+</body>
+
+<script defer src="scripts/utils.js"></script>
+<script defer src="scripts/merge.js"></script>
+<script defer src="scripts/ui.js"></script>
+<script defer src="scripts/script.js"></script>
+<script defer src="scripts/modal.js"></script>
+<script defer src="scripts/history.js"></script>
+
+<script defer src="scripts/override.js"></script>
+<script defer src="scripts/data.js"></script>
+<script defer src="scripts/defaults.js"></script>
+
+</html>

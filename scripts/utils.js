@@ -234,7 +234,7 @@ function toObject(table) {
                 const cell = row.cells[j];
                 cell.classList.contains('text') && res.push(cell.textContent);
             }
-            res.length > 0 && result.push(res);
+            res.length > 0 && res[0].trim() != "" && result.push(res);
         }
     }
     return result;
