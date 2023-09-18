@@ -59,8 +59,8 @@ function OpenModal(stock) {
     bulkDeals.sort((a, b) =>
         a.ClientName.localeCompare(b.ClientName)
         || a.BuyOrSell.localeCompare(b.BuyOrSell)
-        || a.Quantity.localeCompare(b.Quantity)
-        || a.Price.localeCompare(b.Price));
+        || a.Quantity - b.Quantity
+        || a.Price - b.Price);
 
     var total = 0;
     for (let i = 0; i < bulkDeals.length; i++) {
