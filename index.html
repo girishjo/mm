@@ -42,9 +42,14 @@
             </tbody>
         </table>
     </div>
+    <div id="watchlistDiv" style="margin-bottom: 0;">
+        <button id="addWatchlistBtn" onclick="AddWatchlist();" style="margin-left: 15px;">Add new Watchlist</button>
+        <input type="text" placeholder="New watchlist name..." id="newWatchList">
+        <button id="addWatchlistBtn" onclick="RemoveWatchlistData();" style="margin-left: 15px;float: right;">Remove Watchlist</button>
+    </div>
     <div id="stockListDiv" class="content" style="display: none;">
         <Button onclick="saveDataOnLocal()" style="margin: 10px;">Save</Button>
-        <Button onclick="downloadLocalCopy()" style="margin: 10px;">Download Stock List</Button>
+        <!-- <Button onclick="downloadLocalCopy()" style="margin: 10px;">Download Stock List</Button> -->
         <Button onclick="loadDefaultStockList()" style="margin: 10px;">Load Default Stock List</Button>
         <Button onclick="uploadStockList()" style="margin: 10px;">Upload Stock List</Button>
         <table class="table" id="stocksList">

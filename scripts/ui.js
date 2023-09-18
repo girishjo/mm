@@ -21,3 +21,37 @@ document.body.addEventListener('click', function (evt) {
         sortTable(header);
     }
 }, false);
+
+function AddWatchlistCode(value, name) {
+    let input = document.createElement("input");
+    input.type = "radio";
+    input.name = "stockListRadio";
+    input.addEventListener('change', () => UpdateWatchList());
+
+    input.value = value;
+    input.id = "w" + input.value;
+
+    let label = document.createElement("label");
+    label.innerText = name;
+    label.setAttribute("for", input.id);
+
+    const watchlistDiv = document.getElementById('watchlistDiv');
+    const button = document.getElementById('addWatchlistBtn');
+
+    watchlistDiv.insertBefore(input, button);
+    watchlistDiv.insertBefore(label, button);
+    return true;
+}
+
+function RemoveWatchlist(watchlistId) {
+    const selectedWatchList = document.getElementById(watchlistId);
+    if (selectedWatchList) {
+        const selectedLabel = document.querySelector('label[for=' + selectedWatchList.id + ']')
+        if (selectedLabel) {
+            const watchlistDiv = document.getElementById('watchlistDiv');
+            watchlistDiv.removeChild(selectedWatchList);
+            watchlistDiv.removeChild(selectedLabel);
+            return true;
+        }
+    }
+}
