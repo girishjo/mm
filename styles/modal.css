@@ -101,6 +101,11 @@
     color: white;
 }
 
+.modal-shown {
+    overflow: hidden;
+    padding: 17px;
+}
+
 /* Add Animation */
 @-webkit-keyframes slideIn {
     from {

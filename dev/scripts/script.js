@@ -14,21 +14,20 @@ function loadDataFromLocal() {
                     watchlists = { ...storedData };
                 }
                 else {
-                    alert('Local data not found, loading default watchlists');
+                    alert('No saved Watchlist found, loading default watchlists');
                     watchlists = defaultWatchlists;
                     saveDataOnLocal(true, true);
                 }
             }
         }
         else {
+            watchlists = defaultWatchlists;
             let stocksListValue = localStorage.getItem("stocksList");
             if (stocksListValue) {
                 const storedData = JSON.parse(stocksListValue);
                 if (storedData instanceof Array) {
-                    watchlists["0"] = {
-                        name: "My list",
-                        data: storedData
-                    }
+                    watchlists[0].data = storedData;
+                    saveDataOnLocal(true, true);
                 }
             }
         }
@@ -39,16 +38,10 @@ function loadDataFromLocal() {
         UpdateWatchList();
     }
     else {
-        alert('Local data not found, loading default watchlists');
+        alert('No saved Watchlist found, loading default watchlists');
         watchlists = defaultWatchlists;
         saveDataOnLocal(true, true);
     }
-
-    // if (listTable.rows.length == 2) {
-    //     addEmptyRow(listTable);
-    //     listTable.parentElement.style.display = 'block';
-    // }
-    // updateRowNumber(listTable);
 }
 
 function saveDataOnLocal(silentUpdate = false, loadDefault = false) {
@@ -95,6 +88,13 @@ function UpdateWatchList() {
     resetTable(listTable);
     resetTable(dataTable);
     updateListTable(watchlists[activeWL]);
+
+    // if (document.body.clientHeight > window.innerHeight) {
+    //     document.body.style.paddingRight = "0px";
+    // }
+    // else {
+    //     document.body.style.paddingRight = "17px";
+    // }
 }
 
 function AddWatchlist() {
