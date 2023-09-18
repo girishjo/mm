@@ -21,6 +21,7 @@ function loadDataFromLocal() {
             }
         }
         else {
+            watchlists = defaultWatchlists;
             let stocksListValue = localStorage.getItem("stocksList");
             if (stocksListValue) {
                 const storedData = JSON.parse(stocksListValue);
