@@ -64,6 +64,7 @@ function saveDataOnLocal(silentUpdate = false) {
     }
 
     window.localStorage.setItem("watchlists", JSON.stringify(newWatchlist));
+    //window.localStorage.removeItem("stocksList");
     if (!silentUpdate) {
         alert('Watchlists saved');
     }

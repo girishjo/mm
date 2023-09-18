@@ -45,7 +45,8 @@
     <div id="watchlistDiv" style="margin-bottom: 0;">
         <button id="addWatchlistBtn" onclick="AddWatchlist();" style="margin-left: 15px;">Add new Watchlist</button>
         <input type="text" placeholder="New watchlist name..." id="newWatchList">
-        <button id="addWatchlistBtn" onclick="RemoveWatchlistData();" style="margin-left: 15px;float: right;">Remove Watchlist</button>
+        <button id="addWatchlistBtn" onclick="RemoveWatchlistData();" style="margin-left: 15px;float: right;">Remove
+            Watchlist</button>
     </div>
     <div id="stockListDiv" class="content" style="display: none;">
         <Button onclick="saveDataOnLocal()" style="margin: 10px;">Save</Button>
@@ -64,7 +65,7 @@
                 </tr>
             </thead>
             <tbody>
-                <tr class="hide">
+                <tr class="hide" draggable="true" ondragstart="DragStart();" ondragover="DragOver();">
                     <td class="number">0</td>
                     <td class="icon add">&#43;</td>
                     <td class="icon remove">&#10539;</td>
@@ -179,6 +180,7 @@
 <script defer src="./scripts/script.js"></script>
 <script defer src="./scripts/modal.js"></script>
 <script defer src="./scripts/history.js"></script>
+<script defer src="./scripts/drag.js"></script>
 
 <script defer src="./scripts/override.js"></script>
 <script defer src="./scripts/data.js"></script>
