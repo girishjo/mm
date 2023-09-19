@@ -114,14 +114,13 @@ function AddWatchlist() {
             j++;
         }
 
-        if (j == 10) {
-            alert('You can not add more than 10 Watchlists.');
-            watchlistName.value = '';
-            return;
-        }
         if (AddWatchlistCode(j + "", wlName)) {
             watchlists[j + ""] = {
                 name: wlName
+            }
+            if (j == 9) {
+                document.getElementById('addWatchlistBtn').style.display = 'none';
+                document.getElementById('newWatchList').style.display = 'none';
             }
         }
         watchlistName.value = '';

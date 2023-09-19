@@ -99,3 +99,7 @@ tr.red-row {
     color: white;
     white-space: nowrap;
 }
+
+label[for] {
+    margin-right: 15px;
+}
