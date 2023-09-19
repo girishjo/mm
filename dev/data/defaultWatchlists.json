@@ -3,19 +3,44 @@
         "name": "My list",
         "data": [
             [
-                "CDSL",
-                "CDSL",
+                "Bondada",
+                "",
+                "543971"
+            ],
+            [
+                "Shoora",
+                "",
+                "543970"
+            ],
+            [
+                "Ahasolar",
+                "",
+                "543941"
+            ],
+            [
+                "Alphalogic",
+                "",
+                "543937"
+            ],
+            [
+                "Cloud",
+                "CLOUD",
                 ""
             ],
             [
-                "CFF",
-                "",
-                "543920"
+                "Crayons",
+                "CRAYONS",
+                ""
             ],
             [
-                "Dreamfolks",
-                "DREAMFOLKS",
-                "543591"
+                "Essen",
+                "ESFL",
+                ""
+            ],
+            [
+                "Exhicon",
+                "",
+                "543895"
             ],
             [
                 "Global Pet",
@@ -23,28 +48,28 @@
                 ""
             ],
             [
-                "Greenchef",
+                "Green Chef",
                 "GREENCHEF",
                 ""
             ],
             [
-                "JSLL",
-                "JSLL",
-                ""
+                "Kaka",
+                "",
+                "543939"
             ],
             [
+                "Kore Digital",
                 "KDL",
-                "KDL",
                 ""
             ],
             [
-                "Kotyark",
-                "KOTYARK",
+                "Krishca",
+                "KRISHCA",
                 ""
             ],
             [
-                "Mono Pharma",
-                "MONOPHARMA",
+                "Magson",
+                "MAGSON",
                 ""
             ],
             [
@@ -53,9 +78,19 @@
                 ""
             ],
             [
-                "Prevest",
+                "Oriana",
+                "ORIANA",
+                ""
+            ],
+            [
+                "Pentagon",
+                "PENTAGON",
+                ""
+            ],
+            [
+                "Seal",
                 "",
-                "543363"
+                "543782"
             ],
             [
                 "Shri Techtex",
@@ -63,20 +98,45 @@
                 ""
             ],
             [
-                "SKP",
-                "SKP",
+                "Srivari",
+                "SSFL",
                 ""
             ],
             [
                 "Veefin",
                 "",
                 "543931"
+            ],
+            [
+                "Vinsys",
+                "VINSYS",
+                ""
+            ],
+            [
+                "RBM Infra",
+                "RBMINFRA",
+                ""
+            ],
+            [
+                "Insolation",
+                "",
+                "543620"
             ]
         ]
     },
     "1": {
         "name": "Listing/In News",
         "data": [
+            [
+                "R R Kabel",
+                "RRKABEL",
+                "543981"
+            ],
+            [
+                "Meson Valves India",
+                "",
+                "543982"
+            ],
             [
                 "Jiwanram Sheoduttrai",
                 "JIWANRAM",
@@ -110,7 +170,7 @@
         ]
     },
     "2": {
-        "name": "ST/BE/T2T",
+        "name": "T2T (ST/BE)",
         "data": [
             [
                 "Jiwanram Sheoduttrai",
@@ -155,7 +215,7 @@
         ]
     },
     "3": {
-        "name": "SM / EQ",
+        "name": "SM/EQ",
         "data": [
             [
                 "Sungarner Energies",
