@@ -3,10 +3,10 @@
 
 <head>
     <link rel="icon" type="image/x-icon" href="./images/favicon.ico">
-    <link rel="stylesheet" href="styles/style.css">
-    <link rel="stylesheet" href="styles/modal.css">
-    <link rel="stylesheet" href="styles/sort.css">
-    <link rel="stylesheet" href="styles/bulkdeal.css">
+    <link rel="stylesheet" href="./styles/style.css">
+    <link rel="stylesheet" href="./styles/modal.css">
+    <link rel="stylesheet" href="./styles/sort.css">
+    <link rel="stylesheet" href="./styles/bulkdeal.css">
 </head>
 
 <body>
@@ -42,11 +42,19 @@
             </tbody>
         </table>
     </div>
+    <div id="watchlistDiv" style="margin-bottom: 0;">
+        <label>Watchlist(s):</label>
+        <button id="addWatchlistBtn" onclick="AddWatchlist();" style="margin-left: 5px; float: right;">Add new
+            Watchlist</button>
+        <input type="text" placeholder="New watchlist name..." id="newWatchList" style=" float: right;">
+        <button id="removeWatchlistBtn" onclick="RemoveWatchlist();" style="margin-left: 15px;">Remove
+            Watchlist</button>
+    </div>
     <div id="stockListDiv" class="content" style="display: none;">
-        <Button onclick="saveDataOnLocal()" style="margin: 10px;">Save</Button>
-        <Button onclick="downloadLocalCopy()" style="margin: 10px;">Download Stock List</Button>
-        <Button onclick="loadDefaultStockList()" style="margin: 10px;">Load Default Stock List</Button>
-        <Button onclick="uploadStockList()" style="margin: 10px;">Upload Stock List</Button>
+        <Button onclick="saveDataOnLocal()" style="margin: 10px;">Save Watchlists</Button>
+        <Button onclick="downloadWatchlists()" style="margin: 10px;">Export Watchlists</Button>
+        <Button onclick="loadDefaultWatchLists()" style="margin: 10px;">Load Default Watchlists</Button>
+        <Button onclick="uploadWatchLists()" style="margin: 10px;">Import Watchlists</Button>
         <table class="table" id="stocksList">
             <thead>
                 <tr>
@@ -59,7 +67,7 @@
                 </tr>
             </thead>
             <tbody>
-                <tr class="hide">
+                <tr class="hide" draggable="true" ondragstart="DragStart();" ondragover="DragOver();">
                     <td class="number">0</td>
                     <td class="icon add">&#43;</td>
                     <td class="icon remove">&#10539;</td>
@@ -168,15 +176,16 @@
     </div>
 </body>
 
-<script defer src="scripts/utils.js"></script>
-<script defer src="scripts/merge.js"></script>
-<script defer src="scripts/ui.js"></script>
-<script defer src="scripts/script.js"></script>
-<script defer src="scripts/modal.js"></script>
-<script defer src="scripts/history.js"></script>
+<script defer src="./scripts/utils.js"></script>
+<script defer src="./scripts/merge.js"></script>
+<script defer src="./scripts/ui.js"></script>
+<script defer src="./scripts/script.js"></script>
+<script defer src="./scripts/modal.js"></script>
+<script defer src="./scripts/history.js"></script>
+<script defer src="./scripts/drag.js"></script>
 
-<script defer src="scripts/override.js"></script>
-<script defer src="scripts/data.js"></script>
-<script defer src="scripts/defaults.js"></script>
+<script defer src="./scripts/override.js"></script>
+<script defer src="./scripts/data.js"></script>
+<script defer src="./scripts/defaults.js"></script>
 
 </html>

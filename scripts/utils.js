@@ -5,6 +5,7 @@ function addEmptyRow(table, index = undefined) {
     clone.classList.remove("hide");
     var newRow = table.insertRow(index ?? index);
     newRow.innerHTML = clone.innerHTML;
+    [...clone.attributes].forEach(attr => { newRow.setAttribute(attr.nodeName, attr.nodeValue) });
     return newRow;
 }
 

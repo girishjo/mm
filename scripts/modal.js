@@ -100,8 +100,7 @@ function OpenModal(stock) {
         bulkDealHeader.innerText += " [" + bulkDeals[0].Date + "]";
     }
 
-    document.body.style.overflow = "hidden";
-    document.body.style.paddingRight = '17px';
+    document.body.classList.toggle('modal-shown');
     modal.style.display = "block";
 }
 
@@ -126,8 +125,9 @@ window.addEventListener('keyup', function (event) {
 });
 
 function HideModal() {
-    document.body.style.overflow = "auto";
-    document.body.style.paddingRight = '';
+    // document.body.style.overflow = "auto";
+    // document.body.style.paddingRight = '';
+    document.body.classList.toggle('modal-shown');
     modal.style.display = "none";
     resetTable(bulkDealsTable);
 }
