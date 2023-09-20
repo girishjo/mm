@@ -19,7 +19,7 @@ async function LoadData() {
   bseData = bseData.data;
 
   loadDataFromLocal();
-  setTimeout(CheckForLatestData, settings.constants.refreshDataTimeOut);
+  setTimeout(CheckForLatestData, settings.constants.refreshDataTimeOut * 60 * 1000);
 }
 
 function IsUpdateData(placeHolder, dateTimeStamp) {
@@ -49,7 +49,7 @@ async function CheckForLatestData() {
         }
       }
     }
-    flag && setTimeout(CheckForLatestData, settings.constants.refreshDataTimeOut);
+    flag && setTimeout(CheckForLatestData, settings.constants.refreshDataTimeOut * 60 * 1000);
   }
 };
 
@@ -74,6 +74,6 @@ async function CheckForLatestData() {
 //         }
 //       }
 //     }
-//     flags.flat().indexOf(true) != -1 && setTimeout(CheckForLatestData, settings.constants.refreshDataTimeOut);
+//     flags.flat().indexOf(true) != -1 && setTimeout(CheckForLatestData, settings.constants.refreshDataTimeOut * 60 * 1000);
 //   }
 // };
