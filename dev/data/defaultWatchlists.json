@@ -128,30 +128,20 @@
         "name": "🆕listings",
         "data": [
             [
-                "R R Kabel",
-                "RRKABEL",
-                "543981"
+                "Zaggle",
+                "ZAGGLE",
+                "543985"
             ],
             [
-                "Meson Valves India",
-                "",
-                "543982"
+                "SAMHI Hotels",
+                "SAMHI",
+                "543984"
             ]
         ]
     },
     "2": {
         "name": "♨️Hot",
         "data": [
-            [
-                "Jiwanram Sheoduttrai",
-                "JIWANRAM",
-                ""
-            ],
-            [
-                "Jupiter Life Line Hospitals",
-                "JLHL",
-                "543980"
-            ],
             [
                 "Kahan Packaging",
                 "",
@@ -210,11 +200,6 @@
             [
                 "Mono Pharmacare",
                 "MONOPHARMA",
-                ""
-            ],
-            [
-                "Sahaj Fashions",
-                "SAHAJ",
                 ""
             ]
         ]

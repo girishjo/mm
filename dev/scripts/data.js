@@ -50,7 +50,7 @@ function CheckDateRange(startDateString, endDateString) {
 
   for (let i = 0; i < settings.marketHolidays.length; i++) {
     const date = new Date(settings.marketHolidays[i]);
-    if (date > start && date < end) {
+    if (date > start && date <= end) {
       ++holidayCounter;
     }
   }
