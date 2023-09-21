@@ -2,7 +2,7 @@ var defaultWatchlists, settings;
 var todayDate, todayDateHour;
 
 window.addEventListener('load', async () => {
-    settings = await GetData('settings.json');
+    settings = await GetData('./data/settings.json');
 
     todayDate = GetNotAHolidayDate(new Date());
     if (todayDate.getDay() == 0)
@@ -17,7 +17,7 @@ window.addEventListener('load', async () => {
     todayDateHour = todayDate;
     todayDate = new Date(todayDate.getFullYear(), todayDate.getMonth(), todayDate.getDate());
 
-    defaultWatchlists = await GetData('defaultWatchlists.json');
+    defaultWatchlists = await GetData('../data/defaultWatchlists.json');
     if (location.hostname === "localhost" || location.hostname === "127.0.0.1") {
         LoadLocalDefaults()
             .then(() => LoadData());
