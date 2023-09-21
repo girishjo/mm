@@ -34,7 +34,7 @@ function CheckForT10(result, todaysDate) {
     let res = result.data[stockCode];
     if (res.History) {
       var d = new Date(res.History[res.History.length - 1].HistoryDate);
-      d.setDate(d.getDate() + 14);
+      d.setDate(d.getDate() + 13);
       if (d.toLocaleDateString() == todaysDate) {
         res["T2T"] = true;
       }
