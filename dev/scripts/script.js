@@ -232,7 +232,7 @@ function updateDataTable(table, name, nseCode, bseCode, data = undefined, rowInd
 
         data && (newRow.cells[1].innerText = data.HistoryDate);
 
-        if (stockData["T2T"]) {
+        if (settings.configs.t2t && stockData["T2T"]) {
             var t2tLabel = document.createElement('label');
             t2tLabel.classList.add("highlight");
             t2tLabel.innerText = "T2T";

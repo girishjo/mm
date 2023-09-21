@@ -2,5 +2,8 @@
     "constants": {
         "historyDays": 10,
         "refreshDataTimeOut": 5
+    },
+    "configs": {
+        "t2t": true
     }
 }

@@ -232,6 +232,13 @@ function updateDataTable(table, name, nseCode, bseCode, data = undefined, rowInd
 
         data && (newRow.cells[1].innerText = data.HistoryDate);
 
+        if (settings.configs.t2t && stockData["T2T"]) {
+            var t2tLabel = document.createElement('label');
+            t2tLabel.classList.add("highlight");
+            t2tLabel.innerText = "T2T";
+            newRow.cells[1].appendChild(t2tLabel);
+        }
+
         if (stockData.BulkDeals && stockData.BulkDeals.length > 0) {
             var a = document.createElement('a');
             let linkTextContent = "Bulk Deal";

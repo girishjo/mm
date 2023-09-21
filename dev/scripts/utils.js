@@ -240,14 +240,3 @@ function toObject(table) {
     }
     return result;
 }
-
-function GetNextWorkingDate() {
-    let date = new Date();
-    date.setDate(date.getDate() + 1);
-    if (date.getDay() == 0)
-        date.setDate(date.getDate() + 1);
-    if (date.getDay() == 6)
-        date.setDate(date.getDate() + 2);
-
-    return date;
-}
