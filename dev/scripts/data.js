@@ -15,11 +15,29 @@ async function LoadData() {
       i == 1 && (bseData = MergeData(bseData, dataJson));
     }
   }
+
+  const nextWorkingDate = GetNextWorkingDate().toLocaleDateString();
+  CheckForT10(nseData, nextWorkingDate);
+  CheckForT10(bseData, nextWorkingDate);
+
   nseData = nseData.data;
   bseData = bseData.data;
 
   loadDataFromLocal();
   setTimeout(CheckForLatestData, settings.constants.refreshDataTimeOut * 60 * 1000);
+}
+
+function CheckForT10(result, nextWorkingDate) {
+  for (const stockCode of Object.keys(result.data)) {
+    let res = result.data[stockCode];
+    if (res.History) {
+      var d = new Date(res.History[res.History.length - 1].HistoryDate);
+      d.setDate(d.getDate() + 15);
+      if (d.toLocaleDateString() == nextWorkingDate) {
+        res["T2T"] = true;
+      }
+    }
+  }
 }
 
 function IsUpdateData(placeHolder, dateTimeStamp) {
@@ -74,6 +92,6 @@ async function CheckForLatestData() {
 //         }
 //       }
 //     }
-//     flags.flat().indexOf(true) != -1 && setTimeout(CheckForLatestData, settings.constants.refreshDataTimeOut * 60 * 1000);
+//     flags.flat().indexOf(true) != -1 && setTimeout(CheckForLatestData, settings.constants.refreshDataTimeOut* 60 * 1000);
 //   }
 // };
