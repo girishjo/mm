@@ -9,7 +9,7 @@ const dataFiles = [
 async function LoadData() {
   for (let j = 0; j < dataFiles[0].length; j++) {
     for (let i = 0; i < dataFiles.length; i++) {
-      let dataJson = await GetData(dataFiles[i][j]);
+      let dataJson = await GetData('../data/' + dataFiles[i][j]);
       IsUpdateData(dataValidityTable.rows[i + 1].cells[j + 1], dataJson.dateTimeStamp);
       i == 0 && (nseData = MergeData(nseData, dataJson));
       i == 1 && (bseData = MergeData(bseData, dataJson));
@@ -59,7 +59,7 @@ async function CheckForLatestData() {
     loop1:
     for (let j = 0; j < dataFiles[0].length; j++) {
       for (let i = 0; i < dataFiles.length; i++) {
-        let dataJson = await GetData(dataFiles[i][j]);
+        let dataJson = await GetData('../data/' + dataFiles[i][j]);
         if (new Date(dataJson.dateTimeStamp) > new Date(dataValidityTable.rows[i + 1].cells[j + 1].innerText)) {
           document.getElementById('updatedDataAvailable').style.display = 'block';
           flag = false;
@@ -81,7 +81,7 @@ async function CheckForLatestData() {
 //     loop1:
 //     for (let j = 0; j < dataFiles[0].length; j++) {
 //       for (let i = 0; i < dataFiles.length; i++) {
-//         let dataJson = await GetData(dataFiles[i][j]);
+//         let dataJson = await GetData('../data/' +dataFiles[i][j]);
 //         if (new Date(dataJson.dateTimeStamp) > new Date(dataValidityTable.rows[i + 1].cells[j + 1].innerText)) {
 //           document.getElementById('updatedDataAvailable').style.display = 'block';
 //           flags[i][j] = false;

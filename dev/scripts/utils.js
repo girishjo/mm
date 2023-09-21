@@ -219,8 +219,8 @@ function MergeHistory(historyData1, historyData2) {
         return History;
 }
 
-async function GetData(fileName) {
-    let response = await fetch('./data/' + fileName);
+async function GetData(filePath) {
+    let response = await fetch(filePath);
     let dataJson = await response.json();
     return dataJson;
 }
