@@ -34,12 +34,27 @@ function CheckForT10(result, todaysDate) {
     let res = result.data[stockCode];
     if (res.History) {
       var d = new Date(res.History[res.History.length - 1].HistoryDate);
-      d.setDate(d.getDate() + 13);
+      d.setDate(d.getDate() + 13 + CheckDateRange(res.History[res.History.length - 1].HistoryDate, todaysDate));
       if (d.toLocaleDateString() == todaysDate) {
         res["T2T"] = true;
       }
     }
   }
+}
+
+function CheckDateRange(startDateString, endDateString) {
+  let holidayCounter = 0;
+
+  const start = new Date(startDateString);
+  const end = new Date(endDateString);
+
+  for (let i = 0; i < settings.marketHolidays.length; i++) {
+    const date = new Date(settings.marketHolidays[i]);
+    if (date > start && date < end) {
+      ++holidayCounter;
+    }
+  }
+  return holidayCounter;
 }
 
 function IsUpdateData(placeHolder, dateTimeStamp) {

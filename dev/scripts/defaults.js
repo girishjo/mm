@@ -1,6 +1,7 @@
 var defaultWatchlists, settings;
 
 var todayDate = new Date();
+//var todayDate = new Date(2023, 8, 25, 9, 0, 0);
 if (todayDate.getDay() == 0)
     todayDate = new Date(todayDate.setDate(todayDate.getDate() - 2));
 else if (todayDate.getDay() == 6)
