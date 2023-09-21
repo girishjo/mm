@@ -17,9 +17,9 @@ async function LoadData() {
   }
 
   if (settings.configs.t2t) {
-    const todayDate = todayDate.toLocaleDateString();
-    CheckForT10(nseData, todayDate);
-    CheckForT10(bseData, todayDate);
+    const todaysDate = todayDate.toLocaleDateString();
+    CheckForT10(nseData, todaysDate);
+    CheckForT10(bseData, todaysDate);
   }
 
   nseData = nseData.data;
@@ -29,13 +29,13 @@ async function LoadData() {
   setTimeout(CheckForLatestData, settings.constants.refreshDataTimeOut * 60 * 1000);
 }
 
-function CheckForT10(result, todayDate) {
+function CheckForT10(result, todaysDate) {
   for (const stockCode of Object.keys(result.data)) {
     let res = result.data[stockCode];
     if (res.History) {
       var d = new Date(res.History[res.History.length - 1].HistoryDate);
       d.setDate(d.getDate() + 14);
-      if (d.toLocaleDateString() == todayDate) {
+      if (d.toLocaleDateString() == todaysDate) {
         res["T2T"] = true;
       }
     }
