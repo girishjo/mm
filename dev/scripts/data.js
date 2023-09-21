@@ -17,7 +17,7 @@ async function LoadData() {
   }
 
   if (settings.configs.t2t) {
-    const todaysDate = todayDate.toLocaleDateString();
+    const todaysDate = todayDate.toDateString();
     CheckForT10(nseData, todaysDate);
     CheckForT10(bseData, todaysDate);
   }
@@ -35,7 +35,7 @@ function CheckForT10(result, todaysDate) {
     if (res.History) {
       var d = new Date(res.History[res.History.length - 1].HistoryDate);
       d.setDate(d.getDate() + 13 + CheckDateRange(res.History[res.History.length - 1].HistoryDate, todaysDate));
-      if (d.toLocaleDateString() == todaysDate) {
+      if (d.toDateString() == todaysDate) {
         res["T2T"] = true;
       }
     }
