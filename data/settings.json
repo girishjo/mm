@@ -4,7 +4,7 @@
         "refreshDataTimeOut": 5
     },
     "configs": {
-        "t2t": false
+        "t2t": true
     },
     "marketHolidays": [
         "26-Jan-2023",

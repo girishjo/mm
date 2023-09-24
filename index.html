@@ -51,7 +51,7 @@
             Watchlist</button>
     </div>
     <div id="stockListDiv" class="content" style="display: none;">
-        <Button onclick="saveDataOnLocal()" style="margin: 10px;">Save Watchlists</Button>
+        <Button onclick="saveDataOnLocal();UpdateWatchList();" style="margin: 10px;">Save Watchlists</Button>
         <Button onclick="downloadWatchlists()" style="margin: 10px;">Export Watchlists</Button>
         <Button onclick="loadDefaultWatchLists()" style="margin: 10px;">Load Default Watchlists</Button>
         <Button onclick="uploadWatchLists()" style="margin: 10px;">Import Watchlists</Button>
@@ -78,7 +78,7 @@
             </tbody>
         </table>
 
-        <Button onclick="saveDataOnLocal()" style="margin: 10px;">Save</Button>
+        <Button onclick="saveDataOnLocal();UpdateWatchList();" style="margin: 10px;">Save Watchlists</Button>
     </div>
     <div id="stockDataDiv" class="content" style="display: block;">
         <table id="stockData">

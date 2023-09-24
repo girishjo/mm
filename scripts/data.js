@@ -17,9 +17,8 @@ async function LoadData() {
   }
 
   if (settings.configs.t2t) {
-    const todaysDate = todayDate.toDateString();
-    CheckForT10(nseData, todaysDate);
-    CheckForT10(bseData, todaysDate);
+    CheckForT10(nseData);
+    CheckForT10(bseData);
   }
 
   nseData = nseData.data;
@@ -29,24 +28,36 @@ async function LoadData() {
   setTimeout(CheckForLatestData, settings.constants.refreshDataTimeOut * 60 * 1000);
 }
 
-function CheckForT10(result, todaysDate) {
+function CheckForT10(result) {
   for (const stockCode of Object.keys(result.data)) {
     let res = result.data[stockCode];
     if (res.History) {
       var d = new Date(res.History[res.History.length - 1].HistoryDate);
-      d.setDate(d.getDate() + 13 + CheckDateRange(res.History[res.History.length - 1].HistoryDate, todaysDate));
-      if (d.toDateString() == todaysDate) {
-        res["T2T"] = true;
+      d.setDate(d.getDate() + 13 + CheckDateRange(res.History[res.History.length - 1].HistoryDate));
+
+      const prevDate = GetPreviousWorkingDate(d);
+      const nextDate = GetNextWorkingDate(d);
+
+      switch (todayDate.getTime()) {
+        case d.getTime():
+          res["T2T"] = "10th day";
+          break;
+        case prevDate.getTime():
+          res["T2T"] = "9th day";
+          break;
+        case nextDate.getTime():
+          res["T2T"] = "11th day";
+          break;
       }
     }
   }
 }
 
-function CheckDateRange(startDateString, endDateString) {
+function CheckDateRange(startDateString) {
   let holidayCounter = 0;
 
   const start = new Date(startDateString);
-  const end = new Date(endDateString);
+  const end = todayDate;
 
   for (let i = 0; i < settings.marketHolidays.length; i++) {
     const date = new Date(settings.marketHolidays[i]);
@@ -59,7 +70,7 @@ function CheckDateRange(startDateString, endDateString) {
 
 function IsUpdateData(placeHolder, dateTimeStamp) {
   placeHolder.innerText = dateTimeStamp;
-  if (new Date(dateTimeStamp).getDate() != new Date(todayDate).getDate()) {
+  if (new Date(dateTimeStamp).getDate() != todayDate.getDate()) {
     placeHolder.style.background = 'lightcoral';
     return false;
   }

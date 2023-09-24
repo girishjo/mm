@@ -31,17 +31,13 @@ function loadDataFromLocal() {
                 }
             }
         }
-
-        for (const wlValue in watchlists) {
-            AddWatchlistCode(wlValue, watchlists[wlValue].name);
-        }
-        UpdateWatchList();
     }
     else {
         alert('No saved Watchlist found, loading default watchlists');
         watchlists = defaultWatchlists;
         saveDataOnLocal(true, true);
     }
+    ResetWatchlist(false);
 }
 
 function saveDataOnLocal(silentUpdate = false, loadDefault = false) {
@@ -61,11 +57,24 @@ function saveDataOnLocal(silentUpdate = false, loadDefault = false) {
     }
 
     window.localStorage.setItem("watchlists", JSON.stringify(newWatchlists));
-    //window.localStorage.removeItem("stocksList");
+    // window.localStorage.removeItem("stocksList");
     if (!silentUpdate) {
         alert('Watchlists saved');
     }
-    window.location.reload();
+    // window.location.reload();
+}
+
+function ResetWatchlist(deleteExisting = true) {
+    if (deleteExisting) {
+        const watchlistsRadios = document.querySelectorAll('input[name="stockListRadio"]');
+        for (let i = 0; i < watchlistsRadios.length; i++) {
+            RemoveWatchlistCode(watchlistsRadios[i].id);
+        }
+    }
+    for (const wlValue in watchlists) {
+        AddWatchlistCode(wlValue, watchlists[wlValue].name);
+    }
+    UpdateWatchList();
 }
 
 function UpdateWatchList() {
@@ -137,6 +146,7 @@ function RemoveWatchlist() {
             if (RemoveWatchlistCode(selectedWatchList.id)) {
                 delete watchlists[selectedWatchList.value];
                 saveDataOnLocal(true, false);
+                UpdateWatchList();
             }
         }
     }
@@ -164,6 +174,7 @@ function loadDefaultWatchLists() {
     if (confirm("It will overwrite your existing data in watchlists. Proceed?")) {
         watchlists = defaultWatchlists;
         saveDataOnLocal(true, true);
+        ResetWatchlist(true);
     }
 }
 
@@ -175,6 +186,7 @@ async function uploadWatchLists() {
             const content = await input.files[0].text();
             watchlists = JSON.parse(content)
             saveDataOnLocal(true, true);
+            ResetWatchlist(true);
         };
         input.click();
     }
@@ -195,6 +207,9 @@ function updateListTable(stockList) {
     if (listTable.rows.length == 2) {
         addEmptyRow(listTable);
         listTable.parentElement.style.display = 'block';
+    }
+    else {
+        listTable.parentElement.style.display = 'none';
     }
     updateRowNumber(listTable);
     updateRowNumber(dataTable);
@@ -235,7 +250,7 @@ function updateDataTable(table, name, nseCode, bseCode, data = undefined, rowInd
         if (settings.configs.t2t && stockData["T2T"]) {
             var t2tLabel = document.createElement('label');
             t2tLabel.classList.add("highlight");
-            t2tLabel.innerText = "ST => SM";
+            t2tLabel.innerText = "T2T (" + stockData["T2T"] + ")";
             newRow.cells[1].appendChild(t2tLabel);
         }
 

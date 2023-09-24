@@ -39,7 +39,7 @@ function MergeData(data1, data2) {
         newData = data2;
     }
 
-    result.dateTimeStamp = newData.dateTimeStamp ? newData.dateTimeStamp : new Date(todayDate).toLocaleDateString('en-In', { weekday: "short", year: "numeric", month: "short", day: "2-digit" });
+    result.dateTimeStamp = newData.dateTimeStamp ? newData.dateTimeStamp : todayDate.toLocaleDateString('en-In', { weekday: "short", year: "numeric", month: "short", day: "2-digit" });
 
     for (const stockCode of [...new Set([...Object.keys(newData.data), ...Object.keys(oldData.data)])]) {
         let res = {}
@@ -69,7 +69,7 @@ function CheckHistoryLength(result) {
 }
 
 function HandleStockData(data, stockCode, res) {
-    if (new Date(data.dateTimeStamp).toDateString() == new Date(todayDate).toDateString()) {
+    if (new Date(data.dateTimeStamp).toDateString() == todayDate.toDateString()) {
         res = MergeRecursive(res, data.data[stockCode]);
     }
     else {

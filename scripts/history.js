@@ -25,7 +25,7 @@ function ShowHistory(stock) {
             let history1, history2;
             if (nseData[nseCode] && (nseData[nseCode].Total > 0 || nseData[nseCode].Open || nseData[nseCode].BulkDeals)) {
                 history1 = {
-                    "HistoryDate": new Date(todayDate).toLocaleDateString('en-In', { weekday: "short", year: "numeric", month: "short", day: "2-digit" }),
+                    "HistoryDate": todayDate.toLocaleDateString('en-In', { weekday: "short", year: "numeric", month: "short", day: "2-digit" }),
                     ...nseData[nseCode],
                 }
                 history1.History && delete history1.History;
@@ -33,7 +33,7 @@ function ShowHistory(stock) {
 
             if (bseData[bseCode] && (bseData[bseCode].Total > 0 || bseData[bseCode].Open || bseData[bseCode].BulkDeals)) {
                 history2 = {
-                    "HistoryDate": new Date(todayDate).toLocaleDateString('en-In', { weekday: "short", year: "numeric", month: "short", day: "2-digit" }),
+                    "HistoryDate": todayDate.toLocaleDateString('en-In', { weekday: "short", year: "numeric", month: "short", day: "2-digit" }),
                     ...bseData[bseCode],
                 }
                 history2.History && delete history2.History;
