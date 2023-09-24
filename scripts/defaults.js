@@ -5,7 +5,7 @@ window.addEventListener('load', async () => {
     settings = await GetData('settings.json');
 
     todayDate = GetNotAHolidayDate(new Date());
-    todayDate = GetPreviousWorkingDate(todayDate);    
+    todayDate = GetPreviousWorkingDate(todayDate);
     todayDateHour = todayDate;
     todayDate = new Date(todayDate.getFullYear(), todayDate.getMonth(), todayDate.getDate());
 

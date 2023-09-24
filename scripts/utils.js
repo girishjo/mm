@@ -247,9 +247,9 @@ function GetPreviousWorkingDate(inputDate) {
         refDate = new Date(refDate.setDate(refDate.getDate() - 2));
     else if (refDate.getDay() == 6)
         refDate = new Date(refDate.setDate(refDate.getDate() - 1));
-    else if (refDate.getDay() == 1 && refDate.getHours() < 9)
+    else if (refDate.getDay() == 1 && refDate.getHours() < 6)
         refDate = new Date(refDate.setDate(refDate.getDate() - 3));
-    else if (refDate.getHours() < 9) {
+    else if (refDate.getHours() < 6) {
         refDate = new Date(refDate.setDate(refDate.getDate() - 1));
     }
     return refDate;
