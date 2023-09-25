@@ -77,6 +77,7 @@ function ShowHistory(stock) {
         //stockHistoryTable.rows[0].cells[1].innerHTML = existCellText;
         historyStock.setAttribute('historyShown', true);
         historyTable = newRow;
+        historyStock.scrollIntoView({ behavior: "smooth", block: "center" });
     }
     else {
         HideHistory();

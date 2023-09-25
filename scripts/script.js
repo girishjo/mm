@@ -111,8 +111,8 @@ function AddWatchlist() {
     const wlName = watchlistName.value.trim();
     if (wlName != '') {
         let i = 0;
-        for (let i = 0; i < Object.keys(watchlists).length; i++) {
-            if (watchlists[i].name == wlName) {
+        for (const key of Object.keys(watchlists)) {
+            if (watchlists[key].name == wlName) {
                 alert('Watchlist name should be unique.');
                 return false;
             }
