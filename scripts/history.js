@@ -96,10 +96,15 @@ function HideHistory() {
 }
 
 window.addEventListener('click', function (event) {
+    if (!(historyStock.closest('tr').contains(event.target) || historyTable.contains(event.target) || modal.contains(event.target))) {
+        HideHistory();
+    }
+    /*
     if (((historyTable && !historyTable.contains(event.target))
         && (event.target.parentElement && !event.target.parentElement.contains(historyStock))
         && !modal.contains(event.target))
-        || !document.body.contains(event.target)) {
+        || document.body.contains(event.target)) {
         HideHistory();
     }
+    */
 });
