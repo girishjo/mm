@@ -4,8 +4,7 @@ var todayDate, todayDateHour;
 window.addEventListener('load', async () => {
     settings = await GetData('settings.json');
 
-    todayDate = GetNotAHolidayDate(new Date());
-    todayDate = GetPreviousWorkingDate(todayDate);
+    todayDate = GetAWorkingDate(new Date());
     todayDateHour = todayDate;
     todayDate = new Date(todayDate.getFullYear(), todayDate.getMonth(), todayDate.getDate());
 
@@ -19,14 +18,19 @@ window.addEventListener('load', async () => {
     }
 });
 
-function GetNotAHolidayDate(date) {
+function GetAWorkingDate(inputDate) {
+    inputDate = GetPreviousWorkingDate(inputDate)
+    if (IsHoliday(inputDate)) {
+        inputDate = GetAWorkingDate(new Date(inputDate.setDate(inputDate.getDate() - 1)).setHours(23, 59, 59));
+    }
+    return inputDate;
+}
+
+function IsHoliday(inputDate) {
     for (let i = 0; i < settings.marketHolidays.length; i++) {
-        const holiday = new Date(settings.marketHolidays[i]);
-        if (holiday.toDateString() == date.toDateString()) {
-            date = new Date(date.setDate(date.getDate() - 1));
-            date.setHours(23, 59, 59);
-            return GetNotAHolidayDate(date);
+        if (new Date(settings.marketHolidays[i]).toDateString() == inputDate.toDateString()) {
+            return true;
         }
     }
-    return date;
+    return false;
 }

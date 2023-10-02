@@ -1,6 +1,16 @@
 * {
     /* width: fit-content; */
     margin-bottom: 15px;
+    font-size: 17px;
+}
+
+html {
+    overflow: auto;
+}
+
+body {
+    font-family: Arial;
+    margin: 0px 10px 10px 10px;
 }
 
 table {

@@ -233,7 +233,7 @@ function toObject(table) {
             const res = [];
             for (let j = 0; j < row.cells.length; j++) {
                 const cell = row.cells[j];
-                cell.classList.contains('text') && res.push(cell.textContent);
+                j > 2 && res.push(cell.textContent);
             }
             res.length > 0 && res[0].trim() != "" && result.push(res);
         }
