@@ -35,17 +35,17 @@ function CheckForT10(result) {
       var d = new Date(res.History[res.History.length - 1].HistoryDate);
       d.setDate(d.getDate() + 13 + CheckDateRange(res.History[res.History.length - 1].HistoryDate));
 
-      const prevDate = GetPreviousWorkingDate(d);
-      const nextDate = GetNextWorkingDate(d);
+      const prevDate = GetLastWorkingDay(d);
+      const nextDate = GetNextWorkingDay(d);
 
-      switch (todayDate.getTime()) {
-        case d.getTime():
+      switch (todayDate.toDateString()) {
+        case d.toDateString():
           res["T2T"] = "10th day";
           break;
-        case prevDate.getTime():
+        case prevDate.toDateString():
           res["T2T"] = "9th day";
           break;
-        case nextDate.getTime():
+        case nextDate.toDateString():
           res["T2T"] = "11th day";
           break;
       }

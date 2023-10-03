@@ -263,8 +263,33 @@ function GetNextWorkingDate(inputDate) {
         refDate = new Date(refDate.setDate(refDate.getDate() + 2));
     else if (refDate.getDay() == 5)
         refDate = new Date(refDate.setDate(refDate.getDate() + 3));
-    else {
+    else if (refDate.getHours() > 23) {
         refDate = new Date(refDate.setDate(refDate.getDate() + 1));
     }
     return refDate;
+}
+
+function GetNextWorkingDay(inputDate) {
+    inputDate = GetNextWorkingDate(inputDate)
+    if (IsHoliday(inputDate)) {
+        inputDate = GetNextWorkingDay(new Date(inputDate.setDate(inputDate.getDate() + 1)).setHours(6, 0, 0));
+    }
+    return inputDate;
+}
+
+function GetLastWorkingDay(inputDate) {
+    inputDate = GetPreviousWorkingDate(inputDate)
+    if (IsHoliday(inputDate)) {
+        inputDate = GetLastWorkingDay(new Date(inputDate.setDate(inputDate.getDate() - 1)).setHours(23, 59, 59));
+    }
+    return inputDate;
+}
+
+function IsHoliday(inputDate) {
+    for (let i = 0; i < settings.marketHolidays.length; i++) {
+        if (new Date(settings.marketHolidays[i]).toDateString() == inputDate.toDateString()) {
+            return true;
+        }
+    }
+    return false;
 }
