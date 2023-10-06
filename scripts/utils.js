@@ -263,7 +263,7 @@ function GetNextWorkingDate(inputDate) {
         refDate = new Date(refDate.setDate(refDate.getDate() + 2));
     else if (refDate.getDay() == 5)
         refDate = new Date(refDate.setDate(refDate.getDate() + 3));
-    else if (refDate.getHours() > 23) {
+    else {
         refDate = new Date(refDate.setDate(refDate.getDate() + 1));
     }
     return refDate;
