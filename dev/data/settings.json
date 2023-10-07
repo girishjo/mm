@@ -1,6 +1,6 @@
 {
     "constants": {
-        "historyDays": 10,
+        "historyDays": 15,
         "refreshDataTimeOut": 5
     },
     "configs": {
