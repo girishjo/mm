@@ -233,10 +233,71 @@ function toObject(table) {
             const res = [];
             for (let j = 0; j < row.cells.length; j++) {
                 const cell = row.cells[j];
-                cell.classList.contains('text') && res.push(cell.textContent);
+                j > 2 && res.push(cell.textContent);
             }
             res.length > 0 && res[0].trim() != "" && result.push(res);
         }
     }
     return result;
+}
+
+function GetPreviousWorkingDate(inputDate) {
+    let refDate = new Date(inputDate);
+    if (refDate.getDay() == 0)
+        refDate = new Date(refDate.setDate(refDate.getDate() - 2));
+    else if (refDate.getDay() == 6)
+        refDate = new Date(refDate.setDate(refDate.getDate() - 1));
+    else if (refDate.getDay() == 1 && refDate.getHours() < 6)
+        refDate = new Date(refDate.setDate(refDate.getDate() - 3));
+    else if (refDate.getHours() < 6) {
+        refDate = new Date(refDate.setDate(refDate.getDate() - 1));
+    }
+    return refDate;
+}
+
+function GetNextWorkingDate(inputDate) {
+    let refDate = new Date(inputDate);
+    if (refDate.getDay() == 0)
+        refDate = new Date(refDate.setDate(refDate.getDate() + 1));
+    else if (refDate.getDay() == 6)
+        refDate = new Date(refDate.setDate(refDate.getDate() + 2));
+    else if (refDate.getDay() == 5)
+        refDate = new Date(refDate.setDate(refDate.getDate() + 3));
+    else {
+        refDate = new Date(refDate.setDate(refDate.getDate() + 1));
+    }
+    return refDate;
+}
+
+function GetNextWorkingDay(inputDate) {
+    inputDate = GetNextWorkingDate(inputDate)
+    if (IsHoliday(inputDate)) {
+        inputDate = GetNextWorkingDay(new Date(inputDate.setDate(inputDate.getDate() + 1)).setHours(6, 0, 0));
+    }
+    return inputDate;
+}
+
+function GetLastWorkingDay(inputDate) {
+    inputDate = GetPreviousWorkingDate(inputDate)
+    if (IsHoliday(inputDate)) {
+        inputDate = GetLastWorkingDay(new Date(inputDate.setDate(inputDate.getDate() - 1)).setHours(23, 59, 59));
+    }
+    return inputDate;
+}
+
+function IsHoliday(inputDate) {
+    for (let i = 0; i < settings.marketHolidays.length; i++) {
+        if (new Date(settings.marketHolidays[i]).toDateString() == inputDate.toDateString()) {
+            return true;
+        }
+    }
+    return false;
+}
+
+Number.prototype.toCustomString = function (decimalPlaces = 0) {
+    return this.toLocaleString('en-In', { minimumFractionDigits: decimalPlaces, maximumFractionDigits: decimalPlaces });
+}
+
+String.prototype.toCustomString = function (decimalPlaces = 0) {
+    return Number(this).toLocaleString('en-In', { minimumFractionDigits: decimalPlaces, maximumFractionDigits: decimalPlaces });
 }

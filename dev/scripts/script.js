@@ -1,6 +1,8 @@
 const dataValidityTable = document.querySelector('#dataValidity');
 const listTable = document.querySelector('#stocksList');
 const dataTable = document.querySelector('#stockData');
+const portfolioTable = document.querySelector('#portfolioTable');
+
 var watchlists = {};
 var activeWL, activeWLName;
 
@@ -31,17 +33,13 @@ function loadDataFromLocal() {
                 }
             }
         }
-
-        for (const wlValue in watchlists) {
-            AddWatchlistCode(wlValue, watchlists[wlValue].name);
-        }
-        UpdateWatchList();
     }
     else {
         alert('No saved Watchlist found, loading default watchlists');
         watchlists = defaultWatchlists;
         saveDataOnLocal(true, true);
     }
+    ResetWatchlist(false);
 }
 
 function saveDataOnLocal(silentUpdate = false, loadDefault = false) {
@@ -61,11 +59,24 @@ function saveDataOnLocal(silentUpdate = false, loadDefault = false) {
     }
 
     window.localStorage.setItem("watchlists", JSON.stringify(newWatchlists));
-    //window.localStorage.removeItem("stocksList");
+    // window.localStorage.removeItem("stocksList");
     if (!silentUpdate) {
         alert('Watchlists saved');
     }
-    window.location.reload();
+    // window.location.reload();
+}
+
+function ResetWatchlist(deleteExisting = true) {
+    if (deleteExisting) {
+        const watchlistsRadios = document.querySelectorAll('input[name="stockListRadio"]');
+        for (let i = 0; i < watchlistsRadios.length; i++) {
+            RemoveWatchlistCode(watchlistsRadios[i].id);
+        }
+    }
+    for (const wlValue in watchlists) {
+        AddWatchlistCode(wlValue, watchlists[wlValue].name);
+    }
+    UpdateWatchList();
 }
 
 function UpdateWatchList() {
@@ -87,6 +98,7 @@ function UpdateWatchList() {
     }
     resetTable(listTable);
     resetTable(dataTable);
+    resetTable(portfolioTable);
     updateListTable(watchlists[activeWL]);
 
     // if (document.body.clientHeight > window.innerHeight) {
@@ -102,8 +114,8 @@ function AddWatchlist() {
     const wlName = watchlistName.value.trim();
     if (wlName != '') {
         let i = 0;
-        for (let i = 0; i < Object.keys(watchlists).length; i++) {
-            if (watchlists[i].name == wlName) {
+        for (const key of Object.keys(watchlists)) {
+            if (watchlists[key].name == wlName) {
                 alert('Watchlist name should be unique.');
                 return false;
             }
@@ -137,6 +149,7 @@ function RemoveWatchlist() {
             if (RemoveWatchlistCode(selectedWatchList.id)) {
                 delete watchlists[selectedWatchList.value];
                 saveDataOnLocal(true, false);
+                UpdateWatchList();
             }
         }
     }
@@ -164,6 +177,7 @@ function loadDefaultWatchLists() {
     if (confirm("It will overwrite your existing data in watchlists. Proceed?")) {
         watchlists = defaultWatchlists;
         saveDataOnLocal(true, true);
+        ResetWatchlist(true);
     }
 }
 
@@ -175,6 +189,7 @@ async function uploadWatchLists() {
             const content = await input.files[0].text();
             watchlists = JSON.parse(content)
             saveDataOnLocal(true, true);
+            ResetWatchlist(true);
         };
         input.click();
     }
@@ -188,16 +203,23 @@ function updateListTable(stockList) {
                 newRow.cells[3].innerText = stockList.data[i][0];
                 newRow.cells[4].innerText = stockList.data[i][1];
                 newRow.cells[5].innerText = stockList.data[i][2];
+                stockList.data[i][3] && (newRow.cells[6].innerText = stockList.data[i][3]);
+                stockList.data[i][4] && (newRow.cells[7].innerText = stockList.data[i][4]);
                 updateDataTable(dataTable, stockList.data[i][0], stockList.data[i][1], stockList.data[i][2]);
             }
         }
+        upadtePortfolioTable(stockList.data);
     }
     if (listTable.rows.length == 2) {
         addEmptyRow(listTable);
-        listTable.parentElement.style.display = 'block';
+        //listTable.parentElement.style.display = 'block';
     }
+    // else {
+    //     listTable.parentElement.style.display = 'none';
+    // }
     updateRowNumber(listTable);
     updateRowNumber(dataTable);
+    updateRowNumber(portfolioTable);
 }
 
 function updateDataTable(table, name, nseCode, bseCode, data = undefined, rowIndex = undefined) {
@@ -220,9 +242,9 @@ function updateDataTable(table, name, nseCode, bseCode, data = undefined, rowInd
             a.title = stockData.Name;
             a.href = "#0";
             const codes = [];
-            nseCode && codes.push(nseCode);
-            bseCode && codes.push(bseCode);
-            a.setAttribute("codes", codes);
+            codes.push(nseCode || undefined);
+            codes.push(bseCode || undefined);
+            a.setAttribute("codes", codes.join(','));
             a.setAttribute("onclick", "ShowHistory(this);");
             newRow.cells[1].appendChild(a);
         }
@@ -231,13 +253,6 @@ function updateDataTable(table, name, nseCode, bseCode, data = undefined, rowInd
         }
 
         data && (newRow.cells[1].innerText = data.HistoryDate);
-
-        if (settings.configs.t2t && stockData["T2T"]) {
-            var t2tLabel = document.createElement('label');
-            t2tLabel.classList.add("highlight");
-            t2tLabel.innerText = "ST => SM";
-            newRow.cells[1].appendChild(t2tLabel);
-        }
 
         if (stockData.BulkDeals && stockData.BulkDeals.length > 0) {
             var a = document.createElement('a');
@@ -250,13 +265,20 @@ function updateDataTable(table, name, nseCode, bseCode, data = undefined, rowInd
             a.title = stockData.Name;
             a.href = "#0";
             const codes = [];
-            nseCode && codes.push(nseCode);
-            bseCode && codes.push(bseCode);
-            a.setAttribute("codes", codes);
+            codes.push(nseCode || undefined);
+            codes.push(bseCode || undefined);
+            a.setAttribute("codes", codes.join(','));
             a.setAttribute("onclick", "OpenModal(this);");
             data && a.setAttribute("historyDate", data.HistoryDate);
             a.classList.add("highlight");
             newRow.cells[1].appendChild(a);
+        }
+
+        if (settings.configs.t2t && stockData["T2T"]) {
+            var t2tLabel = document.createElement('label');
+            t2tLabel.classList.add("highlight");
+            t2tLabel.innerText = "T2T (" + stockData["T2T"] + ")";
+            newRow.cells[1].appendChild(t2tLabel);
         }
 
         if (Number(stockData.Delivery)) {
@@ -266,7 +288,7 @@ function updateDataTable(table, name, nseCode, bseCode, data = undefined, rowInd
             newRow.cells[3].innerText = stockData.Total.toLocaleString('en-In');
         }
         if (stockData.Total > 0) {
-            const deliveryPercentage = ((stockData.Delivery / stockData.Total) * 100).toFixed(2);
+            const deliveryPercentage = ((stockData.Delivery / stockData.Total) * 100).toCustomString(2);
 
             newRow.cells[4].innerText = deliveryPercentage + " %";
             if (deliveryPercentage >= 75) {
@@ -295,12 +317,112 @@ function updateDataTable(table, name, nseCode, bseCode, data = undefined, rowInd
         if (stockData.Change != undefined) {
             newRow.cells[7].innerText = stockData.Change;
             if (Number(stockData.Change) != NaN) {
-                newRow.cells[7].innerText = stockData.Change.toFixed(2).toLocaleString('en-In') + " %";
+                newRow.cells[7].innerText = stockData.Change.toCustomString(2) + " %";
             }
         }
     }
 
     return newRow;
+}
+
+function upadtePortfolioTable(stockList) {
+    let totalInvestment = 0, currentValue = 0, dayPnL = 0;
+    for (let i = 0; i < stockList.length; i++) {
+        if (stockList[i][0]) {
+            const stockDetails = stockList[i];
+            let newRow;
+            if (stockDetails[0]) {
+                let stockData = { ...MergeStockData(nseData[stockDetails[1]], bseData[stockDetails[2]]) };
+                newRow = addEmptyRow(portfolioTable);
+                newRow.cells[1].innerText = stockDetails[0];
+                if (stockDetails[3] && stockDetails[3] != 0) {
+                    newRow.cells[2].innerText = stockDetails[3];
+                    newRow.cells[3].innerText = stockDetails[4].toCustomString(2);
+                    totalInvestment += stockDetails[3] * stockDetails[4];
+                    newRow.cells[4].innerText = (stockDetails[3] * stockDetails[4]).toCustomString(2);
+                    if (!stockData.Close && stockData.History && stockData.History.length > 0) {
+                        stockData.Close = stockData.History[0].Close;
+                    }
+                    newRow.cells[5].innerText = stockData.Close.toLocaleString('en-In', {
+                        minimumFractionDigits: 2,
+                        maximumFractionDigits: 2
+                    });
+                    currentValue += stockDetails[3] * stockData.Close;
+                    newRow.cells[6].innerText = (stockDetails[3] * stockData.Close).toLocaleString('en-In');
+                    newRow.cells[7].innerText = (stockDetails[3] * (stockData.Close - stockDetails[4])).toLocaleString('en-In', {
+                        minimumFractionDigits: 2,
+                        maximumFractionDigits: 2
+                    });
+                    const netChange = (stockData.Close - stockDetails[4]) * 100 / stockDetails[4];
+                    newRow.cells[8].innerText = netChange.toCustomString(2) + " %";
+                    if (netChange > 0) {
+                        newRow.cells[7].style.color = 'green';
+                        newRow.cells[8].style.color = 'green';
+                    }
+                    else if (netChange < 0) {
+                        newRow.cells[7].style.color = 'red';
+                        newRow.cells[8].style.color = 'red';
+                    }
+
+                    if (stockData.PrevClose != undefined && stockData.PrevClose != 0) {
+                        if (!stockData.History || stockData.History.length == 0) {
+                            stockData.PrevClose = stockDetails[4];
+                        }
+                        stockData.Change = (stockData.Close - stockData.PrevClose) * 100 / stockData.PrevClose;
+                        let dayAbsoluteChange = stockDetails[3] * (stockData.Close - stockData.PrevClose);
+                        dayPnL += dayAbsoluteChange;
+                        newRow.cells[9].innerText = dayAbsoluteChange.toLocaleString('en-In', {
+                            minimumFractionDigits: 2,
+                            maximumFractionDigits: 2
+                        });
+                        newRow.cells[10].innerText = stockData.Change.toCustomString(2) + " %"
+                        if (stockData.Change > 0) {
+                            newRow.cells[9].style.color = 'green';
+                            newRow.cells[10].style.color = 'green';
+                        }
+                        else if (stockData.Change < 0) {
+                            newRow.cells[9].style.color = 'red';
+                            newRow.cells[10].style.color = 'red';
+                        }
+                    }
+                    else {
+                        newRow.cells[9].innerText = 0;
+                        newRow.cells[10].innerText = (0).toFixed(2).toLocaleString('en-In') + " %"
+                    }
+                }
+            }
+        }
+    }
+
+    if (totalInvestment > 0) {
+        const newRow = addEmptyRow(portfolioTable);
+        newRow.setAttribute("frozen", true);
+        newRow.cells[4].innerText = totalInvestment.toCustomString();
+        newRow.cells[6].innerText = currentValue.toCustomString();
+        newRow.cells[7].innerText = (currentValue - totalInvestment).toCustomString();
+        newRow.cells[8].innerText = ((currentValue - totalInvestment) * 100 / totalInvestment).toCustomString(2) + " %";
+        if ((currentValue - totalInvestment) > 0) {
+            newRow.cells[7].style.color = 'green';
+            newRow.cells[8].style.color = 'green';
+        }
+        else if ((currentValue - totalInvestment) < 0) {
+            newRow.cells[7].style.color = 'red';
+            newRow.cells[8].style.color = 'red';
+        }
+        newRow.cells[9].innerText = dayPnL.toCustomString();
+        newRow.cells[10].innerText = (dayPnL * 100 / (currentValue - dayPnL)).toCustomString(2) + " %";
+
+        if (dayPnL > 0) {
+            newRow.cells[9].style.color = 'green';
+            newRow.cells[10].style.color = 'green';
+        }
+        else if (dayPnL < 0) {
+            newRow.cells[9].style.color = 'red';
+            newRow.cells[10].style.color = 'red';
+        }
+
+
+    }
 }
 
 listTable.addEventListener('click', function (e) {

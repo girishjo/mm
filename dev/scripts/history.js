@@ -25,7 +25,7 @@ function ShowHistory(stock) {
             let history1, history2;
             if (nseData[nseCode] && (nseData[nseCode].Total > 0 || nseData[nseCode].Open || nseData[nseCode].BulkDeals)) {
                 history1 = {
-                    "HistoryDate": new Date(todayDate).toLocaleDateString('en-In', { weekday: "short", year: "numeric", month: "short", day: "2-digit" }),
+                    "HistoryDate": todayDate.toLocaleDateString('en-In', { weekday: "short", year: "numeric", month: "short", day: "2-digit" }),
                     ...nseData[nseCode],
                 }
                 history1.History && delete history1.History;
@@ -33,7 +33,7 @@ function ShowHistory(stock) {
 
             if (bseData[bseCode] && (bseData[bseCode].Total > 0 || bseData[bseCode].Open || bseData[bseCode].BulkDeals)) {
                 history2 = {
-                    "HistoryDate": new Date(todayDate).toLocaleDateString('en-In', { weekday: "short", year: "numeric", month: "short", day: "2-digit" }),
+                    "HistoryDate": todayDate.toLocaleDateString('en-In', { weekday: "short", year: "numeric", month: "short", day: "2-digit" }),
                     ...bseData[bseCode],
                 }
                 history2.History && delete history2.History;
@@ -77,6 +77,7 @@ function ShowHistory(stock) {
         //stockHistoryTable.rows[0].cells[1].innerHTML = existCellText;
         historyStock.setAttribute('historyShown', true);
         historyTable = newRow;
+        //historyStock.scrollIntoView({ behavior: "smooth", block: "center" });
     }
     else {
         HideHistory();
@@ -95,10 +96,15 @@ function HideHistory() {
 }
 
 window.addEventListener('click', function (event) {
+    if (!((historyStock && historyStock.closest('tr').contains(event.target)) || (historyTable && historyTable.contains(event.target)) || modal.contains(event.target) || event.target.classList.contains("tablinks"))) {
+        HideHistory();
+    }
+    /*
     if (((historyTable && !historyTable.contains(event.target))
         && (event.target.parentElement && !event.target.parentElement.contains(historyStock))
         && !modal.contains(event.target))
-        || !document.body.contains(event.target)) {
+        || document.body.contains(event.target)) {
         HideHistory();
     }
+    */
 });
