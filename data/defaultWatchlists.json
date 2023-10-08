@@ -1,177 +1,127 @@
 {
     "0": {
-        "name": "😍list",
+        "name": "Listings/Hot topics",
         "data": [
             [
-                "Bondada",
-                "",
-                "543971"
-            ],
-            [
-                "Shoora",
-                "",
-                "543970"
-            ],
-            [
-                "Ahasolar",
-                "",
-                "543941"
-            ],
-            [
-                "Alphalogic",
-                "",
-                "543937"
-            ],
-            [
-                "Cloud",
-                "CLOUD",
+                "E Factor Experiences",
+                "EFACTOR",
                 ""
             ],
             [
-                "Crayons",
-                "CRAYONS",
+                "Arabian Petroleum",
+                "ARABIAN",
                 ""
-            ],
-            [
-                "Essen",
-                "ESFL",
-                ""
-            ],
-            [
-                "Exhicon",
-                "",
-                "543895"
-            ],
-            [
-                "Global Pet",
-                "GLOBALPET",
-                ""
-            ],
-            [
-                "Green Chef",
-                "GREENCHEF",
-                ""
-            ],
-            [
-                "Kaka",
-                "",
-                "543939"
-            ],
-            [
-                "Kore Digital",
-                "KDL",
-                ""
-            ],
-            [
-                "Krishca",
-                "KRISHCA",
-                ""
-            ],
-            [
-                "Magson",
-                "MAGSON",
-                ""
-            ],
-            [
-                "Nirman",
-                "NIRMAN",
-                ""
-            ],
-            [
-                "Oriana",
-                "ORIANA",
-                ""
-            ],
-            [
-                "Pentagon",
-                "PENTAGON",
-                ""
-            ],
-            [
-                "Seal",
-                "",
-                "543782"
-            ],
-            [
-                "Shri Techtex",
-                "SHRITECH",
-                ""
-            ],
-            [
-                "Srivari",
-                "SSFL",
-                ""
-            ],
-            [
-                "Veefin",
-                "",
-                "543931"
-            ],
-            [
-                "Vinsys",
-                "VINSYS",
-                ""
-            ],
-            [
-                "RBM Infra",
-                "RBMINFRA",
-                ""
-            ],
-            [
-                "Insolation",
-                "",
-                "543620"
             ]
         ]
     },
     "1": {
-        "name": "🆕listings",
+        "name": "T2T(ST/BE)",
         "data": [
             [
-                "R R Kabel",
-                "RRKABEL",
-                "543981"
+                "Vinyas",
+                "VINYAS",
+                ""
+            ],
+            [
+                "Organic",
+                "",
+                "543997"
+            ],
+            [
+                "Valiant Lab",
+                "VALIANTLAB",
+                "543998"
+            ],
+            [
+                "Newjaisa Technologies",
+                "NEWJAISA",
+                ""
+            ],
+            [
+                "Inspire Films",
+                "INSPIRE",
+                ""
+            ],
+            [
+                "Digikore Studios",
+                "DIGIKORE",
+                ""
+            ],
+            [
+                "Mangalam Alloys",
+                "MAL",
+                ""
+            ],
+            [
+                "Updater Services",
+                "UDS",
+                "543996"
+            ],
+            [
+                "Saakshi Medtech",
+                "SAAKSHI",
+                ""
+            ],
+            [
+                "Master Components",
+                "MASTER",
+                ""
+            ],
+            [
+                "Marco",
+                "MARCO",
+                ""
+            ],
+            [
+                "Hi-Green Carbon",
+                "HIGREEN",
+                ""
+            ],
+            [
+                "Cellecor",
+                "CELLECOR",
+                ""
+            ],
+            [
+                "Techknowgreen",
+                "",
+                "543991"
+            ],
+            [
+                "Kundan Edifice",
+                "KEL",
+                ""
+            ],
+            [
+                "Madhusudan",
+                "MADHUSUDAN",
+                ""
+            ],
+            [
+                "Holmarc",
+                "HOLMARC",
+                ""
+            ],
+            [
+                "Chavda",
+                "CHAVDA",
+                ""
             ]
         ]
     },
     "2": {
-        "name": "♨️Hot",
+        "name": "SM",
         "data": [
             [
-                "Jiwanram Sheoduttrai",
-                "JIWANRAM",
-                ""
-            ],
-            [
-                "Jupiter Life Line Hospitals",
-                "JLHL",
-                "543980"
-            ],
-            [
-                "Kahan Packaging",
+                "Meson",
                 "",
-                "543979"
+                "543982"
             ],
             [
-                "Basilic Fly Studio",
-                "BASILIC",
+                "Unihealth",
+                "UNIHEALTH",
                 ""
             ],
-            [
-                "Mono Pharmacare",
-                "MONOPHARMA",
-                ""
-            ],
-            [
-                "C P S Shapers",
-                "CPS",
-                ""
-            ]
-        ]
-    },
-    "3": {
-        "name": "👦T2T(ST/BE)",
-        "data": [
             [
                 "Jiwanram Sheoduttrai",
                 "JIWANRAM",
@@ -181,11 +131,6 @@
                 "Kahan Packaging",
                 "",
                 "543979"
-            ],
-            [
-                "Basilic Fly Studio",
-                "BASILIC",
-                ""
             ],
             [
                 "Pramara Promotions",
@@ -198,8 +143,8 @@
                 ""
             ],
             [
-                "C P S Shapers",
-                "CPS",
+                "Basilic Fly Studio",
+                "BASILIC",
                 ""
             ],
             [
@@ -208,29 +153,14 @@
                 ""
             ],
             [
-                "Sahaj Fashions",
-                "SAHAJ",
-                ""
-            ]
-        ]
-    },
-    "4": {
-        "name": "🧓SM/EQ",
-        "data": [
-            [
-                "Sungarner Energies",
-                "SEL",
+                "C P S Shapers",
+                "CPS",
                 ""
             ],
             [
                 "Crop Life Science",
                 "CLSL",
                 ""
-            ],
-            [
-                "Bondada Engineering",
-                "",
-                "543971"
             ],
             [
                 "Shoora Designs",
@@ -253,11 +183,6 @@
                 ""
             ],
             [
-                "Vinsys IT Services",
-                "VINSYS",
-                ""
-            ],
-            [
                 "Oriana Power",
                 "ORIANA",
                 ""
@@ -266,22 +191,12 @@
                 "Shri Techtex",
                 "SHRITECH",
                 ""
-            ],
-            [
-                "Ahasolar Technologies",
-                "",
-                "543941"
-            ],
-            [
-                "Kaka Industries",
-                "",
-                "543939"
-            ],
-            [
-                "Drone Destination",
-                "DRONE",
-                ""
-            ],
+            ]
+        ]
+    },
+    "3": {
+        "name": "SME 1",
+        "data": [
             [
                 "Alphalogic Industries",
                 "",
@@ -328,18 +243,8 @@
                 "543916"
             ],
             [
-                "Vasa Denticity",
-                "DENTALKART",
-                ""
-            ],
-            [
                 "Crayons Advertising",
                 "CRAYONS",
-                ""
-            ],
-            [
-                "Krishca Strapping Solutions",
-                "KRISHCA",
                 ""
             ],
             [
@@ -353,19 +258,169 @@
                 ""
             ],
             [
+                "VELS Film International",
+                "VELS",
+                ""
+            ]
+        ]
+    },
+    "4": {
+        "name": "SME 2",
+        "data": [
+            [
+                "Bondada Engineering",
+                "",
+                "543971"
+            ],
+            [
+                "Krishca Strapping Solutions",
+                "KRISHCA",
+                ""
+            ],
+            [
+                "Vinsys IT Services",
+                "VINSYS",
+                ""
+            ],
+            [
+                "Drone Destination",
+                "DRONE",
+                ""
+            ],
+            [
+                "Vasa Denticity",
+                "DENTALKART",
+                ""
+            ],
+            [
                 "Quality Foils (India)",
                 "QFIL",
                 ""
             ],
             [
-                "VELS Film International",
-                "VELS",
+                "Ahasolar Technologies",
+                "",
+                "543941"
+            ],
+            [
+                "Kaka Industries",
+                "",
+                "543939"
+            ],
+            [
+                "Sungarner Energies",
+                "SEL",
                 ""
             ],
             [
                 "ResGen",
                 "",
                 "543805"
+            ],
+            [
+                "All E Tech",
+                "ALLETEC",
+                ""
+            ]
+        ]
+    },
+    "5": {
+        "name": "MB",
+        "data": [
+            [
+                "JSW Infrastructure",
+                "JSWINFRA",
+                "543994"
+            ],
+            [
+                "Manoj Vaibhav",
+                "MVGJL",
+                "543995"
+            ],
+            [
+                ".",
+                "",
+                ""
+            ],
+            [
+                "CDSL",
+                "CDSL",
+                ""
+            ],
+            [
+                "Dreamfolks",
+                "DREAMFOLKS",
+                "543591"
+            ],
+            [
+                ".",
+                "",
+                ""
+            ],
+            [
+                "MapMyIndia",
+                "MAPMYINDIA",
+                "543425"
+            ],
+            [
+                "MCX",
+                "MCX",
+                "534091"
+            ],
+            [
+                "Tata Power",
+                "TATAPOWER",
+                "500400"
+            ],
+            [
+                "Tata Motor",
+                "TATAMOTORS",
+                "500570"
+            ]
+        ]
+    },
+    "6": {
+        "name": "My List",
+        "data": [
+            [
+                "CFF",
+                "",
+                "543920"
+            ],
+            [
+                "Global Pet",
+                "GLOBALPET",
+                ""
+            ],
+            [
+                "Greenchef",
+                "GREENCHEF",
+                ""
+            ],
+            [
+                "JSLL",
+                "JSLL",
+                ""
+            ],
+            [
+                "KDL",
+                "KDL",
+                ""
+            ],
+            [
+                "Prevest",
+                "",
+                "543363"
+            ],
+            [
+                "Shri Techtex",
+                "SHRITECH",
+                ""
+            ],
+            [
+                "Veefin",
+                "",
+                "543931"
             ]
         ]
     }
