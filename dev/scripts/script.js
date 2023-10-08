@@ -18,7 +18,7 @@ function loadDataFromLocal() {
                 else {
                     alert('No saved Watchlist found, loading default watchlists');
                     watchlists = defaultWatchlists;
-                    saveDataOnLocal(true, true);
+                    //saveDataOnLocal(true, true);
                 }
             }
         }
@@ -29,7 +29,7 @@ function loadDataFromLocal() {
                 const storedData = JSON.parse(stocksListValue);
                 if (storedData instanceof Array) {
                     watchlists[0].data = storedData;
-                    saveDataOnLocal(true, true);
+                    //saveDataOnLocal(true, true);
                 }
             }
         }
@@ -37,7 +37,7 @@ function loadDataFromLocal() {
     else {
         alert('No saved Watchlist found, loading default watchlists');
         watchlists = defaultWatchlists;
-        saveDataOnLocal(true, true);
+        //saveDataOnLocal(true, true);
     }
     ResetWatchlist(false);
 }
@@ -161,12 +161,25 @@ function RemoveWatchlist() {
 function downloadWatchlists() {
     if (localStorage.length > 0) {
         let stocksListValue = localStorage.getItem("watchlists");
-        var a = document.createElement("a");
+
+        if (!chkWLWithPFData.checked) {
+            stocksListValue = JSON.parse(stocksListValue);
+            for (let wlValue in stocksListValue) {
+                for (let i = 0; i < stocksListValue[wlValue].data.length; i++) {
+                    var stock = stocksListValue[wlValue].data[i];
+                    stock.length > 3 && stock.splice(3, 2);
+                }
+            }
+            stocksListValue = JSON.stringify(stocksListValue);
+        }
+
+        let a = document.createElement("a");
         a.href = URL.createObjectURL(
             new Blob([stocksListValue], { type: "application/json" })
         );
         a.download = "watchlists.json";
         a.click();
+        chkWLWithPFData.checked = false;
     }
     else {
         alert('No stock in list to download');
@@ -174,9 +187,9 @@ function downloadWatchlists() {
 }
 
 function loadDefaultWatchLists() {
-    if (confirm("It will overwrite your existing data in watchlists. Proceed?")) {
+    if (confirm("It will overwrite any unsaved data in watchlists. Proceed?")) {
         watchlists = defaultWatchlists;
-        saveDataOnLocal(true, true);
+        //saveDataOnLocal(true, true);
         ResetWatchlist(true);
     }
 }

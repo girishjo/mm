@@ -63,6 +63,8 @@
         <Button onclick="loadDefaultWatchLists()" style="margin: 10px;">Load Default Watchlists</Button>
         <Button onclick="uploadWatchLists()" style="margin: 10px;">Import Watchlists</Button>
         <Button onclick="downloadWatchlists()" style="margin: 10px;">Export Watchlists</Button>
+        <input type="checkbox" id="chkWLWithPFData" name="chkWLWithPFData">
+        <label for="chkWLWithPFData" id="lblWLWithPFData">Export Watchlist with PF data</label>
         <table class="table" id="stocksList">
             <thead>
                 <tr>
@@ -226,7 +228,7 @@
         </select>
         <input type="text" id="txtFilterDeals" name="txtFilterDeals" placeholder="Filter deals..."
             onkeyup="UpdateBulkDealTable();" style="display: none;">
-        
+
         <input type="checkbox" id="chkFilterDeals" name="chkFilterDeals" onchange="UpdateLabel();">
         <label for="chkFilterDeals" id="lblFilterDealsPrefix" style="margin-right: 0px;">Show deals only for</label>
         <label for="chkFilterDeals" id="lblFilterDeals"></label>

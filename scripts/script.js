@@ -16,7 +16,7 @@ function loadDataFromLocal() {
                 else {
                     alert('No saved Watchlist found, loading default watchlists');
                     watchlists = defaultWatchlists;
-                    saveDataOnLocal(true, true);
+                    //saveDataOnLocal(true, true);
                 }
             }
         }
@@ -27,7 +27,7 @@ function loadDataFromLocal() {
                 const storedData = JSON.parse(stocksListValue);
                 if (storedData instanceof Array) {
                     watchlists[0].data = storedData;
-                    saveDataOnLocal(true, true);
+                    //saveDataOnLocal(true, true);
                 }
             }
         }
@@ -35,7 +35,7 @@ function loadDataFromLocal() {
     else {
         alert('No saved Watchlist found, loading default watchlists');
         watchlists = defaultWatchlists;
-        saveDataOnLocal(true, true);
+        //saveDataOnLocal(true, true);
     }
     ResetWatchlist(false);
 }
@@ -171,9 +171,9 @@ function downloadWatchlists() {
 }
 
 function loadDefaultWatchLists() {
-    if (confirm("It will overwrite your existing data in watchlists. Proceed?")) {
+    if (confirm("It will overwrite any unsaved data in watchlists. Proceed?")) {
         watchlists = defaultWatchlists;
-        saveDataOnLocal(true, true);
+        //saveDataOnLocal(true, true);
         ResetWatchlist(true);
     }
 }
@@ -245,7 +245,7 @@ function updateDataTable(table, name, nseCode, bseCode, data = undefined, rowInd
             newRow.cells[1].innerText = stockData.Name;
         }
 
-        data && (newRow.cells[1].innerText = data.HistoryDate);     
+        data && (newRow.cells[1].innerText = data.HistoryDate);
 
         if (stockData.BulkDeals && stockData.BulkDeals.length > 0) {
             var a = document.createElement('a');
@@ -267,7 +267,7 @@ function updateDataTable(table, name, nseCode, bseCode, data = undefined, rowInd
             newRow.cells[1].appendChild(a);
         }
 
-       if (settings.configs.t2t && stockData["T2T"]) {
+        if (settings.configs.t2t && stockData["T2T"]) {
             var t2tLabel = document.createElement('label');
             t2tLabel.classList.add("highlight");
             t2tLabel.innerText = "T2T (" + stockData["T2T"] + ")";
