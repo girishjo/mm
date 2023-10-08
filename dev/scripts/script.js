@@ -344,7 +344,7 @@ function upadtePortfolioTable(stockList) {
         if (stockList[i][0]) {
             const stockDetails = stockList[i];
             let newRow;
-            if (stockDetails[0]) {
+            if (stockDetails[0] && stockDetails[3] && stockDetails[3] != 0) {
                 let stockData = { ...MergeStockData(nseData[stockDetails[1]], bseData[stockDetails[2]]) };
                 newRow = addEmptyRow(portfolioTable);
                 newRow.cells[1].innerText = stockDetails[0];
@@ -410,6 +410,7 @@ function upadtePortfolioTable(stockList) {
     if (totalInvestment > 0) {
         const newRow = addEmptyRow(portfolioTable);
         newRow.setAttribute("frozen", true);
+        newRow.cells[1].innerText = "Total = ";
         newRow.cells[4].innerText = totalInvestment.toCustomString();
         newRow.cells[6].innerText = currentValue.toCustomString();
         newRow.cells[7].innerText = (currentValue - totalInvestment).toCustomString();

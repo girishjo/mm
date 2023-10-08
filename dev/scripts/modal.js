@@ -159,15 +159,16 @@ function OpenClientBulkDealsPage(clientName, nseCode, bseCode) {
     openTab('bulkDealersDiv');
     if (nseCode) {
         txtFilterDeals.setAttribute('code', nseCode);
+        lblFilterDeals.innerText = watchlists[activeWL].data.filter(sh => sh[1] == nseCode)[0][0];
     }
     else {
         txtFilterDeals.setAttribute('code', bseCode);
+        lblFilterDeals.innerText = watchlists[activeWL].data.filter(sh => sh[2] == bseCode)[0][0];
     }
     txtFilterDeals.value = txtFilterDeals.getAttribute('code');
     chkFilterDeals.style.display = 'initial';
     lblFilterDealsPrefix.style.display = 'initial';
     chkFilterDeals.checked = true;
-    lblFilterDeals.innerText = watchlists[activeWL].data.filter(sh => sh[1] == nseCode || sh[2] == bseCode)[0][0];
     UpdateBulkDealTable(clientName);
 }
 
