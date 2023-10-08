@@ -39,13 +39,14 @@ function InitStockBulkDeals() {
         }
         //filteredBulkDealers = stockBulkDeals;
     }
+    txtFilterDealers.value = '';
     UpdateStockBulkDealTable();
 }
 
 function UpdateStockBulkDealTable() {
     if (ddlStocks.selectedIndex != -1) {
         let bulkDeals = stockBulkDeals[ddlStocks.value];
-        //bulkDeals = FilterDeals(bulkDeals);
+        bulkDeals = FilterStockDeals(bulkDeals);
         bulkDeals.sort((a, b) =>
             new Date(b.Date) - new Date(a.Date)
             || a.ClientName.localeCompare(b.ClientName)
@@ -53,5 +54,22 @@ function UpdateStockBulkDealTable() {
             || a.Quantity - b.Quantity
             || a.Price - b.Price);
         ShowClientDeals(stockBulkDealsTable, bulkDeals, 'ClientName');
+    }
+}
+
+function FilterStockDeals(bulkDeals) {
+    let result = [];
+    let filter = txtFilterDealers.value.trim().toLowerCase();
+    if (filter.length > 0) {
+        for (let i = 0; i < bulkDeals.length; i++) {
+            const bulkDeal = bulkDeals[i];
+            if (bulkDeal.ClientName.toLowerCase().includes(filter)) {
+                result.push(bulkDeal);
+            }
+        }
+        return result;
+    }
+    else {
+        return bulkDeals;
     }
 }

@@ -102,13 +102,18 @@ function ShowClientDeals(table, deals, fieldName) {
 function FilterDeals(bulkDeals) {
     let result = [];
     let filter = txtFilterDeals.value.trim().toLowerCase();
-    for (let i = 0; i < bulkDeals.length; i++) {
-        const bulkDeal = bulkDeals[i];
-        if (bulkDeal.SecurityCode.toLowerCase().includes(filter) || bulkDeal.SecurityName.toLowerCase().includes(filter)) {
-            result.push(bulkDeal);
+    if (filter.length > 0) {
+        for (let i = 0; i < bulkDeals.length; i++) {
+            const bulkDeal = bulkDeals[i];
+            if (bulkDeal.SecurityCode.toLowerCase().includes(filter) || bulkDeal.SecurityName.toLowerCase().includes(filter)) {
+                result.push(bulkDeal);
+            }
         }
+        return result;
     }
-    return result;
+    else {
+        return bulkDeals;
+    }
 }
 
 function UpdateLabel() {

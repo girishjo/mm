@@ -30,13 +30,11 @@ function openTab(tabId) {
     }
 
     if (tabId == "bulkDealersDiv") {
-        InitBulkDealers();
-        InitBulkDealers();
+        InitBulkDealers();        
     }
 
-    if (tabId == "stockBulkDealsDiv") {
-        // ddlStocks.selectedIndex = 0;
-        InitStockBulkDeals()
+    if (tabId == "stockBulkDealsDiv") {        
+        InitStockBulkDeals();
     }
 }
 
