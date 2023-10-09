@@ -80,7 +80,13 @@ function RemoveWatchlistCode(watchlistId) {
     }
 }
 
-function HideLoader() {
-    document.getElementById("loader").style.display = "none";
-    document.getElementById("myDiv").style.display = "block";
+function UpdateLoader(showLoader = true, message = undefined) {
+    if (showLoader) {
+        document.getElementById("loader").style.display = "block";
+        document.getElementById("myDiv").style.display = "none";
+        message && (document.getElementById("loaderMsg").innerText = message);
+    } else {
+        document.getElementById("loader").style.display = "none";
+        document.getElementById("myDiv").style.display = "block";
+    }
 }

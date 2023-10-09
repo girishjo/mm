@@ -17,12 +17,20 @@ body {
 /* Center the loader */
 #loader {
     position: absolute;
-    left: 50%;
-    top: 50%;
+    left: calc(50% - 135px);
+    top: calc(50% - 100px);
     z-index: 1;
+    text-align: center;
+    width: 270px;
+    height: 200px;
+}
+
+#loaderCircle {
+    left: calc(50% - 60px);
+    position: relative;
     width: 120px;
     height: 120px;
-    margin: -76px 0 0 -76px;
+    /* margin: -76px 0 0 -76px; */
     border: 16px solid #f3f3f3;
     border-radius: 50%;
     border-top: 16px solid #3498db;

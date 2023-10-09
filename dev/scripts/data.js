@@ -7,15 +7,21 @@ const dataFiles = [
 ];
 
 async function LoadData() {
+  const messages = [
+    ['Nse Open Close data', 'Nse Delivery data', 'Nse Bulk Deals data'],
+    ['Bse Open Close data', 'Bse Delivery data', 'Bse Bulk Deals data'],
+  ];
+
   for (let j = 0; j < dataFiles[0].length; j++) {
     for (let i = 0; i < dataFiles.length; i++) {
+      UpdateLoader(true, 'Downloading ' + messages[i][j]);
       let dataJson = await GetData('../data/' + dataFiles[i][j]);
       IsUpdateData(dataValidityTable.rows[i + 1].cells[j + 1], dataJson.dateTimeStamp);
       i == 0 && (nseData = MergeData(nseData, dataJson));
       i == 1 && (bseData = MergeData(bseData, dataJson));
     }
   }
-  HideLoader();
+  UpdateLoader(false);
 
   if (settings.configs.t2t) {
     CheckForT10(nseData);
