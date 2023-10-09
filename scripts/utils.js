@@ -293,3 +293,11 @@ function IsHoliday(inputDate) {
     }
     return false;
 }
+
+Number.prototype.toCustomString = function (decimalPlaces = 0) {
+    return this.toLocaleString('en-In', { minimumFractionDigits: decimalPlaces, maximumFractionDigits: decimalPlaces });
+}
+
+String.prototype.toCustomString = function (decimalPlaces = 0) {
+    return Number(this).toLocaleString('en-In', { minimumFractionDigits: decimalPlaces, maximumFractionDigits: decimalPlaces });
+}

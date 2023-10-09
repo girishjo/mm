@@ -1,5 +1,3 @@
-const watchlistDiv = document.getElementById('watchlistDiv');
-
 function openTab(tabId) {
     var i, tabcontent, tablinks;
     // Get all elements with class="tabcontent" and hide them
@@ -23,6 +21,8 @@ function openTab(tabId) {
             button.classList.add("active");
     }
 
+    const watchlistDiv = document.getElementById('watchlistDiv');
+
     if (["stockListDiv", "stockDataDiv", "portfolioDiv"].includes(tabId)) {
         watchlistDiv.style.display = 'block';
     } else {
@@ -30,10 +30,10 @@ function openTab(tabId) {
     }
 
     if (tabId == "bulkDealersDiv") {
-        InitBulkDealers();        
+        InitBulkDealers();
     }
 
-    if (tabId == "stockBulkDealsDiv") {        
+    if (tabId == "stockBulkDealsDiv") {
         InitStockBulkDeals();
     }
 }
@@ -59,7 +59,7 @@ function AddWatchlistCode(value, name) {
     label.innerText = name;
     label.setAttribute("for", input.id);
 
-
+    const watchlistDiv = document.getElementById('watchlistDiv');
     const button = document.getElementById('addWatchlistBtn');
 
     watchlistDiv.insertBefore(input, button);
@@ -72,6 +72,7 @@ function RemoveWatchlistCode(watchlistId) {
     if (selectedWatchList) {
         const selectedLabel = document.querySelector('label[for=' + selectedWatchList.id + ']')
         if (selectedLabel) {
+            const watchlistDiv = document.getElementById('watchlistDiv');
             watchlistDiv.removeChild(selectedWatchList);
             watchlistDiv.removeChild(selectedLabel);
             return true;
