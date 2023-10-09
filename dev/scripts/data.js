@@ -15,6 +15,7 @@ async function LoadData() {
       i == 1 && (bseData = MergeData(bseData, dataJson));
     }
   }
+  HideLoader();
 
   if (settings.configs.t2t) {
     CheckForT10(nseData);

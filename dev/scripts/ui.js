@@ -79,3 +79,8 @@ function RemoveWatchlistCode(watchlistId) {
         }
     }
 }
+
+function HideLoader() {
+    document.getElementById("loader").style.display = "none";
+    document.getElementById("myDiv").style.display = "block";
+}
