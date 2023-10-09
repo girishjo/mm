@@ -4,7 +4,7 @@ const dataTable = document.querySelector('#stockData');
 const portfolioTable = document.querySelector('#portfolioTable');
 
 var watchlists = {};
-var activeWL, activeWLName;
+var activeWL;
 
 function loadDataFromLocal() {
     if (localStorage.length > 0) {
@@ -86,15 +86,12 @@ function UpdateWatchList() {
         if (firstWatchlist) {
             firstWatchlist.checked = true;
             activeWL = firstWatchlist.value;
-            activeWLName = document.querySelector('label[for=' + firstWatchlist.id + ']').innerText;
         }
         else {
             activeWL = undefined;
-            activeWLName = undefined;
         }
     } else {
         activeWL = selectedWatchList.value;
-        activeWLName = document.querySelector('label[for=' + selectedWatchList.id + ']').innerText;
     }
     resetTable(listTable);
     resetTable(dataTable);
@@ -145,7 +142,7 @@ function AddWatchlist() {
 function RemoveWatchlist() {
     if (document.querySelectorAll('input[name="stockListRadio"]').length > 1) {
         const selectedWatchList = document.querySelector('input[name="stockListRadio"]:checked');
-        if (confirm("It will delete Watchlist: " + activeWLName + ".\r\nProceed?")) {
+        if (confirm("It will delete Watchlist: " + watchlists[selectedWatchList.value].name + ".\r\nProceed?")) {
             if (RemoveWatchlistCode(selectedWatchList.id)) {
                 delete watchlists[selectedWatchList.value];
                 saveDataOnLocal(true, false);
