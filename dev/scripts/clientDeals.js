@@ -118,11 +118,9 @@ function FilterDeals(bulkDeals) {
 
 function UpdateLabel() {
     if (chkFilterDeals.checked) {
-        //txtFilterDeals.disabled = false;
         txtFilterDeals.value = txtFilterDeals.getAttribute('code');
     }
     else {
-        //txtFilterDeals.disabled = true;
         txtFilterDeals.value = '';
     }
     UpdateBulkDealTable();

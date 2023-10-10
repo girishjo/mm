@@ -47,24 +47,29 @@ document.body.addEventListener('click', function (evt) {
 }, false);
 
 function AddWatchlistCode(value, name) {
-    let input = document.createElement("input");
-    input.type = "radio";
-    input.name = "stockListRadio";
-    input.addEventListener('change', () => UpdateWatchList());
+    try {
+        let input = document.createElement("input");
+        input.type = "radio";
+        input.name = "stockListRadio";
+        input.addEventListener('change', () => UpdateWatchList());
 
-    input.value = value;
-    input.id = "w" + input.value;
+        input.value = value;
+        input.id = "w" + input.value;
 
-    let label = document.createElement("label");
-    label.innerText = name;
-    label.setAttribute("for", input.id);
+        let label = document.createElement("label");
+        label.innerText = name;
+        label.setAttribute("for", input.id);
 
-    const watchlistDiv = document.getElementById('watchlistDiv');
-    const button = document.getElementById('addWatchlistBtn');
+        const watchlistDiv = document.getElementById('watchlistDiv');
+        const button = document.getElementById('addWatchlistBtn');
 
-    watchlistDiv.insertBefore(input, button);
-    watchlistDiv.insertBefore(label, button);
-    return true;
+        watchlistDiv.insertBefore(input, button);
+        watchlistDiv.insertBefore(label, button);
+        return input;
+    }
+    catch (e) {
+        return undefined;
+    }
 }
 
 function RemoveWatchlistCode(watchlistId) {
@@ -78,6 +83,7 @@ function RemoveWatchlistCode(watchlistId) {
             return true;
         }
     }
+    return false;
 }
 
 function UpdateLoader(showLoader = true, message = undefined) {

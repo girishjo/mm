@@ -123,7 +123,8 @@ function AddWatchlist() {
             j++;
         }
 
-        if (AddWatchlistCode(j + "", wlName)) {
+        const newWatchlist = AddWatchlistCode(j + "", wlName);
+        if (newWatchlist != undefined) {
             watchlists[j + ""] = {
                 name: wlName
             }
@@ -131,6 +132,13 @@ function AddWatchlist() {
                 document.getElementById('addWatchlistBtn').style.display = 'none';
                 document.getElementById('newWatchList').style.display = 'none';
             }
+            saveDataOnLocal(true, false);
+            newWatchlist.checked = true;
+            UpdateWatchList();
+            openTab('stockListDiv');
+        }
+        else {
+            alert('Error in adding watchlist');
         }
         watchlistName.value = '';
     }

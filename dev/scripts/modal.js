@@ -166,10 +166,13 @@ function OpenClientBulkDealsPage(clientName, nseCode, bseCode) {
         txtFilterDeals.setAttribute('code', bseCode);
         lblFilterDeals.innerText = watchlists[activeWL].data.filter(sh => sh[2] == bseCode)[0][0];
     }
-    txtFilterDeals.value = txtFilterDeals.getAttribute('code');
     chkFilterDeals.style.display = 'initial';
     lblFilterDealsPrefix.style.display = 'initial';
-    chkFilterDeals.checked = true;
+
+    if (chkFilterDeals.checked) {
+        txtFilterDeals.value = txtFilterDeals.getAttribute('code');
+    }
+    //chkFilterDeals.checked = true;
     UpdateBulkDealTable(clientName);
 }
 
