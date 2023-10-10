@@ -22,6 +22,7 @@ function updateRowNumber(table, prefix) {
 }
 
 function sortTable(header) {
+    UpdateLoader(true, "Sorting table");
     event.preventDefault();
     var rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
     var table = header.closest('table');
@@ -125,6 +126,7 @@ function sortTable(header) {
     // if (n > 0) {
     //     updateRowNumber(table);
     // }
+    UpdateLoader(false);
 }
 
 function resetTable(table) {

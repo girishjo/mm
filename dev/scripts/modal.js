@@ -116,6 +116,7 @@ function OpenModal(stock) {
             a.appendChild(linkText);
             a.title = stockCodes;
             a.href = "#0";
+            a.style.marginLeft = "5px";
             a.setAttribute("onclick", "OpenStockBulkDealsPage('" + stock.getAttribute('title') + "', '" + nseCode + "','" + bseCode + "');");
             bulkDealHeader.appendChild(a);
         }
