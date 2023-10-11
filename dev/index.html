@@ -11,12 +11,12 @@
 </head>
 
 <body>
-    <div id="loader">
+    <div id="loader" style="display:none;">
         <label id="loaderMsg"></label>
         <div id="loaderCircle"></div>
     </div>
 
-    <div style="display:none;" id="myDiv">
+    <div id="myDiv">
         <div class="tab">
             <button class="tablinks active" onclick="openTab('dataValidityDiv')">Data Validity</button>
             <button class="tablinks" onclick="openTab('stockListDiv')">Watchlists</button>
@@ -24,6 +24,7 @@
             <button class="tablinks" onclick="openTab('portfolioDiv')">Portfolio</button>
             <button class="tablinks" onclick="openTab('bulkDealersDiv')">Bulk Dealers</button>
             <button class="tablinks" onclick="openTab('stockBulkDealsDiv')">Bulk Deals</button>
+            <button class="tablinks" onclick="openTab('settingsDiv')">Settings</button>
         </div>
 
         <div id="updatedDataAvailable" class="blink" style="display: none;">
@@ -89,8 +90,8 @@
                         <td class="icon add">&#43;</td>
                         <td class="icon remove">&#10539;</td>
                         <td contenteditable="true" class="text"></td>
-                        <td contenteditable="true" class="text"></td>
-                        <td contenteditable="true" class="text"></td>
+                        <td contenteditable="true" class="text" onblur="UpdateUpperCase();"></td>
+                        <td contenteditable="true" class="text" onblur="CheckNumber();"></td>
                         <td contenteditable="true" class="number"></td>
                         <td contenteditable="true" class="number"></td>
                     </tr>
@@ -104,7 +105,7 @@
                 <thead>
                     <tr>
                         <th class="number sort"><a href="#" class="sort-by">No.</a></th>
-                        <th class="text sort"><a href="#" class="sort-by">Name<a></th>
+                        <th class="text sort"><a href="#" class="sort-by">Name</a></th>
                         <th class="number sort"><a href="#" class="sort-by">Delivery</a></th>
                         <th class="number sort"><a href="#" class="sort-by">Total</a></th>
                         <th class="number sort"><a href="#" class="sort-by">Delivery %</a></th>
@@ -169,7 +170,7 @@
                     <thead>
                         <tr>
                             <th class="number sort"><a href="#" class="sort-by">No.</a></th>
-                            <th class="date sort"><a href="#" class="sort-by">Date<a></th>
+                            <th class="date sort"><a href="#" class="sort-by">Date</a></th>
                             <th class="number sort"><a href="#" class="sort-by">Delivery</a></th>
                             <th class="number sort"><a href="#" class="sort-by">Total</a></th>
                             <th class="number sort"><a href="#" class="sort-by">Delivery %</a></th>
@@ -198,7 +199,7 @@
                 <thead>
                     <tr>
                         <th class="number sort"><a href="#" class="sort-by">No.</a></th>
-                        <th class="text sort"><a href="#" class="sort-by">Name<a></th>
+                        <th class="text sort"><a href="#" class="sort-by">Name</a></th>
                         <th class="number sort"><a href="#" class="sort-by">Qty</a></th>
                         <th class="number sort"><a href="#" class="sort-by">Buy Avg</a></th>
                         <th class="number sort"><a href="#" class="sort-by">Buy Value</a></th>
@@ -241,9 +242,9 @@
                 <thead>
                     <tr>
                         <th class="number sort"><a href="#" class="sort-by">No.</a></th>
-                        <th class="date sort"><a href="#" class="sort-by">Date<a></th>
-                        <th class="text sort"><a href="#" class="sort-by">Code<a></th>
-                        <th class="text sort"><a href="#" class="sort-by">Name<a></th>
+                        <th class="date sort"><a href="#" class="sort-by">Date</a></th>
+                        <th class="text sort"><a href="#" class="sort-by">Code</a></th>
+                        <th class="text sort"><a href="#" class="sort-by">Name</a></th>
                         <th class="text sort"><a href="#" class="sort-by">Type</a></th>
                         <th class="number sort"><a href="#" class="sort-by">Quantity</a></th>
                         <th class="number sort"><a href="#" class="sort-by">Price</a></th>
@@ -272,9 +273,9 @@
                 <thead>
                     <tr>
                         <th class="number sort"><a href="#" class="sort-by">No.</a></th>
-                        <th class="date sort"><a href="#" class="sort-by">Date<a></th>
-                        <th class="text sort"><a href="#" class="sort-by">Code<a></th>
-                        <th class="text sort"><a href="#" class="sort-by">Name<a></th>
+                        <th class="date sort"><a href="#" class="sort-by">Date</a></th>
+                        <th class="text sort"><a href="#" class="sort-by">Code</a></th>
+                        <th class="text sort"><a href="#" class="sort-by">Name</a></th>
                         <th class="text sort"><a href="#" class="sort-by">Type</a></th>
                         <th class="number sort"><a href="#" class="sort-by">Quantity</a></th>
                         <th class="number sort"><a href="#" class="sort-by">Price</a></th>
@@ -293,6 +294,72 @@
                 </tbody>
             </table>
         </div>
+        <div id="settingsDiv" class="tabcontent" style="display: none;">
+            <Button onclick="SaveSettings();UpdateView();" style="margin: 10px;">Save Settings</Button>
+            <table id="settingsTable">
+                <thead>
+                    <tr>
+                        <th class="number">No.</th>
+                        <th class="text">Setting Name</th>
+                        <th class="text">Default Setting</th>
+                        <th class="text">User's Setting</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="hide">
+                        <td class="number"></td>
+                        <td class="text"></td>
+                        <td class="text"></td>
+                        <td class="text"></td>
+                    </tr>
+                    <tr>
+                        <td class="number"></td>
+                        <td class="text">History Days:</td>
+                        <td class="text">
+                            <input type="number" disabled>
+                        </td>
+                        <td class="text">
+                            <input type="number" step="1" min="11" max="20" value="11" onKeyDown="return false;">
+                        </td>
+                    </tr>
+                    <tr">
+                        <td class="number"></td>
+                        <td class="text">Refresh in minutes:</td>
+                        <td class="text">
+                            <input type="number" disabled>
+                        </td>
+                        <td class="text">
+                            <input type="number" step="5" min="5" max="60" value="5" onKeyDown="return false;">
+                        </td>
+                        </tr>
+                        <tr>
+                            <td class="number"></td>
+                            <td class="text">T2T Support</td>
+                            <td class="text"><input type="checkbox" disabled> </td>
+                            <td class="text"><input type="checkbox" onchange="ToggleT2TTexts(3, !this.checked);">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="number"></td>
+                            <td class="text">T2T days names: </td>
+                            <td class="text">
+                                <input type="text" disabled>
+                                <br>
+                                <input type="text" disabled>
+                                <br>
+                                <input type="text" disabled>
+                            </td>
+                            <td class="text">
+                                <input type="text">
+                                <br>
+                                <input type="text">
+                                <br>
+                                <input type="text">
+                            </td>
+                        </tr>
+                </tbody>
+            </table>
+        </div>
     </div>
 </body>
 
@@ -304,7 +371,7 @@
 <script defer src="./scripts/history.js"></script>
 <script defer src="./scripts/drag.js"></script>
 
-<script defer src="./scripts/override.js"></script>
+<!-- <script defer src="./scripts/override.js"></script> -->
 <script defer src="./scripts/data.js"></script>
 <script defer src="./scripts/defaults.js"></script>
 <script defer src="./scripts/clientDeals.js"></script>

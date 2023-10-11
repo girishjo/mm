@@ -93,10 +93,6 @@ function UpdateWatchList() {
     } else {
         activeWL = selectedWatchList.value;
     }
-    resetTable(listTable);
-    resetTable(dataTable);
-    resetTable(portfolioTable);
-    updateListTable(watchlists[activeWL]);
 
     // if (document.body.clientHeight > window.innerHeight) {
     //     document.body.style.paddingRight = "0px";
@@ -104,6 +100,31 @@ function UpdateWatchList() {
     // else {
     //     document.body.style.paddingRight = "17px";
     // }
+
+    if (document.getElementById("stockListDiv").style.display == "block") {
+        resetTable(listTable);
+        updateListTable(watchlists[activeWL]);
+        updateRowNumber(listTable);
+    }
+
+    if (document.getElementById("stockDataDiv").style.display == "block") {
+        resetTable(dataTable);
+        const stockList = watchlists[activeWL];
+        if (stockList && stockList.data) {
+            for (let i = 0; i < stockList.data.length; i++) {
+                if (stockList.data[i][0]) {
+                    updateDataTable(dataTable, stockList.data[i][0], stockList.data[i][1], stockList.data[i][2]);
+                }
+            }
+        }
+        updateRowNumber(dataTable);
+    }
+
+    if (document.getElementById("portfolioDiv").style.display == "block") {
+        resetTable(portfolioTable);
+        upadtePortfolioTable(watchlists[activeWL].data);
+        updateRowNumber(portfolioTable);
+    }
 }
 
 function AddWatchlist() {
@@ -223,10 +244,8 @@ function updateListTable(stockList) {
                 newRow.cells[5].innerText = stockList.data[i][2];
                 stockList.data[i][3] && (newRow.cells[6].innerText = stockList.data[i][3]);
                 stockList.data[i][4] && (newRow.cells[7].innerText = stockList.data[i][4]);
-                updateDataTable(dataTable, stockList.data[i][0], stockList.data[i][1], stockList.data[i][2]);
             }
         }
-        upadtePortfolioTable(stockList.data);
     }
     if (listTable.rows.length == 2) {
         addEmptyRow(listTable);
@@ -235,9 +254,6 @@ function updateListTable(stockList) {
     // else {
     //     listTable.parentElement.style.display = 'none';
     // }
-    updateRowNumber(listTable);
-    updateRowNumber(dataTable);
-    updateRowNumber(portfolioTable);
 }
 
 function updateDataTable(table, name, nseCode, bseCode, data = undefined, rowIndex = undefined) {
@@ -292,10 +308,10 @@ function updateDataTable(table, name, nseCode, bseCode, data = undefined, rowInd
             newRow.cells[1].appendChild(a);
         }
 
-        if (settings.configs.t2t && stockData["T2T"]) {
+        if (settings.configs.t2t && stockData["T2T"] != undefined) {
             var t2tLabel = document.createElement('label');
             t2tLabel.classList.add("highlight");
-            t2tLabel.innerText = "T2T (" + stockData["T2T"] + ")";
+            t2tLabel.innerText = settings.configs.t2tTexts[stockData["T2T"]];
             newRow.cells[1].appendChild(t2tLabel);
         }
 
@@ -310,13 +326,19 @@ function updateDataTable(table, name, nseCode, bseCode, data = undefined, rowInd
 
             newRow.cells[4].innerText = deliveryPercentage + " %";
             if (deliveryPercentage >= 75) {
-                newRow.classList.add('green-row');
+                newRow.cells[2].classList.add('positive');
+                newRow.cells[3].classList.add('positive');
+                newRow.cells[4].classList.add('positive');
             }
             else if (deliveryPercentage >= 50 && deliveryPercentage < 75) {
-                newRow.classList.add('orange-row');
+                newRow.cells[2].classList.add('neutral');
+                newRow.cells[3].classList.add('neutral');
+                newRow.cells[4].classList.add('neutral');
             }
             else {
-                newRow.classList.add('red-row');
+                newRow.cells[2].classList.add('negative');
+                newRow.cells[3].classList.add('negative');
+                newRow.cells[4].classList.add('negative');
             }
         }
 
@@ -336,6 +358,21 @@ function updateDataTable(table, name, nseCode, bseCode, data = undefined, rowInd
             newRow.cells[7].innerText = stockData.Change;
             if (Number(stockData.Change) != NaN) {
                 newRow.cells[7].innerText = stockData.Change.toCustomString(2) + " %";
+                if (stockData.Change > 0) {
+                    newRow.cells[5].classList.add('positive');
+                    newRow.cells[6].classList.add('positive');
+                    newRow.cells[7].classList.add('positive');
+                }
+                else if (stockData.Change == 0) {
+                    newRow.cells[5].classList.add('neutral');
+                    newRow.cells[6].classList.add('neutral');
+                    newRow.cells[7].classList.add('neutral');
+                }
+                else {
+                    newRow.cells[5].classList.add('negative');
+                    newRow.cells[6].classList.add('negative');
+                    newRow.cells[7].classList.add('negative');
+                }
             }
         }
     }
@@ -439,8 +476,6 @@ function upadtePortfolioTable(stockList) {
             newRow.cells[9].style.color = 'red';
             newRow.cells[10].style.color = 'red';
         }
-
-
     }
 }
 

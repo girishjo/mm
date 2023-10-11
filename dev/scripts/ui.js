@@ -23,18 +23,20 @@ function openTab(tabId) {
 
     const watchlistDiv = document.getElementById('watchlistDiv');
 
-    if (["stockListDiv", "stockDataDiv", "portfolioDiv"].includes(tabId)) {
-        watchlistDiv.style.display = 'block';
-    } else {
-        watchlistDiv.style.display = 'none';
-    }
-
-    if (tabId == "bulkDealersDiv") {
-        InitBulkDealers();
-    }
-
-    if (tabId == "stockBulkDealsDiv") {
-        InitStockBulkDeals();
+    watchlistDiv.style.display = 'none';
+    switch (tabId) {
+        case "stockListDiv":
+        case "stockDataDiv":
+        case "portfolioDiv":
+            watchlistDiv.style.display = 'block';
+            UpdateWatchList();
+            break;
+        case "bulkDealersDiv":
+            InitBulkDealers();
+            break;
+        case "stockBulkDealsDiv":
+            InitStockBulkDeals();
+            break;
     }
 }
 

@@ -303,3 +303,20 @@ Number.prototype.toCustomString = function (decimalPlaces = 0) {
 String.prototype.toCustomString = function (decimalPlaces = 0) {
     return Number(this).toLocaleString('en-In', { minimumFractionDigits: decimalPlaces, maximumFractionDigits: decimalPlaces });
 }
+
+function UpdateUpperCase() {
+    event.target.textContent = event.target.textContent.toUpperCase();
+}
+
+function CheckNumber() {
+    const bseCode = event.target.textContent.trim();
+    if (bseCode) {
+        if (isNaN(bseCode) || !/^[1-9]\d*$/.test(bseCode)) {
+            alert('Not a valid BSE code');
+            event.target.textContent = '';
+            event.target.focus();
+            return false;
+        }
+    }
+    event.target.textContent = bseCode;
+}

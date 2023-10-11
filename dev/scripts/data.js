@@ -46,14 +46,14 @@ function CheckForT10(result) {
       const nextDate = GetNextWorkingDay(d);
 
       switch (todayDate.toDateString()) {
-        case d.toDateString():
-          res["T2T"] = "10th day";
-          break;
         case prevDate.toDateString():
-          res["T2T"] = "9th day";
+          res["T2T"] = 0;
+          break;
+        case d.toDateString():
+          res["T2T"] = 1;
           break;
         case nextDate.toDateString():
-          res["T2T"] = "11th day";
+          res["T2T"] = 2;
           break;
       }
     }

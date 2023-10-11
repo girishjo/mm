@@ -105,15 +105,15 @@ tr:nth-child(even) {
     background-color: #dddddd;
 }
 
-tr.green-row {
+td.positive {
     color: green;
 }
 
-tr.orange-row {
+td.neutral {
     color: black;
 }
 
-tr.red-row {
+td.negative {
     color: red;
 }
 
