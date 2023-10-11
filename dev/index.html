@@ -21,9 +21,9 @@
             <button class="tablinks active" onclick="openTab('dataValidityDiv')">Data Validity</button>
             <button class="tablinks" onclick="openTab('stockListDiv')">Watchlists</button>
             <button class="tablinks active" onclick="openTab('stockDataDiv')">Stock Data</button>
-            <button class="tablinks" onclick="openTab('portfolioDiv')">Portfolio</button>
             <button class="tablinks" onclick="openTab('bulkDealersDiv')">Bulk Dealers</button>
             <button class="tablinks" onclick="openTab('stockBulkDealsDiv')">Bulk Deals</button>
+            <button class="tablinks" onclick="openTab('portfolioDiv')">Portfolio</button>
             <button class="tablinks" onclick="openTab('settingsDiv')">Settings</button>
         </div>
 
@@ -194,40 +194,6 @@
                 </table>
             </div>
         </div>
-        <div id="portfolioDiv" class="tabcontent" style="display: none;">
-            <table id="portfolioTable">
-                <thead>
-                    <tr>
-                        <th class="number sort"><a href="#" class="sort-by">No.</a></th>
-                        <th class="text sort"><a href="#" class="sort-by">Name</a></th>
-                        <th class="number sort"><a href="#" class="sort-by">Qty</a></th>
-                        <th class="number sort"><a href="#" class="sort-by">Buy Avg</a></th>
-                        <th class="number sort"><a href="#" class="sort-by">Buy Value</a></th>
-                        <th class="number sort"><a href="#" class="sort-by">Close</a></th>
-                        <th class="number sort"><a href="#" class="sort-by">Present Value</a></th>
-                        <th class="number sort"><a href="#" class="sort-by">P&L</a></th>
-                        <th class="number sort"><a href="#" class="sort-by">Net Chg %</a></th>
-                        <th class="number sort"><a href="#" class="sort-by">Day Chg</a></th>
-                        <th class="number sort"><a href="#" class="sort-by">Day Chg %</a></th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr class="hide">
-                        <td class="number"></td>
-                        <td class="text"></td>
-                        <td class="number"></td>
-                        <td class="number"></td>
-                        <td class="number"></td>
-                        <td class="number"></td>
-                        <td class="number"></td>
-                        <td class="number"></td>
-                        <td class="number"></td>
-                        <td class="number"></td>
-                        <td class="number"></td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
         <div id="bulkDealersDiv" class="tabcontent" style="display: none;">
             Select Dealer:
             <select id="ddlBulkDealer" onchange="UpdateBulkDealTable();">
@@ -288,6 +254,40 @@
                         <td class="text"></td>
                         <td class="text"></td>
                         <td class="text"></td>
+                        <td class="number"></td>
+                        <td class="number"></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div id="portfolioDiv" class="tabcontent" style="display: none;">
+            <table id="portfolioTable">
+                <thead>
+                    <tr>
+                        <th class="number sort"><a href="#" class="sort-by">No.</a></th>
+                        <th class="text sort"><a href="#" class="sort-by">Name</a></th>
+                        <th class="number sort"><a href="#" class="sort-by">Qty</a></th>
+                        <th class="number sort"><a href="#" class="sort-by">Buy Avg</a></th>
+                        <th class="number sort"><a href="#" class="sort-by">Buy Value</a></th>
+                        <th class="number sort"><a href="#" class="sort-by">Close</a></th>
+                        <th class="number sort"><a href="#" class="sort-by">Present Value</a></th>
+                        <th class="number sort"><a href="#" class="sort-by">P&L</a></th>
+                        <th class="number sort"><a href="#" class="sort-by">Net Chg %</a></th>
+                        <th class="number sort"><a href="#" class="sort-by">Day Chg</a></th>
+                        <th class="number sort"><a href="#" class="sort-by">Day Chg %</a></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="hide">
+                        <td class="number"></td>
+                        <td class="text"></td>
+                        <td class="number"></td>
+                        <td class="number"></td>
+                        <td class="number"></td>
+                        <td class="number"></td>
+                        <td class="number"></td>
+                        <td class="number"></td>
+                        <td class="number"></td>
                         <td class="number"></td>
                         <td class="number"></td>
                     </tr>
