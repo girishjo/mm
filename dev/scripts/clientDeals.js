@@ -91,11 +91,8 @@ function ShowClientDeals(table, deals, fieldName) {
             // total -= deal.Quantity;
             //bulkDeal.Quantity *= -1;
         }
-        newRow.cells[columnCounter++].innerText = deal.Quantity.toLocaleString('en-In');
-        newRow.cells[columnCounter++].innerText = deal.Price.toLocaleString('en-In', {
-            minimumFractionDigits: 2,
-            maximumFractionDigits: 2
-        });
+        newRow.cells[columnCounter++].innerText = deal.Quantity.toCustomString();
+        newRow.cells[columnCounter++].innerText = deal.Price.toCustomString(2);
     }
 }
 

@@ -343,16 +343,10 @@ function updateDataTable(table, name, nseCode, bseCode, data = undefined, rowInd
         }
 
         if (stockData.Open != undefined) {
-            newRow.cells[5].innerText = stockData.Open.toLocaleString('en-In', {
-                minimumFractionDigits: 2,
-                maximumFractionDigits: 2
-            });
+            newRow.cells[5].innerText = stockData.Open.toCustomString(2);
         }
         if (stockData.Close != undefined) {
-            newRow.cells[6].innerText = stockData.Close.toLocaleString('en-In', {
-                minimumFractionDigits: 2,
-                maximumFractionDigits: 2
-            });
+            newRow.cells[6].innerText = stockData.Close.toCustomString(2);
         }
         if (stockData.Change != undefined) {
             newRow.cells[7].innerText = stockData.Change;
@@ -374,6 +368,9 @@ function updateDataTable(table, name, nseCode, bseCode, data = undefined, rowInd
                     newRow.cells[7].classList.add('negative');
                 }
             }
+            if (stockData.PrevClose != undefined) {
+                newRow.cells[7].title = "from " + stockData.PrevClose.toCustomString(2);
+            }
         }
     }
 
@@ -394,20 +391,14 @@ function upadtePortfolioTable(stockList) {
                     newRow.cells[2].innerText = stockDetails[3];
                     newRow.cells[3].innerText = stockDetails[4].toCustomString(2);
                     totalInvestment += stockDetails[3] * stockDetails[4];
-                    newRow.cells[4].innerText = (stockDetails[3] * stockDetails[4]).toCustomString(2);
+                    newRow.cells[4].innerText = (stockDetails[3] * stockDetails[4]).toCustomString();
                     if (!stockData.Close && stockData.History && stockData.History.length > 0) {
                         stockData.Close = stockData.History[0].Close;
                     }
-                    newRow.cells[5].innerText = stockData.Close.toLocaleString('en-In', {
-                        minimumFractionDigits: 2,
-                        maximumFractionDigits: 2
-                    });
+                    newRow.cells[5].innerText = stockData.Close.toCustomString(2);
                     currentValue += stockDetails[3] * stockData.Close;
                     newRow.cells[6].innerText = (stockDetails[3] * stockData.Close).toLocaleString('en-In');
-                    newRow.cells[7].innerText = (stockDetails[3] * (stockData.Close - stockDetails[4])).toLocaleString('en-In', {
-                        minimumFractionDigits: 2,
-                        maximumFractionDigits: 2
-                    });
+                    newRow.cells[7].innerText = (stockDetails[3] * (stockData.Close - stockDetails[4])).toCustomString();
                     const netChange = (stockData.Close - stockDetails[4]) * 100 / stockDetails[4];
                     newRow.cells[8].innerText = netChange.toCustomString(2) + " %";
                     if (netChange > 0) {
@@ -426,10 +417,7 @@ function upadtePortfolioTable(stockList) {
                         stockData.Change = (stockData.Close - stockData.PrevClose) * 100 / stockData.PrevClose;
                         let dayAbsoluteChange = stockDetails[3] * (stockData.Close - stockData.PrevClose);
                         dayPnL += dayAbsoluteChange;
-                        newRow.cells[9].innerText = dayAbsoluteChange.toLocaleString('en-In', {
-                            minimumFractionDigits: 2,
-                            maximumFractionDigits: 2
-                        });
+                        newRow.cells[9].innerText = dayAbsoluteChange.toCustomString();
                         newRow.cells[10].innerText = stockData.Change.toCustomString(2) + " %"
                         if (stockData.Change > 0) {
                             newRow.cells[9].style.color = 'green';
