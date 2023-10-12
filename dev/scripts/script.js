@@ -395,42 +395,44 @@ function upadtePortfolioTable(stockList) {
                     if (!stockData.Close && stockData.History && stockData.History.length > 0) {
                         stockData.Close = stockData.History[0].Close;
                     }
-                    newRow.cells[5].innerText = stockData.Close.toCustomString(2);
-                    currentValue += stockDetails[3] * stockData.Close;
-                    newRow.cells[6].innerText = (stockDetails[3] * stockData.Close).toLocaleString('en-In');
-                    newRow.cells[7].innerText = (stockDetails[3] * (stockData.Close - stockDetails[4])).toCustomString();
-                    const netChange = (stockData.Close - stockDetails[4]) * 100 / stockDetails[4];
-                    newRow.cells[8].innerText = netChange.toCustomString(2) + " %";
-                    if (netChange > 0) {
-                        newRow.cells[7].style.color = 'green';
-                        newRow.cells[8].style.color = 'green';
-                    }
-                    else if (netChange < 0) {
-                        newRow.cells[7].style.color = 'red';
-                        newRow.cells[8].style.color = 'red';
-                    }
+                    if (stockData.Close != undefined) {
+                        newRow.cells[5].innerText = stockData.Close.toCustomString(2);
+                        currentValue += stockDetails[3] * stockData.Close;
+                        newRow.cells[6].innerText = (stockDetails[3] * stockData.Close).toLocaleString('en-In');
+                        newRow.cells[7].innerText = (stockDetails[3] * (stockData.Close - stockDetails[4])).toCustomString();
+                        const netChange = (stockData.Close - stockDetails[4]) * 100 / stockDetails[4];
+                        newRow.cells[8].innerText = netChange.toCustomString(2) + " %";
+                        if (netChange > 0) {
+                            newRow.cells[7].style.color = 'green';
+                            newRow.cells[8].style.color = 'green';
+                        }
+                        else if (netChange < 0) {
+                            newRow.cells[7].style.color = 'red';
+                            newRow.cells[8].style.color = 'red';
+                        }
 
-                    if (stockData.PrevClose != undefined && stockData.PrevClose != 0) {
-                        if (!stockData.History || stockData.History.length == 0) {
-                            stockData.PrevClose = stockDetails[4];
+                        if (stockData.PrevClose != undefined && stockData.PrevClose != 0) {
+                            if (!stockData.History || stockData.History.length == 0) {
+                                stockData.PrevClose = stockDetails[4];
+                            }
+                            stockData.Change = (stockData.Close - stockData.PrevClose) * 100 / stockData.PrevClose;
+                            let dayAbsoluteChange = stockDetails[3] * (stockData.Close - stockData.PrevClose);
+                            dayPnL += dayAbsoluteChange;
+                            newRow.cells[9].innerText = dayAbsoluteChange.toCustomString();
+                            newRow.cells[10].innerText = stockData.Change.toCustomString(2) + " %"
+                            if (stockData.Change > 0) {
+                                newRow.cells[9].style.color = 'green';
+                                newRow.cells[10].style.color = 'green';
+                            }
+                            else if (stockData.Change < 0) {
+                                newRow.cells[9].style.color = 'red';
+                                newRow.cells[10].style.color = 'red';
+                            }
                         }
-                        stockData.Change = (stockData.Close - stockData.PrevClose) * 100 / stockData.PrevClose;
-                        let dayAbsoluteChange = stockDetails[3] * (stockData.Close - stockData.PrevClose);
-                        dayPnL += dayAbsoluteChange;
-                        newRow.cells[9].innerText = dayAbsoluteChange.toCustomString();
-                        newRow.cells[10].innerText = stockData.Change.toCustomString(2) + " %"
-                        if (stockData.Change > 0) {
-                            newRow.cells[9].style.color = 'green';
-                            newRow.cells[10].style.color = 'green';
+                        else {
+                            newRow.cells[9].innerText = 0;
+                            newRow.cells[10].innerText = (0).toFixed(2).toLocaleString('en-In') + " %"
                         }
-                        else if (stockData.Change < 0) {
-                            newRow.cells[9].style.color = 'red';
-                            newRow.cells[10].style.color = 'red';
-                        }
-                    }
-                    else {
-                        newRow.cells[9].innerText = 0;
-                        newRow.cells[10].innerText = (0).toFixed(2).toLocaleString('en-In') + " %"
                     }
                 }
             }
