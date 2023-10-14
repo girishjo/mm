@@ -87,8 +87,8 @@ function SaveSettings() {
     settings.configs.t2tTexts[2] = settingsTable.rows[5].cells[userSettingsColumn].children[4].value || settingsTable.rows[5].cells[defaultColumn].children[4].value;
 
     window.localStorage.setItem("userSettings", JSON.stringify(settings));
-    alert('Settings saved');
-    window.location.reload();
+    ShowMessage('Settings saved');
+    setTimeout(() => window.location.reload(), 1000);
 }
 
 // function LoadLocalDefaults() {

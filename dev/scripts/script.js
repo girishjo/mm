@@ -17,7 +17,7 @@ function loadDataFromLocal() {
                     watchlists = { ...storedData };
                 }
                 else {
-                    alert('No saved Watchlist found, loading default watchlists');
+                    ShowMessage('No saved Watchlist found, loading default watchlists');
                     watchlists = defaultWatchlists;
                     //saveDataOnLocal(true, true);
                 }
@@ -36,7 +36,7 @@ function loadDataFromLocal() {
         }
     }
     else {
-        alert('No saved Watchlist found, loading default watchlists');
+        ShowMessage('No saved Watchlist found, loading default watchlists');
         watchlists = defaultWatchlists;
         //saveDataOnLocal(true, true);
     }
@@ -63,7 +63,7 @@ function saveDataOnLocal(silentUpdate = false, loadDefault = false) {
     window.localStorage.setItem("watchlists", JSON.stringify(newWatchlists));
     // window.localStorage.removeItem("stocksList");
     if (!silentUpdate) {
-        alert('Watchlists saved');
+        ShowMessage('Watchlists saved');
     }
     // window.location.reload();
 }
@@ -212,7 +212,7 @@ function AddWatchlist() {
             openTab('stockListDiv');
         }
         else {
-            alert('Error in adding watchlist');
+            ShowMessage('Error in adding watchlist');
         }
         watchlistName.value = '';
     }
