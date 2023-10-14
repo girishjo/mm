@@ -130,6 +130,9 @@ function sortTable(header) {
 }
 
 function resetTable(table) {
+    if (typeof table == 'string') {
+        table = document.getElementById(table);
+    }
     for (let i = 2; i < table.rows.length; i) {
         table.deleteRow(i);
     }
@@ -235,7 +238,7 @@ function toObject(table) {
             const res = [];
             for (let j = 0; j < row.cells.length; j++) {
                 const cell = row.cells[j];
-                j > 2 && res.push(cell.textContent);
+                j > 3 && res.push(cell.textContent);
             }
             res.length > 0 && res[0].trim() != "" && result.push(res);
         }

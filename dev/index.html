@@ -77,6 +77,7 @@
                         <th class="fitwidth">No.</th>
                         <th class="fitwidth">Add</th>
                         <th class="fitwidth">Remove</th>
+                        <th class="fitwidth">Move</th>
                         <th class="text">Stock Name</th>
                         <th class="text">NSE Code</th>
                         <th class="text">BSE Code</th>
@@ -89,6 +90,7 @@
                         <td class="number">0</td>
                         <td class="icon add">&#43;</td>
                         <td class="icon remove">&#10539;</td>
+                        <td class="icon move">&#8594;</td>
                         <td contenteditable="true" class="text"></td>
                         <td contenteditable="true" class="text" onblur="UpdateUpperCase();"></td>
                         <td contenteditable="true" class="text" onblur="CheckNumber();"></td>
@@ -99,6 +101,18 @@
             </table>
 
             <Button onclick="saveDataOnLocal();UpdateWatchList();" style="margin: 10px;">Save Watchlists</Button>
+            <div id="watchlistModal" class="modal">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <span id="watchlistModalCloser" class="close" style="float: right;">&times;</span>
+                        <h2 id="otherWatchlistsHeader" style="width: 200px;">Move this stock to: </h2>
+                    </div>
+                    <div id="otherWatchlistsDiv" class="modal-body">
+                        <select id="ddlMoveToWatchlist" onchange="MoveStock();">
+                        </select>
+                    </div>
+                </div>
+            </div>
         </div>
         <div id="stockDataDiv" class="tabcontent" style="display: block;">
             <table id="stockData">
@@ -133,7 +147,7 @@
                 <!-- Modal content -->
                 <div class="modal-content">
                     <div class="modal-header">
-                        <span class="close">&times;</span>
+                        <span id="modalCloser" class="close">&times;</span>
                         <h2 id="bulkDealHeader">Bulk Deals</h2>
                     </div>
                     <div class="modal-body">
@@ -361,13 +375,14 @@
             </table>
         </div>
     </div>
+    <div id="snackbar">Test message...</div>
 </body>
 
 <script defer src="./scripts/utils.js"></script>
 <script defer src="./scripts/merge.js"></script>
 <script defer src="./scripts/ui.js"></script>
 <script defer src="./scripts/script.js"></script>
-<script defer src="./scripts/modal.js"></script>
+<script defer src="./scripts/bulkDeals.js"></script>
 <script defer src="./scripts/history.js"></script>
 <script defer src="./scripts/drag.js"></script>
 
@@ -375,6 +390,6 @@
 <script defer src="./scripts/data.js"></script>
 <script defer src="./scripts/defaults.js"></script>
 <script defer src="./scripts/clientDeals.js"></script>
-<script defer src="./scripts/stockBulkDeals.js"></script>
+<script defer src="./scripts/allBulkDeals.js"></script>
 
 </html>

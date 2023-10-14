@@ -2,31 +2,34 @@ var defaultWatchlists, settings;
 var todayDate, todayDateHour;
 
 window.addEventListener('load', async () => {
+    UpdateLoader(true, "Downloading default settings", 0.5);
     settings = await GetData('./data/settings.json');
     UpdateSettings(settings, true);
+
+    UpdateLoader(true, "Loading user's settings", 0.5);
     settings = LoadUserSettings(settings);
 
     todayDate = GetLastWorkingDay(new Date());
     todayDateHour = todayDate;
     todayDate = new Date(todayDate.getFullYear(), todayDate.getMonth(), todayDate.getDate());
 
+    UpdateLoader(true, "Downloading default Watchlists", 0.5);
     defaultWatchlists = await GetData('../data/defaultWatchlists.json');
-    UpdateView();
+    //UpdateView();
+    LoadData();
 });
 
-function UpdateView() {
-    UpdateLoader(true, "Loading data");
-    // if (location.hostname === "localhost" || location.hostname === "127.0.0.1") {
-    //     LoadLocalDefaults().then(() =>
-    //         LoadData()
-    //     );
-    // }
-    // else {
-    //     LoadData();
-    // }
-    LoadData();
-    UpdateLoader(false);
-}
+// function UpdateView() {
+//     // if (location.hostname === "localhost" || location.hostname === "127.0.0.1") {
+//     //     LoadLocalDefaults().then(() =>
+//     //         LoadData()
+//     //     );
+//     // }
+//     // else {
+//     //     LoadData();
+//     // }
+//     LoadData();
+// }
 
 function LoadUserSettings(defaultSettings) {
     let userSettings = defaultSettings;

@@ -21,9 +21,9 @@ async function LoadData() {
       i == 1 && (bseData = MergeData(bseData, dataJson));
     }
   }
-  UpdateLoader(false);
 
   if (settings.configs.t2t) {
+    UpdateLoader(true, "Checking for T2T stocks", 0.5);
     CheckForT10(nseData);
     CheckForT10(bseData);
   }
@@ -32,6 +32,7 @@ async function LoadData() {
   bseData = bseData.data;
 
   loadDataFromLocal();
+  UpdateLoader(false);
   setTimeout(CheckForLatestData, settings.constants.refreshDataTimeOut * 60 * 1000);
 }
 

@@ -1,14 +1,8 @@
 // Get the modal
 var modal = document.getElementById("myModal");
 
-// Get the <span> element that closes the modal
-var span = document.getElementsByClassName("close")[0];
-
-const bulkDealsTable = document.getElementById("bulkDeals");
-const bulkDealHeader = document.getElementById("bulkDealHeader");
-
 // When the user clicks the button, open the modal 
-function OpenModal(stock) {
+function ShowBulkDeal(stock) {
     //event.preventDefault();
     let bulkDeals = [];
     const stockCodes = stock.getAttribute('codes');
@@ -62,6 +56,7 @@ function OpenModal(stock) {
         || a.Quantity - b.Quantity
         || a.Price - b.Price);
 
+    const bulkDealsTable = document.getElementById("bulkDeals");
     var total = 0;
     for (let i = 0; i < bulkDeals.length; i++) {
         const bulkDeal = bulkDeals[i];
@@ -103,6 +98,7 @@ function OpenModal(stock) {
     else if (total < 0) {
         newRow.cells[3].style.color = 'red';
     }
+    const bulkDealHeader = document.getElementById("bulkDealHeader");
     bulkDealHeader.innerText = "Bulk deals: " + stock.getAttribute('title');
     if (bulkDeals.length > 0) {
         bulkDealHeader.innerText += " [" + bulkDeals[0].Date + "]";
@@ -124,7 +120,7 @@ function OpenModal(stock) {
 }
 
 // When the user clicks on <span> (x), close the modal
-span.onclick = function () {
+document.getElementById("modalCloser").onclick = function () {
     HideModal();
 }
 
@@ -148,8 +144,7 @@ function HideModal() {
     // document.body.style.paddingRight = '';
     document.body.classList.toggle('modal-shown');
     modal.style.display = "none";
-    resetTable(bulkDealsTable);
-    resetTable(clientDealsTable);
+    resetTable("bulkDeals");   
 }
 
 function OpenClientBulkDealsPage(clientName, nseCode, bseCode) {

@@ -88,13 +88,37 @@ function RemoveWatchlistCode(watchlistId) {
     return false;
 }
 
-function UpdateLoader(showLoader = true, message = undefined) {
+var loaderTimeout;
+function UpdateLoader(showLoader = true, message = undefined, timeoutInSec = undefined) {
+    loaderTimeout && clearTimeout(loaderTimeout);
+    const mainDiv = document.getElementById("myDiv");
+
     if (showLoader) {
         document.getElementById("loader").style.display = "block";
-        document.getElementById("myDiv").style.display = "none";
+        mainDiv.style.opacity = "0.25";
+        document.body.classList.add('modal-shown');
+
         message && (document.getElementById("loaderMsg").innerText = message);
+        if (timeoutInSec) {
+            loaderTimeout = setTimeout((message) => {
+                console.log(message);
+                document.getElementById("loader").style.display = "none";
+                mainDiv.style.opacity = "";
+                document.body.classList.remove('modal-shown');
+            }, timeoutInSec * 1000, message);
+        }
     } else {
         document.getElementById("loader").style.display = "none";
-        document.getElementById("myDiv").style.display = "block";
+        mainDiv.style.opacity = "";
+        document.body.classList.remove('modal-shown');
     }
+}
+
+var messageTimeout;
+function ShowMessage(message, timeOutInSeconds = 3) {
+    messageTimeout && clearTimeout(messageTimeout);
+    var x = document.getElementById("snackbar");
+    x.className = "show";
+    x.innerText = message;
+    messageTimeout = setTimeout(function () { x.className = x.className.replace("show", "") }, timeOutInSeconds * 1000);
 }

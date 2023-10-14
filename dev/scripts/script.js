@@ -13,6 +13,7 @@ function loadDataFromLocal() {
             const storedData = JSON.parse(storedWatchlists);
             if (typeof storedData == "object") {
                 if (Object.keys(storedData).length > 0) {
+                    UpdateLoader(true, "Loading local Watchlists", 0.5);
                     watchlists = { ...storedData };
                 }
                 else {
@@ -40,6 +41,7 @@ function loadDataFromLocal() {
         //saveDataOnLocal(true, true);
     }
     ResetWatchlist(false);
+    UpdateLoader(false);
 }
 
 function saveDataOnLocal(silentUpdate = false, loadDefault = false) {
@@ -76,10 +78,13 @@ function ResetWatchlist(deleteExisting = true) {
     for (const wlValue in watchlists) {
         AddWatchlistCode(wlValue, watchlists[wlValue].name);
     }
+    UpdateLoader(true, "Loading Watchlists", 0.5);
     UpdateWatchList();
+    UpdateLoader(false);
 }
 
 function UpdateWatchList() {
+    const lastSelectedWL = activeWL;
     const selectedWatchList = document.querySelector('input[name="stockListRadio"]:checked');
     if (!selectedWatchList) {
         const firstWatchlist = document.querySelector('input[name="stockListRadio"]');
@@ -94,20 +99,20 @@ function UpdateWatchList() {
         activeWL = selectedWatchList.value;
     }
 
-    // if (document.body.clientHeight > window.innerHeight) {
-    //     document.body.style.paddingRight = "0px";
-    // }
-    // else {
-    //     document.body.style.paddingRight = "17px";
-    // }
-
     if (document.getElementById("stockListDiv").style.display == "block") {
+        UpdateLoader(true, "Loading Watchlists", 0.5);
+        if (lastSelectedWL != activeWL) {
+            watchlists[lastSelectedWL].data = toObject(listTable);
+        }
         resetTable(listTable);
         updateListTable(watchlists[activeWL]);
+        AddMoveToContent();
         updateRowNumber(listTable);
+        UpdateLoader(false);
     }
 
     if (document.getElementById("stockDataDiv").style.display == "block") {
+        UpdateLoader(true, "Loading stock data", 0.5);
         resetTable(dataTable);
         const stockList = watchlists[activeWL];
         if (stockList && stockList.data) {
@@ -118,13 +123,61 @@ function UpdateWatchList() {
             }
         }
         updateRowNumber(dataTable);
+        UpdateLoader(false);
     }
 
     if (document.getElementById("portfolioDiv").style.display == "block") {
+        UpdateLoader(true, "Loading Portfolio data", 0.5);
         resetTable(portfolioTable);
         upadtePortfolioTable(watchlists[activeWL].data);
         updateRowNumber(portfolioTable);
+        UpdateLoader(false);
     }
+}
+
+function AddMoveToContent() {
+    const ddlMoveToWatchlist = document.getElementById('ddlMoveToWatchlist');
+    ddlMoveToWatchlist.innerHTML = '';
+
+    ddlMoveToWatchlist.appendChild(new Option("Select watchlist", "-1"));
+    for (const wlValue in watchlists) {
+        if (wlValue != activeWL) {
+            ddlMoveToWatchlist.appendChild(new Option(watchlists[wlValue].name, wlValue));
+        }
+    }
+}
+
+function MoveStock() {
+    var modal = document.getElementById("watchlistModal");
+    const otherWatchlistsDiv = document.getElementById('otherWatchlistsDiv');
+    const stockDetailsValue = otherWatchlistsDiv.getAttribute("stockDetails");
+
+    const ddlMoveToWatchlist = document.getElementById('ddlMoveToWatchlist');
+    if (stockDetailsValue != undefined && ddlMoveToWatchlist.value != -1) {
+        const stockDetails = JSON.parse(stockDetailsValue);
+        watchlists[ddlMoveToWatchlist.value].data.unshift([
+            stockDetails.stockName,
+            stockDetails.stockNseCode,
+            stockDetails.stockBseCode,
+            stockDetails.stockQuantity,
+            stockDetails.stockPrice
+        ]);
+        listTable.deleteRow(stockDetails.rowIndex);
+        //watchlists[activeWL].data = toObject(listTable);
+        if (listTable.rows.length == 2) {
+            addEmptyRow(listTable);
+        }
+        updateRowNumber(listTable);
+    }
+
+    document.body.classList.toggle('modal-shown');
+    modal.style.display = "none";
+}
+
+document.getElementById("watchlistModalCloser").onclick = function () {
+    var modal = document.getElementById("watchlistModal");
+    document.body.classList.toggle('modal-shown');
+    modal.style.display = "none";
 }
 
 function AddWatchlist() {
@@ -239,21 +292,17 @@ function updateListTable(stockList) {
         for (let i = 0; i < stockList.data.length; i++) {
             if (stockList.data[i][0]) {
                 const newRow = addEmptyRow(listTable);
-                newRow.cells[3].innerText = stockList.data[i][0];
-                newRow.cells[4].innerText = stockList.data[i][1];
-                newRow.cells[5].innerText = stockList.data[i][2];
-                stockList.data[i][3] && (newRow.cells[6].innerText = stockList.data[i][3]);
-                stockList.data[i][4] && (newRow.cells[7].innerText = stockList.data[i][4]);
+                newRow.cells[4].innerText = stockList.data[i][0];
+                newRow.cells[5].innerText = stockList.data[i][1];
+                newRow.cells[6].innerText = stockList.data[i][2];
+                stockList.data[i][3] && (newRow.cells[7].innerText = stockList.data[i][3]);
+                stockList.data[i][4] && (newRow.cells[8].innerText = stockList.data[i][4]);
             }
         }
     }
     if (listTable.rows.length == 2) {
         addEmptyRow(listTable);
-        //listTable.parentElement.style.display = 'block';
     }
-    // else {
-    //     listTable.parentElement.style.display = 'none';
-    // }
 }
 
 function updateDataTable(table, name, nseCode, bseCode, data = undefined, rowIndex = undefined) {
@@ -302,7 +351,7 @@ function updateDataTable(table, name, nseCode, bseCode, data = undefined, rowInd
             codes.push(nseCode || undefined);
             codes.push(bseCode || undefined);
             a.setAttribute("codes", codes.join(','));
-            a.setAttribute("onclick", "OpenModal(this);");
+            a.setAttribute("onclick", "ShowBulkDeal(this);");
             data && a.setAttribute("historyDate", data.HistoryDate);
             a.classList.add("highlight");
             newRow.cells[1].appendChild(a);
@@ -483,5 +532,24 @@ listTable.addEventListener('click', function (e) {
             addEmptyRow(listTable);
         }
         updateRowNumber(listTable);
+    }
+    else if (cell.classList.contains('move')) {
+        if (listTable.rows[row.rowIndex].cells[4].innerText.trim() != '') {
+            const stockDetails = {
+                rowIndex: row.rowIndex,
+                stockName: listTable.rows[row.rowIndex].cells[4].innerText,
+                stockNseCode: listTable.rows[row.rowIndex].cells[5].innerText,
+                stockBseCode: listTable.rows[row.rowIndex].cells[6].innerText,
+                stockQuantity: listTable.rows[row.rowIndex].cells[7].innerText,
+                stockPrice: listTable.rows[row.rowIndex].cells[8].innerText
+            };
+
+            const otherWatchlistsDiv = document.getElementById('otherWatchlistsDiv');
+            otherWatchlistsDiv.setAttribute("stockDetails", JSON.stringify(stockDetails));
+
+            var modal = document.getElementById("watchlistModal");
+            modal.style.display = "block";
+            document.body.classList.toggle('modal-shown');
+        }
     }
 });
