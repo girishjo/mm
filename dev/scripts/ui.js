@@ -96,7 +96,7 @@ function UpdateLoader(showLoader = true, message = undefined, timeoutInSec = und
     if (showLoader) {
         document.getElementById("loader").style.display = "block";
         mainDiv.style.opacity = "0.25";
-        document.body.classList.add('modal-shown');
+        mainDiv.style.pointerEvents = 'none';
 
         message && (document.getElementById("loaderMsg").innerText = message);
         if (timeoutInSec) {
@@ -104,13 +104,13 @@ function UpdateLoader(showLoader = true, message = undefined, timeoutInSec = und
                 console.log(message);
                 document.getElementById("loader").style.display = "none";
                 mainDiv.style.opacity = "";
-                document.body.classList.remove('modal-shown');
+                mainDiv.style.pointerEvents = '';
             }, timeoutInSec * 1000, message);
         }
     } else {
         document.getElementById("loader").style.display = "none";
         mainDiv.style.opacity = "";
-        document.body.classList.remove('modal-shown');
+        mainDiv.style.pointerEvents = '';
     }
 }
 

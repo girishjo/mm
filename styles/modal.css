@@ -104,7 +104,6 @@
 .modal-shown {
     overflow: hidden;
     padding-right: 17px;
-    pointer-events: none;
 }
 
 /* Add Animation */
