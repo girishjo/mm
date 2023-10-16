@@ -7,8 +7,14 @@ const dataFiles = [
 ];
 
 async function LoadData() {
+  const messages = [
+    ['Nse Open Close data', 'Nse Delivery data', 'Nse Bulk Deals data'],
+    ['Bse Open Close data', 'Bse Delivery data', 'Bse Bulk Deals data'],
+  ];
+
   for (let j = 0; j < dataFiles[0].length; j++) {
     for (let i = 0; i < dataFiles.length; i++) {
+      UpdateLoader(true, 'Downloading ' + messages[i][j]);
       let dataJson = await GetData(dataFiles[i][j]);
       IsUpdateData(dataValidityTable.rows[i + 1].cells[j + 1], dataJson.dateTimeStamp);
       i == 0 && (nseData = MergeData(nseData, dataJson));
@@ -17,6 +23,7 @@ async function LoadData() {
   }
 
   if (settings.configs.t2t) {
+    UpdateLoader(true, "Checking for T2T stocks", 0.5);
     CheckForT10(nseData);
     CheckForT10(bseData);
   }
@@ -25,6 +32,7 @@ async function LoadData() {
   bseData = bseData.data;
 
   loadDataFromLocal();
+  UpdateLoader(false);
   setTimeout(CheckForLatestData, settings.constants.refreshDataTimeOut * 60 * 1000);
 }
 
@@ -39,14 +47,14 @@ function CheckForT10(result) {
       const nextDate = GetNextWorkingDay(d);
 
       switch (todayDate.toDateString()) {
-        case d.toDateString():
-          res["T2T"] = "10th day";
-          break;
         case prevDate.toDateString():
-          res["T2T"] = "9th day";
+          res["T2T"] = 0;
+          break;
+        case d.toDateString():
+          res["T2T"] = 1;
           break;
         case nextDate.toDateString():
-          res["T2T"] = "11th day";
+          res["T2T"] = 2;
           break;
       }
     }

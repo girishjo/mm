@@ -7,185 +7,405 @@
     <link rel="stylesheet" href="./styles/modal.css">
     <link rel="stylesheet" href="./styles/sort.css">
     <link rel="stylesheet" href="./styles/bulkdeal.css">
+    <link rel="stylesheet" href="./styles/tab.css">
 </head>
 
 <body>
-    <button type="button" class="collapsible active" data="dataValidityDiv">Hide Data Validity</button>
-    <button type="button" class="collapsible" data="stockListDiv">Show Stock List</button>
-    <button type="button" class="collapsible active" data="stockDataDiv">Hide Stock Data</button>
-    <div id="updatedDataAvailable" class="blink" style="display: none;">
-        Updated data is now available, please refresh the page...
-    </div>
-    <div id="dataValidityDiv" class="content" style="display: block;">
-        <table class="table" id="dataValidity">
-            <thead>
-                <tr>
-                    <th>Exchanges</th>
-                    <th>Open Close</th>
-                    <th>Delivery Data</th>
-                    <th>Bulk Deals</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td class="text">NSE</td>
-                    <td class="text"></td>
-                    <td class="text"></td>
-                    <td class="text"></td>
-                </tr>
-                <tr>
-                    <td class="text">BSE</td>
-                    <td class="text"></td>
-                    <td class="text"></td>
-                    <td class="text"></td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
-    <div id="watchlistDiv" style="margin-bottom: 0;">
-        <label>Watchlist(s):</label>
-        <button id="addWatchlistBtn" onclick="AddWatchlist();" style="margin-left: 5px; float: right;">Add new
-            Watchlist</button>
-        <input type="text" placeholder="New watchlist name..." id="newWatchList" style=" float: right;">
-        <button id="removeWatchlistBtn" onclick="RemoveWatchlist();" style="margin-left: 15px;">Remove
-            Watchlist</button>
-    </div>
-    <div id="stockListDiv" class="content" style="display: none;">
-        <Button onclick="saveDataOnLocal();UpdateWatchList();" style="margin: 10px;">Save Watchlists</Button>
-        <Button onclick="loadDefaultWatchLists()" style="margin: 10px;">Load Default Watchlists</Button>
-        <Button onclick="uploadWatchLists()" style="margin: 10px;">Import Watchlists</Button>
-        <Button onclick="downloadWatchlists()" style="margin: 10px;">Export Watchlists</Button>        
-        <table class="table" id="stocksList">
-            <thead>
-                <tr>
-                    <th class="fitwidth">No.</th>
-                    <th class="fitwidth">Add</th>
-                    <th class="fitwidth">Remove</th>
-                    <th class="text">Stock Name</th>
-                    <th class="text">NSE Code</th>
-                    <th class="text">BSE Code</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr class="hide" draggable="true" ondragstart="DragStart();" ondragover="DragOver();">
-                    <td class="number">0</td>
-                    <td class="icon add">&#43;</td>
-                    <td class="icon remove">&#10539;</td>
-                    <td contenteditable="true" class="text"></td>
-                    <td contenteditable="true" class="text"></td>
-                    <td contenteditable="true" class="text"></td>
-                </tr>
-            </tbody>
-        </table>
-
-        <Button onclick="saveDataOnLocal();UpdateWatchList();" style="margin: 10px;">Save Watchlists</Button>
-    </div>
-    <div id="stockDataDiv" class="content" style="display: block;">
-        <table id="stockData">
-            <thead>
-                <tr>
-                    <th class="number sort"><a href="#" class="sort-by">No.</a></th>
-                    <th class="text sort"><a href="#" class="sort-by">Name<a></th>
-                    <th class="number sort"><a href="#" class="sort-by">Delivery</a></th>
-                    <th class="number sort"><a href="#" class="sort-by">Total</a></th>
-                    <th class="number sort"><a href="#" class="sort-by">Delivery %</a></th>
-                    <th class="number sort"><a href="#" class="sort-by">Open</a></th>
-                    <th class="number sort"><a href="#" class="sort-by">Close</a></th>
-                    <th class="number sort"><a href="#" class="sort-by">Change %</a></th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr class="hide">
-                    <td class="number"></td>
-                    <td class="text"></td>
-                    <td class="number"></td>
-                    <td class="number"></td>
-                    <td class="number"></td>
-                    <td class="number"></td>
-                    <td class="number"></td>
-                    <td class="number"></td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
-    <div id="stockHistoryDiv" class="content" style="display: none;">
-        <table id="stockHistory" style="margin-bottom: 0;">
-            <thead>
-                <tr>
-                    <th class="number sort"><a href="#" class="sort-by">No.</a></th>
-                    <th class="date sort"><a href="#" class="sort-by">Date<a></th>
-                    <th class="number sort"><a href="#" class="sort-by">Delivery</a></th>
-                    <th class="number sort"><a href="#" class="sort-by">Total</a></th>
-                    <th class="number sort"><a href="#" class="sort-by">Delivery %</a></th>
-                    <th class="number sort"><a href="#" class="sort-by">Open</a></th>
-                    <th class="number sort"><a href="#" class="sort-by">Close</a></th>
-                    <th class="number sort"><a href="#" class="sort-by">Change %</a></th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr class="hide">
-                    <td class="number"></td>
-                    <td class="date"></td>
-                    <td class="number"></td>
-                    <td class="number"></td>
-                    <td class="number"></td>
-                    <td class="number"></td>
-                    <td class="number"></td>
-                    <td class="number"></td>
-                </tr>
-            </tbody>
-        </table>
+    <div id="loader" style="display:none;">
+        <label id="loaderMsg"></label>
+        <div id="loaderCircle"></div>
     </div>
 
-    <!-- The Modal -->
-    <div id="myModal" class="modal">
+    <div id="myDiv">
+        <div class="tab">
+            <button class="tablinks active" onclick="openTab('dataValidityDiv')">Data Validity</button>
+            <button class="tablinks" onclick="openTab('stockListDiv')">Watchlists</button>
+            <button class="tablinks active" onclick="openTab('stockDataDiv')">Stock Data</button>
+            <button class="tablinks" onclick="openTab('bulkDealersDiv')">Bulk Dealers</button>
+            <button class="tablinks" onclick="openTab('stockBulkDealsDiv')">Bulk Deals</button>
+            <button class="tablinks" onclick="openTab('portfolioDiv')">Portfolio</button>
+            <button class="tablinks" onclick="openTab('settingsDiv')">Settings</button>
+        </div>
 
-        <!-- Modal content -->
-        <div class="modal-content">
-            <div class="modal-header">
-                <span class="close">&times;</span>
-                <h2 id="bulkDealHeader">Bulk Deals</h2>
+        <div id="updatedDataAvailable" class="blink" style="display: none;">
+            Updated data is now available, please refresh the page...
+        </div>
+        <div id="dataValidityDiv" class="tabcontent" style="display: block;">
+            <table class="table" id="dataValidity">
+                <thead>
+                    <tr>
+                        <th>Exchanges</th>
+                        <th>Open Close</th>
+                        <th>Delivery Data</th>
+                        <th>Bulk Deals</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="text">NSE</td>
+                        <td class="text"></td>
+                        <td class="text"></td>
+                        <td class="text"></td>
+                    </tr>
+                    <tr>
+                        <td class="text">BSE</td>
+                        <td class="text"></td>
+                        <td class="text"></td>
+                        <td class="text"></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div id="watchlistDiv" style="margin-bottom: 0;">
+            <label>Watchlist(s):</label>
+            <button id="addWatchlistBtn" onclick="AddWatchlist();" style="margin-left: 5px; float: right;">Add new
+                Watchlist</button>
+            <input type="text" placeholder="New watchlist name..." id="newWatchList" style=" float: right;">
+            <button id="removeWatchlistBtn" onclick="RemoveWatchlist();" style="margin-left: 15px;">Remove
+                Watchlist</button>
+        </div>
+        <div id="stockListDiv" class="tabcontent" style="display: none;">
+            <Button onclick="saveDataOnLocal();UpdateWatchList();" style="margin: 10px;">Save Watchlists</Button>
+            <Button onclick="loadDefaultWatchLists()" style="margin: 10px;">Load Default Watchlists</Button>
+            <Button onclick="uploadWatchLists()" style="margin: 10px;">Import Watchlists</Button>
+            <Button onclick="downloadWatchlists()" style="margin: 10px;">Export Watchlists</Button>
+            <input type="checkbox" id="chkWLWithPFData" name="chkWLWithPFData">
+            <label for="chkWLWithPFData" id="lblWLWithPFData">Export Watchlist with PF data</label>
+            <table class="table" id="stocksList">
+                <thead>
+                    <tr>
+                        <th class="fitwidth">No.</th>
+                        <th class="fitwidth">Add</th>
+                        <th class="fitwidth">Remove</th>
+                        <th class="fitwidth">Move</th>
+                        <th class="text">Stock Name</th>
+                        <th class="text">NSE Code</th>
+                        <th class="text">BSE Code</th>
+                        <th class="number">Quantity</th>
+                        <th class="number">Price</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="hide" draggable="true" ondragstart="DragStart();" ondragover="DragOver();">
+                        <td class="number">0</td>
+                        <td class="icon add">&#43;</td>
+                        <td class="icon remove">&#10539;</td>
+                        <td class="icon move">&#8594;</td>
+                        <td contenteditable="true" class="text"></td>
+                        <td contenteditable="true" class="text" onblur="UpdateUpperCase();"></td>
+                        <td contenteditable="true" class="text" onblur="CheckNumber();"></td>
+                        <td contenteditable="true" class="number"></td>
+                        <td contenteditable="true" class="number"></td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <Button onclick="saveDataOnLocal();UpdateWatchList();" style="margin: 10px;">Save Watchlists</Button>
+            <div id="watchlistModal" class="modal">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <span id="watchlistModalCloser" class="close" style="float: right;">&times;</span>
+                        <h2 id="otherWatchlistsHeader" style="width: 200px;">Move this stock to: </h2>
+                    </div>
+                    <div id="otherWatchlistsDiv" class="modal-body">
+                        <select id="ddlMoveToWatchlist" onchange="MoveStock();">
+                        </select>
+                    </div>
+                </div>
             </div>
-            <div class="modal-body">
-                <table id="bulkDeals">
+        </div>
+        <div id="stockDataDiv" class="tabcontent" style="display: block;">
+            <table id="stockData">
+                <thead>
+                    <tr>
+                        <th class="number sort"><a href="#" class="sort-by">No.</a></th>
+                        <th class="text sort"><a href="#" class="sort-by">Name</a></th>
+                        <th class="number sort"><a href="#" class="sort-by">Delivery</a></th>
+                        <th class="number sort"><a href="#" class="sort-by">Total</a></th>
+                        <th class="number sort"><a href="#" class="sort-by">Delivery %</a></th>
+                        <th class="number sort"><a href="#" class="sort-by">Open</a></th>
+                        <th class="number sort"><a href="#" class="sort-by">Close</a></th>
+                        <th class="number sort"><a href="#" class="sort-by">Change %</a></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="hide">
+                        <td class="number"></td>
+                        <td class="text"></td>
+                        <td class="number"></td>
+                        <td class="number"></td>
+                        <td class="number"></td>
+                        <td class="number"></td>
+                        <td class="number"></td>
+                        <td class="number"></td>
+                    </tr>
+                </tbody>
+            </table>
+            <!-- The Modal -->
+            <div id="myModal" class="modal">
+
+                <!-- Modal content -->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <span id="modalCloser" class="close">&times;</span>
+                        <h2 id="bulkDealHeader">Bulk Deals</h2>
+                    </div>
+                    <div class="modal-body">
+                        <table id="bulkDeals">
+                            <thead>
+                                <tr>
+                                    <th class="number sort"><a href="#" class="sort-by">No.</a></th>
+                                    <th class="text sort"><a href="#" class="sort-by">Client Name</a></th>
+                                    <th class="text sort"><a href="#" class="sort-by">Type</a></th>
+                                    <th class="number sort"><a href="#" class="sort-by">Quantity</a></th>
+                                    <th class="number sort"><a href="#" class="sort-by">Price</a></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="hide">
+                                    <td class="number"></td>
+                                    <td class="text"></td>
+                                    <td class="text"></td>
+                                    <td class="number"></td>
+                                    <td class="number"></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <!-- <div class="modal-footer">
+                    <h3>Modal Footer</h3>
+                </div> -->
+                </div>
+
+            </div>
+
+            <div id="stockHistoryDiv" class="tabcontent" style="display: none;">
+                <table id="stockHistory" style="margin-bottom: 0;">
                     <thead>
                         <tr>
                             <th class="number sort"><a href="#" class="sort-by">No.</a></th>
-                            <th class="text sort"><a href="#" class="sort-by">Client Name</a></th>
-                            <th class="text sort"><a href="#" class="sort-by">Type</a></th>
-                            <th class="number sort"><a href="#" class="sort-by">Quantity</a></th>
-                            <th class="number sort"><a href="#" class="sort-by">Price</a></th>
+                            <th class="date sort"><a href="#" class="sort-by">Date</a></th>
+                            <th class="number sort"><a href="#" class="sort-by">Delivery</a></th>
+                            <th class="number sort"><a href="#" class="sort-by">Total</a></th>
+                            <th class="number sort"><a href="#" class="sort-by">Delivery %</a></th>
+                            <th class="number sort"><a href="#" class="sort-by">Open</a></th>
+                            <th class="number sort"><a href="#" class="sort-by">Close</a></th>
+                            <th class="number sort"><a href="#" class="sort-by">Change %</a></th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr class="hide">
                             <td class="number"></td>
-                            <td class="text"></td>
-                            <td class="text"></td>
+                            <td class="date"></td>
+                            <td class="number"></td>
+                            <td class="number"></td>
+                            <td class="number"></td>
+                            <td class="number"></td>
                             <td class="number"></td>
                             <td class="number"></td>
                         </tr>
                     </tbody>
                 </table>
             </div>
-            <!-- <div class="modal-footer">
-                <h3>Modal Footer</h3>
-            </div> -->
         </div>
+        <div id="bulkDealersDiv" class="tabcontent" style="display: none;">
+            Select Dealer:
+            <select id="ddlBulkDealer" onchange="UpdateBulkDealTable();">
+            </select>
+            <input type="text" id="txtFilterDeals" name="txtFilterDeals" placeholder="Filter stocks..."
+                onkeyup="UpdateBulkDealTable();">
 
+            <input type="checkbox" id="chkFilterDeals" name="chkFilterDeals" onchange="UpdateLabel();">
+            <label for="chkFilterDeals" id="lblFilterDealsPrefix" style="margin-right: 0px;">Show deals only for</label>
+            <label for="chkFilterDeals" id="lblFilterDeals"></label>
+            <table id="clientDeals">
+                <thead>
+                    <tr>
+                        <th class="number sort"><a href="#" class="sort-by">No.</a></th>
+                        <th class="date sort"><a href="#" class="sort-by">Date</a></th>
+                        <th class="text sort"><a href="#" class="sort-by">Code</a></th>
+                        <th class="text sort"><a href="#" class="sort-by">Name</a></th>
+                        <th class="text sort"><a href="#" class="sort-by">Type</a></th>
+                        <th class="number sort"><a href="#" class="sort-by">Quantity</a></th>
+                        <th class="number sort"><a href="#" class="sort-by">Price</a></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="hide">
+                        <td class="number"></td>
+                        <td class="date"></td>
+                        <td class="text"></td>
+                        <td class="text"></td>
+                        <td class="text"></td>
+                        <td class="number"></td>
+                        <td class="number"></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div id="stockBulkDealsDiv" class="tabcontent" style="display: none;">
+            Select Stock:
+            <select id="ddlStocks" onchange="UpdateStockBulkDealTable();">
+            </select>
+            <input type="text" id="txtFilterDealers" name="txtFilterDealers" placeholder="Filter dealers..."
+                onkeyup="UpdateStockBulkDealTable();">
+            <table id="stockBulkDeals">
+                <thead>
+                    <tr>
+                        <th class="number sort"><a href="#" class="sort-by">No.</a></th>
+                        <th class="date sort"><a href="#" class="sort-by">Date</a></th>
+                        <th class="text sort"><a href="#" class="sort-by">Code</a></th>
+                        <th class="text sort"><a href="#" class="sort-by">Name</a></th>
+                        <th class="text sort"><a href="#" class="sort-by">Type</a></th>
+                        <th class="number sort"><a href="#" class="sort-by">Quantity</a></th>
+                        <th class="number sort"><a href="#" class="sort-by">Price</a></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="hide">
+                        <td class="number"></td>
+                        <td class="date"></td>
+                        <td class="text"></td>
+                        <td class="text"></td>
+                        <td class="text"></td>
+                        <td class="number"></td>
+                        <td class="number"></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div id="portfolioDiv" class="tabcontent" style="display: none;">
+            <table id="portfolioTable">
+                <thead>
+                    <tr>
+                        <th class="number sort"><a href="#" class="sort-by">No.</a></th>
+                        <th class="text sort"><a href="#" class="sort-by">Name</a></th>
+                        <th class="number sort"><a href="#" class="sort-by">Qty</a></th>
+                        <th class="number sort"><a href="#" class="sort-by">Buy Avg</a></th>
+                        <th class="number sort"><a href="#" class="sort-by">Buy Value</a></th>
+                        <th class="number sort"><a href="#" class="sort-by">Close</a></th>
+                        <th class="number sort"><a href="#" class="sort-by">Present Value</a></th>
+                        <th class="number sort"><a href="#" class="sort-by">P&L</a></th>
+                        <th class="number sort"><a href="#" class="sort-by">Net Chg %</a></th>
+                        <th class="number sort"><a href="#" class="sort-by">Day Chg</a></th>
+                        <th class="number sort"><a href="#" class="sort-by">Day Chg %</a></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="hide">
+                        <td class="number"></td>
+                        <td class="text"></td>
+                        <td class="number"></td>
+                        <td class="number"></td>
+                        <td class="number"></td>
+                        <td class="number"></td>
+                        <td class="number"></td>
+                        <td class="number"></td>
+                        <td class="number"></td>
+                        <td class="number"></td>
+                        <td class="number"></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div id="settingsDiv" class="tabcontent" style="display: none;">
+            <Button onclick="SaveSettings();" style="margin: 10px;">Save Settings</Button>
+            <table id="settingsTable">
+                <thead>
+                    <tr>
+                        <th class="number">No.</th>
+                        <th class="text">Setting Name</th>
+                        <th class="text">Default Setting</th>
+                        <th class="text">User's Setting</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="hide">
+                        <td class="number"></td>
+                        <td class="text"></td>
+                        <td class="text"></td>
+                        <td class="text"></td>
+                    </tr>
+                    <tr>
+                        <td class="number"></td>
+                        <td class="text">History (in days):</td>
+                        <td class="text">
+                            <input type="number" disabled>
+                        </td>
+                        <td class="text">
+                            <input type="number" step="1" min="11" max="20" value="11" onKeyDown="return false;">
+                        </td>
+                    </tr>
+                    <tr">
+                        <td class="number"></td>
+                        <td class="text">New data check after every (in minutes):</td>
+                        <td class="text">
+                            <input type="number" disabled>
+                        </td>
+                        <td class="text">
+                            <input type="number" step="5" min="5" max="60" value="5" onKeyDown="return false;">
+                        </td>
+                        </tr>
+                        <tr>
+                            <td class="number"></td>
+                            <td class="text">T2T Support</td>
+                            <td class="text"><input type="checkbox" disabled> </td>
+                            <td class="text"><input type="checkbox" onchange="ToggleT2TTexts(3, !this.checked);">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="number"></td>
+                            <td class="text">T2T days tags: </td>
+                            <td class="text">
+                                <input type="text" disabled>
+                                <br>
+                                <input type="text" disabled>
+                                <br>
+                                <input type="text" disabled>
+                            </td>
+                            <td class="text" title="type DATE in all 3 boxes for showing exact dates">
+                                <input type="text">
+                                <br>
+                                <input type="text">
+                                <br>
+                                <input type="text">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="number"></td>
+                            <td class="text">When moving a stock to a watchlist, add it to the :</td>
+                            <td class="text">
+                                <input type="radio" id="moveAddToWatchlist1top" name="moveAddToWatchlist1" value="top">
+                                <label for="top">Top</label>
+                                <input type="radio" id="moveAddToWatchlist1bottom" name="moveAddToWatchlist1" value="bottom">
+                                <label for="bottom">Bottom</label>
+                            </td>
+                            <td class="text">
+                                <input type="radio" id="moveAddToWatchlist2top" name="moveAddToWatchlist2" value="top">
+                                <label for="moveToTop">Top</label>
+                                <input type="radio" id="moveAddToWatchlist2bottom" name="moveAddToWatchlist2" value="bottom">
+                                <label for="moveToBottom">Bottom</label>
+                            </td>
+                        </tr>
+                </tbody>
+            </table>
+        </div>
     </div>
+    <div id="snackbar">Test message...</div>
 </body>
 
 <script defer src="./scripts/utils.js"></script>
 <script defer src="./scripts/merge.js"></script>
 <script defer src="./scripts/ui.js"></script>
 <script defer src="./scripts/script.js"></script>
-<script defer src="./scripts/modal.js"></script>
+<script defer src="./scripts/bulkDeals.js"></script>
 <script defer src="./scripts/history.js"></script>
 <script defer src="./scripts/drag.js"></script>
 
-<script defer src="./scripts/override.js"></script>
+<!-- <script defer src="./scripts/override.js"></script> -->
 <script defer src="./scripts/data.js"></script>
 <script defer src="./scripts/defaults.js"></script>
+<script defer src="./scripts/clientDeals.js"></script>
+<script defer src="./scripts/allBulkDeals.js"></script>
 
 </html>

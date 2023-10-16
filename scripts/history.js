@@ -96,7 +96,7 @@ function HideHistory() {
 }
 
 window.addEventListener('click', function (event) {
-    if (!((historyStock && historyStock.closest('tr').contains(event.target)) || (historyTable && historyTable.contains(event.target)) || modal.contains(event.target))) {
+    if (!((historyStock && historyStock.closest('tr').contains(event.target)) || (historyTable && historyTable.contains(event.target)) || modal.contains(event.target) || event.target.classList.contains("tablinks"))) {
         HideHistory();
     }
     /*

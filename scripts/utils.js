@@ -22,6 +22,7 @@ function updateRowNumber(table, prefix) {
 }
 
 function sortTable(header) {
+    UpdateLoader(true, "Sorting table");
     event.preventDefault();
     var rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
     var table = header.closest('table');
@@ -125,9 +126,13 @@ function sortTable(header) {
     // if (n > 0) {
     //     updateRowNumber(table);
     // }
+    UpdateLoader(false);
 }
 
 function resetTable(table) {
+    if (typeof table == 'string') {
+        table = document.getElementById(table);
+    }
     for (let i = 2; i < table.rows.length; i) {
         table.deleteRow(i);
     }
@@ -233,7 +238,7 @@ function toObject(table) {
             const res = [];
             for (let j = 0; j < row.cells.length; j++) {
                 const cell = row.cells[j];
-                j > 2 && res.push(cell.textContent);
+                j > 3 && res.push(cell.textContent);
             }
             res.length > 0 && res[0].trim() != "" && result.push(res);
         }
@@ -300,4 +305,21 @@ Number.prototype.toCustomString = function (decimalPlaces = 0) {
 
 String.prototype.toCustomString = function (decimalPlaces = 0) {
     return Number(this).toLocaleString('en-In', { minimumFractionDigits: decimalPlaces, maximumFractionDigits: decimalPlaces });
+}
+
+function UpdateUpperCase() {
+    event.target.textContent = event.target.textContent.toUpperCase();
+}
+
+function CheckNumber() {
+    const bseCode = event.target.textContent.trim();
+    if (bseCode) {
+        if (isNaN(bseCode) || !/^[1-9]\d*$/.test(bseCode)) {
+            alert('Not a valid BSE code');
+            event.target.textContent = '';
+            event.target.focus();
+            return false;
+        }
+    }
+    event.target.textContent = bseCode;
 }
