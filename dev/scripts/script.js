@@ -79,11 +79,11 @@ function ResetWatchlist(deleteExisting = true) {
         AddWatchlistCode(wlValue, watchlists[wlValue].name);
     }
     UpdateLoader(true, "Loading Watchlists", 0.5);
-    UpdateWatchList();
+    UpdateWatchList(!deleteExisting);
     UpdateLoader(false);
 }
 
-function UpdateWatchList() {
+function UpdateWatchList(saveLast = true) {
     const lastSelectedWL = activeWL;
     const selectedWatchList = document.querySelector('input[name="stockListRadio"]:checked');
     if (!selectedWatchList) {
@@ -101,7 +101,7 @@ function UpdateWatchList() {
 
     if (document.getElementById("stockListDiv").style.display == "block") {
         UpdateLoader(true, "Loading Watchlists", 0.5);
-        if (lastSelectedWL != activeWL) {
+        if (saveLast && lastSelectedWL != activeWL) {
             watchlists[lastSelectedWL].data = toObject(listTable);
         }
         resetTable(listTable);
@@ -259,6 +259,7 @@ function downloadWatchlists() {
         a.download = "watchlists.json";
         a.click();
         chkWLWithPFData.checked = false;
+        ShowMessage('Watchlist export successful');
     }
     else {
         alert('No stock in list to download');
@@ -279,8 +280,9 @@ async function uploadWatchLists() {
         input.type = 'file';
         input.onchange = async _ => {
             const content = await input.files[0].text();
-            watchlists = JSON.parse(content)
+            watchlists = JSON.parse(content);
             saveDataOnLocal(true, true);
+            ShowMessage('Watchlist import successful');
             ResetWatchlist(true);
         };
         input.click();
