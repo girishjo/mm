@@ -39,7 +39,7 @@ async function LoadData() {
 function CheckForT10(result) {
   for (const stockCode of Object.keys(result.data)) {
     let res = result.data[stockCode];
-    if (res.History) {
+    if ((settings.configs.t2tSMESeries.includes(res.Series) || settings.configs.t2tMBSeries.includes(res.Series)) && res.History) {
       var d = new Date(res.History[res.History.length - 1].HistoryDate);
       d.setDate(d.getDate() + 13 + CheckDateRange(res.History[res.History.length - 1].HistoryDate));
 

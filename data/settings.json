@@ -10,6 +10,16 @@
             "T2T (10th day)",
             "SM (11th day)"
         ],
+        "t2tSMESeries": [
+            "MT",
+            "ST",
+            "M",
+            "SM"
+        ],
+        "t2tMBSeries": [
+            "T",
+            "BE"
+        ],
         "moveStockTo": "top"
     },
     "marketHolidays": [
