@@ -41,8 +41,9 @@ function CheckForT10(result) {
     let res = result.data[stockCode];
     const series = res.Series || (res.History && res.History.length > 0 && res.History[0].Series);
     if ((settings.configs.t2tSMESeries.includes(series) || settings.configs.t2tMBSeries.includes(series)) && res.History) {
-      var d = new Date(res.History[res.History.length - 1].HistoryDate);
-      d.setDate(d.getDate() + 13 + CheckDateRange(res.History[res.History.length - 1].HistoryDate));
+      const startDateString = res.History[res.History.length - 1].HistoryDate;
+      var d = new Date(startDateString);
+      d.setDate(d.getDate() + 9 + CheckForWeekendsAndHolidays(startDateString));
 
       const prevDate = GetLastWorkingDay(d);
       const nextDate = GetNextWorkingDay(d);
@@ -62,19 +63,30 @@ function CheckForT10(result) {
   }
 }
 
-function CheckDateRange(startDateString) {
-  let holidayCounter = 0;
-
-  const start = new Date(startDateString);
+function CheckForWeekendsAndHolidays(startDateString) {
+  let weekendCounter = 0;
+  let start = new Date(startDateString);
   const end = todayDate;
 
+  while (start <= end) {
+    if (start.getDay() == 0 || start.getDay() == 6 || CheckForHoliday(start)) {
+      ++weekendCounter;
+    }
+    start = new Date(start.setDate(start.getDate() + 1));
+  }
+
+  return weekendCounter;
+}
+
+
+function CheckForHoliday(date) {
   for (let i = 0; i < settings.marketHolidays.length; i++) {
-    const date = new Date(settings.marketHolidays[i]);
-    if (date > start && date <= end) {
-      ++holidayCounter;
+    const holiday = new Date(settings.marketHolidays[i]);
+    if (date.toDateString() == holiday.toDateString()) {
+      return true;
     }
   }
-  return holidayCounter;
+  return false;
 }
 
 function IsUpdateData(placeHolder, dateTimeStamp) {
