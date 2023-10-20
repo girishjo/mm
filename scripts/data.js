@@ -43,7 +43,7 @@ function CheckForT10(result) {
     if ((settings.configs.t2tSMESeries.includes(series) || settings.configs.t2tMBSeries.includes(series)) && res.History) {
       const startDateString = res.History[res.History.length - 1].HistoryDate;
       var d = new Date(startDateString);
-      d.setDate(d.getDate() + 9 + CheckForWeekendsAndHolidays(startDateString));
+      d = Get10thDay(d);
 
       const prevDate = GetLastWorkingDay(d);
       const nextDate = GetNextWorkingDay(d);
@@ -63,21 +63,18 @@ function CheckForT10(result) {
   }
 }
 
-function CheckForWeekendsAndHolidays(startDateString) {
-  let weekendCounter = 0;
-  let start = new Date(startDateString);
-  const end = todayDate;
-
-  while (start <= end) {
-    if (start.getDay() == 0 || start.getDay() == 6 || CheckForHoliday(start)) {
-      ++weekendCounter;
+function Get10thDay(startDate) {
+  let counter = 1;
+  // let endDate = new Date(startDate.setDate(startDate.getDate() + 1));
+  let endDate = startDate;
+  while (counter < 10) {
+    endDate = new Date(endDate.setDate(endDate.getDate() + 1));
+    if (!(endDate.getDay() == 0 || endDate.getDay() == 6 || CheckForHoliday(endDate))) {
+      counter++;
     }
-    start = new Date(start.setDate(start.getDate() + 1));
   }
-
-  return weekendCounter;
+  return endDate;
 }
-
 
 function CheckForHoliday(date) {
   for (let i = 0; i < settings.marketHolidays.length; i++) {
