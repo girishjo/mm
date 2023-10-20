@@ -57,7 +57,8 @@ function ShowHistory(stock) {
                 }
             }
         }
-        updateRowNumber(stockHistoryTable, historyStock.parentElement.parentElement.cells[0].innerText);
+        stockHistoryTable.rows[0].cells[0].setAttribute("prefix", historyStock.parentElement.parentElement.cells[0].innerText);
+        updateRowNumber(stockHistoryTable);
 
         const newRow = addEmptyRow(dataTable, historyRow + 1);
 
