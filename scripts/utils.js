@@ -9,7 +9,8 @@ function addEmptyRow(table, index = undefined) {
     return newRow;
 }
 
-function updateRowNumber(table, prefix) {
+function updateRowNumber(table) {
+    const prefix = table.rows[0].cells[0].getAttribute("prefix");
     for (let index = 2; index < table.rows.length; index++) {
         if (!table.rows[index].getAttribute('frozen')) {
             if (prefix) {
@@ -123,9 +124,9 @@ function sortTable(header) {
             }
         }
     }
-    // if (n > 0) {
-    //     updateRowNumber(table);
-    // }
+    if (n > 0) {
+        updateRowNumber(table);
+    }
     UpdateLoader(false);
 }
 
