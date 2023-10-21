@@ -115,7 +115,7 @@ function ShowBulkDeal(stock) {
         }
     }
 
-    //document.body.classList.toggle('modal-shown');
+    document.body.classList.toggle('modal-shown');
     modal.style.display = "block";
 }
 
@@ -142,9 +142,9 @@ window.addEventListener('keyup', function (event) {
 function HideModal() {
     // document.body.style.overflow = "auto";
     // document.body.style.paddingRight = '';
-    //document.body.classList.toggle('modal-shown');
+    document.body.classList.toggle('modal-shown');
     modal.style.display = "none";
-    resetTable("bulkDeals");   
+    resetTable("bulkDeals");
 }
 
 function OpenClientBulkDealsPage(clientName, nseCode, bseCode) {

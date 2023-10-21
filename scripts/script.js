@@ -181,6 +181,7 @@ function MoveStock() {
             addEmptyRow(listTable);
         }
         updateRowNumber(listTable);
+        ddlMoveToWatchlist.value = -1;
     }
 
     document.body.classList.toggle('modal-shown');
