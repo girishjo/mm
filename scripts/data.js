@@ -43,10 +43,10 @@ function CheckForT10(result) {
     if ((settings.configs.t2tSMESeries.includes(series) || settings.configs.t2tMBSeries.includes(series)) && res.History) {
       const startDateString = res.History[res.History.length - 1].HistoryDate;
       var d = new Date(startDateString);
-      d = Get10thDay(d);
+      d = GetNthDay(d, 10);
 
-      const prevDate = GetLastWorkingDay(d);
-      const nextDate = GetNextWorkingDay(d);
+      const prevDate = GetNthDay(d, 2, false);
+      const nextDate = GetNthDay(d, 2);
 
       switch (todayDate.toDateString()) {
         case prevDate.toDateString():
@@ -63,12 +63,11 @@ function CheckForT10(result) {
   }
 }
 
-function Get10thDay(startDate) {
-  let counter = 1;
-  // let endDate = new Date(startDate.setDate(startDate.getDate() + 1));
-  let endDate = startDate;
-  while (counter < 10) {
-    endDate = new Date(endDate.setDate(endDate.getDate() + 1));
+function GetNthDay(startDate, nthDay, forward = true) {
+  let counter = 1;	// considering today/listing day as 1st day
+  let endDate = new Date(startDate);
+  while (counter < nthDay) {
+    endDate = new Date(endDate.setDate(endDate.getDate() + (forward ? 1 : -1)));
     if (!(endDate.getDay() == 0 || endDate.getDay() == 6 || CheckForHoliday(endDate))) {
       counter++;
     }
