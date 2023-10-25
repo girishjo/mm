@@ -381,6 +381,7 @@ function updateDataTable(table, name, nseCode, bseCode, data = undefined, rowInd
             var t2tLabel = document.createElement('label');
             t2tLabel.classList.add("highlight");
             t2tLabel.innerText = settings.configs.t2tTexts[stockData["T2T"]];
+            t2tLabel.title = "Exit from T2T on: " + stockData["T2TExitDate"];
             newRow.cells[1].appendChild(t2tLabel);
         }
 

@@ -47,16 +47,20 @@ function CheckForT10(result) {
 
       const prevDate = GetNthDay(d, 2, false);
       const nextDate = GetNthDay(d, 2);
+      const smDate = nextDate.toLocaleDateString('en-In', { weekday: "short", year: "numeric", month: "short", day: "2-digit" });
 
       switch (todayDate.toDateString()) {
         case prevDate.toDateString():
           res["T2T"] = 0;
+          res["T2TExitDate"] = smDate;
           break;
         case d.toDateString():
           res["T2T"] = 1;
+          res["T2TExitDate"] = smDate;
           break;
         case nextDate.toDateString():
           res["T2T"] = 2;
+          res["T2TExitDate"] = smDate;
           break;
       }
     }
