@@ -449,6 +449,7 @@ function updateDataTable(table, name, nseCode, bseCode, data = undefined, rowInd
 
 function upadtePortfolioTable(stockList) {
     let totalInvestment = 0, currentValue = 0, dayPnL = 0;
+    let flag = false;
     for (let i = 0; i < stockList.length; i++) {
         if (stockList[i][0]) {
             const stockDetails = stockList[i];
@@ -462,15 +463,16 @@ function upadtePortfolioTable(stockList) {
                     newRow.cells[3].innerText = stockDetails[4].toCustomString(2);
                     totalInvestment += stockDetails[3] * stockDetails[4];
                     newRow.cells[4].innerText = (stockDetails[3] * stockDetails[4]).toCustomString();
+                    let lastClosing = undefined;
                     if (!stockData.Close && stockData.History && stockData.History.length > 0) {
-                        stockData.Close = stockData.History[0].Close;
+                        lastClosing = stockData.History[0].Close;
                     }
-                    if (stockData.Close != undefined) {
-                        newRow.cells[5].innerText = stockData.Close.toCustomString(2);
-                        currentValue += stockDetails[3] * stockData.Close;
-                        newRow.cells[6].innerText = (stockDetails[3] * stockData.Close).toLocaleString('en-In');
-                        newRow.cells[7].innerText = (stockDetails[3] * (stockData.Close - stockDetails[4])).toCustomString();
-                        const netChange = (stockData.Close - stockDetails[4]) * 100 / stockDetails[4];
+                    if (stockData.Close != undefined || lastClosing != undefined) {
+                        newRow.cells[5].innerText = (stockData.Close || lastClosing).toCustomString(2);
+                        currentValue += stockDetails[3] * (stockData.Close || lastClosing);
+                        newRow.cells[6].innerText = (stockDetails[3] * (stockData.Close || lastClosing)).toLocaleString('en-In');
+                        newRow.cells[7].innerText = (stockDetails[3] * ((stockData.Close || lastClosing) - stockDetails[4])).toCustomString();
+                        const netChange = ((stockData.Close || lastClosing) - stockDetails[4]) * 100 / stockDetails[4];
                         newRow.cells[8].innerText = netChange.toCustomString(2) + " %";
                         if (netChange > 0) {
                             newRow.cells[7].style.color = 'green';
@@ -485,8 +487,8 @@ function upadtePortfolioTable(stockList) {
                             if (!stockData.History || stockData.History.length == 0) {
                                 stockData.PrevClose = stockDetails[4];
                             }
-                            stockData.Change = (stockData.Close - stockData.PrevClose) * 100 / stockData.PrevClose;
-                            let dayAbsoluteChange = stockDetails[3] * (stockData.Close - stockData.PrevClose);
+                            stockData.Change = ((stockData.Close || lastClosing) - stockData.PrevClose) * 100 / stockData.PrevClose;
+                            let dayAbsoluteChange = stockDetails[3] * ((stockData.Close || lastClosing) - stockData.PrevClose);
                             dayPnL += dayAbsoluteChange;
                             newRow.cells[9].innerText = dayAbsoluteChange.toCustomString();
                             newRow.cells[10].innerText = stockData.Change.toCustomString(2) + " %"
@@ -502,6 +504,19 @@ function upadtePortfolioTable(stockList) {
                         else {
                             newRow.cells[9].innerText = 0;
                             newRow.cells[10].innerText = (0).toFixed(2).toLocaleString('en-In') + " %"
+                        }
+
+                        if (stockData.Close == undefined) {
+                            newRow.cells[5].classList.add('attention');
+                            newRow.cells[6].classList.add('attention');
+                            newRow.cells[7].classList.add('attention');
+                            newRow.cells[8].classList.add('attention');
+
+                            newRow.cells[5].title = "Last closing price taken";
+                            newRow.cells[6].title = "Calculated from last closing price";
+                            newRow.cells[7].title = "Calculated from last closing price";
+                            newRow.cells[8].title = "Calculated from last closing price";
+                            flag = true;
                         }
                     }
                 }
@@ -535,6 +550,20 @@ function upadtePortfolioTable(stockList) {
         else if (dayPnL < 0) {
             newRow.cells[9].style.color = 'red';
             newRow.cells[10].style.color = 'red';
+        }
+
+        if (flag) {
+            newRow.cells[6].classList.add('attention');
+            newRow.cells[7].classList.add('attention');
+            newRow.cells[8].classList.add('attention');
+            newRow.cells[9].classList.add('attention');
+            newRow.cells[10].classList.add('attention');
+
+            newRow.cells[6].title = "For some stocks, it is calculated from their last closing price";
+            newRow.cells[7].title = "For some stocks, it is calculated from their last closing price";
+            newRow.cells[8].title = "For some stocks, it is calculated from their last closing price";
+            newRow.cells[9].title = "Partial data";
+            newRow.cells[10].title = "Partial data";
         }
     }
 }

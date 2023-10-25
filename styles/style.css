@@ -117,6 +117,9 @@ td.negative {
     color: red;
 }
 
+td.attention {
+    background-color: lightyellow;
+}
 
 .icon {
     font-size: 20px;
