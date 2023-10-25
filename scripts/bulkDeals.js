@@ -140,8 +140,6 @@ window.addEventListener('keyup', function (event) {
 });
 
 function HideModal() {
-    // document.body.style.overflow = "auto";
-    // document.body.style.paddingRight = '';
     document.body.classList.toggle('modal-shown');
     modal.style.display = "none";
     resetTable("bulkDeals");
