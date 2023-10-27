@@ -412,6 +412,19 @@ function updateDataTable(table, name, nseCode, bseCode, data = undefined, rowInd
                 newRow.cells[3].classList.add('negative');
                 newRow.cells[4].classList.add('negative');
             }
+
+            if (nseData[nseCode] && bseData[bseCode]) {
+                if (nseData[nseCode].Total == undefined || bseData[bseCode].Total == undefined) {
+                    newRow.cells[2].classList.add('attention');
+                    newRow.cells[3].classList.add('attention');
+                    newRow.cells[4].classList.add('attention');
+
+                    const msg = "Delivery data from " + (nseData[nseCode].Total == undefined ? "NSE" : "BSE") + " not came yet";
+                    newRow.cells[2].title = msg;
+                    newRow.cells[3].title = msg;
+                    newRow.cells[4].title = msg;
+                }
+            }
         }
 
         if (stockData.Open != undefined) {
