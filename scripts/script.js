@@ -184,13 +184,15 @@ function MoveStock() {
         ddlMoveToWatchlist.value = -1;
     }
 
-    document.body.classList.toggle('modal-shown');
+    document.body.removeAttribute('modal-shown');
+    document.body.classList.remove('modal-shown');
     modal.style.display = "none";
 }
 
 document.getElementById("watchlistModalCloser").onclick = function () {
     var modal = document.getElementById("watchlistModal");
-    document.body.classList.toggle('modal-shown');
+    document.body.removeAttribute('modal-shown');
+    document.body.classList.remove('modal-shown');
     modal.style.display = "none";
 }
 
@@ -599,7 +601,8 @@ listTable.addEventListener('click', function (e) {
 
             var modal = document.getElementById("watchlistModal");
             modal.style.display = "block";
-            document.body.classList.toggle('modal-shown');
+            document.body.setAttribute('modal-shown', true);
+            document.body.classList.add('modal-shown');
         }
     }
 });

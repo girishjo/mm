@@ -21,8 +21,21 @@ function openTab(tabId) {
             button.classList.add("active");
     }
 
-    const watchlistDiv = document.getElementById('watchlistDiv');
+    switch (tabId) {
+        case "stockListDiv":
+        case "stockDataDiv":
+            if (document.body.getAttribute('modal-shown')) {
+                document.body.classList.add('modal-shown');
+            }
+            break;
+        case "portfolioDiv":
+        case "bulkDealersDiv":
+        case "stockBulkDealsDiv":
+            document.body.classList.remove('modal-shown');
+            break;
+    }
 
+    const watchlistDiv = document.getElementById('watchlistDiv');
     watchlistDiv.style.display = 'none';
     switch (tabId) {
         case "stockListDiv":

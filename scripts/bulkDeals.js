@@ -1,5 +1,5 @@
 // Get the modal
-var modal = document.getElementById("myModal");
+const modal = document.getElementById("myModal");
 
 // When the user clicks the button, open the modal 
 function ShowBulkDeal(stock) {
@@ -115,7 +115,8 @@ function ShowBulkDeal(stock) {
         }
     }
 
-    document.body.classList.toggle('modal-shown');
+    document.body.setAttribute('modal-shown', true);
+    document.body.classList.add('modal-shown');
     modal.style.display = "block";
 }
 
@@ -140,7 +141,8 @@ window.addEventListener('keyup', function (event) {
 });
 
 function HideModal() {
-    document.body.classList.toggle('modal-shown');
+    document.body.removeAttribute('modal-shown');
+    document.body.classList.remove('modal-shown');
     modal.style.display = "none";
     resetTable("bulkDeals");
 }
