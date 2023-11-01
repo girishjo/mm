@@ -31,6 +31,7 @@ function InitBulkDealers() {
         }
 
         ddlBulkDealer.innerHTML = '';
+        ddlBulkDealer.add(new Option("Select Bulk Dealer Name...", -1));
         let tempBulkDealers = {};
         for (const bulkDealer of Object.keys(bulkDealers).sort((a, b) => a.localeCompare(b))) {
             tempBulkDealers[bulkDealer] = bulkDealers[bulkDealer];
@@ -48,6 +49,8 @@ function InitBulkDealers() {
         lblFilterDeals.innerText = '';
         txtFilterDeals.value = '';
         txtFilterDeals.removeAttribute('code');
+
+        clientDealsTable.rows[0].cells[3].innerText = "Stock Name";
     }
     UpdateBulkDealTable();
 }
@@ -57,7 +60,7 @@ function UpdateBulkDealTable(clientName = undefined) {
         ddlBulkDealer.value = clientName;
     }
 
-    if (ddlBulkDealer.selectedIndex != -1) {
+    if (ddlBulkDealer.value != -1) {
         let bulkDeals = filteredBulkDealers[ddlBulkDealer.value];
         bulkDeals = FilterDeals(bulkDeals);
         bulkDeals.sort((a, b) =>
@@ -66,11 +69,14 @@ function UpdateBulkDealTable(clientName = undefined) {
             || a.BuyOrSell.localeCompare(b.BuyOrSell)
             || a.Quantity - b.Quantity
             || a.Price - b.Price);
-        ShowClientDeals(clientDealsTable, bulkDeals, 'SecurityName');
+        ShowClientDeals(clientDealsTable, bulkDeals, 'SecurityCode', 'SecurityName');
+    }
+    else {
+        resetTable(clientDealsTable);
     }
 }
 
-function ShowClientDeals(table, deals, fieldName) {
+function ShowClientDeals(table, deals, fieldName1, fieldName2) {
     resetTable(table);
     for (let i = 0; i < deals.length; i++) {
         const deal = deals[i];
@@ -78,8 +84,8 @@ function ShowClientDeals(table, deals, fieldName) {
         let columnCounter = 0;
         newRow.cells[columnCounter++].innerText = i + 1;
         newRow.cells[columnCounter++].innerText = deal.Date;
-        newRow.cells[columnCounter++].innerText = deal.SecurityCode;
-        newRow.cells[columnCounter++].innerText = deal[fieldName];
+        newRow.cells[columnCounter++].innerText = deal[fieldName1];
+        newRow.cells[columnCounter++].innerText = deal[fieldName2];
 
         newRow.cells[columnCounter++].innerText = deal.BuyOrSell;
         if (deal.BuyOrSell == "Buy") {
