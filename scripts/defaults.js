@@ -9,6 +9,7 @@ window.addEventListener('load', async () => {
     UpdateLoader(true, "Loading user's settings", 0.5);
     settings = LoadUserSettings(settings);
 
+    //todayDate = GetLastWorkingDay(new Date('02-Nov-2023 11:00:00 PM'));
     todayDate = GetLastWorkingDay(new Date());
     todayDateHour = todayDate;
     todayDate = new Date(todayDate.getFullYear(), todayDate.getMonth(), todayDate.getDate());
