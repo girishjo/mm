@@ -18,6 +18,10 @@ window.addEventListener('load', async () => {
     defaultWatchlists = await GetData('defaultWatchlists.json');
     //UpdateView();
     LoadData();
+
+    setTimeout(() => {
+        document.getElementById('notificationDiv').style.display = 'none';
+    }, 10000);
 });
 
 // function UpdateView() {
