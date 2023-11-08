@@ -465,37 +465,45 @@ function updateDataTable(table, name, nseCode, bseCode, data = undefined, rowInd
 function upadtePortfolioTable(stockList) {
     let totalInvestment = 0, currentValue = 0, dayPnL = 0;
     let flag = false;
+    let refs1 = [];
+    let refs2 = [];
+
     for (let i = 0; i < stockList.length; i++) {
+        let columnCounter = 1;
         if (stockList[i][0]) {
             const stockDetails = stockList[i];
             let newRow;
             if (stockDetails[0] && stockDetails[3] && stockDetails[3] != 0) {
                 let stockData = { ...MergeStockData(nseData[stockDetails[1]], bseData[stockDetails[2]]) };
                 newRow = addEmptyRow(portfolioTable);
-                newRow.cells[1].innerText = stockDetails[0];
+                newRow.cells[columnCounter++].innerText = stockDetails[0];
                 if (stockDetails[3] && stockDetails[3] != 0) {
-                    newRow.cells[2].innerText = stockDetails[3];
-                    newRow.cells[3].innerText = stockDetails[4].toCustomString(2);
+                    newRow.cells[columnCounter++].innerText = stockDetails[3];
+                    newRow.cells[columnCounter++].innerText = stockDetails[4].toCustomString(2);
                     totalInvestment += stockDetails[3] * stockDetails[4];
-                    newRow.cells[4].innerText = (stockDetails[3] * stockDetails[4]).toCustomString();
+                    newRow.cells[columnCounter++].innerText = (stockDetails[3] * stockDetails[4]).toCustomString();
+                    refs1.push(newRow.cells[columnCounter]);
+                    newRow.cells[columnCounter++].innerText = stockDetails[3] * stockDetails[4];
                     let lastClosing = undefined;
                     if (!stockData.Close && stockData.History && stockData.History.length > 0) {
                         lastClosing = stockData.History[0].Close;
                     }
                     if (stockData.Close != undefined || lastClosing != undefined) {
-                        newRow.cells[5].innerText = (stockData.Close || lastClosing).toCustomString(2);
+                        newRow.cells[columnCounter++].innerText = (stockData.Close || lastClosing).toCustomString(2);
                         currentValue += stockDetails[3] * (stockData.Close || lastClosing);
-                        newRow.cells[6].innerText = (stockDetails[3] * (stockData.Close || lastClosing)).toLocaleString('en-In');
-                        newRow.cells[7].innerText = (stockDetails[3] * ((stockData.Close || lastClosing) - stockDetails[4])).toCustomString();
+                        newRow.cells[columnCounter++].innerText = (stockDetails[3] * (stockData.Close || lastClosing)).toLocaleString('en-In');
+                        refs2.push(newRow.cells[columnCounter]);
+                        newRow.cells[columnCounter++].innerText = stockDetails[3] * (stockData.Close || lastClosing);
+                        newRow.cells[columnCounter++].innerText = (stockDetails[3] * ((stockData.Close || lastClosing) - stockDetails[4])).toCustomString();
                         const netChange = ((stockData.Close || lastClosing) - stockDetails[4]) * 100 / stockDetails[4];
-                        newRow.cells[8].innerText = netChange.toCustomString(2) + " %";
+                        newRow.cells[columnCounter++].innerText = netChange.toCustomString(2) + " %";
                         if (netChange > 0) {
-                            newRow.cells[7].style.color = 'green';
-                            newRow.cells[8].style.color = 'green';
+                            newRow.cells[columnCounter - 2].style.color = 'green';
+                            newRow.cells[columnCounter - 1].style.color = 'green';
                         }
                         else if (netChange < 0) {
-                            newRow.cells[7].style.color = 'red';
-                            newRow.cells[8].style.color = 'red';
+                            newRow.cells[columnCounter - 2].style.color = 'red';
+                            newRow.cells[columnCounter - 1].style.color = 'red';
                         }
 
                         if (stockData.PrevClose != undefined && stockData.PrevClose != 0) {
@@ -505,32 +513,34 @@ function upadtePortfolioTable(stockList) {
                             stockData.Change = ((stockData.Close || lastClosing) - stockData.PrevClose) * 100 / stockData.PrevClose;
                             let dayAbsoluteChange = stockDetails[3] * ((stockData.Close || lastClosing) - stockData.PrevClose);
                             dayPnL += dayAbsoluteChange;
-                            newRow.cells[9].innerText = dayAbsoluteChange.toCustomString();
-                            newRow.cells[10].innerText = stockData.Change.toCustomString(2) + " %"
+                            newRow.cells[columnCounter++].innerText = dayAbsoluteChange.toCustomString();
+                            newRow.cells[columnCounter++].innerText = stockData.Change.toCustomString(2) + " %"
                             if (stockData.Change > 0) {
-                                newRow.cells[9].style.color = 'green';
-                                newRow.cells[10].style.color = 'green';
+                                newRow.cells[columnCounter - 2].style.color = 'green';
+                                newRow.cells[columnCounter - 1].style.color = 'green';
                             }
                             else if (stockData.Change < 0) {
-                                newRow.cells[9].style.color = 'red';
-                                newRow.cells[10].style.color = 'red';
+                                newRow.cells[columnCounter - 2].style.color = 'red';
+                                newRow.cells[columnCounter - 1].style.color = 'red';
                             }
                         }
                         else {
-                            newRow.cells[9].innerText = 0;
-                            newRow.cells[10].innerText = (0).toFixed(2).toLocaleString('en-In') + " %"
+                            newRow.cells[columnCounter++].innerText = 0;
+                            newRow.cells[columnCounter++].innerText = (0).toFixed(2).toLocaleString('en-In') + " %"
                         }
 
                         if (stockData.Close == undefined) {
-                            newRow.cells[5].classList.add('attention');
                             newRow.cells[6].classList.add('attention');
                             newRow.cells[7].classList.add('attention');
                             newRow.cells[8].classList.add('attention');
+                            newRow.cells[9].classList.add('attention');
+                            newRow.cells[10].classList.add('attention');
 
-                            newRow.cells[5].title = "Last closing price taken";
-                            newRow.cells[6].title = "Calculated from last closing price";
+                            newRow.cells[6].title = "Last closing price taken";
                             newRow.cells[7].title = "Calculated from last closing price";
                             newRow.cells[8].title = "Calculated from last closing price";
+                            newRow.cells[9].title = "Calculated from last closing price";
+                            newRow.cells[10].title = "Calculated from last closing price";
                             flag = true;
                         }
                     }
@@ -540,45 +550,54 @@ function upadtePortfolioTable(stockList) {
     }
 
     if (totalInvestment > 0) {
+        for (let i = 0; i < refs1.length; i++) {
+            refs1[i].innerText = (refs1[i].innerText * 100 / totalInvestment).toCustomString(2) + " %";
+            refs2[i].innerText = (refs2[i].innerText * 100 / currentValue).toCustomString(2) + " %";
+        }
+
         const newRow = addEmptyRow(portfolioTable);
         newRow.setAttribute("frozen", true);
         newRow.cells[1].innerText = "Total = ";
         newRow.cells[4].innerText = totalInvestment.toCustomString();
-        newRow.cells[6].innerText = currentValue.toCustomString();
-        newRow.cells[7].innerText = (currentValue - totalInvestment).toCustomString();
-        newRow.cells[8].innerText = ((currentValue - totalInvestment) * 100 / totalInvestment).toCustomString(2) + " %";
+        newRow.cells[5].innerText = (100).toCustomString(2) + " %";
+        newRow.cells[7].innerText = currentValue.toCustomString();
+        newRow.cells[8].innerText = (100).toCustomString(2) + " %";
+        newRow.cells[9].innerText = (currentValue - totalInvestment).toCustomString();
+        newRow.cells[10].innerText = ((currentValue - totalInvestment) * 100 / totalInvestment).toCustomString(2) + " %";
         if ((currentValue - totalInvestment) > 0) {
-            newRow.cells[7].style.color = 'green';
-            newRow.cells[8].style.color = 'green';
-        }
-        else if ((currentValue - totalInvestment) < 0) {
-            newRow.cells[7].style.color = 'red';
-            newRow.cells[8].style.color = 'red';
-        }
-        newRow.cells[9].innerText = dayPnL.toCustomString();
-        newRow.cells[10].innerText = (dayPnL * 100 / (currentValue - dayPnL)).toCustomString(2) + " %";
-
-        if (dayPnL > 0) {
             newRow.cells[9].style.color = 'green';
             newRow.cells[10].style.color = 'green';
         }
-        else if (dayPnL < 0) {
+        else if ((currentValue - totalInvestment) < 0) {
             newRow.cells[9].style.color = 'red';
             newRow.cells[10].style.color = 'red';
         }
+        newRow.cells[11].innerText = dayPnL.toCustomString();
+        newRow.cells[12].innerText = (dayPnL * 100 / (currentValue - dayPnL)).toCustomString(2) + " %";
+
+        if (dayPnL > 0) {
+            newRow.cells[11].style.color = 'green';
+            newRow.cells[12].style.color = 'green';
+        }
+        else if (dayPnL < 0) {
+            newRow.cells[11].style.color = 'red';
+            newRow.cells[12].style.color = 'red';
+        }
 
         if (flag) {
-            newRow.cells[6].classList.add('attention');
             newRow.cells[7].classList.add('attention');
             newRow.cells[8].classList.add('attention');
             newRow.cells[9].classList.add('attention');
             newRow.cells[10].classList.add('attention');
+            newRow.cells[11].classList.add('attention');
+            newRow.cells[12].classList.add('attention');
 
-            newRow.cells[6].title = "For some stocks, it is calculated from their last closing price";
             newRow.cells[7].title = "For some stocks, it is calculated from their last closing price";
             newRow.cells[8].title = "For some stocks, it is calculated from their last closing price";
-            newRow.cells[9].title = "Partial data";
-            newRow.cells[10].title = "Partial data";
+            newRow.cells[9].title = "For some stocks, it is calculated from their last closing price";
+            newRow.cells[10].title = "For some stocks, it is calculated from their last closing price";
+            newRow.cells[11].title = "Partial data";
+            newRow.cells[12].title = "Partial data";
         }
     }
 }
