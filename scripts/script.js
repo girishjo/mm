@@ -552,6 +552,9 @@ function upadtePortfolioTable(stockList) {
     if (totalInvestment > 0) {
         for (let i = 0; i < refs1.length; i++) {
             refs1[i].innerText = (refs1[i].innerText * 100 / totalInvestment).toCustomString(2) + " %";
+        }
+
+        for (let i = 0; i < refs2.length; i++) {
             refs2[i].innerText = (refs2[i].innerText * 100 / currentValue).toCustomString(2) + " %";
         }
 
