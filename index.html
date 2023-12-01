@@ -217,8 +217,7 @@
             Select Dealer:
             <select id="ddlBulkDealer" onchange="UpdateBulkDealTable();">
             </select>
-            <input type="text" id="txtFilterDeals" name="txtFilterDeals" placeholder="Filter stocks..."
-                onkeyup="UpdateBulkDealTable();">
+            <input type="text" id="txtFilterDeals" name="txtFilterDeals" placeholder="Filter stocks..." onkeyup="UpdateBulkDealTable();">
 
             <input type="checkbox" id="chkFilterDeals" name="chkFilterDeals" onchange="UpdateLabel();">
             <label for="chkFilterDeals" id="lblFilterDealsPrefix" style="margin-right: 0px;">Show deals only for</label>
@@ -252,11 +251,13 @@
             Select Stock:
             <select id="ddlStocks" onchange="UpdateStockBulkDealTable();">
             </select>
-            <input type="text" id="txtFilterDealers" name="txtFilterDealers" placeholder="Filter deals..."
-                onkeyup="UpdateStockBulkDealTable();">
-            <input type="checkbox" id="chkTodayDeals" name="chkTodayDeals" checked
-                onchange="UpdateStockBulkDealTable();">
+            <input type="text" id="txtFilterDealers" name="txtFilterDealers" placeholder="Filter deals..." onkeyup="UpdateStockBulkDealTable();">
+            <input type="checkbox" id="chkTodayDeals" name="chkTodayDeals" checked onchange="UpdateStockBulkDealTable();">
             <label for="chkTodayDeals" id="lblTodayDeals" style="margin-right: 0px;">Today's Deals only</label>
+            <input type="checkbox" id="chkNseDeals" name="chkNseDeals" checked onchange="UpdateStockBulkDealTable();">
+            <label for="chkNseDeals" id="lblNseDeals" style="margin-right: 0px;">NSE</label>
+            <input type="checkbox" id="chkBseDeals" name="chkBseDeals" checked onchange="UpdateStockBulkDealTable();">
+            <label for="chkBseDeals" id="lblBseDeals" style="margin-right: 0px;">BSE</label>
             <table id="stockBulkDeals">
                 <thead>
                     <tr>
@@ -390,18 +391,15 @@
                             <td class="text">When moving a stock to a watchlist<br>
                                 add it to:</td>
                             <td class="text">
-                                <input type="radio" id="moveAddToWatchlist1top" name="moveAddToWatchlist1" value="top"
-                                    disabled>
+                                <input type="radio" id="moveAddToWatchlist1top" name="moveAddToWatchlist1" value="top" disabled>
                                 <label for="moveAddToWatchlist1top">Top</label>
-                                <input type="radio" id="moveAddToWatchlist1bottom" name="moveAddToWatchlist1"
-                                    value="bottom" disabled>
+                                <input type="radio" id="moveAddToWatchlist1bottom" name="moveAddToWatchlist1" value="bottom" disabled>
                                 <label for="moveAddToWatchlist1bottom">Bottom</label>
                             </td>
                             <td class="text">
                                 <input type="radio" id="moveAddToWatchlist2top" name="moveAddToWatchlist2" value="top">
                                 <label for="moveAddToWatchlist2top">Top</label>
-                                <input type="radio" id="moveAddToWatchlist2bottom" name="moveAddToWatchlist2"
-                                    value="bottom">
+                                <input type="radio" id="moveAddToWatchlist2bottom" name="moveAddToWatchlist2" value="bottom">
                                 <label for="moveAddToWatchlist2bottom">Bottom</label>
                             </td>
                         </tr>

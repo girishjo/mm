@@ -62,6 +62,8 @@ function UpdateStockBulkDealTable() {
         bulkDeals = flattenDeals;
     }
 
+    bulkDeals = FilterExchange(bulkDeals, document.getElementById('chkNseDeals').checked, document.getElementById('chkBseDeals').checked);
+
     if (document.getElementById('chkTodayDeals').checked) {
         bulkDeals = FilterStockDeals(bulkDeals, new Date(document.getElementById('lblTodayDeals').textContent.match(/\[(.+)\]/)[1]).toDateString(), true);
     }
@@ -80,6 +82,26 @@ function UpdateStockBulkDealTable() {
 
     ShowClientDeals(stockBulkDealsTable, bulkDeals, 'SecurityName', 'ClientName');
     UpdateLoader(false);
+}
+
+function FilterExchange(bulkDeals, includeNSE, includeBSE) {
+    if (!includeNSE && !includeBSE) {
+        return bulkDeals;
+    }
+
+    let result = [];
+    for (let i = 0; i < bulkDeals.length; i++) {
+        const bulkDeal = bulkDeals[i];
+        if (isNaN(bulkDeal.SecurityCode)) {
+            if (includeNSE) {
+                result.push(bulkDeal);
+            }
+        }
+        else if (includeBSE) {
+            result.push(bulkDeal);
+        }
+    }
+    return result;
 }
 
 function FilterStockDeals(bulkDeals, filter, isDateFilter = false) {

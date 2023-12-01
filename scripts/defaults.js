@@ -19,9 +19,11 @@ window.addEventListener('load', async () => {
     //UpdateView();
     LoadData();
 
-    setTimeout(() => {
-        document.getElementById('notificationDiv').style.display = 'none';
-    }, 10000);
+    if (document.getElementById('notificationDiv')) {
+        setTimeout(() => {
+            document.getElementById('notificationDiv').style.display = 'none';
+        }, 10000);
+    }
 });
 
 // function UpdateView() {
