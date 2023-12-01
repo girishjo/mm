@@ -387,11 +387,11 @@ function updateDataTable(table, name, nseCode, bseCode, data = undefined, rowInd
             newRow.cells[1].appendChild(t2tLabel);
         }
 
-        if (Number(stockData.Delivery)) {
-            newRow.cells[2].innerText = stockData.Delivery.toLocaleString('en-In');
-        }
         if (Number(stockData.Total)) {
-            newRow.cells[3].innerText = stockData.Total.toLocaleString('en-In');
+            newRow.cells[2].innerText = stockData.Total.toLocaleString('en-In');
+        }
+        if (Number(stockData.Delivery)) {
+            newRow.cells[3].innerText = stockData.Delivery.toLocaleString('en-In');
         }
         if (stockData.Total > 0) {
             const deliveryPercentage = ((stockData.Delivery / stockData.Total) * 100).toCustomString(2);
