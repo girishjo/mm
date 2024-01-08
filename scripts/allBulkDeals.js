@@ -41,7 +41,10 @@ function InitStockBulkDeals() {
             ddlStocks.selectedIndex = 0;
         }
         //filteredBulkDealers = stockBulkDeals;
-        document.getElementById('lblTodayDeals').textContent += " [" + new Date(dataValidityTable.rows[2].cells[3].innerText).toDateString() + "]";
+        const nseDate = new Date(dataValidityTable.rows[1].cells[3].innerText);
+        const bseDate = new Date(dataValidityTable.rows[2].cells[3].innerText);
+
+        document.getElementById('lblTodayDeals').textContent += " [" + new Date(Math.max(nseDate, bseDate)).toDateString() + "]";
 
         stockBulkDealsTable.rows[0].cells[2].innerText = "Stock Name";
         stockBulkDealsTable.rows[0].cells[3].innerText = "Client Name";

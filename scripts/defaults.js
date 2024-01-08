@@ -78,6 +78,26 @@ function UpdateSettings(settings, IsDefault) {
 
     document.getElementById('moveAddToWatchlist' + (columnIndex - 1) + settings.configs.moveStockTo).checked = true;
 
+    /*
+    if (!settings.configs.mb) {
+        if (!settingsTable.rows[7].cells[defaultColumn].children[0].checked) {
+            settingsTable.rows[7].cells[userSettingsColumn].children[0].disabled = true;
+        }
+    }
+    else {
+        settingsTable.rows[7].cells[columnIndex].children[0].checked = settings.configs.mb;
+    }
+
+    if (!settings.configs.sme) {
+        if (!settingsTable.rows[7].cells[defaultColumn].children[2].checked) {
+            settingsTable.rows[7].cells[userSettingsColumn].children[2].disabled = true;
+        }
+    }
+    else {
+        settingsTable.rows[7].cells[columnIndex].children[2].checked = settings.configs.sme;
+    }
+    */
+
     updateRowNumber(settingsTable);
 }
 
@@ -97,6 +117,19 @@ function SaveSettings() {
     settings.configs.t2tTexts[2] = settingsTable.rows[5].cells[userSettingsColumn].children[4].value || settingsTable.rows[5].cells[defaultColumn].children[4].value;
 
     settings.configs.moveStockTo = document.querySelector('input[name="moveAddToWatchlist2"]:checked').value;
+
+    /*
+    let mb = settingsTable.rows[7].cells[userSettingsColumn].children[0].checked;
+    let sme = settingsTable.rows[7].cells[userSettingsColumn].children[2].checked;
+
+    if (!mb && !sme) {
+        mb = true;
+        sme = true;
+    }
+
+    settings.configs.mb = mb;
+    settings.configs.sme = sme;
+    */
 
     window.localStorage.setItem("userSettings", JSON.stringify(settings));
     ShowMessage('Settings saved');
