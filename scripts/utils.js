@@ -62,12 +62,12 @@ function sortTable(header) {
                     if (firstText == undefined)
                         item1 = 0;
                     else
-                        item1 = Number(firstText?.replace(/,/g, "").replace("%", "").replace(".", ""));
+                        item1 = Number(firstText?.replace(/,/g, "").replace("%", ""));  //.replace(".", "")
 
                     if (secondText == undefined)
                         item1 = 0;
                     else
-                        item2 = Number(secondText?.replace(/,/g, "").replace("%", "").replace(".", ""));
+                        item2 = Number(secondText?.replace(/,/g, "").replace("%", "")); //.replace(".", "")
                     break;
                 case x.classList.contains('date'):
                     type = 'date';
