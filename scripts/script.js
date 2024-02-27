@@ -476,26 +476,46 @@ function upadtePortfolioTable(stockList) {
             if (stockDetails[0] && stockDetails[3] && stockDetails[3] != 0) {
                 let stockData = { ...MergeStockData(nseData[stockDetails[1]], bseData[stockDetails[2]]) };
                 newRow = addEmptyRow(portfolioTable);
+
+                // name
                 newRow.cells[columnCounter++].innerText = stockDetails[0];
                 if (stockDetails[3] && stockDetails[3] != 0) {
+
+                    // qty
                     newRow.cells[columnCounter++].innerText = stockDetails[3];
+
+                    // buy avg
                     newRow.cells[columnCounter++].innerText = stockDetails[4].toCustomString(2);
                     totalInvestment += stockDetails[3] * stockDetails[4];
+
+                    // buy value
                     newRow.cells[columnCounter++].innerText = (stockDetails[3] * stockDetails[4]).toCustomString();
+
+                    // pf %
                     refs1.push(newRow.cells[columnCounter]);
                     newRow.cells[columnCounter++].innerText = stockDetails[3] * stockDetails[4];
+
                     let lastClosing = undefined;
                     if (!stockData.Close && stockData.History && stockData.History.length > 0) {
                         lastClosing = stockData.History[0].Close;
                     }
                     if (stockData.Close != undefined || lastClosing != undefined) {
+                        // close
                         newRow.cells[columnCounter++].innerText = (stockData.Close || lastClosing).toCustomString(2);
                         currentValue += stockDetails[3] * (stockData.Close || lastClosing);
-                        newRow.cells[columnCounter++].innerText = (stockDetails[3] * (stockData.Close || lastClosing)).toLocaleString('en-In');
+
+                        // present value
+                        newRow.cells[columnCounter++].innerText = (stockDetails[3] * (stockData.Close || lastClosing)).toCustomString();
+
+                        // pf %
                         refs2.push(newRow.cells[columnCounter]);
                         newRow.cells[columnCounter++].innerText = stockDetails[3] * (stockData.Close || lastClosing);
+
+                        // p&l
                         newRow.cells[columnCounter++].innerText = (stockDetails[3] * ((stockData.Close || lastClosing) - stockDetails[4])).toCustomString();
                         const netChange = ((stockData.Close || lastClosing) - stockDetails[4]) * 100 / stockDetails[4];
+
+                        // net chg %
                         newRow.cells[columnCounter++].innerText = netChange.toCustomString(2) + " %";
                         if (netChange > 0) {
                             newRow.cells[columnCounter - 2].style.color = 'green';
@@ -513,7 +533,11 @@ function upadtePortfolioTable(stockList) {
                             stockData.Change = ((stockData.Close || lastClosing) - stockData.PrevClose) * 100 / stockData.PrevClose;
                             let dayAbsoluteChange = stockDetails[3] * ((stockData.Close || lastClosing) - stockData.PrevClose);
                             dayPnL += dayAbsoluteChange;
+
+                            // day chg
                             newRow.cells[columnCounter++].innerText = dayAbsoluteChange.toCustomString();
+
+                            // day chg %
                             newRow.cells[columnCounter++].innerText = stockData.Change.toCustomString(2) + " %"
                             if (stockData.Change > 0) {
                                 newRow.cells[columnCounter - 2].style.color = 'green';
@@ -525,7 +549,11 @@ function upadtePortfolioTable(stockList) {
                             }
                         }
                         else {
+
+                            // day chg
                             newRow.cells[columnCounter++].innerText = 0;
+
+                            // day chg %
                             newRow.cells[columnCounter++].innerText = (0).toFixed(2).toLocaleString('en-In') + " %"
                         }
 
