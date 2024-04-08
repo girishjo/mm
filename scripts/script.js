@@ -517,11 +517,11 @@ function upadtePortfolioTable(stockList) {
 
                         // net chg %
                         newRow.cells[columnCounter++].innerText = netChange.toCustomString(2) + " %";
-                        if (netChange > 0) {
+                        if ((netChange > 0 && stockDetails[3] > 0) || (netChange < 0 && stockDetails[3] < 0)) {
                             newRow.cells[columnCounter - 2].style.color = 'green';
                             newRow.cells[columnCounter - 1].style.color = 'green';
                         }
-                        else if (netChange < 0) {
+                        else if ((netChange < 0 && stockDetails[3] > 0) || (netChange > 0 && stockDetails[3] < 0)) {
                             newRow.cells[columnCounter - 2].style.color = 'red';
                             newRow.cells[columnCounter - 1].style.color = 'red';
                         }
@@ -539,11 +539,11 @@ function upadtePortfolioTable(stockList) {
 
                             // day chg %
                             newRow.cells[columnCounter++].innerText = stockData.Change.toCustomString(2) + " %"
-                            if (stockData.Change > 0) {
+                            if ((stockData.Change > 0 && stockDetails[3] > 0) || (stockData.Change < 0 && stockDetails[3] < 0)) {
                                 newRow.cells[columnCounter - 2].style.color = 'green';
                                 newRow.cells[columnCounter - 1].style.color = 'green';
                             }
-                            else if (stockData.Change < 0) {
+                            else if ((stockData.Change < 0 && stockDetails[3] > 0) || (stockData.Change > 0 && stockDetails[3] < 0)) {
                                 newRow.cells[columnCounter - 2].style.color = 'red';
                                 newRow.cells[columnCounter - 1].style.color = 'red';
                             }
