@@ -577,7 +577,7 @@ function upadtePortfolioTable(stockList) {
         }
     }
 
-    if (totalInvestment > 0) {
+    if (totalInvestment != 0) {
         for (let i = 0; i < refs1.length; i++) {
             refs1[i].innerText = (refs1[i].innerText * 100 / totalInvestment).toCustomString(2) + " %";
         }
