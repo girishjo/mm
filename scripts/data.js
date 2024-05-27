@@ -34,6 +34,28 @@ async function LoadData() {
   loadDataFromLocal();
   UpdateLoader(false);
   setTimeout(CheckForLatestData, settings.constants.refreshDataTimeOut * 60 * 1000);
+  OpenTab();
+}
+
+function OpenTab() {
+  const urlParams = new URLSearchParams(window.location.search);
+  const tab = urlParams.get('tab');
+  switch (tab) {
+    case "stockdata":
+      openTab('stockDataDiv')
+      break;
+    case "bulkdealers":
+      openTab('bulkDealersDiv')
+      break;
+    case "bulkdeals":
+      openTab('stockBulkDealsDiv')
+      break;
+    case "portfolio":
+      openTab('portfolioDiv')
+      break;
+    default:
+      break;
+  }
 }
 
 function CheckForT10(result) {
