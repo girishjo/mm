@@ -172,5 +172,6 @@ function OpenClientBulkDealsPage(clientName, nseCode, bseCode) {
 function OpenStockBulkDealsPage(stockName, nseCode, bseCode) {
     openTab('stockBulkDealsDiv');
     ddlStocks.value = nseCode || bseCode;
+    document.getElementById('chkTodayDeals').checked = false;
     UpdateStockBulkDealTable();
 }
