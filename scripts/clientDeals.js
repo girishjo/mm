@@ -85,7 +85,21 @@ function ShowClientDeals(table, deals, fieldName1, fieldName2) {
         newRow.cells[columnCounter++].innerText = i + 1;
         newRow.cells[columnCounter++].innerText = deal.Date;
         newRow.cells[columnCounter++].innerText = deal[fieldName1];
-        newRow.cells[columnCounter++].innerText = deal[fieldName2];
+
+        // newRow.cells[columnCounter++].innerText = deal[fieldName2];
+        {
+            var a = document.createElement('a');
+            var linkText = document.createTextNode(deal[fieldName2]);
+            a.appendChild(linkText);
+            a.title = deal[fieldName2];
+            a.href = "#0";
+            if (fieldName2 == 'ClientName') {
+                a.setAttribute("onclick", "openTab('bulkDealersDiv');UpdateBulkDealTable('" + deal[fieldName2] + "');");
+            } else {
+                a.setAttribute("onclick", "OpenStockBulkDealsPage('" + deal[fieldName2] + "', '" + deal[fieldName1] + "','" + deal[fieldName1] + "');");
+            }
+            newRow.cells[columnCounter++].appendChild(a);
+        }
 
         newRow.cells[columnCounter++].innerText = deal.BuyOrSell;
         if (deal.BuyOrSell == "Buy") {

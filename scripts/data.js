@@ -34,10 +34,10 @@ async function LoadData() {
   loadDataFromLocal();
   UpdateLoader(false);
   setTimeout(CheckForLatestData, settings.constants.refreshDataTimeOut * 60 * 1000);
-  OpenTab();
+  OpenSpecificTab();
 }
 
-function OpenTab() {
+function OpenSpecificTab() {
   const urlParams = new URLSearchParams(window.location.search);
   const tab = urlParams.get('tab');
   switch (tab) {
