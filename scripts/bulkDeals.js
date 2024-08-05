@@ -168,6 +168,9 @@ function OpenClientBulkDealsPage(clientName, nseCode, bseCode) {
     if (chkFilterDeals.checked) {
         txtFilterDeals.value = txtFilterDeals.getAttribute('code');
     }
+    else{
+        txtFilterDeals.value = "";
+    }
     //chkFilterDeals.checked = true;
     UpdateBulkDealTable(clientName);
 }
