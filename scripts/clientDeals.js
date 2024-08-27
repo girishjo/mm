@@ -84,7 +84,19 @@ function ShowClientDeals(table, deals, fieldName1, fieldName2) {
         let columnCounter = 0;
         newRow.cells[columnCounter++].innerText = i + 1;
         newRow.cells[columnCounter++].innerText = deal.Date;
-        newRow.cells[columnCounter++].innerText = deal[fieldName1];
+        if (fieldName2 == 'ClientName') {
+            var a = document.createElement('a');
+            var linkText = document.createTextNode(deal[fieldName1]);
+            a.appendChild(linkText);
+            a.title = deal[fieldName1];
+            a.href = "#0";
+            if (fieldName2 == 'ClientName') {
+                a.setAttribute("onclick", "FilterDealsFromLink('" + deal.SecurityCode + "');");
+            }
+            newRow.cells[columnCounter++].appendChild(a);
+        } else {
+            newRow.cells[columnCounter++].innerText = deal[fieldName1];
+        }
 
         // newRow.cells[columnCounter++].innerText = deal[fieldName2];
         {
@@ -114,6 +126,13 @@ function ShowClientDeals(table, deals, fieldName1, fieldName2) {
         newRow.cells[columnCounter++].innerText = deal.Quantity.toCustomString();
         newRow.cells[columnCounter++].innerText = deal.Price.toCustomString(2);
     }
+}
+
+function FilterDealsFromLink(securityCode) {
+    //ddlStocks.value = securityCode;
+    txtFilterDealers.value = securityCode;
+    UpdateStockBulkDealTable();
+    document.getElementById('chkTodayDeals').checked = false;
 }
 
 function FilterDeals(bulkDeals) {
