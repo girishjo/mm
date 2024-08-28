@@ -34,6 +34,10 @@ function loadDataFromLocal() {
                 }
             }
         }
+        let aWL = localStorage.getItem("activeWL");
+        if (aWL && watchlists[aWL]) {
+            activeWL = aWL;
+        }
     }
     else {
         ShowMessage('No saved Watchlist found, loading default watchlists');
@@ -93,13 +97,19 @@ function UpdateWatchList(saveLast = true) {
     const lastSelectedWL = activeWL;
     const selectedWatchList = document.querySelector('input[name="stockListRadio"]:checked');
     if (!selectedWatchList) {
-        const firstWatchlist = document.querySelector('input[name="stockListRadio"]');
-        if (firstWatchlist) {
-            firstWatchlist.checked = true;
-            activeWL = firstWatchlist.value;
+        const lastSelected = document.querySelector('input[name="stockListRadio"][value="' + activeWL + '"]');
+        if (lastSelected) {
+            lastSelected.checked = true;
         }
         else {
-            activeWL = undefined;
+            const firstWatchlist = document.querySelector('input[name="stockListRadio"]');
+            if (firstWatchlist) {
+                firstWatchlist.checked = true;
+                activeWL = firstWatchlist.value;
+            }
+            else {
+                activeWL = undefined;
+            }
         }
     } else {
         activeWL = selectedWatchList.value;
@@ -139,6 +149,8 @@ function UpdateWatchList(saveLast = true) {
         updateRowNumber(portfolioTable);
         UpdateLoader(false);
     }
+
+    window.localStorage.setItem("activeWL", activeWL);
 }
 
 function AddMoveToContent() {
