@@ -387,7 +387,7 @@ function updateDataTable(table, name, nseCode, bseCode, data = undefined, rowInd
             a.setAttribute("codes", codes.join(','));
             a.setAttribute("onclick", "ShowBulkDeal(this);");
             data && a.setAttribute("historyDate", data.HistoryDate);
-            a.classList.add("highlight");
+            a.classList.add("highlightDeals");
             newRow.cells[1].appendChild(a);
         }
 

@@ -63,3 +63,59 @@
     /* IE 10+ */
     margin: 15px 0;
 }
+
+
+
+@-webkit-keyframes highlightDeals {
+    from {
+        background-color: inherit;
+    }
+
+    to {
+        background-color: lightgreen;
+    }
+}
+
+@-moz-keyframes highlightDeals {
+    from {
+        background-color: inherit;
+    }
+
+    to {
+        background-color: lightgreen;
+    }
+}
+
+@-o-keyframes highlightDeals {
+    from {
+        background-color: inherit;
+    }
+
+    to {
+        background-color: lightgreen;
+    }
+}
+
+@keyframes highlightDeals {
+    from {
+        background-color: inherit;
+    }
+
+    to {
+        background-color: lightgreen;
+    }
+}
+
+.highlightDeals {
+    -webkit-animation: highlightDeals 1s 10 alternate-reverse forwards;
+    /* Safari 4+ */
+    -moz-animation: highlightDeals 1s 10 alternate-reverse forwards;
+    /* Fx 5+ */
+    -o-animation: highlightDeals 1s 10 alternate-reverse forwards;
+    /* Opera 12+ */
+    animation: highlightDeals 1s 10 alternate-reverse forwards;
+    /* IE 10+ */
+    margin-left: 5px;
+    margin-bottom: 0%;
+    float: right;
+}
