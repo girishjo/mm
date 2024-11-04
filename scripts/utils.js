@@ -145,10 +145,10 @@ function isValidDate(d) {
 
 function MergeStockData(stockData1, stockData2) {
     var stockData;
-    if (stockData1 ? stockData1.Close : 0 > stockData2 ? stockData2.Close : 0) {
-        stockData = { ...stockData1, ...stockData2 };
-    } else {
+    if ((stockData1 ? stockData1.Close : 0) > (stockData2 ? stockData2.Close : 0)) {
         stockData = { ...stockData2, ...stockData1 };
+    } else {
+        stockData = { ...stockData1, ...stockData2 };
     }
 
     if (!stockData1 && !stockData2)
