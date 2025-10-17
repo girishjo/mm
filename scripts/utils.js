@@ -236,7 +236,7 @@ async function GetData(fileName) {
     return dataJson;
 }
 
-function toObject(table) {
+function toObject(table, col = 3) {
     const result = []
     for (let i = 0; i < table.tBodies[0].rows.length; i++) {
         const row = table.tBodies[0].rows[i];
@@ -244,12 +244,36 @@ function toObject(table) {
             const res = [];
             for (let j = 0; j < row.cells.length; j++) {
                 const cell = row.cells[j];
-                j > 3 && res.push(cell.textContent);
+                j > col && res.push(cell.textContent);
             }
             res.length > 0 && res[0].trim() != "" && result.push(res);
         }
     }
     return result;
+}
+
+function tableToExcel(tableId, sheetName = 'Worksheet') {
+    const table = document.getElementById(tableId);
+    if (!table) return;
+
+    const uri = 'data:application/vnd.ms-excel;base64,';
+    const template = `
+        <html xmlns:o="urn:schemas-microsoft-com:office:office" 
+              xmlns:x="urn:schemas-microsoft-com:office:excel" 
+              xmlns="http://www.w3.org/TR/REC-html40">
+        <head>
+            <meta charset="UTF-8"/>
+        </head>
+        <body>
+            <table>{table}</table>
+        </body>
+        </html>`;
+    const base64 = s => window.btoa(unescape(encodeURIComponent(s)));
+    const format = (s, c) => s.replace(/{(\w+)}/g, (m, p) => c[p]);
+
+    const ctx = { worksheet: sheetName, table: table.innerHTML };
+    const href = uri + base64(format(template, ctx));
+    window.location.href = href;
 }
 
 function GetPreviousWorkingDate(inputDate) {
