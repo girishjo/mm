@@ -72,6 +72,9 @@ function UpdateStockBulkDealTable() {
 
     bulkDeals = FilterExchange(bulkDeals, document.getElementById('chkNseDeals').checked, document.getElementById('chkBseDeals').checked);
 
+    // Apply SME/MainBoard filter
+    bulkDeals = FilterStockType(bulkDeals, document.getElementById('chkMainBoardDeals').checked, document.getElementById('chkSmeDeals').checked);
+
     // Apply date filter if a date is selected
     let selectedDate = document.getElementById('dateFilterDeals').value;
     if (selectedDate) {
@@ -109,6 +112,46 @@ function FilterExchange(bulkDeals, includeNSE, includeBSE) {
             }
         }
         else if (includeBSE) {
+            result.push(bulkDeal);
+        }
+    }
+    return result;
+}
+
+function FilterStockType(bulkDeals, includeMainBoard, includeSME) {
+    if (!includeMainBoard && !includeSME) {
+        return bulkDeals;
+    }
+
+    let result = [];
+    for (let i = 0; i < bulkDeals.length; i++) {
+        const bulkDeal = bulkDeals[i];
+        const stockCode = bulkDeal.SecurityCode;
+        
+        // Determine if stock is SME using settings from settings.json
+        let isSME = false;
+        
+        // Check NSE data first
+        if (nseData[stockCode]) {
+            const series = nseData[stockCode].Series;
+            if (series && settings.configs.t2tSMESeries.includes(series)) {
+                isSME = true;
+            }
+        }
+        
+        // Check BSE data if not found in NSE or if it's a BSE stock
+        if (!isSME && bseData[stockCode]) {
+            const series = bseData[stockCode].Series;
+            if (series && settings.configs.t2tSMESeries.includes(series)) {
+                isSME = true;
+            }
+        }
+        
+        // If not SME, then it's MainBoard
+        const isMainBoard = !isSME;
+        
+        // Include the deal if it matches the filter criteria
+        if ((includeSME && isSME) || (includeMainBoard && isMainBoard)) {
             result.push(bulkDeal);
         }
     }

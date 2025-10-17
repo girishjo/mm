@@ -248,16 +248,32 @@
             </table>
         </div>
         <div id="stockBulkDealsDiv" class="tabcontent" style="display: none;">
-            Select Stock:
-            <select id="ddlStocks" onchange="UpdateStockBulkDealTable();">
-            </select>
-            <input type="text" id="txtFilterDealers" name="txtFilterDealers" placeholder="Filter deals..." onkeyup="UpdateStockBulkDealTable();">
-            <label for="dateFilterDeals" style="margin-right: 5px;">Filter by date:</label>
-            <input type="date" id="dateFilterDeals" name="dateFilterDeals" onchange="UpdateStockBulkDealTable();" style="margin-right: 15px;">
-            <input type="checkbox" id="chkNseDeals" name="chkNseDeals" checked onchange="UpdateStockBulkDealTable();">
-            <label for="chkNseDeals" id="lblNseDeals" style="margin-right: 0px;">NSE</label>
-            <input type="checkbox" id="chkBseDeals" name="chkBseDeals" checked onchange="UpdateStockBulkDealTable();">
-            <label for="chkBseDeals" id="lblBseDeals" style="margin-right: 0px;">BSE</label>
+            <div style="margin-bottom: 10px;">
+                <label for="ddlStocks" style="font-weight: bold;">Select Stock:</label>
+                <select id="ddlStocks" onchange="UpdateStockBulkDealTable();" style="margin-right: 20px;">
+                </select>
+                
+                <label for="dateFilterDeals" style="font-weight: bold;">Date:</label>
+                <input type="date" id="dateFilterDeals" name="dateFilterDeals" onchange="UpdateStockBulkDealTable();" style="margin-right: 20px;">
+                
+                <label for="txtFilterDealers" style="font-weight: bold;">Search:</label>
+                <input type="text" id="txtFilterDealers" name="txtFilterDealers" placeholder="Filter deals..." onkeyup="UpdateStockBulkDealTable();">
+            </div>
+            
+            <div style="margin-bottom: 10px;">
+                <span style="font-weight: bold; margin-right: 10px;">Exchange:</span>
+                <input type="checkbox" id="chkNseDeals" name="chkNseDeals" checked onchange="UpdateStockBulkDealTable();">
+                <label for="chkNseDeals" id="lblNseDeals" style="margin-right: 15px;">NSE</label>
+                <input type="checkbox" id="chkBseDeals" name="chkBseDeals" checked onchange="UpdateStockBulkDealTable();">
+                <label for="chkBseDeals" id="lblBseDeals" style="margin-right: 30px;">BSE</label>
+                
+                <span style="font-weight: bold; margin-right: 10px;">Type:</span>
+                <input type="checkbox" id="chkMainBoardDeals" name="chkMainBoardDeals" checked onchange="UpdateStockBulkDealTable();">
+                <label for="chkMainBoardDeals" id="lblMainBoardDeals" style="margin-right: 15px;">MainBoard</label>
+                <input type="checkbox" id="chkSmeDeals" name="chkSmeDeals" checked onchange="UpdateStockBulkDealTable();">
+                <label for="chkSmeDeals" id="lblSmeDeals" style="margin-right: 0px;">SME</label>
+            </div>
+            
             <table id="stockBulkDeals">
                 <thead>
                     <tr>
