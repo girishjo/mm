@@ -252,8 +252,8 @@
             <select id="ddlStocks" onchange="UpdateStockBulkDealTable();">
             </select>
             <input type="text" id="txtFilterDealers" name="txtFilterDealers" placeholder="Filter deals..." onkeyup="UpdateStockBulkDealTable();">
-            <input type="checkbox" id="chkTodayDeals" name="chkTodayDeals" checked onchange="UpdateStockBulkDealTable();">
-            <label for="chkTodayDeals" id="lblTodayDeals" style="margin-right: 0px;">Today's Deals only</label>
+            <label for="dateFilterDeals" style="margin-right: 5px;">Filter by date:</label>
+            <input type="date" id="dateFilterDeals" name="dateFilterDeals" onchange="UpdateStockBulkDealTable();" style="margin-right: 15px;">
             <input type="checkbox" id="chkNseDeals" name="chkNseDeals" checked onchange="UpdateStockBulkDealTable();">
             <label for="chkNseDeals" id="lblNseDeals" style="margin-right: 0px;">NSE</label>
             <input type="checkbox" id="chkBseDeals" name="chkBseDeals" checked onchange="UpdateStockBulkDealTable();">

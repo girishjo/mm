@@ -44,10 +44,15 @@ function InitStockBulkDeals() {
         const nseDate = new Date(dataValidityTable.rows[1].cells[3].innerText);
         const bseDate = new Date(dataValidityTable.rows[2].cells[3].innerText);
 
-        document.getElementById('lblTodayDeals').textContent += " [" + new Date(Math.max(nseDate, bseDate)).toDateString() + "]";
-
         stockBulkDealsTable.rows[0].cells[2].innerText = "Stock Name";
         stockBulkDealsTable.rows[0].cells[3].innerText = "Client Name";
+        
+        // Set today's date as default in the date filter
+        // const today = new Date();
+        const todayString = todayDate.getFullYear() + '-' + 
+                           String(todayDate.getMonth() + 1).padStart(2, '0') + '-' + 
+                           String(todayDate.getDate()).padStart(2, '0');
+        document.getElementById('dateFilterDeals').value = todayString;
     }
     txtFilterDealers.value = '';
     UpdateStockBulkDealTable();
@@ -67,8 +72,11 @@ function UpdateStockBulkDealTable() {
 
     bulkDeals = FilterExchange(bulkDeals, document.getElementById('chkNseDeals').checked, document.getElementById('chkBseDeals').checked);
 
-    if (document.getElementById('chkTodayDeals').checked) {
-        bulkDeals = FilterStockDeals(bulkDeals, new Date(document.getElementById('lblTodayDeals').textContent.match(/\[(.+)\]/)[1]).toDateString(), true);
+    // Apply date filter if a date is selected
+    let selectedDate = document.getElementById('dateFilterDeals').value;
+    if (selectedDate) {
+        let filterDate = new Date(selectedDate).toDateString();
+        bulkDeals = FilterStockDeals(bulkDeals, filterDate, true);
     }
 
     if (filterText.length > 0) {

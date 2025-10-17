@@ -132,7 +132,7 @@ function FilterDealsFromLink(securityCode) {
     //ddlStocks.value = securityCode;
     txtFilterDealers.value = securityCode;
     UpdateStockBulkDealTable();
-    document.getElementById('chkTodayDeals').checked = false;
+    document.getElementById('dateFilterDeals').value = '';
 }
 
 function FilterDeals(bulkDeals) {
