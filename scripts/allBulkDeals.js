@@ -46,16 +46,43 @@ function InitStockBulkDeals() {
 
         stockBulkDealsTable.rows[0].cells[2].innerText = "Stock Name";
         stockBulkDealsTable.rows[0].cells[3].innerText = "Client Name";
-        
+
         // Set today's date as default in the date filter
         // const today = new Date();
-        const todayString = todayDate.getFullYear() + '-' + 
-                           String(todayDate.getMonth() + 1).padStart(2, '0') + '-' + 
-                           String(todayDate.getDate()).padStart(2, '0');
+        const todayString = todayDate.getFullYear() + '-' +
+            String(todayDate.getMonth() + 1).padStart(2, '0') + '-' +
+            String(todayDate.getDate()).padStart(2, '0');
         document.getElementById('dateFilterDeals').value = todayString;
+
+        // Restore saved filter settings or set defaults
+        RestoreBulkDealsFilterSettings();
     }
     txtFilterDealers.value = '';
     UpdateStockBulkDealTable();
+}
+
+function RestoreBulkDealsFilterSettings() {
+    // Restore only checkbox filter preferences (default to true if not set)
+    document.getElementById('chkNseDeals').checked = settings.bulkDealsPreferences?.nseDeals !== false;
+    document.getElementById('chkBseDeals').checked = settings.bulkDealsPreferences?.bseDeals !== false;
+    document.getElementById('chkMainBoardDeals').checked = settings.bulkDealsPreferences?.mainBoardDeals !== false;
+    document.getElementById('chkSmeDeals').checked = settings.bulkDealsPreferences?.smeDeals !== false;
+}
+
+function AutoSaveBulkDealsPreferences() {
+    // Initialize bulkDealsPreferences object if it doesn't exist
+    if (!settings.bulkDealsPreferences) {
+        settings.bulkDealsPreferences = {};
+    }
+
+    // Save only checkbox preferences (not date or search text)
+    settings.bulkDealsPreferences.nseDeals = document.getElementById('chkNseDeals').checked;
+    settings.bulkDealsPreferences.bseDeals = document.getElementById('chkBseDeals').checked;
+    settings.bulkDealsPreferences.mainBoardDeals = document.getElementById('chkMainBoardDeals').checked;
+    settings.bulkDealsPreferences.smeDeals = document.getElementById('chkSmeDeals').checked;
+
+    // Save to localStorage immediately
+    window.localStorage.setItem("userSettings", JSON.stringify(settings));
 }
 
 function UpdateStockBulkDealTable() {
@@ -96,6 +123,9 @@ function UpdateStockBulkDealTable() {
 
     ShowClientDeals(stockBulkDealsTable, bulkDeals, 'SecurityName', 'ClientName');
     UpdateLoader(false);
+
+    // Auto-save filter preferences on every change
+    AutoSaveBulkDealsPreferences();
 }
 
 function FilterExchange(bulkDeals, includeNSE, includeBSE) {
@@ -127,10 +157,10 @@ function FilterStockType(bulkDeals, includeMainBoard, includeSME) {
     for (let i = 0; i < bulkDeals.length; i++) {
         const bulkDeal = bulkDeals[i];
         const stockCode = bulkDeal.SecurityCode;
-        
+
         // Determine if stock is SME using settings from settings.json
         let isSME = false;
-        
+
         // Check NSE data first
         if (nseData[stockCode]) {
             const series = nseData[stockCode].Series;
@@ -138,7 +168,7 @@ function FilterStockType(bulkDeals, includeMainBoard, includeSME) {
                 isSME = true;
             }
         }
-        
+
         // Check BSE data if not found in NSE or if it's a BSE stock
         if (!isSME && bseData[stockCode]) {
             const series = bseData[stockCode].Series;
@@ -146,10 +176,10 @@ function FilterStockType(bulkDeals, includeMainBoard, includeSME) {
                 isSME = true;
             }
         }
-        
+
         // If not SME, then it's MainBoard
         const isMainBoard = !isSME;
-        
+
         // Include the deal if it matches the filter criteria
         if ((includeSME && isSME) || (includeMainBoard && isMainBoard)) {
             result.push(bulkDeal);
