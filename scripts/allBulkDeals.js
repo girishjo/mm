@@ -163,7 +163,10 @@ function FilterStockType(bulkDeals, includeMainBoard, includeSME) {
 
         // Check NSE data first
         if (nseData[stockCode]) {
-            const series = nseData[stockCode].Series;
+            let series = nseData[stockCode].Series;
+            if (series == undefined) {
+                series = nseData[stockCode].History && nseData[stockCode].History.length > 0 && nseData[stockCode].History[0]?.Series;
+            }
             if (series && settings.configs.t2tSMESeries.includes(series)) {
                 isSME = true;
             }
@@ -171,7 +174,10 @@ function FilterStockType(bulkDeals, includeMainBoard, includeSME) {
 
         // Check BSE data if not found in NSE or if it's a BSE stock
         if (!isSME && bseData[stockCode]) {
-            const series = bseData[stockCode].Series;
+            let series = bseData[stockCode].Series;
+            if (series == undefined) {
+                series = bseData[stockCode].History && bseData[stockCode].History.length > 0 && bseData[stockCode].History[0]?.Series;
+            }
             if (series && settings.configs.t2tSMESeries.includes(series)) {
                 isSME = true;
             }
