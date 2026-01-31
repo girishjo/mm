@@ -135,3 +135,24 @@ function ShowMessage(message, timeOutInSeconds = 3) {
     x.innerText = message;
     messageTimeout = setTimeout(function () { x.className = x.className.replace("show", "") }, timeOutInSeconds * 1000);
 }
+
+function CheckAndShowSpecialTradingDay() {
+    const today = new Date();
+    const specialDay = IsSpecialTradingDay(today);
+    
+    if (specialDay) {
+        const dayName = today.toLocaleDateString('en-IN', { weekday: 'long' });
+        const countingInfo = specialDay.countForNthDay !== false ? " (Counts for T2T)" : " (No T2T count)";
+        const message = `🔔 Special Trading Day: ${specialDay.reason} on ${dayName} (${specialDay.tradingHours.start} - ${specialDay.tradingHours.end})${countingInfo}`;
+        ShowMessage(message, 10); // Show for 10 seconds due to longer message
+        
+        // Also log to console for debugging
+        console.log(`Special Trading Day detected: ${specialDay.reason} on ${today.toDateString()}, countForNthDay: ${specialDay.countForNthDay !== false}`);
+    }
+}
+
+// Initialize special trading day check when page loads
+document.addEventListener('DOMContentLoaded', function() {
+    // Wait a bit for settings to load
+    setTimeout(CheckAndShowSpecialTradingDay, 1000);
+});

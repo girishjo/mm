@@ -278,12 +278,33 @@ function tableToExcel(tableId, sheetName = 'Worksheet') {
 
 function GetPreviousWorkingDate(inputDate) {
     let refDate = new Date(inputDate);
-    if (refDate.getDay() == 0)
-        refDate = new Date(refDate.setDate(refDate.getDate() - 2));
-    else if (refDate.getDay() == 6)
+    
+    // If current date is a special trading day, no need to adjust
+    if (IsSpecialTradingDay(refDate)) {
+        return refDate;
+    }
+    
+    if (refDate.getDay() == 0) {
+        // Sunday - check if previous Saturday was special trading day
+        let prevSat = new Date(refDate.setDate(refDate.getDate() - 1));
+        if (IsSpecialTradingDay(prevSat)) {
+            refDate = prevSat;
+        } else {
+            refDate = new Date(refDate.setDate(refDate.getDate() - 1)); // Go to Friday
+        }
+    }
+    else if (refDate.getDay() == 6) {
         refDate = new Date(refDate.setDate(refDate.getDate() - 1));
-    else if (refDate.getDay() == 1 && refDate.getHours() < 6)
-        refDate = new Date(refDate.setDate(refDate.getDate() - 3));
+    }
+    else if (refDate.getDay() == 1 && refDate.getHours() < 6) {
+        // Check if Sunday was special trading day
+        let prevSun = new Date(refDate.setDate(refDate.getDate() - 1));
+        if (IsSpecialTradingDay(prevSun)) {
+            refDate = prevSun;
+        } else {
+            refDate = new Date(refDate.setDate(refDate.getDate() - 2)); // Go to Friday
+        }
+    }
     else if (refDate.getHours() < 6) {
         refDate = new Date(refDate.setDate(refDate.getDate() - 1));
     }
@@ -292,12 +313,36 @@ function GetPreviousWorkingDate(inputDate) {
 
 function GetNextWorkingDate(inputDate) {
     let refDate = new Date(inputDate);
-    if (refDate.getDay() == 0)
+    
+    // If current date is a special trading day, no need to adjust
+    if (IsSpecialTradingDay(refDate)) {
+        return refDate;
+    }
+    
+    if (refDate.getDay() == 0) {
         refDate = new Date(refDate.setDate(refDate.getDate() + 1));
-    else if (refDate.getDay() == 6)
-        refDate = new Date(refDate.setDate(refDate.getDate() + 2));
-    else if (refDate.getDay() == 5)
-        refDate = new Date(refDate.setDate(refDate.getDate() + 3));
+    }
+    else if (refDate.getDay() == 6) {
+        // Saturday - check if Sunday is special trading day
+        let nextSun = new Date(refDate.setDate(refDate.getDate() + 1));
+        if (IsSpecialTradingDay(nextSun)) {
+            refDate = nextSun;
+        } else {
+            refDate = new Date(refDate.setDate(refDate.getDate() + 1)); // Go to Monday
+        }
+    }
+    else if (refDate.getDay() == 5) {
+        // Friday - check if weekend has special trading days
+        let nextSat = new Date(refDate.setDate(refDate.getDate() + 1));
+        let nextSun = new Date(refDate.setDate(refDate.getDate() + 2));
+        if (IsSpecialTradingDay(nextSat)) {
+            refDate = nextSat;
+        } else if (IsSpecialTradingDay(nextSun)) {
+            refDate = nextSun;
+        } else {
+            refDate = new Date(refDate.setDate(refDate.getDate() + 2)); // Go to Monday
+        }
+    }
     else {
         refDate = new Date(refDate.setDate(refDate.getDate() + 1));
     }
@@ -306,7 +351,7 @@ function GetNextWorkingDate(inputDate) {
 
 function GetNextWorkingDay(inputDate) {
     inputDate = GetNextWorkingDate(inputDate)
-    if (IsHoliday(inputDate)) {
+    if (!IsTradingDay(inputDate)) {
         inputDate = GetNextWorkingDay(new Date(inputDate.setDate(inputDate.getDate() + 1)).setHours(6, 0, 0));
     }
     return inputDate;
@@ -314,7 +359,7 @@ function GetNextWorkingDay(inputDate) {
 
 function GetLastWorkingDay(inputDate) {
     inputDate = GetPreviousWorkingDate(inputDate)
-    if (IsHoliday(inputDate)) {
+    if (!IsTradingDay(inputDate)) {
         inputDate = GetLastWorkingDay(new Date(inputDate.setDate(inputDate.getDate() - 1)).setHours(23, 59, 59));
     }
     return inputDate;
@@ -327,6 +372,32 @@ function IsHoliday(inputDate) {
         }
     }
     return false;
+}
+
+function IsSpecialTradingDay(inputDate) {
+    if (!settings.specialTradingDays) return false;
+    for (let i = 0; i < settings.specialTradingDays.length; i++) {
+        if (new Date(settings.specialTradingDays[i].date).toDateString() == inputDate.toDateString()) {
+            return settings.specialTradingDays[i];
+        }
+    }
+    return false;
+}
+
+function IsTradingDay(inputDate) {
+    // Check if it's a holiday first
+    if (IsHoliday(inputDate)) {
+        return false;
+    }
+    
+    // Check if it's a special trading day (overrides weekend check)
+    if (IsSpecialTradingDay(inputDate)) {
+        return true;
+    }
+    
+    // Regular weekend check (Saturday = 6, Sunday = 0)
+    const dayOfWeek = inputDate.getDay();
+    return !(dayOfWeek === 0 || dayOfWeek === 6);
 }
 
 Number.prototype.toCustomString = function (decimalPlaces = 0) {

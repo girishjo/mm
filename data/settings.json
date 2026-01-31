@@ -39,5 +39,16 @@
         "10-Nov-2026",
         "24-Nov-2026",
         "25-Dec-2026"
+    ],
+    "specialTradingDays": [
+        {
+            "date": "01-Feb-2026",
+            "reason": "Budget Day",
+            "tradingHours": {
+                "start": "09:15",
+                "end": "15:30"
+            },
+            "countForNthDay": true
+        }
     ]
 }

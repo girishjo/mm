@@ -94,7 +94,35 @@ function GetNthDay(startDate, nthDay, forward = true) {
   let endDate = new Date(startDate);
   while (counter < nthDay) {
     endDate = new Date(endDate.setDate(endDate.getDate() + (forward ? 1 : -1)));
-    if (!(endDate.getDay() == 0 || endDate.getDay() == 6 || CheckForHoliday(endDate))) {
+    
+    // Check if this day should be counted for nth day calculation
+    let shouldCount = false;
+    
+    // Check if it's a special trading day first
+    if (typeof IsSpecialTradingDay === 'function') {
+      const specialDay = IsSpecialTradingDay(endDate);
+      if (specialDay) {
+        // Only count if countForNthDay is not explicitly set to false
+        shouldCount = specialDay.countForNthDay !== false;
+      } else {
+        // Regular day - check if it's a normal trading day
+        if (typeof IsTradingDay === 'function') {
+          shouldCount = IsTradingDay(endDate);
+        } else {
+          // Fallback to original logic
+          shouldCount = !(endDate.getDay() == 0 || endDate.getDay() == 6 || CheckForHoliday(endDate));
+        }
+      }
+    } else {
+      // Fallback to original logic when IsSpecialTradingDay is not available
+      if (typeof IsTradingDay === 'function') {
+        shouldCount = IsTradingDay(endDate);
+      } else {
+        shouldCount = !(endDate.getDay() == 0 || endDate.getDay() == 6 || CheckForHoliday(endDate));
+      }
+    }
+    
+    if (shouldCount) {
       counter++;
     }
   }
