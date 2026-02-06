@@ -31,6 +31,11 @@ async function LoadData() {
   nseData = nseData.data;
   bseData = bseData.data;
 
+  // Reinitialize auto-complete cache with new data
+  if (typeof autoCompleteCache !== 'undefined') {
+    autoCompleteCache.initialized = false;
+  }
+
   loadDataFromLocal();
   UpdateLoader(false);
   setTimeout(CheckForLatestData, settings.constants.refreshDataTimeOut * 60 * 1000);

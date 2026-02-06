@@ -1222,3 +1222,491 @@ window.addEventListener('load', () => {
         }
     }, 1000);
 });
+
+// Auto-complete functionality for stock names and codes
+let autoCompleteCache = {
+    stockNames: [],
+    nseCodes: [],
+    bseCodes: [],
+    initialized: false
+};
+
+let autoCompleteState = {
+    isVisible: false,
+    selectedIndex: -1,
+    currentElement: null,
+    currentType: null,
+    suggestions: []
+};
+
+function initializeAutoCompleteData() {
+    if (autoCompleteCache.initialized) return;
+    
+    const stockNames = new Set();
+    const nseCodes = new Set();
+    const bseCodes = new Set();
+    
+    // Collect NSE data
+    if (nseData && typeof nseData === 'object') {
+        for (const code in nseData) {
+            const stock = nseData[code];
+            if (stock.SecurityName) stockNames.add(stock.SecurityName);
+            if (code) nseCodes.add(code);
+        }
+    }
+    
+    // Collect BSE data
+    if (bseData && typeof bseData === 'object') {
+        for (const code in bseData) {
+            const stock = bseData[code];
+            if (stock.SecurityName) stockNames.add(stock.SecurityName);
+            if (code) bseCodes.add(code);
+        }
+    }
+    
+    autoCompleteCache.stockNames = Array.from(stockNames).sort();
+    autoCompleteCache.nseCodes = Array.from(nseCodes).sort();
+    autoCompleteCache.bseCodes = Array.from(bseCodes).sort();
+    autoCompleteCache.initialized = true;
+}
+
+function showAutoComplete(element, type) {
+    initializeAutoCompleteData();
+    
+    const inputValue = element.textContent.toLowerCase();
+    if (inputValue.length < 1) {
+        hideAutoComplete();
+        return;
+    }
+    
+    let suggestions = [];
+    switch (type) {
+        case 'stockName':
+            // Search in stock names, NSE codes, and BSE codes
+            const allMatches = [];
+            
+            // Search by stock names (fuzzy matching)
+            const allNames = autoCompleteCache.stockNames;
+            for (const name of allNames) {
+                if (name.toLowerCase().includes(inputValue)) {
+                    // Exact substring match gets priority
+                    allMatches.push({ text: name, similarity: 1.0, priority: 1, type: 'name' });
+                } else {
+                    // Fuzzy match
+                    const similarity = calculateSimilarity(inputValue, name);
+                    if (similarity > 0.6) {
+                        allMatches.push({ text: name, similarity, priority: 2, type: 'name' });
+                    }
+                }
+            }
+            
+            // Search by NSE codes
+            const matchingNSECodes = autoCompleteCache.nseCodes.filter(code => 
+                code.toLowerCase().includes(inputValue)
+            );
+            for (const code of matchingNSECodes) {
+                // For codes, find the corresponding stock name to display
+                if (nseData && nseData[code] && nseData[code].SecurityName) {
+                    allMatches.push({ 
+                        text: `${nseData[code].SecurityName} (${code})`, 
+                        similarity: 1.0, 
+                        priority: 1, 
+                        type: 'nse',
+                        originalName: nseData[code].SecurityName
+                    });
+                }
+            }
+            
+            // Search by BSE codes
+            const matchingBSECodes = autoCompleteCache.bseCodes.filter(code => 
+                code.toLowerCase().includes(inputValue)
+            );
+            for (const code of matchingBSECodes) {
+                // For codes, find the corresponding stock name to display
+                if (bseData && bseData[code] && bseData[code].SecurityName) {
+                    allMatches.push({ 
+                        text: `${bseData[code].SecurityName} (${code})`, 
+                        similarity: 1.0, 
+                        priority: 1, 
+                        type: 'bse',
+                        originalName: bseData[code].SecurityName
+                    });
+                }
+            }
+            
+            // Remove duplicates and sort by priority, then similarity
+            const uniqueMatches = [];
+            const seenNames = new Set();
+            
+            allMatches.sort((a, b) => {
+                if (a.priority !== b.priority) return a.priority - b.priority;
+                return b.similarity - a.similarity;
+            });
+            
+            for (const match of allMatches) {
+                const key = match.originalName || match.text;
+                if (!seenNames.has(key.toLowerCase())) {
+                    seenNames.add(key.toLowerCase());
+                    uniqueMatches.push(match);
+                }
+            }
+            
+            suggestions = uniqueMatches.slice(0, 10).map(match => match.text);
+            break;
+        case 'nseCode':
+            suggestions = autoCompleteCache.nseCodes.filter(code => 
+                code.toLowerCase().includes(inputValue)
+            ).slice(0, 10);
+            break;
+        case 'bseCode':
+            suggestions = autoCompleteCache.bseCodes.filter(code => 
+                code.toLowerCase().includes(inputValue)
+            ).slice(0, 10);
+            break;
+    }
+    
+    if (suggestions.length === 0) {
+        hideAutoComplete();
+        return;
+    }
+    
+    // Update state
+    autoCompleteState.currentElement = element;
+    autoCompleteState.currentType = type;
+    autoCompleteState.suggestions = suggestions;
+    autoCompleteState.selectedIndex = -1;
+    
+    showAutoCompleteDropdown(element, suggestions, type);
+}
+
+// Helper function to normalize company names for fuzzy matching
+function normalizeCompanyName(name) {
+    if (!name) return '';
+    
+    return name
+        .toLowerCase()
+        .replace(/\s+(ltd|limited|company|corp|corporation|inc|incorporated)\b/g, '') // Remove common suffixes
+        .replace(/\s+/g, ' ') // Normalize multiple spaces
+        .trim();
+}
+
+// Helper function to calculate string similarity (Levenshtein distance based)
+function calculateSimilarity(str1, str2) {
+    const normalized1 = normalizeCompanyName(str1);
+    const normalized2 = normalizeCompanyName(str2);
+    
+    if (normalized1 === normalized2) return 1.0; // Perfect match
+    
+    const maxLength = Math.max(normalized1.length, normalized2.length);
+    if (maxLength === 0) return 1.0;
+    
+    // Simple similarity based on common characters and length
+    const commonLength = Math.min(normalized1.length, normalized2.length);
+    let matches = 0;
+    
+    for (let i = 0; i < commonLength; i++) {
+        if (normalized1[i] === normalized2[i]) {
+            matches++;
+        }
+    }
+    
+    // Consider both character matches and length difference
+    const similarity = matches / maxLength;
+    return similarity;
+}
+
+// Helper function to find stock data by any identifier
+function findStockData(identifier, searchType) {
+    let stockData = null;
+    let searchIdentifier = identifier;
+    let actualSearchType = searchType;
+    
+    // Handle formatted suggestions from name field (e.g., "Stock Name (CODE)")
+    if (searchType === 'stockName' && identifier.includes('(') && identifier.includes(')')) {
+        const nameMatch = identifier.match(/^(.*?)\s*\(([^)]+)\)$/);
+        if (nameMatch) {
+            const stockName = nameMatch[1].trim();
+            const code = nameMatch[2].trim();
+            
+            // Try to find by code first (more specific)
+            stockData = findStockDataByCode(code) || findStockDataByName(stockName);
+            return stockData;
+        }
+    }
+    
+    // For exact code matches, search by code
+    if (searchType === 'nseCode' || searchType === 'bseCode') {
+        return findStockDataByCode(identifier);
+    } 
+    // For stock name searches, search by name
+    else if (searchType === 'stockName') {
+        return findStockDataByName(identifier);
+    }
+    
+    return stockData;
+}
+
+function findStockDataByCode(code) {
+    // Search in NSE data first
+    if (nseData && typeof nseData === 'object') {
+        for (const nseCode in nseData) {
+            const stock = nseData[nseCode];
+            if (nseCode.toLowerCase() === code.toLowerCase() || 
+                (stock.BSECode && stock.BSECode.toString() === code)) {
+                return {
+                    name: stock.SecurityName,
+                    nseCode: nseCode,
+                    bseCode: stock.BSECode || ''
+                };
+            }
+        }
+    }
+    
+    // Search in BSE data
+    if (bseData && typeof bseData === 'object') {
+        for (const bseCode in bseData) {
+            const stock = bseData[bseCode];
+            if (bseCode === code ||
+                (stock.NSECode && stock.NSECode.toLowerCase() === code.toLowerCase())) {
+                return {
+                    name: stock.SecurityName,
+                    nseCode: stock.NSECode || '',
+                    bseCode: bseCode
+                };
+            }
+        }
+    }
+    
+    return null;
+}
+
+function findStockDataByName(stockName) {
+    let stockData = null;
+    let bestMatch = null;
+    let bestSimilarity = 0;
+    
+    const allCandidates = [];
+    
+    // Collect all potential matches from NSE
+    if (nseData && typeof nseData === 'object') {
+        for (const code in nseData) {
+            const stock = nseData[code];
+            if (stock.SecurityName) {
+                const similarity = calculateSimilarity(stockName, stock.SecurityName);
+                if (similarity > 0.7) { // Threshold for considering a match
+                    allCandidates.push({
+                        similarity,
+                        data: {
+                            name: stock.SecurityName,
+                            nseCode: code,
+                            bseCode: stock.BSECode || '',
+                            source: 'NSE'
+                        }
+                    });
+                }
+            }
+        }
+    }
+    
+    // Collect all potential matches from BSE
+    if (bseData && typeof bseData === 'object') {
+        for (const code in bseData) {
+            const stock = bseData[code];
+            if (stock.SecurityName) {
+                const similarity = calculateSimilarity(stockName, stock.SecurityName);
+                if (similarity > 0.7) {
+                    allCandidates.push({
+                        similarity,
+                        data: {
+                            name: stock.SecurityName,
+                            nseCode: stock.NSECode || '',
+                            bseCode: code,
+                            source: 'BSE'
+                        }
+                    });
+                }
+            }
+        }
+    }
+    
+    // Find the best match and try to merge NSE/BSE data if they're the same company
+    if (allCandidates.length > 0) {
+        // Sort by similarity
+        allCandidates.sort((a, b) => b.similarity - a.similarity);
+        
+        const topMatch = allCandidates[0];
+        
+        // Try to find corresponding data from other exchange
+        if (topMatch.data.source === 'NSE' && !topMatch.data.bseCode) {
+            // Look for BSE equivalent
+            for (let i = 1; i < allCandidates.length; i++) {
+                const candidate = allCandidates[i];
+                if (candidate.data.source === 'BSE' && candidate.similarity > 0.8) {
+                    topMatch.data.bseCode = candidate.data.bseCode;
+                    break;
+                }
+            }
+        } else if (topMatch.data.source === 'BSE' && !topMatch.data.nseCode) {
+            // Look for NSE equivalent
+            for (let i = 1; i < allCandidates.length; i++) {
+                const candidate = allCandidates[i];
+                if (candidate.data.source === 'NSE' && candidate.similarity > 0.8) {
+                    topMatch.data.nseCode = candidate.data.nseCode;
+                    break;
+                }
+            }
+        }
+        
+        stockData = topMatch.data;
+    }
+    
+    return stockData;
+}
+
+function showAutoCompleteDropdown(element, suggestions, type) {
+    const dropdown = document.getElementById('autoCompleteDropdown');
+    dropdown.innerHTML = '';
+    
+    suggestions.forEach((suggestion, index) => {
+        const item = document.createElement('div');
+        item.style.cssText = 'padding: 8px 12px; cursor: pointer; border-bottom: 1px solid #eee;';
+        item.textContent = suggestion;
+        item.setAttribute('data-index', index);
+        
+        item.addEventListener('mouseenter', function() {
+            // Clear previous selection
+            updateSelection(index);
+        });
+        
+        item.addEventListener('mouseleave', function() {
+            this.style.backgroundColor = '';
+        });
+        
+        item.addEventListener('mousedown', function(e) {
+            e.preventDefault(); // Prevent blur event
+            selectSuggestion(suggestion, element, type);
+        });
+        
+        dropdown.appendChild(item);
+    });
+    
+    // Position dropdown below the element
+    const rect = element.getBoundingClientRect();
+    dropdown.style.left = rect.left + 'px';
+    dropdown.style.top = (rect.bottom) + 'px';
+    dropdown.style.minWidth = rect.width + 'px';
+    dropdown.style.display = 'block';
+    
+    autoCompleteState.isVisible = true;
+    
+    // Add keyboard event listener
+    if (!element.hasAutoCompleteKeyListener) {
+        element.addEventListener('keydown', handleAutoCompleteKeydown);
+        element.hasAutoCompleteKeyListener = true;
+    }
+}
+
+function updateSelection(newIndex) {
+    const dropdown = document.getElementById('autoCompleteDropdown');
+    const items = dropdown.children;
+    
+    // Clear previous selection
+    for (let i = 0; i < items.length; i++) {
+        items[i].style.backgroundColor = '';
+    }
+    
+    // Set new selection
+    if (newIndex >= 0 && newIndex < items.length) {
+        autoCompleteState.selectedIndex = newIndex;
+        items[newIndex].style.backgroundColor = '#f0f0f0';
+    } else {
+        autoCompleteState.selectedIndex = -1;
+    }
+}
+
+function handleAutoCompleteKeydown(e) {
+    if (!autoCompleteState.isVisible) return;
+    
+    const suggestions = autoCompleteState.suggestions;
+    const currentIndex = autoCompleteState.selectedIndex;
+    
+    switch (e.key) {
+        case 'ArrowDown':
+            e.preventDefault();
+            const nextIndex = currentIndex < suggestions.length - 1 ? currentIndex + 1 : 0;
+            updateSelection(nextIndex);
+            break;
+            
+        case 'ArrowUp':
+            e.preventDefault();
+            const prevIndex = currentIndex > 0 ? currentIndex - 1 : suggestions.length - 1;
+            updateSelection(prevIndex);
+            break;
+            
+        case 'Enter':
+            e.preventDefault();
+            if (currentIndex >= 0 && currentIndex < suggestions.length) {
+                const selectedSuggestion = suggestions[currentIndex];
+                selectSuggestion(selectedSuggestion, autoCompleteState.currentElement, autoCompleteState.currentType);
+            }
+            break;
+            
+        case 'Escape':
+            e.preventDefault();
+            hideAutoComplete();
+            break;
+    }
+}
+
+function selectSuggestion(suggestion, element, type) {
+    // Fill the selected field
+    element.textContent = suggestion;
+    
+    // Find the row containing this element
+    const row = element.closest('tr');
+    if (row) {
+        // Get the stock data for this selection
+        const stockData = findStockData(suggestion, type);
+        
+        // Always clear and update all three fields to prevent stale data
+        const cells = row.cells;
+        if (cells.length >= 7) {
+            // Clear all fields first
+            cells[4].textContent = ''; // Stock name
+            cells[5].textContent = ''; // NSE code
+            cells[6].textContent = ''; // BSE code
+            
+            if (stockData) {
+                // Fill with new data
+                if (stockData.name) {
+                    cells[4].textContent = stockData.name;
+                }
+                if (stockData.nseCode) {
+                    cells[5].textContent = stockData.nseCode;
+                }
+                if (stockData.bseCode) {
+                    cells[6].textContent = stockData.bseCode;
+                }
+            }
+        }
+    }
+    
+    hideAutoComplete();
+    element.focus();
+}
+
+function hideAutoComplete() {
+    setTimeout(() => {
+        const dropdown = document.getElementById('autoCompleteDropdown');
+        if (dropdown) {
+            dropdown.style.display = 'none';
+        }
+        
+        // Reset state
+        autoCompleteState.isVisible = false;
+        autoCompleteState.selectedIndex = -1;
+        autoCompleteState.currentElement = null;
+        autoCompleteState.currentType = null;
+        autoCompleteState.suggestions = [];
+    }, 150); // Small delay to allow click events to register
+}
