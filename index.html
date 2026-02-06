@@ -300,6 +300,15 @@
             </table>
         </div>
         <div id="portfolioDiv" class="tabcontent" style="display: none;">
+            <div style="margin-bottom: 10px;">
+                <label for="portfolioDate" style="font-weight: bold; margin-right: 10px;">Portfolio as on:</label>
+                <span id="portfolioDateDisplay" style="font-weight: bold; color: #333; margin-right: 10px; display: inline-block; width: 80px; text-align: right;"></span>
+                <button onclick="PreviousWorkingDate();" style="margin-right: 5px;" title="Previous working date">◀</button>
+                <input type="date" id="portfolioDate" name="portfolioDate" onchange="UpdatePortfolioForDate();" style="margin-right: 5px;">
+                <button onclick="NextWorkingDate();" style="margin-right: 20px;" title="Next working date">▶</button>
+                <button onclick="SetTodayPortfolioDate();" style="margin-left: 10px;" title="Set to today's date">Today</button>
+                <span id="portfolioDateInfo" style="margin-left: 20px; font-style: italic; color: #666;"></span>
+            </div>
             <table id="portfolioTable">
                 <thead>
                     <tr>

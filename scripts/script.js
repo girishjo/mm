@@ -143,11 +143,18 @@ function UpdateWatchList(saveLast = true) {
     }
 
     if (document.getElementById("portfolioDiv").style.display == "block") {
-        UpdateLoader(true, "Loading Portfolio data", 0.5);
-        resetTable(portfolioTable);
-        upadtePortfolioTable(watchlists[activeWL].data);
-        updateRowNumber(portfolioTable);
-        UpdateLoader(false);
+        const portfolioDateInput = document.getElementById('portfolioDate');
+        if (portfolioDateInput && portfolioDateInput.value) {
+            // Use date-specific portfolio function
+            UpdatePortfolioForDate();
+        } else {
+            // Fallback to regular portfolio function for today
+            UpdateLoader(true, "Loading Portfolio data", 0.5);
+            resetTable(portfolioTable);
+            upadtePortfolioTable(watchlists[activeWL].data);
+            updateRowNumber(portfolioTable);
+            UpdateLoader(false);
+        }
     }
 
     window.localStorage.setItem("activeWL", activeWL);
@@ -680,4 +687,538 @@ listTable.addEventListener('click', function (e) {
             document.body.classList.add('modal-shown');
         }
     }
+});
+
+// Portfolio date functionality
+function GetLastAvailableDate() {
+    // Check both NSE and BSE data for the most recent timestamp
+    let lastDate = null;
+    
+    if (nseData && nseData.dateTimeStamp) {
+        const nseDate = new Date(nseData.dateTimeStamp);
+        if (!lastDate || nseDate > lastDate) {
+            lastDate = nseDate;
+        }
+    }
+    
+    if (bseData && bseData.dateTimeStamp) {
+        const bseDate = new Date(bseData.dateTimeStamp);
+        if (!lastDate || bseDate > lastDate) {
+            lastDate = bseDate;
+        }
+    }
+    
+    // If no data timestamp available, default to today
+    if (!lastDate) {
+        lastDate = new Date();
+    }
+    
+    return lastDate;
+}
+
+function SetTodayPortfolioDate() {
+    const portfolioDateInput = document.getElementById('portfolioDate');
+    const today = new Date();
+    const lastAvailableDate = GetLastAvailableDate();
+    
+    // Check if today's data is available (same day as last available data)
+    const isCurrentData = lastAvailableDate.toDateString() === today.toDateString();
+    
+    if (isCurrentData) {
+        portfolioDateInput.value = today.toISOString().split('T')[0];
+        UpdatePortfolioDateDisplay(today);
+    } else {
+        // Use last available date if today's data is not available
+        portfolioDateInput.value = lastAvailableDate.toISOString().split('T')[0];
+        UpdatePortfolioDateDisplay(lastAvailableDate);
+    }
+    
+    UpdatePortfolioForDate();
+}
+
+function SetSmartPortfolioDate() {
+    const portfolioDateInput = document.getElementById('portfolioDate');
+    const lastAvailableDate = GetLastAvailableDate();
+    
+    portfolioDateInput.value = lastAvailableDate.toISOString().split('T')[0];
+    UpdatePortfolioDateDisplay(lastAvailableDate);
+    UpdatePortfolioForDate();
+}
+
+// Helper function to check if a date is a working day
+function IsWorkingDay(date) {
+    // Use existing utility functions if available
+    if (typeof IsTradingDay === 'function') {
+        return IsTradingDay(date);
+    } else {
+        // Manual logic - check if it's not weekend and not holiday
+        const dayOfWeek = date.getDay();
+        const isWeekend = (dayOfWeek === 0 || dayOfWeek === 6); // Sunday = 0, Saturday = 6
+        
+        let isHoliday = false;
+        if (typeof CheckForHoliday === 'function') {
+            try {
+                isHoliday = CheckForHoliday(date);
+            } catch (e) {
+                isHoliday = false;
+            }
+        }
+        
+        return !isWeekend && !isHoliday;
+    }
+}
+
+function PreviousWorkingDate() {
+    const portfolioDateInput = document.getElementById('portfolioDate');
+    const currentDate = new Date(portfolioDateInput.value);
+    
+    if (!currentDate || isNaN(currentDate)) {
+        return;
+    }
+    
+    // Find previous working date
+    let previousDate = new Date(currentDate);
+    let attempts = 0;
+    const maxAttempts = 30; // Prevent infinite loops
+    
+    do {
+        previousDate.setDate(previousDate.getDate() - 1);
+        attempts++;
+        
+        // Safety check to prevent infinite loops
+        if (attempts > maxAttempts) {
+            break;
+        }
+        
+        if (IsWorkingDay(previousDate)) {
+            break;
+        }
+    } while (attempts < maxAttempts);
+    
+    portfolioDateInput.value = previousDate.toISOString().split('T')[0];
+    UpdatePortfolioDateDisplay(previousDate);
+    UpdatePortfolioForDate();
+}
+
+function NextWorkingDate() {
+    const portfolioDateInput = document.getElementById('portfolioDate');
+    const currentDate = new Date(portfolioDateInput.value);
+    
+    if (!currentDate || isNaN(currentDate)) {
+        return;
+    }
+    
+    // Check if we're already at today's date
+    const today = new Date();
+    const todayDateString = today.toISOString().split('T')[0];
+    const currentDateString = currentDate.toISOString().split('T')[0];
+    
+    if (currentDateString >= todayDateString) {
+        // Already at or beyond today's date, don't advance
+        return;
+    }
+    
+    // Find next working date
+    let nextDate = new Date(currentDate);
+    let attempts = 0;
+    const maxAttempts = 30; // Prevent infinite loops
+    
+    do {
+        nextDate.setDate(nextDate.getDate() + 1);
+        attempts++;
+        
+        // Don't go beyond today's date
+        if (nextDate.toISOString().split('T')[0] > todayDateString) {
+            // If we would go beyond today, stay at today
+            nextDate = new Date(today.getFullYear(), today.getMonth(), today.getDate());
+            break;
+        }
+        
+        // Safety check to prevent infinite loops
+        if (attempts > maxAttempts) {
+            break;
+        }
+        
+        // Use existing utility functions if available
+        if (IsWorkingDay(nextDate)) {
+            break;
+        }
+    } while (attempts < maxAttempts);
+    
+    portfolioDateInput.value = nextDate.toISOString().split('T')[0];
+    UpdatePortfolioDateDisplay(nextDate);
+    UpdatePortfolioForDate();
+}
+
+function UpdatePortfolioForDate() {
+    const portfolioDateInput = document.getElementById('portfolioDate');
+    const selectedDate = new Date(portfolioDateInput.value);
+    
+    if (!selectedDate || isNaN(selectedDate)) {
+        document.getElementById('portfolioDateInfo').innerText = 'Please select a valid date';
+        return;
+    }
+    
+    // Update the date display with day of the week
+    UpdatePortfolioDateDisplay(selectedDate);
+    
+    if (document.getElementById("portfolioDiv").style.display == "block") {
+        const lastAvailableDate = GetLastAvailableDate();
+        const isLatestData = selectedDate.toDateString() === lastAvailableDate.toDateString();
+        
+        let loadingMessage = "Loading Portfolio data for " + selectedDate.toLocaleDateString();
+        if (isLatestData) {
+            loadingMessage += " (Latest available data)";
+        }
+        
+        UpdateLoader(true, loadingMessage, 0.5);
+        resetTable(portfolioTable);
+        const stockList = watchlists[activeWL];
+        if (stockList && stockList.data) {
+            upadtePortfolioTableForDate(watchlists[activeWL].data, selectedDate);
+        }
+        updateRowNumber(portfolioTable);
+        UpdateLoader(false);
+    }
+}
+
+function UpdatePortfolioDateDisplay(date) {
+    const portfolioDateDisplay = document.getElementById('portfolioDateDisplay');
+    if (portfolioDateDisplay && date && !isNaN(date)) {
+        const weekday = date.toLocaleDateString('en-US', { weekday: 'long' });
+        portfolioDateDisplay.innerText = weekday;
+    }
+}
+
+function upadtePortfolioTableForDate(stockList, targetDate) {
+    let totalInvestment = 0, currentValue = 0, dayPnL = 0;
+    let flag = false;
+    let refs1 = [];
+    let refs2 = [];
+    let dataFoundForDate = false;
+    
+    // Cache expensive operations
+    const targetDateString = targetDate.toLocaleDateString('en-In', { 
+        weekday: "short", year: "numeric", month: "short", day: "2-digit" 
+    });
+    const isToday = targetDate.toDateString() === new Date().toDateString();
+
+    // Helper function to find data for a specific date
+    function findDataForDate(stockData, targetDateString, isToday) {
+        if (!stockData) return null;
+        
+        // Check historical data first
+        if (stockData.History && stockData.History.length > 0) {
+            const data = stockData.History.find(h => h.HistoryDate === targetDateString);
+            if (data) return data;
+        }
+        
+        // For today, use current data if no historical data found
+        if (isToday && stockData) {
+            return stockData;
+        }
+        
+        return null;
+    }
+
+    // Helper function to get sorted history (cached per stock)
+    function getSortedHistory(stockData) {
+        if (!stockData || !stockData.History) return [];
+        
+        // Cache sorted history to avoid repeated sorting
+        if (!stockData._sortedHistory) {
+            stockData._sortedHistory = [...stockData.History].sort((a, b) => {
+                return new Date(b.HistoryDate) - new Date(a.HistoryDate);
+            });
+        }
+        return stockData._sortedHistory;
+    }
+
+    // Helper function to find previous day data
+    function findPreviousDayData(stockData, targetDateString, isToday) {
+        const sortedHistory = getSortedHistory(stockData);
+        if (sortedHistory.length === 0) return null;
+        
+        if (isToday) {
+            // For today, use most recent historical data
+            return sortedHistory[0];
+        } else {
+            // Find previous day data for historical dates
+            const currentIndex = sortedHistory.findIndex(h => h.HistoryDate === targetDateString);
+            if (currentIndex !== -1 && currentIndex < sortedHistory.length - 1) {
+                return sortedHistory[currentIndex + 1];
+            }
+        }
+        return null;
+    }
+
+    // Helper function to calculate and apply day change
+    function calculateDayChange(priceToUse, previousClose, stockDetails, newRow, columnCounter) {
+        const dayChange = (priceToUse - previousClose) * 100 / previousClose;
+        const dayAbsoluteChange = stockDetails[3] * (priceToUse - previousClose);
+        
+        // day chg
+        newRow.cells[columnCounter].innerText = dayAbsoluteChange.toCustomString();
+        
+        // day chg %
+        newRow.cells[columnCounter + 1].innerText = dayChange.toCustomString(2) + " %";
+        
+        // Apply color coding
+        const isPositiveChange = (dayChange > 0 && stockDetails[3] > 0) || (dayChange < 0 && stockDetails[3] < 0);
+        const isNegativeChange = (dayChange < 0 && stockDetails[3] > 0) || (dayChange > 0 && stockDetails[3] < 0);
+        
+        if (isPositiveChange) {
+            newRow.cells[columnCounter].style.color = 'green';
+            newRow.cells[columnCounter + 1].style.color = 'green';
+        } else if (isNegativeChange) {
+            newRow.cells[columnCounter].style.color = 'red';
+            newRow.cells[columnCounter + 1].style.color = 'red';
+        }
+        
+        return dayAbsoluteChange;
+    }
+
+    for (let i = 0; i < stockList.length; i++) {
+        let columnCounter = 1;
+        if (stockList[i][0]) {
+            const stockDetails = stockList[i];
+            let newRow;
+            if (stockDetails[0] && stockDetails[3] && stockDetails[3] != 0) {
+                // Get individual NSE and BSE data
+                const nseStockData = nseData[stockDetails[1]];
+                const bseStockData = bseData[stockDetails[2]];
+                
+                // Find data for the target date from both sources
+                const nseCurrentData = findDataForDate(nseStockData, targetDateString, isToday);
+                const bseCurrentData = findDataForDate(bseStockData, targetDateString, isToday);
+                
+                // Determine which source to use (prefer higher close price)
+                let dateSpecificData = null;
+                let dataSource = null;
+                
+                if (nseCurrentData && bseCurrentData) {
+                    const nseClose = nseCurrentData.Close || nseCurrentData.Open || 0;
+                    const bseClose = bseCurrentData.Close || bseCurrentData.Open || 0;
+                    if (nseClose >= bseClose) {
+                        dateSpecificData = nseCurrentData;
+                        dataSource = nseStockData;
+                    } else {
+                        dateSpecificData = bseCurrentData;
+                        dataSource = bseStockData;
+                    }
+                } else if (nseCurrentData) {
+                    dateSpecificData = nseCurrentData;
+                    dataSource = nseStockData;
+                } else if (bseCurrentData) {
+                    dateSpecificData = bseCurrentData;
+                    dataSource = bseStockData;
+                }
+                
+                // Find previous day data from the same source
+                const previousDayData = dataSource ? findPreviousDayData(dataSource, targetDateString, isToday) : null;
+                // Always create a row for each stock
+                newRow = addEmptyRow(portfolioTable);
+
+                // name
+                newRow.cells[columnCounter++].innerText = stockDetails[0];
+
+                // qty
+                newRow.cells[columnCounter++].innerText = stockDetails[3];
+
+                // buy avg
+                newRow.cells[columnCounter++].innerText = stockDetails[4].toCustomString(2);
+                totalInvestment += stockDetails[3] * stockDetails[4];
+
+                // buy value
+                newRow.cells[columnCounter++].innerText = (stockDetails[3] * stockDetails[4]).toCustomString();
+
+                // pf %
+                refs1.push(newRow.cells[columnCounter]);
+                newRow.cells[columnCounter++].innerText = stockDetails[3] * stockDetails[4];
+                
+                if (dateSpecificData && (dateSpecificData.Close || dateSpecificData.Open)) {
+                    dataFoundForDate = true;
+                    const priceToUse = dateSpecificData.Close || dateSpecificData.Open;
+                    
+                    // close
+                    newRow.cells[columnCounter++].innerText = priceToUse.toCustomString(2);
+                    currentValue += stockDetails[3] * priceToUse;
+
+                    // present value
+                    newRow.cells[columnCounter++].innerText = (stockDetails[3] * priceToUse).toCustomString();
+
+                    // pf %
+                    refs2.push(newRow.cells[columnCounter]);
+                    newRow.cells[columnCounter++].innerText = stockDetails[3] * priceToUse;
+
+                    // p&l
+                    newRow.cells[columnCounter++].innerText = (stockDetails[3] * (priceToUse - stockDetails[4])).toCustomString();
+                    const netChange = (priceToUse - stockDetails[4]) * 100 / stockDetails[4];
+
+                    // net chg %
+                    newRow.cells[columnCounter++].innerText = netChange.toCustomString(2) + " %";
+                    if ((netChange > 0 && stockDetails[3] > 0) || (netChange < 0 && stockDetails[3] < 0)) {
+                        newRow.cells[columnCounter - 2].style.color = 'green';
+                        newRow.cells[columnCounter - 1].style.color = 'green';
+                    }
+                    else if ((netChange < 0 && stockDetails[3] > 0) || (netChange > 0 && stockDetails[3] < 0)) {
+                        newRow.cells[columnCounter - 2].style.color = 'red';
+                        newRow.cells[columnCounter - 1].style.color = 'red';
+                    }
+
+                    // Calculate day change if previous day data is available
+                    let dayChangeCalculated = false;
+                    
+                    if (previousDayData && previousDayData.Close && priceToUse) {
+                        const dayAbsoluteChange = calculateDayChange(priceToUse, previousDayData.Close, stockDetails, newRow, columnCounter);
+                        dayPnL += dayAbsoluteChange;
+                        dayChangeCalculated = true;
+                        columnCounter += 2; // Skip both day change columns
+                    } 
+                    // Fallback: try to use PrevClose from dateSpecificData if available
+                    else if (dateSpecificData.PrevClose && dateSpecificData.PrevClose > 0 && priceToUse) {
+                        const dayAbsoluteChange = calculateDayChange(priceToUse, dateSpecificData.PrevClose, stockDetails, newRow, columnCounter);
+                        dayPnL += dayAbsoluteChange;
+                        dayChangeCalculated = true;
+                        columnCounter += 2; // Skip both day change columns
+                    }
+                    
+                    if (!dayChangeCalculated) {
+                        // day chg
+                        newRow.cells[columnCounter++].innerText = "N/A";
+                        // day chg %
+                        newRow.cells[columnCounter++].innerText = "N/A";
+                    }
+                } else {
+                    // No data available for this date - show N/A for price-dependent columns
+                    
+                    // close
+                    newRow.cells[columnCounter++].innerText = "N/A";
+
+                    // present value
+                    newRow.cells[columnCounter++].innerText = "N/A";
+
+                    // pf %
+                    newRow.cells[columnCounter++].innerText = "N/A";
+
+                    // p&l
+                    newRow.cells[columnCounter++].innerText = "N/A";
+
+                    // net chg %
+                    newRow.cells[columnCounter++].innerText = "N/A";
+
+                    // day chg
+                    newRow.cells[columnCounter++].innerText = "N/A";
+
+                    // day chg %
+                    newRow.cells[columnCounter++].innerText = "N/A";
+                }
+            }
+        }
+    }
+
+    // Update portfolio percentages and totals
+    if (totalInvestment != 0) {
+        for (let i = 0; i < refs1.length; i++) {
+            refs1[i].innerText = (refs1[i].innerText * 100 / totalInvestment).toCustomString(2) + " %";
+        }
+
+        if (dataFoundForDate) {
+            for (let i = 0; i < refs2.length; i++) {
+                refs2[i].innerText = (refs2[i].innerText * 100 / currentValue).toCustomString(2) + " %";
+            }
+        }
+
+        const newRow = addEmptyRow(portfolioTable);
+        newRow.setAttribute("frozen", true);
+        newRow.cells[1].innerText = "Total = ";
+        newRow.cells[4].innerText = totalInvestment.toCustomString();
+        newRow.cells[5].innerText = (100).toCustomString(2) + " %";
+        
+        if (dataFoundForDate) {
+            // Show actual values when data is available
+            newRow.cells[7].innerText = currentValue.toCustomString();
+            newRow.cells[8].innerText = (100).toCustomString(2) + " %";
+            newRow.cells[9].innerText = (currentValue - totalInvestment).toCustomString();
+            newRow.cells[10].innerText = ((currentValue - totalInvestment) * 100 / totalInvestment).toCustomString(2) + " %";
+            
+            // Apply color coding for P&L
+            if ((currentValue - totalInvestment) > 0) {
+                newRow.cells[9].style.color = 'green';
+                newRow.cells[10].style.color = 'green';
+            }
+            else if ((currentValue - totalInvestment) < 0) {
+                newRow.cells[9].style.color = 'red';
+                newRow.cells[10].style.color = 'red';
+            }
+            
+            newRow.cells[11].innerText = dayPnL.toCustomString();
+            newRow.cells[12].innerText = currentValue > dayPnL ? (dayPnL * 100 / (currentValue - dayPnL)).toCustomString(2) + " %" : "0.00 %";
+            
+            // Apply color coding for day P&L
+            if (dayPnL > 0) {
+                newRow.cells[11].style.color = 'green';
+                newRow.cells[12].style.color = 'green';
+            }
+            else if (dayPnL < 0) {
+                newRow.cells[11].style.color = 'red';
+                newRow.cells[12].style.color = 'red';
+            }
+        } else {
+            // Show N/A when no data is available for the selected date
+            newRow.cells[7].innerText = "N/A";  // present value
+            newRow.cells[8].innerText = "N/A";  // pf %
+            newRow.cells[9].innerText = "N/A";  // p&l
+            newRow.cells[10].innerText = "N/A"; // net chg %
+            newRow.cells[11].innerText = "N/A"; // day chg
+            newRow.cells[12].innerText = "N/A"; // day chg %
+        }
+    }
+    
+    // Update info text
+    const portfolioDateInfo = document.getElementById('portfolioDateInfo');
+    const lastAvailableDate = GetLastAvailableDate();
+    const isLatestData = targetDate.toDateString() === lastAvailableDate.toDateString();
+    
+    if (dataFoundForDate) {
+        if (isLatestData) {
+            portfolioDateInfo.innerText = 'Portfolio calculated with latest available data';
+            portfolioDateInfo.style.color = '#008000';
+        } else {
+            portfolioDateInfo.innerText = 'Portfolio calculated for selected historical date';
+            portfolioDateInfo.style.color = '#0066cc';
+        }
+    } else {
+        portfolioDateInfo.innerText = 'No data available for selected date';
+        portfolioDateInfo.style.color = '#cc0000';
+    }
+}
+
+// Initialize portfolio date to last available date when the page loads
+window.addEventListener('load', () => {
+    setTimeout(() => {
+        SetSmartPortfolioDate();
+        
+        // Add keyboard navigation for portfolio date input
+        const portfolioDateInput = document.getElementById('portfolioDate');
+        if (portfolioDateInput) {
+            portfolioDateInput.addEventListener('keydown', function(event) {
+                if (event.key === 'ArrowLeft') {
+                    event.preventDefault();
+                    PreviousWorkingDate();
+                } else if (event.key === 'ArrowRight') {
+                    event.preventDefault();
+                    NextWorkingDate();
+                }
+            });
+            
+            // Update day display when user manually changes date
+            portfolioDateInput.addEventListener('change', function(event) {
+                const selectedDate = new Date(event.target.value);
+                if (selectedDate && !isNaN(selectedDate)) {
+                    UpdatePortfolioDateDisplay(selectedDate);
+                }
+            });
+        }
+    }, 1000);
 });

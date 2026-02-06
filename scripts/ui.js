@@ -37,12 +37,41 @@ function openTab(tabId) {
 
     const watchlistDiv = document.getElementById('watchlistDiv');
     watchlistDiv.style.display = 'none';
+    
+    // Hide/show specific watchlist management controls
+    const addWatchlistBtn = document.getElementById('addWatchlistBtn');
+    const newWatchList = document.getElementById('newWatchList');
+    const removeWatchlistBtn = document.getElementById('removeWatchlistBtn');
+    
+    // Hide watchlist management buttons by default
+    if (addWatchlistBtn) addWatchlistBtn.style.display = 'none';
+    if (newWatchList) newWatchList.style.display = 'none';
+    if (removeWatchlistBtn) removeWatchlistBtn.style.display = 'none';
+    
     switch (tabId) {
         case "stockListDiv":
+            // Show watchlist controls and management buttons on Watchlists tab
+            watchlistDiv.style.display = 'block';
+            if (addWatchlistBtn) addWatchlistBtn.style.display = 'inline-block';
+            if (newWatchList) newWatchList.style.display = 'inline-block';
+            if (removeWatchlistBtn) removeWatchlistBtn.style.display = 'inline-block';
+            UpdateWatchList();
+            break;
         case "stockDataDiv":
-        case "portfolioDiv":
+            // Show watchlist dropdown but hide management buttons
             watchlistDiv.style.display = 'block';
             UpdateWatchList();
+            break;
+        case "portfolioDiv":
+            // Show watchlist dropdown but hide management buttons
+            watchlistDiv.style.display = 'block';
+            // Initialize portfolio date if not set
+            const portfolioDateInput = document.getElementById('portfolioDate');
+            if (!portfolioDateInput.value) {
+                SetSmartPortfolioDate();
+            } else {
+                UpdateWatchList();
+            }
             break;
         case "bulkDealersDiv":
             InitBulkDealers();
