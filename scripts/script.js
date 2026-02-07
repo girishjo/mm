@@ -708,9 +708,10 @@ function GetLastAvailableDate() {
         }
     }
     
-    // If no data timestamp available, default to today
+    // If no data timestamp available, use todayDateHour for proper date handling
     if (!lastDate) {
-        lastDate = new Date();
+        // After midnight before market hours, use previous working day
+        lastDate = typeof todayDateHour !== 'undefined' ? new Date(todayDateHour) : new Date();
     }
     
     return lastDate;
@@ -718,17 +719,20 @@ function GetLastAvailableDate() {
 
 function SetTodayPortfolioDate() {
     const portfolioDateInput = document.getElementById('portfolioDate');
-    const today = new Date();
+    const currentTime = new Date();
     const lastAvailableDate = GetLastAvailableDate();
     
-    // Check if today's data is available (same day as last available data)
-    const isCurrentData = lastAvailableDate.toDateString() === today.toDateString();
+    // Use todayDateHour to determine the appropriate date to show
+    const effectiveDate = typeof todayDateHour !== 'undefined' ? new Date(todayDateHour) : currentTime;
+    
+    // Check if current effective date's data is available
+    const isCurrentData = lastAvailableDate.toDateString() === effectiveDate.toDateString();
     
     if (isCurrentData) {
-        portfolioDateInput.value = today.toISOString().split('T')[0];
-        UpdatePortfolioDateDisplay(today);
+        portfolioDateInput.value = effectiveDate.toISOString().split('T')[0];
+        UpdatePortfolioDateDisplay(effectiveDate);
     } else {
-        // Use last available date if today's data is not available
+        // Use last available date if effective date's data is not available
         portfolioDateInput.value = lastAvailableDate.toISOString().split('T')[0];
         UpdatePortfolioDateDisplay(lastAvailableDate);
     }
@@ -901,7 +905,10 @@ function upadtePortfolioTableForDate(stockList, targetDate) {
     const targetDateString = targetDate.toLocaleDateString('en-In', { 
         weekday: "short", year: "numeric", month: "short", day: "2-digit" 
     });
-    const isToday = targetDate.toDateString() === new Date().toDateString();
+    
+    // Use todayDateHour for proper date comparison instead of new Date()
+    const effectiveToday = typeof todayDateHour !== 'undefined' ? new Date(todayDateHour) : new Date();
+    const isToday = targetDate.toDateString() === effectiveToday.toDateString();
 
     // Helper function to find data for a specific date
     function findDataForDate(stockData, targetDateString, isToday) {
