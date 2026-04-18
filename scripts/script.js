@@ -1246,6 +1246,26 @@ let autoCompleteState = {
     suggestions: []
 };
 
+// Helper function to get SecurityName from stock data or history
+function getSecurityName(stock) {
+    // Try current data first
+    if (stock.SecurityName) {
+        return stock.SecurityName;
+    }
+    
+    // If no current SecurityName, check history
+    if (stock.History && Array.isArray(stock.History) && stock.History.length > 0) {
+        // Look through history entries to find a SecurityName
+        for (const historyEntry of stock.History) {
+            if (historyEntry.SecurityName) {
+                return historyEntry.SecurityName;
+            }
+        }
+    }
+    
+    return null;
+}
+
 function initializeAutoCompleteData() {
     if (autoCompleteCache.initialized) return;
     
@@ -1257,7 +1277,8 @@ function initializeAutoCompleteData() {
     if (nseData && typeof nseData === 'object') {
         for (const code in nseData) {
             const stock = nseData[code];
-            if (stock.SecurityName) stockNames.add(stock.SecurityName);
+            const securityName = getSecurityName(stock);
+            if (securityName) stockNames.add(securityName);
             if (code) nseCodes.add(code);
         }
     }
@@ -1266,7 +1287,8 @@ function initializeAutoCompleteData() {
     if (bseData && typeof bseData === 'object') {
         for (const code in bseData) {
             const stock = bseData[code];
-            if (stock.SecurityName) stockNames.add(stock.SecurityName);
+            const securityName = getSecurityName(stock);
+            if (securityName) stockNames.add(securityName);
             if (code) bseCodes.add(code);
         }
     }
@@ -1313,14 +1335,17 @@ function showAutoComplete(element, type) {
             );
             for (const code of matchingNSECodes) {
                 // For codes, find the corresponding stock name to display
-                if (nseData && nseData[code] && nseData[code].SecurityName) {
-                    allMatches.push({ 
-                        text: `${nseData[code].SecurityName} (${code})`, 
-                        similarity: 1.0, 
-                        priority: 1, 
-                        type: 'nse',
-                        originalName: nseData[code].SecurityName
-                    });
+                if (nseData && nseData[code]) {
+                    const securityName = getSecurityName(nseData[code]);
+                    if (securityName) {
+                        allMatches.push({ 
+                            text: `${securityName} (${code})`, 
+                            similarity: 1.0, 
+                            priority: 1, 
+                            type: 'nse',
+                            originalName: securityName
+                        });
+                    }
                 }
             }
             
@@ -1330,14 +1355,17 @@ function showAutoComplete(element, type) {
             );
             for (const code of matchingBSECodes) {
                 // For codes, find the corresponding stock name to display
-                if (bseData && bseData[code] && bseData[code].SecurityName) {
-                    allMatches.push({ 
-                        text: `${bseData[code].SecurityName} (${code})`, 
-                        similarity: 1.0, 
-                        priority: 1, 
-                        type: 'bse',
-                        originalName: bseData[code].SecurityName
-                    });
+                if (bseData && bseData[code]) {
+                    const securityName = getSecurityName(bseData[code]);
+                    if (securityName) {
+                        allMatches.push({ 
+                            text: `${securityName} (${code})`, 
+                            similarity: 1.0, 
+                            priority: 1, 
+                            type: 'bse',
+                            originalName: securityName
+                        });
+                    }
                 }
             }
             
@@ -1461,7 +1489,7 @@ function findStockDataByCode(code) {
             if (nseCode.toLowerCase() === code.toLowerCase() || 
                 (stock.BSECode && stock.BSECode.toString() === code)) {
                 return {
-                    name: stock.SecurityName,
+                    name: getSecurityName(stock),
                     nseCode: nseCode,
                     bseCode: stock.BSECode || ''
                 };
@@ -1476,7 +1504,7 @@ function findStockDataByCode(code) {
             if (bseCode === code ||
                 (stock.NSECode && stock.NSECode.toLowerCase() === code.toLowerCase())) {
                 return {
-                    name: stock.SecurityName,
+                    name: getSecurityName(stock),
                     nseCode: stock.NSECode || '',
                     bseCode: bseCode
                 };
@@ -1498,13 +1526,14 @@ function findStockDataByName(stockName) {
     if (nseData && typeof nseData === 'object') {
         for (const code in nseData) {
             const stock = nseData[code];
-            if (stock.SecurityName) {
-                const similarity = calculateSimilarity(stockName, stock.SecurityName);
+            const securityName = getSecurityName(stock);
+            if (securityName) {
+                const similarity = calculateSimilarity(stockName, securityName);
                 if (similarity > 0.7) { // Threshold for considering a match
                     allCandidates.push({
                         similarity,
                         data: {
-                            name: stock.SecurityName,
+                            name: securityName,
                             nseCode: code,
                             bseCode: stock.BSECode || '',
                             source: 'NSE'
@@ -1519,13 +1548,14 @@ function findStockDataByName(stockName) {
     if (bseData && typeof bseData === 'object') {
         for (const code in bseData) {
             const stock = bseData[code];
-            if (stock.SecurityName) {
-                const similarity = calculateSimilarity(stockName, stock.SecurityName);
+            const securityName = getSecurityName(stock);
+            if (securityName) {
+                const similarity = calculateSimilarity(stockName, securityName);
                 if (similarity > 0.7) {
                     allCandidates.push({
                         similarity,
                         data: {
-                            name: stock.SecurityName,
+                            name: securityName,
                             nseCode: stock.NSECode || '',
                             bseCode: code,
                             source: 'BSE'
