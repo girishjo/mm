@@ -1316,8 +1316,12 @@ function showAutoComplete(element, type) {
             
             // Search by stock names (fuzzy matching)
             const allNames = autoCompleteCache.stockNames;
+            const normalizedInput = normalizeCompanyName(inputValue);
             for (const name of allNames) {
-                if (name.toLowerCase().includes(inputValue)) {
+                // Normalize both input and name for better matching
+                const normalizedName = normalizeCompanyName(name);
+                
+                if (normalizedName.includes(normalizedInput)) {
                     // Exact substring match gets priority
                     allMatches.push({ text: name, similarity: 1.0, priority: 1, type: 'name' });
                 } else {
@@ -1482,34 +1486,85 @@ function findStockData(identifier, searchType) {
 }
 
 function findStockDataByCode(code) {
+    let foundStock = null;
+    
     // Search in NSE data first
     if (nseData && typeof nseData === 'object') {
         for (const nseCode in nseData) {
             const stock = nseData[nseCode];
             if (nseCode.toLowerCase() === code.toLowerCase() || 
                 (stock.BSECode && stock.BSECode.toString() === code)) {
-                return {
+                foundStock = {
                     name: getSecurityName(stock),
                     nseCode: nseCode,
-                    bseCode: stock.BSECode || ''
+                    bseCode: stock.BSECode || '',
+                    source: 'NSE'
                 };
+                break;
             }
         }
     }
     
-    // Search in BSE data
+    // Search in BSE data if not found in NSE or if we found an NSE match but need BSE code
     if (bseData && typeof bseData === 'object') {
         for (const bseCode in bseData) {
             const stock = bseData[bseCode];
             if (bseCode === code ||
                 (stock.NSECode && stock.NSECode.toLowerCase() === code.toLowerCase())) {
-                return {
-                    name: getSecurityName(stock),
-                    nseCode: stock.NSECode || '',
-                    bseCode: bseCode
-                };
+                if (!foundStock) {
+                    // Found only in BSE data
+                    foundStock = {
+                        name: getSecurityName(stock),
+                        nseCode: stock.NSECode || '',
+                        bseCode: bseCode,
+                        source: 'BSE'
+                    };
+                } else {
+                    // Found in both - merge BSE code if missing
+                    if (!foundStock.bseCode) {
+                        foundStock.bseCode = bseCode;
+                    }
+                }
+                break;
             }
         }
+    }
+    
+    // If we found by NSE code but still missing BSE code, try to find it by name matching
+    if (foundStock && foundStock.source === 'NSE' && !foundStock.bseCode && foundStock.name) {
+        if (bseData && typeof bseData === 'object') {
+            for (const bseCode in bseData) {
+                const bseStock = bseData[bseCode];
+                const bseSecurityName = getSecurityName(bseStock);
+                if (bseSecurityName && normalizeCompanyName(bseSecurityName) === normalizeCompanyName(foundStock.name)) {
+                    foundStock.bseCode = bseCode;
+                    break;
+                }
+            }
+        }
+    }
+    
+    // If we found by BSE code but still missing NSE code, try to find it by name matching  
+    if (foundStock && foundStock.source === 'BSE' && !foundStock.nseCode && foundStock.name) {
+        if (nseData && typeof nseData === 'object') {
+            for (const nseCode in nseData) {
+                const nseStock = nseData[nseCode];
+                const nseSecurityName = getSecurityName(nseStock);
+                if (nseSecurityName && normalizeCompanyName(nseSecurityName) === normalizeCompanyName(foundStock.name)) {
+                    foundStock.nseCode = nseCode;
+                    break;
+                }
+            }
+        }
+    }
+    
+    if (foundStock) {
+        // Clean up the response - remove the source property
+        return {
+            name: foundStock.name,
+            nseCode: foundStock.nseCode,
+            bseCode: foundStock.bseCode
+        };
     }
     
     return null;
