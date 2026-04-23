@@ -28,8 +28,15 @@ async function LoadData() {
     CheckForT10(bseData);
   }
 
-  nseData = nseData.data;
-  bseData = bseData.data;
+  const preserveTimestamp = (data) => {
+    const timestamp = new Date(data.dateTimeStamp);
+    const extracted = data.data;
+    extracted.dateTimeStamp = timestamp;
+    return extracted;
+  };
+
+  nseData = preserveTimestamp(nseData);
+  bseData = preserveTimestamp(bseData);
 
   // Reinitialize auto-complete cache with new data
   if (typeof autoCompleteCache !== 'undefined') {

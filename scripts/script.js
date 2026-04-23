@@ -438,7 +438,38 @@ function updateDataTable(table, name, nseCode, bseCode, data = undefined, rowInd
                     newRow.cells[3].classList.add('attention');
                     newRow.cells[4].classList.add('attention');
 
-                    const msg = "Delivery data from " + (nseData[nseCode].Total == undefined ? "NSE" : "BSE") + " not came yet";
+                    // Check if exchanges have data for today (global availability)
+                    const nseHasGlobalData = nseData && nseData.dateTimeStamp;
+                    const bseHasGlobalData = bseData && bseData.dateTimeStamp;
+                    
+                    // Check if this specific stock has data from each exchange
+                    const nseHasStockData = nseData[nseCode].Total !== undefined;
+                    const bseHasStockData = bseData[bseCode].Total !== undefined;
+                    
+                    let msg = "";
+                    
+                    if (nseHasStockData && !bseHasStockData) {
+                        if (bseHasGlobalData) {
+                            msg = "BSE delivery data not available for this stock";
+                        } else {
+                            msg = "BSE delivery data not available yet";
+                        }
+                    } else if (!nseHasStockData && bseHasStockData) {
+                        if (nseHasGlobalData) {
+                            msg = "NSE delivery data not available for this stock";
+                        } else {
+                            msg = "NSE delivery data not available yet";
+                        }
+                    } else if (!nseHasStockData && !bseHasStockData) {
+                        if (nseHasGlobalData && bseHasGlobalData) {
+                            msg = "Delivery data not available for this stock on both exchanges";
+                        } else if (nseHasGlobalData || bseHasGlobalData) {
+                            msg = "Delivery data partially available - some exchange data pending";
+                        } else {
+                            msg = "Delivery data not available yet";
+                        }
+                    }
+                    
                     newRow.cells[2].title = msg;
                     newRow.cells[3].title = msg;
                     newRow.cells[4].title = msg;
