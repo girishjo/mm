@@ -93,7 +93,54 @@ function ResetWatchlist(deleteExisting = true) {
     UpdateLoader(false);
 }
 
+function hasPortfolioData(wlData) {
+    if (!wlData) return false;
+    return wlData.some(stock => stock[0] && stock[3] && stock[3] != 0 && stock[4] && stock[4] != 0);
+}
+
+function toggleShowAllWatchlists() {
+    const chk = document.getElementById('chkShowAllWatchlists');
+    localStorage.setItem('showAllWatchlists', chk.checked);
+    UpdateWatchList();
+}
+
+function filterWatchlistsForPortfolio() {
+    const isPortfolio = document.getElementById("portfolioDiv").style.display == "block";
+    const showAll = document.getElementById('chkShowAllWatchlists') && document.getElementById('chkShowAllWatchlists').checked;
+    const radios = document.querySelectorAll('input[name="stockListRadio"]');
+
+    if (!isPortfolio || showAll) {
+        radios.forEach(radio => {
+            radio.style.display = '';
+            const label = document.querySelector('label[for="' + radio.id + '"]');
+            if (label) label.style.display = '';
+        });
+        return;
+    }
+
+    let needsReselect = false;
+    radios.forEach(radio => {
+        const wl = watchlists[radio.value];
+        const visible = wl && hasPortfolioData(wl.data);
+        radio.style.display = visible ? '' : 'none';
+        const label = document.querySelector('label[for="' + radio.id + '"]');
+        if (label) label.style.display = visible ? '' : 'none';
+        if (radio.checked && !visible) needsReselect = true;
+    });
+    // If current selection is hidden, select first visible
+    if (needsReselect) {
+        for (const radio of radios) {
+            if (radio.style.display !== 'none') {
+                radio.checked = true;
+                activeWL = radio.value;
+                break;
+            }
+        }
+    }
+}
+
 function UpdateWatchList(saveLast = true) {
+    filterWatchlistsForPortfolio();
     const lastSelectedWL = activeWL;
     const selectedWatchList = document.querySelector('input[name="stockListRadio"]:checked');
     if (!selectedWatchList) {
@@ -1235,6 +1282,12 @@ function upadtePortfolioTableForDate(stockList, targetDate) {
 // Initialize portfolio date to last available date when the page loads
 window.addEventListener('load', () => {
     setTimeout(() => {
+        // Restore show all watchlists preference
+        const chkShowAll = document.getElementById('chkShowAllWatchlists');
+        if (chkShowAll) {
+            chkShowAll.checked = localStorage.getItem('showAllWatchlists') === 'true';
+        }
+
         SetSmartPortfolioDate();
         
         // Add keyboard navigation for portfolio date input
