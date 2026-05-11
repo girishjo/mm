@@ -59,7 +59,13 @@ body {
 table {
     font-family: arial, sans-serif;
     border-collapse: collapse;
+    width: auto;
+    min-width: 1024px;
+}
+
+#dataValidity {
     width: 100%;
+    min-width: 0;
 }
 
 #stocksList {
@@ -250,4 +256,17 @@ label[for] {
         bottom: 0;
         opacity: 0;
     }
+}
+
+#portfolioTable.privacy-mode td:nth-child(3),
+#portfolioTable.privacy-mode th:nth-child(3),
+#portfolioTable.privacy-mode td:nth-child(5),
+#portfolioTable.privacy-mode th:nth-child(5),
+#portfolioTable.privacy-mode td:nth-child(8),
+#portfolioTable.privacy-mode th:nth-child(8),
+#portfolioTable.privacy-mode td:nth-child(10),
+#portfolioTable.privacy-mode th:nth-child(10),
+#portfolioTable.privacy-mode td:nth-child(12),
+#portfolioTable.privacy-mode th:nth-child(12) {
+    display: none;
 }

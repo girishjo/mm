@@ -43,12 +43,14 @@ function openTab(tabId) {
     const newWatchList = document.getElementById('newWatchList');
     const removeWatchlistBtn = document.getElementById('removeWatchlistBtn');
     const lblShowAllWatchlists = document.getElementById('lblShowAllWatchlists');
+    const lblPrivacyMode = document.getElementById('lblPrivacyMode');
     
     // Hide watchlist management buttons by default
     if (addWatchlistBtn) addWatchlistBtn.style.display = 'none';
     if (newWatchList) newWatchList.style.display = 'none';
     if (removeWatchlistBtn) removeWatchlistBtn.style.display = 'none';
     if (lblShowAllWatchlists) lblShowAllWatchlists.style.display = 'none';
+    if (lblPrivacyMode) lblPrivacyMode.style.display = 'none';
     
     switch (tabId) {
         case "stockListDiv":
@@ -68,6 +70,7 @@ function openTab(tabId) {
             // Show watchlist dropdown but hide management buttons
             watchlistDiv.style.display = 'block';
             if (lblShowAllWatchlists) lblShowAllWatchlists.style.display = 'inline-block';
+            if (lblPrivacyMode) lblPrivacyMode.style.display = 'inline-block';
             // Initialize portfolio date if not set
             const portfolioDateInput = document.getElementById('portfolioDate');
             if (!portfolioDateInput.value) {

@@ -104,6 +104,12 @@ function toggleShowAllWatchlists() {
     UpdateWatchList();
 }
 
+function togglePrivacyMode() {
+    const chk = document.getElementById('chkPrivacyMode');
+    portfolioTable.classList.toggle('privacy-mode', chk.checked);
+    localStorage.setItem('privacyMode', chk.checked);
+}
+
 function filterWatchlistsForPortfolio() {
     const isPortfolio = document.getElementById("portfolioDiv").style.display == "block";
     const showAll = document.getElementById('chkShowAllWatchlists') && document.getElementById('chkShowAllWatchlists').checked;
@@ -1286,6 +1292,13 @@ window.addEventListener('load', () => {
         const chkShowAll = document.getElementById('chkShowAllWatchlists');
         if (chkShowAll) {
             chkShowAll.checked = localStorage.getItem('showAllWatchlists') === 'true';
+        }
+
+        // Restore privacy mode preference
+        const chkPrivacy = document.getElementById('chkPrivacyMode');
+        if (chkPrivacy) {
+            chkPrivacy.checked = localStorage.getItem('privacyMode') === 'true';
+            portfolioTable.classList.toggle('privacy-mode', chkPrivacy.checked);
         }
 
         SetSmartPortfolioDate();
