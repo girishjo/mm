@@ -132,9 +132,10 @@ function MergeRecursive(target, source) {
                 else {
                     for (let i = 0; i < source[key].length; i++) {
                         const newItem = source[key][i];
+                        newItem.SecurityCode = String(newItem.SecurityCode);
                         let bulkdeal = target[key].find(bd =>
                             bd.Date == newItem.Date
-                            && bd.SecurityCode == newItem.SecurityCode
+                            && String(bd.SecurityCode) == newItem.SecurityCode
                             && bd.SecurityName == newItem.SecurityName
                             && bd.ClientName == newItem.ClientName
                             && bd.BuyOrSell == newItem.BuyOrSell
