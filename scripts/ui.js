@@ -31,6 +31,7 @@ function openTab(tabId) {
         case "portfolioDiv":
         case "bulkDealersDiv":
         case "stockBulkDealsDiv":
+        case "circuitChangeDiv":
             document.body.classList.remove('modal-shown');
             break;
     }
@@ -84,6 +85,9 @@ function openTab(tabId) {
             break;
         case "stockBulkDealsDiv":
             InitStockBulkDeals();
+            break;
+        case "circuitChangeDiv":
+            InitCircuitChange();
             break;
     }
 }

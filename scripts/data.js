@@ -65,6 +65,9 @@ function OpenSpecificTab() {
     case "portfolio":
       openTab('portfolioDiv')
       break;
+    case "circuitchanges":
+      openTab('circuitChangeDiv')
+      break;
     default:
       break;
   }

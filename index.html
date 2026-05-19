@@ -25,6 +25,7 @@
             <button class="tablinks" onclick="openTab('bulkDealersDiv')">Bulk Dealers</button>
             <button class="tablinks" onclick="openTab('stockBulkDealsDiv')">Bulk Deals</button>
             <button class="tablinks" onclick="openTab('portfolioDiv')">Portfolio</button>
+            <button class="tablinks" onclick="openTab('circuitChangeDiv')">Circuit Changes</button>
             <button class="tablinks" onclick="openTab('settingsDiv')">Settings</button>
         </div>
 
@@ -354,6 +355,38 @@
                 </tbody>
             </table>
         </div>
+        <div id="circuitChangeDiv" class="tabcontent" style="display: none;">
+            <div style="margin-bottom: 10px;">
+                <span style="font-weight: bold; margin-right: 10px;">Stock Type:</span>
+                <input type="checkbox" id="chkCircuitSME" name="chkCircuitSME" checked disabled>
+                <label for="chkCircuitSME" style="margin-right: 15px;">SME</label>
+                <input type="checkbox" id="chkCircuitMB" name="chkCircuitMB" disabled>
+                <label for="chkCircuitMB" style="margin-right: 0px; color: grey;">MainBoard</label>
+                <span style="font-style: italic; color: grey; font-size: 0.9em;">(support coming soon)</span>
+            </div>
+            <table id="circuitChangeTable">
+                <thead>
+                    <tr>
+                        <th class="number sort"><a href="#" class="sort-by">No.</a></th>
+                        <th class="date sort"><a href="#" class="sort-by">Circuit Change Date</a></th>
+                        <th class="text sort"><a href="#" class="sort-by">Stock Name</a></th>
+                        <th class="text sort"><a href="#" class="sort-by">Code</a></th>
+                        <th class="text sort"><a href="#" class="sort-by">Series</a></th>
+                        <th class="text sort"><a href="#" class="sort-by">Type</a></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="hide">
+                        <td class="number"></td>
+                        <td class="date"></td>
+                        <td class="text"></td>
+                        <td class="text"></td>
+                        <td class="text"></td>
+                        <td class="text"></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
         <div id="settingsDiv" class="tabcontent" style="display: none;">
             <Button onclick="SaveSettings();" style="margin: 10px;">Save Settings</Button>
             <table id="settingsTable">
@@ -470,5 +503,6 @@
 <script defer src="./scripts/defaults.js"></script>
 <script defer src="./scripts/clientDeals.js"></script>
 <script defer src="./scripts/allBulkDeals.js"></script>
+<script defer src="./scripts/circuitChange.js"></script>
 
 </html>
