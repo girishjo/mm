@@ -51,7 +51,7 @@ function FindCircuitChangeStocks(data, exchange) {
         if (circuitChangeDate < todayDate) continue;
 
         const isSME = settings.configs.t2tSMESeries.includes(series);
-        const stockName = stockData.SecurityName || stockData.SecurityCode || stockCode;
+        const stockName = getSecurityName(stockData) || stockCode;
 
         // Avoid duplicates (same stock from both exchanges)
         const existing = circuitChangeStocks.find(s => s.code === stockCode);
