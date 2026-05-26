@@ -6,7 +6,27 @@ const dataFiles = [
   ['bseOpenClose.json', 'bseDelivery.json', 'bseBulkDeal.json'],
 ];
 
+function RequestNotificationPermission() {
+  if ('Notification' in window && Notification.permission === 'default') {
+    Notification.requestPermission();
+  }
+}
+
+function ShowNewDataNotification() {
+  if ('Notification' in window && Notification.permission === 'granted') {
+    const notification = new Notification('Market Monitor', {
+      body: 'Updated data is now available. Tap to refresh.',
+      icon: './images/favicon.ico'
+    });
+    notification.onclick = function () {
+      window.focus();
+      location.reload();
+    };
+  }
+}
+
 async function LoadData() {
+  RequestNotificationPermission();
   const messages = [
     ['Nse Open Close data', 'Nse Delivery data', 'Nse Bulk Deals data'],
     ['Bse Open Close data', 'Bse Delivery data', 'Bse Bulk Deals data'],
@@ -176,6 +196,7 @@ async function CheckForLatestData() {
         let dataJson = await GetData(dataFiles[i][j]);
         if (new Date(dataJson.dateTimeStamp) > new Date(dataValidityTable.rows[i + 1].cells[j + 1].innerText)) {
           document.getElementById('updatedDataAvailable').style.display = 'block';
+          ShowNewDataNotification();
           flag = false;
           break loop1;
         }
