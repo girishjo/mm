@@ -27,11 +27,9 @@ function FindCircuitChangeStocks(data, exchange) {
         const isT2T = settings.configs.t2tSMESeries.includes(series) || settings.configs.t2tMBSeries.includes(series);
         if (!isT2T) continue;
 
-        // A genuinely new listing will have 10 or fewer history entries
-        // (on the 11th trading day / circuit change day, it has exactly 10 history entries)
-        // Stocks with more than 10 entries have been trading for 12+ days - not new listings
+        // Stocks with full history (maxed out by historyDays setting) are old stocks, not new listings
         const historyLength = stockData.History ? stockData.History.length : 0;
-        if (historyLength > 10) continue;
+        if (historyLength >= settings.constants.historyDays - 1) continue;
 
         // Determine listing date:
         // If stock has history, the oldest entry is the listing date
@@ -47,8 +45,9 @@ function FindCircuitChangeStocks(data, exchange) {
         // Calculate 11th working day from listing (including listing day)
         const circuitChangeDate = GetNthDay(listingDate, 11);
 
-        // Only show stocks with circuit change date today or in the future
-        if (circuitChangeDate < todayDate) continue;
+        // Skip stocks whose circuit change date is more than 10 working days in the past
+        const oldCutoff = GetNthDay(todayDate, 10, false);
+        if (circuitChangeDate < oldCutoff) continue;
 
         const isSME = settings.configs.t2tSMESeries.includes(series);
         const stockName = getSecurityName(stockData) || stockCode;
@@ -74,10 +73,16 @@ function UpdateCircuitChangeTable() {
 
     const showSME = document.getElementById('chkCircuitSME').checked;
 
+    const showOld = document.getElementById('chkCircuitOld').checked;
+
     let filtered = circuitChangeStocks.filter(stock => {
         // MainBoard support disabled for now
         if (stock.type === 'MainBoard') return false;
-        if (showSME && stock.type === 'SME') return true;
+        if (showSME && stock.type === 'SME') {
+            // If not showing old, only include today or future
+            if (!showOld && stock.circuitChangeDate < todayDate) return false;
+            return true;
+        }
         return false;
     });
 
@@ -106,11 +111,16 @@ function UpdateCircuitChangeTable() {
     AutoSaveCircuitChangePreferences();
 }
 
+function OnCircuitOldChanged() {
+    UpdateCircuitChangeTable();
+}
+
 function RestoreCircuitChangeFilterSettings() {
     const prefs = settings.circuitChangePreferences;
     if (prefs) {
         document.getElementById('chkCircuitMB').checked = prefs.mainBoard !== false;
         document.getElementById('chkCircuitSME').checked = prefs.sme !== false;
+        document.getElementById('chkCircuitOld').checked = prefs.showOld === true;
     }
 }
 
@@ -121,6 +131,7 @@ function AutoSaveCircuitChangePreferences() {
 
     settings.circuitChangePreferences.mainBoard = document.getElementById('chkCircuitMB').checked;
     settings.circuitChangePreferences.sme = document.getElementById('chkCircuitSME').checked;
+    settings.circuitChangePreferences.showOld = document.getElementById('chkCircuitOld').checked;
 
     window.localStorage.setItem("userSettings", JSON.stringify(settings));
 }

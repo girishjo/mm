@@ -363,6 +363,10 @@
                 <input type="checkbox" id="chkCircuitMB" name="chkCircuitMB" disabled>
                 <label for="chkCircuitMB" style="margin-right: 0px; color: grey;">MainBoard</label>
                 <span style="font-style: italic; color: grey; font-size: 0.9em;">(support coming soon)</span>
+                <span style="float: right;">
+                    <input type="checkbox" id="chkCircuitOld" name="chkCircuitOld" onchange="OnCircuitOldChanged();">
+                    <label for="chkCircuitOld">Include past circuit changes</label>
+                </span>
             </div>
             <table id="circuitChangeTable">
                 <thead>
