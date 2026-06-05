@@ -3,3 +3,4 @@ scripts/appscript.js
 local
 scripts/local.js
 dev/
+gas/

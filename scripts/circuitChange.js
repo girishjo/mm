@@ -1,89 +1,78 @@
 const circuitChangeTable = document.getElementById("circuitChangeTable");
 var circuitChangeStocks = [];
+var newListingsData = null;
 
-function InitCircuitChange() {
+async function InitCircuitChange() {
     if (circuitChangeStocks.length === 0) {
-        FindCircuitChangeStocks(nseData, 'NSE');
-        FindCircuitChangeStocks(bseData, 'BSE');
+        if (!newListingsData) {
+            try {
+                newListingsData = await GetData('newListings.json');
+            } catch (e) {
+                newListingsData = {};
+            }
+        }
 
-        // Sort by circuit change date ascending
-        circuitChangeStocks.sort((a, b) => new Date(a.circuitChangeDate) - new Date(b.circuitChangeDate));
+        BuildCircuitChangeStocks();
     }
 
-    // Restore filter settings
     RestoreCircuitChangeFilterSettings();
     UpdateCircuitChangeTable();
 }
 
-function FindCircuitChangeStocks(data, exchange) {
-    for (const stockCode of Object.keys(data)) {
-        if (stockCode === 'dateTimeStamp') continue;
+function BuildCircuitChangeStocks() {
+    Object.keys(newListingsData).forEach(isin => {
+        const entry = newListingsData[isin];
+        if (!entry.listingDate) return;
+        if (entry.nseCode && entry.nseCode.includes('-RE')) return; // Skip Rights Entitlements
 
-        const stockData = data[stockCode];
-        const series = stockData.Series || (stockData.History && stockData.History.length > 0 && stockData.History[0].Series);
-
-        if (!series) continue;
-
-        const isT2T = settings.configs.t2tSMESeries.includes(series) || settings.configs.t2tMBSeries.includes(series);
-        if (!isT2T) continue;
-
-        // Stocks with full history (maxed out by historyDays setting) are old stocks, not new listings
-        const historyLength = stockData.History ? stockData.History.length : 0;
-        if (historyLength >= settings.constants.historyDays - 1) continue;
-
-        // Determine listing date:
-        // If stock has history, the oldest entry is the listing date
-        // If no history (listed today), use today's date
-        let listingDate;
-        if (stockData.History && stockData.History.length > 0) {
-            const listingDateString = stockData.History[stockData.History.length - 1].HistoryDate;
-            listingDate = new Date(listingDateString);
-        } else {
-            listingDate = new Date(todayDate);
-        }
-
-        // Calculate 11th working day from listing (including listing day)
+        const listingDate = new Date(entry.listingDate);
         const circuitChangeDate = GetNthDay(listingDate, 11);
 
         // Skip stocks whose circuit change date is more than 10 working days in the past
         const oldCutoff = GetNthDay(todayDate, 10, false);
-        if (circuitChangeDate < oldCutoff) continue;
+        if (circuitChangeDate < oldCutoff) return;
 
-        const isSME = settings.configs.t2tSMESeries.includes(series);
-        const stockName = getSecurityName(stockData) || stockCode;
-
-        // Avoid duplicates (same stock from both exchanges)
-        const existing = circuitChangeStocks.find(s => s.code === stockCode);
-        if (existing) continue;
+        const isSME = entry.type === 'SME';
 
         circuitChangeStocks.push({
-            code: stockCode,
-            name: stockName,
-            series: series,
+            code: entry.nseCode || entry.bseCode || '',
+            name: entry.name || entry.nseCode || entry.bseCode || '',
+            series: entry.series || '',
             type: isSME ? 'SME' : 'MainBoard',
+            exchanges: entry.exchanges || '',
             listingDate: listingDate,
             circuitChangeDate: circuitChangeDate
         });
-    }
+    });
+
+    circuitChangeStocks.sort((a, b) => a.circuitChangeDate - b.circuitChangeDate || a.name.localeCompare(b.name));
 }
 
 function UpdateCircuitChangeTable() {
     UpdateLoader(true, "Updating Circuit Change stocks...");
     resetTable(circuitChangeTable);
 
+    const showNSE = document.getElementById('chkCircuitNSE').checked;
+    const showBSE = document.getElementById('chkCircuitBSE').checked;
     const showSME = document.getElementById('chkCircuitSME').checked;
-
+    const showMB = document.getElementById('chkCircuitMB').checked;
+    const showToday = document.getElementById('chkCircuitToday').checked;
     const showOld = document.getElementById('chkCircuitOld').checked;
 
     let filtered = circuitChangeStocks.filter(stock => {
-        // MainBoard support disabled for now
-        if (stock.type === 'MainBoard') return false;
-        if (showSME && stock.type === 'SME') {
-            // If not showing old, only include today or future
-            if (!showOld && stock.circuitChangeDate < todayDate) return false;
-            return true;
+        const onNSE = stock.exchanges.includes('NSE');
+        const onBSE = stock.exchanges.includes('BSE');
+        if (showNSE || showBSE) {
+            if (!showNSE && onNSE && !onBSE) return false;
+            if (!showBSE && onBSE && !onNSE) return false;
         }
-        return false;
+        if (showSME || showMB) {
+            if (!showSME && stock.type === 'SME') return false;
+            if (!showMB && stock.type === 'MainBoard') return false;
+        }
+        if (showToday && stock.listingDate.toDateString() !== todayDate.toDateString()) return false;
+        if (!showOld && stock.circuitChangeDate < todayDate) return false;
+        return true;
     });
 
     for (let i = 0; i < filtered.length; i++) {
@@ -94,12 +83,12 @@ function UpdateCircuitChangeTable() {
         row.cells[1].innerText = stock.circuitChangeDate.toLocaleDateString('en-In', {
             weekday: "short", year: "numeric", month: "short", day: "2-digit"
         });
-        row.cells[2].innerText = stock.name;
+        row.cells[2].innerText = simplifyName(stock.name);
         row.cells[3].innerText = stock.code;
         row.cells[4].innerText = stock.series;
         row.cells[5].innerText = stock.type;
+        row.cells[6].innerText = stock.exchanges;
 
-        // Highlight based on proximity to today
         if (stock.circuitChangeDate.toDateString() === todayDate.toDateString()) {
             row.style.background = 'lightgreen';
         } else if (stock.circuitChangeDate < todayDate) {
@@ -111,15 +100,66 @@ function UpdateCircuitChangeTable() {
     AutoSaveCircuitChangePreferences();
 }
 
+function ShareCircuitChanges() {
+    const rows = circuitChangeTable.querySelectorAll('tbody tr:not(.hide)');
+    if (rows.length === 0) return;
+
+    const showSME = document.getElementById('chkCircuitSME').checked;
+    const showMB = document.getElementById('chkCircuitMB').checked;
+
+    let title = '*';
+    if (showSME && !showMB) title += 'SME ';
+    else if (showMB && !showSME) title += 'MainBoard ';
+    title += 'Circuit Changes*\n\n';
+
+    let text = title;
+    rows.forEach((row, i) => {
+        const stock = circuitChangeStocks.find(s => s.code === row.cells[3].innerText);
+        const dateStr = stock ? stock.circuitChangeDate.toLocaleDateString('en-In', {
+            day: '2-digit', month: 'short', year: 'numeric'
+        }).replace(/ /g, '-') : row.cells[1].innerText;
+        const name = row.cells[2].innerText;
+        text += dateStr + ' ' + name + '\n';
+    });
+
+    if (navigator.share) {
+        navigator.share({ text: text });
+    } else {
+        const url = 'https://wa.me/?text=' + encodeURIComponent(text);
+        window.open(url, '_blank');
+    }
+}
+
+function simplifyName(name) {
+    return name.replace(/\s*(Private|Pvt\.?|India)?\s*(Limited|Ltd\.?|Limit).*$/i, '').replace(/\s+(Solutions|Technologies|Technology)$/i, '').trim();
+}
+
+function OnCircuitFilterChanged() {
+    UpdateCircuitChangeTable();
+}
+
+function OnCircuitTodayChanged() {
+    if (document.getElementById('chkCircuitToday').checked) {
+        document.getElementById('chkCircuitOld').checked = false;
+    }
+    UpdateCircuitChangeTable();
+}
+
 function OnCircuitOldChanged() {
+    if (document.getElementById('chkCircuitOld').checked) {
+        document.getElementById('chkCircuitToday').checked = false;
+    }
     UpdateCircuitChangeTable();
 }
 
 function RestoreCircuitChangeFilterSettings() {
     const prefs = settings.circuitChangePreferences;
     if (prefs) {
-        document.getElementById('chkCircuitMB').checked = prefs.mainBoard !== false;
+        document.getElementById('chkCircuitNSE').checked = prefs.nse !== false;
+        document.getElementById('chkCircuitBSE').checked = prefs.bse !== false;
         document.getElementById('chkCircuitSME').checked = prefs.sme !== false;
+        document.getElementById('chkCircuitMB').checked = prefs.mainBoard !== false;
+        document.getElementById('chkCircuitToday').checked = prefs.todayOnly === true;
         document.getElementById('chkCircuitOld').checked = prefs.showOld === true;
     }
 }
@@ -129,8 +169,11 @@ function AutoSaveCircuitChangePreferences() {
         settings.circuitChangePreferences = {};
     }
 
-    settings.circuitChangePreferences.mainBoard = document.getElementById('chkCircuitMB').checked;
+    settings.circuitChangePreferences.nse = document.getElementById('chkCircuitNSE').checked;
+    settings.circuitChangePreferences.bse = document.getElementById('chkCircuitBSE').checked;
     settings.circuitChangePreferences.sme = document.getElementById('chkCircuitSME').checked;
+    settings.circuitChangePreferences.mainBoard = document.getElementById('chkCircuitMB').checked;
+    settings.circuitChangePreferences.todayOnly = document.getElementById('chkCircuitToday').checked;
     settings.circuitChangePreferences.showOld = document.getElementById('chkCircuitOld').checked;
 
     window.localStorage.setItem("userSettings", JSON.stringify(settings));

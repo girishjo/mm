@@ -67,8 +67,11 @@
             <button id="addWatchlistBtn" onclick="AddWatchlist();" style="margin-left: 5px; float: right;">Add new
                 Watchlist</button>
             <input type="text" placeholder="New watchlist name..." id="newWatchList" style=" float: right;">
-            <label id="lblPrivacyMode" style="float: right; margin-right: 15px; display: none;"><input type="checkbox" id="chkPrivacyMode" onchange="togglePrivacyMode();"> Privacy mode</label>
-            <label id="lblShowAllWatchlists" style="float: right; margin-right: 15px; display: none;"><input type="checkbox" id="chkShowAllWatchlists" onchange="toggleShowAllWatchlists();">All Watchlist(s)</label>
+            <label id="lblPrivacyMode" style="float: right; margin-right: 15px; display: none;"><input type="checkbox"
+                    id="chkPrivacyMode" onchange="togglePrivacyMode();"> Privacy mode</label>
+            <label id="lblShowAllWatchlists" style="float: right; margin-right: 15px; display: none;"><input
+                    type="checkbox" id="chkShowAllWatchlists" onchange="toggleShowAllWatchlists();">All
+                Watchlist(s)</label>
             <button id="removeWatchlistBtn" onclick="RemoveWatchlist();" style="margin-left: 15px;">Remove
                 Watchlist</button>
         </div>
@@ -99,9 +102,14 @@
                         <td class="icon add">&#43;</td>
                         <td class="icon remove">&#10539;</td>
                         <td class="icon move">&#8594;</td>
-                        <td contenteditable="true" class="text" oninput="showAutoComplete(this, 'stockName')" onblur="hideAutoComplete()" onkeydown="if(event.key==='Tab') hideAutoComplete()"></td>
-                        <td contenteditable="true" class="text" oninput="showAutoComplete(this, 'nseCode')" onblur="UpdateUpperCase();hideAutoComplete();" onkeydown="if(event.key==='Tab') hideAutoComplete()"></td>
-                        <td contenteditable="true" class="text" oninput="showAutoComplete(this, 'bseCode')" onblur="CheckNumber();hideAutoComplete();" onkeydown="if(event.key==='Tab') hideAutoComplete()"></td>
+                        <td contenteditable="true" class="text" oninput="showAutoComplete(this, 'stockName')"
+                            onblur="hideAutoComplete()" onkeydown="if(event.key==='Tab') hideAutoComplete()"></td>
+                        <td contenteditable="true" class="text" oninput="showAutoComplete(this, 'nseCode')"
+                            onblur="UpdateUpperCase();hideAutoComplete();"
+                            onkeydown="if(event.key==='Tab') hideAutoComplete()"></td>
+                        <td contenteditable="true" class="text" oninput="showAutoComplete(this, 'bseCode')"
+                            onblur="CheckNumber();hideAutoComplete();"
+                            onkeydown="if(event.key==='Tab') hideAutoComplete()"></td>
                         <td contenteditable="true" class="number"></td>
                         <td contenteditable="true" class="number"></td>
                     </tr>
@@ -109,10 +117,12 @@
             </table>
 
             <Button onclick="saveDataOnLocal();UpdateWatchList();" style="margin: 10px;">Save Watchlists</Button>
-            
+
             <!-- Auto-complete dropdown -->
-            <div id="autoCompleteDropdown" style="position: absolute; background: white; border: 1px solid #ccc; border-radius: 4px; max-height: 200px; overflow-y: auto; z-index: 1000; display: none; box-shadow: 0 2px 8px rgba(0,0,0,0.1);"></div>
-            
+            <div id="autoCompleteDropdown"
+                style="position: absolute; background: white; border: 1px solid #ccc; border-radius: 4px; max-height: 200px; overflow-y: auto; z-index: 1000; display: none; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+            </div>
+
             <div id="watchlistModal" class="modal">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -224,7 +234,8 @@
             Select Dealer:
             <select id="ddlBulkDealer" onchange="UpdateBulkDealTable();">
             </select>
-            <input type="text" id="txtFilterDeals" name="txtFilterDeals" placeholder="Filter stocks..." onkeyup="UpdateBulkDealTable();">
+            <input type="text" id="txtFilterDeals" name="txtFilterDeals" placeholder="Filter stocks..."
+                onkeyup="UpdateBulkDealTable();">
 
             <input type="checkbox" id="chkFilterDeals" name="chkFilterDeals" onchange="UpdateLabel();">
             <label for="chkFilterDeals" id="lblFilterDealsPrefix" style="margin-right: 0px;">Show deals only for</label>
@@ -259,28 +270,34 @@
                 <label for="ddlStocks" style="font-weight: bold;">Select Stock:</label>
                 <select id="ddlStocks" onchange="UpdateStockBulkDealTable();" style="margin-right: 20px;">
                 </select>
-                
+
                 <label for="dateFilterDeals" style="font-weight: bold;">Date:</label>
-                <input type="date" id="dateFilterDeals" name="dateFilterDeals" onchange="UpdateStockBulkDealTable();" style="margin-right: 20px;">
-                
+                <input type="date" id="dateFilterDeals" name="dateFilterDeals" onchange="UpdateStockBulkDealTable();"
+                    style="margin-right: 20px;">
+
                 <label for="txtFilterDealers" style="font-weight: bold;">Search:</label>
-                <input type="text" id="txtFilterDealers" name="txtFilterDealers" placeholder="Filter deals..." onkeyup="UpdateStockBulkDealTable();">
+                <input type="text" id="txtFilterDealers" name="txtFilterDealers" placeholder="Filter deals..."
+                    onkeyup="UpdateStockBulkDealTable();">
             </div>
-            
+
             <div style="margin-bottom: 10px;">
                 <span style="font-weight: bold; margin-right: 10px;">Exchange:</span>
-                <input type="checkbox" id="chkNseDeals" name="chkNseDeals" checked onchange="UpdateStockBulkDealTable();">
+                <input type="checkbox" id="chkNseDeals" name="chkNseDeals" checked
+                    onchange="UpdateStockBulkDealTable();">
                 <label for="chkNseDeals" id="lblNseDeals" style="margin-right: 15px;">NSE</label>
-                <input type="checkbox" id="chkBseDeals" name="chkBseDeals" checked onchange="UpdateStockBulkDealTable();">
+                <input type="checkbox" id="chkBseDeals" name="chkBseDeals" checked
+                    onchange="UpdateStockBulkDealTable();">
                 <label for="chkBseDeals" id="lblBseDeals" style="margin-right: 30px;">BSE</label>
-                
+
                 <span style="font-weight: bold; margin-right: 10px;">Type:</span>
-                <input type="checkbox" id="chkMainBoardDeals" name="chkMainBoardDeals" checked onchange="UpdateStockBulkDealTable();">
+                <input type="checkbox" id="chkMainBoardDeals" name="chkMainBoardDeals" checked
+                    onchange="UpdateStockBulkDealTable();">
                 <label for="chkMainBoardDeals" id="lblMainBoardDeals" style="margin-right: 15px;">MainBoard</label>
-                <input type="checkbox" id="chkSmeDeals" name="chkSmeDeals" checked onchange="UpdateStockBulkDealTable();">
+                <input type="checkbox" id="chkSmeDeals" name="chkSmeDeals" checked
+                    onchange="UpdateStockBulkDealTable();">
                 <label for="chkSmeDeals" id="lblSmeDeals" style="margin-right: 0px;">SME</label>
             </div>
-            
+
             <table id="stockBulkDeals">
                 <thead>
                     <tr>
@@ -309,11 +326,15 @@
         <div id="portfolioDiv" class="tabcontent" style="display: none;">
             <div style="margin-bottom: 10px;">
                 <label for="portfolioDate" style="font-weight: bold; margin-right: 10px;">Portfolio as on:</label>
-                <span id="portfolioDateDisplay" style="font-weight: bold; color: #333; margin-right: 10px; display: inline-block; width: 80px; text-align: right;"></span>
-                <button onclick="PreviousWorkingDate();" style="margin-right: 5px;" title="Previous working date">◀</button>
-                <input type="date" id="portfolioDate" name="portfolioDate" onchange="UpdatePortfolioForDate();" style="margin-right: 5px;">
+                <span id="portfolioDateDisplay"
+                    style="font-weight: bold; color: #333; margin-right: 10px; display: inline-block; width: 80px; text-align: right;"></span>
+                <button onclick="PreviousWorkingDate();" style="margin-right: 5px;"
+                    title="Previous working date">◀</button>
+                <input type="date" id="portfolioDate" name="portfolioDate" onchange="UpdatePortfolioForDate();"
+                    style="margin-right: 5px;">
                 <button onclick="NextWorkingDate();" style="margin-right: 20px;" title="Next working date">▶</button>
-                <button onclick="SetTodayPortfolioDate();" style="margin-left: 10px;" title="Set to today's date">Today</button>
+                <button onclick="SetTodayPortfolioDate();" style="margin-left: 10px;"
+                    title="Set to today's date">Today</button>
                 <span id="portfolioDateInfo" style="margin-left: 20px; font-style: italic; color: #666;"></span>
             </div>
             <table id="portfolioTable">
@@ -356,40 +377,73 @@
             </table>
         </div>
         <div id="circuitChangeDiv" class="tabcontent" style="display: none;">
-            <div style="margin-bottom: 10px;">
-                <span style="font-weight: bold; margin-right: 10px;">Stock Type:</span>
-                <input type="checkbox" id="chkCircuitSME" name="chkCircuitSME" checked disabled>
-                <label for="chkCircuitSME" style="margin-right: 15px;">SME</label>
-                <input type="checkbox" id="chkCircuitMB" name="chkCircuitMB" disabled>
-                <label for="chkCircuitMB" style="margin-right: 0px; color: grey;">MainBoard</label>
-                <span style="font-style: italic; color: grey; font-size: 0.9em;">(support coming soon)</span>
-                <span style="float: right;">
-                    <input type="checkbox" id="chkCircuitOld" name="chkCircuitOld" onchange="OnCircuitOldChanged();">
-                    <label for="chkCircuitOld">Include past circuit changes</label>
-                </span>
+            <div style="display: inline-block;">
+                <div style="margin-bottom: 10px; display: flex; flex-wrap: wrap; align-items: center; gap: 10px;">
+                    <span
+                        style="border: 1px solid #ccc; border-radius: 4px; padding: 4px 8px; display: inline-flex; align-items: center; gap: 6px;">
+                        <span style="font-weight: bold;">Exchange:</span>
+                        <input type="checkbox" id="chkCircuitNSE" name="chkCircuitNSE" checked
+                            onchange="OnCircuitFilterChanged();">
+                        <label for="chkCircuitNSE">NSE</label>
+                        <input type="checkbox" id="chkCircuitBSE" name="chkCircuitBSE" checked
+                            onchange="OnCircuitFilterChanged();">
+                        <label for="chkCircuitBSE">BSE</label>
+                    </span>
+                    <span
+                        style="border: 1px solid #ccc; border-radius: 4px; padding: 4px 8px; display: inline-flex; align-items: center; gap: 6px;">
+                        <span style="font-weight: bold;">Type:</span>
+                        <input type="checkbox" id="chkCircuitSME" name="chkCircuitSME" checked
+                            onchange="OnCircuitFilterChanged();">
+                        <label for="chkCircuitSME">SME</label>
+                        <input type="checkbox" id="chkCircuitMB" name="chkCircuitMB" checked
+                            onchange="OnCircuitFilterChanged();">
+                        <label for="chkCircuitMB">MainBoard</label>
+                    </span>
+                    <span style="display: inline-flex; align-items: center; gap: 6px; margin-left: auto;">
+                        <input type="checkbox" id="chkCircuitToday" name="chkCircuitToday"
+                            onchange="OnCircuitTodayChanged();">
+                        <label for="chkCircuitToday">Today's listings</label>
+                        <input type="checkbox" id="chkCircuitOld" name="chkCircuitOld"
+                            onchange="OnCircuitOldChanged();">
+                        <label for="chkCircuitOld">Include past</label>
+                        <button onclick="ShareCircuitChanges();"
+                            style="display: inline-flex; align-items: center; gap: 4px; vertical-align: middle;">Share
+                            <svg width="15" height="15" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"
+                                style="margin-bottom: 0px;">
+                                <circle cx="20" cy="50" r="10" stroke="black" stroke-width="20"></circle>
+                                <circle cx="80" cy="80" r="10" stroke="black" stroke-width="20"></circle>
+                                <circle cx="80" cy="20" r="10" stroke="black" stroke-width="20"></circle>
+                                <line x1="15" y1="50" x2="85" y2="85" stroke="black" stroke-width="10"></line>
+                                <line x1="15" y1="50" x2="85" y2="15" stroke="black" stroke-width="10"></line>
+                            </svg>
+                        </button>
+                    </span>
+                </div>
+                <table id="circuitChangeTable">
+                    <thead>
+                        <tr>
+                            <th class="number sort"><a href="#" class="sort-by">No.</a></th>
+                            <th class="date sort"><a href="#" class="sort-by">Circuit Change Date</a></th>
+                            <th class="text sort"><a href="#" class="sort-by">Stock Name</a></th>
+                            <th class="text sort"><a href="#" class="sort-by">Code</a></th>
+                            <th class="text sort"><a href="#" class="sort-by">Series</a></th>
+                            <th class="text sort"><a href="#" class="sort-by">Type</a></th>
+                            <th class="text sort"><a href="#" class="sort-by">Exchange(s)</a></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="hide">
+                            <td class="number"></td>
+                            <td class="date"></td>
+                            <td class="text"></td>
+                            <td class="text"></td>
+                            <td class="text"></td>
+                            <td class="text"></td>
+                            <td class="text"></td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
-            <table id="circuitChangeTable">
-                <thead>
-                    <tr>
-                        <th class="number sort"><a href="#" class="sort-by">No.</a></th>
-                        <th class="date sort"><a href="#" class="sort-by">Circuit Change Date</a></th>
-                        <th class="text sort"><a href="#" class="sort-by">Stock Name</a></th>
-                        <th class="text sort"><a href="#" class="sort-by">Code</a></th>
-                        <th class="text sort"><a href="#" class="sort-by">Series</a></th>
-                        <th class="text sort"><a href="#" class="sort-by">Type</a></th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr class="hide">
-                        <td class="number"></td>
-                        <td class="date"></td>
-                        <td class="text"></td>
-                        <td class="text"></td>
-                        <td class="text"></td>
-                        <td class="text"></td>
-                    </tr>
-                </tbody>
-            </table>
         </div>
         <div id="settingsDiv" class="tabcontent" style="display: none;">
             <Button onclick="SaveSettings();" style="margin: 10px;">Save Settings</Button>
@@ -459,15 +513,18 @@
                             <td class="text">When moving a stock to a watchlist<br>
                                 add it to:</td>
                             <td class="text">
-                                <input type="radio" id="moveAddToWatchlist1top" name="moveAddToWatchlist1" value="top" disabled>
+                                <input type="radio" id="moveAddToWatchlist1top" name="moveAddToWatchlist1" value="top"
+                                    disabled>
                                 <label for="moveAddToWatchlist1top">Top</label>
-                                <input type="radio" id="moveAddToWatchlist1bottom" name="moveAddToWatchlist1" value="bottom" disabled>
+                                <input type="radio" id="moveAddToWatchlist1bottom" name="moveAddToWatchlist1"
+                                    value="bottom" disabled>
                                 <label for="moveAddToWatchlist1bottom">Bottom</label>
                             </td>
                             <td class="text">
                                 <input type="radio" id="moveAddToWatchlist2top" name="moveAddToWatchlist2" value="top">
                                 <label for="moveAddToWatchlist2top">Top</label>
-                                <input type="radio" id="moveAddToWatchlist2bottom" name="moveAddToWatchlist2" value="bottom">
+                                <input type="radio" id="moveAddToWatchlist2bottom" name="moveAddToWatchlist2"
+                                    value="bottom">
                                 <label for="moveAddToWatchlist2bottom">Bottom</label>
                             </td>
                         </tr>
