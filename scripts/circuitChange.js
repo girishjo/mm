@@ -83,11 +83,13 @@ function UpdateCircuitChangeTable() {
         row.cells[1].innerText = stock.circuitChangeDate.toLocaleDateString('en-In', {
             day: "2-digit", month: "short", year: "numeric"
         }) + ', ' + stock.circuitChangeDate.toLocaleDateString('en-In', { weekday: "short" });
+        row.cells[1].setAttribute('data-sort', stock.circuitChangeDate.toISOString());
         row.cells[2].innerText = simplifyName(stock.name);
         row.cells[3].innerText = stock.code;
         row.cells[4].innerText = stock.listingDate.toLocaleDateString('en-In', {
             day: "2-digit", month: "short", year: "numeric"
         }) + ', ' + stock.listingDate.toLocaleDateString('en-In', { weekday: "short" });
+        row.cells[4].setAttribute('data-sort', stock.listingDate.toISOString());
         row.cells[5].innerText = stock.series;
         row.cells[6].innerText = stock.type;
         row.cells[7].innerText = stock.exchanges;

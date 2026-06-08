@@ -71,13 +71,17 @@ function sortTable(header) {
                     break;
                 case x.classList.contains('date'):
                     type = 'date';
-                    if (firstText == undefined)
+                    if (x.getAttribute('data-sort'))
+                        item1 = new Date(x.getAttribute('data-sort'));
+                    else if (firstText == undefined)
                         item1 = 0;
                     else
                         item1 = new Date(firstText);
 
-                    if (secondText == undefined)
-                        item1 = 0;
+                    if (y.getAttribute('data-sort'))
+                        item2 = new Date(y.getAttribute('data-sort'));
+                    else if (secondText == undefined)
+                        item2 = 0;
                     else
                         item2 = new Date(secondText);
                     break;
