@@ -35,7 +35,7 @@ function BuildCircuitChangeStocks() {
         const isSME = entry.type === 'SME';
 
         circuitChangeStocks.push({
-            code: entry.nseCode || entry.bseCode || '',
+            code: entry.ticker || entry.nseCode || entry.bseCode || '',
             name: entry.name || entry.nseCode || entry.bseCode || '',
             series: entry.series || '',
             type: isSME ? 'SME' : 'MainBoard',
@@ -81,13 +81,16 @@ function UpdateCircuitChangeTable() {
 
         row.cells[0].innerText = i + 1;
         row.cells[1].innerText = stock.circuitChangeDate.toLocaleDateString('en-In', {
-            weekday: "short", year: "numeric", month: "short", day: "2-digit"
-        });
+            day: "2-digit", month: "short", year: "numeric"
+        }) + ', ' + stock.circuitChangeDate.toLocaleDateString('en-In', { weekday: "short" });
         row.cells[2].innerText = simplifyName(stock.name);
         row.cells[3].innerText = stock.code;
-        row.cells[4].innerText = stock.series;
-        row.cells[5].innerText = stock.type;
-        row.cells[6].innerText = stock.exchanges;
+        row.cells[4].innerText = stock.listingDate.toLocaleDateString('en-In', {
+            day: "2-digit", month: "short", year: "numeric"
+        }) + ', ' + stock.listingDate.toLocaleDateString('en-In', { weekday: "short" });
+        row.cells[5].innerText = stock.series;
+        row.cells[6].innerText = stock.type;
+        row.cells[7].innerText = stock.exchanges;
 
         if (stock.circuitChangeDate.toDateString() === todayDate.toDateString()) {
             row.style.background = 'lightgreen';
@@ -118,8 +121,8 @@ function ShareCircuitChanges() {
         const dateStr = stock ? stock.circuitChangeDate.toLocaleDateString('en-In', {
             day: '2-digit', month: 'short', year: 'numeric'
         }).replace(/ /g, '-') : row.cells[1].innerText;
-        const name = row.cells[2].innerText;
-        text += dateStr + ' ' + name + '\n';
+        const ticker = row.cells[3].innerText;
+        text += dateStr + ' ' + ticker + '\n';
     });
 
     if (navigator.share) {

@@ -280,22 +280,27 @@
                     onkeyup="UpdateStockBulkDealTable();">
             </div>
 
-            <div style="margin-bottom: 10px;">
-                <span style="font-weight: bold; margin-right: 10px;">Exchange:</span>
-                <input type="checkbox" id="chkNseDeals" name="chkNseDeals" checked
-                    onchange="UpdateStockBulkDealTable();">
-                <label for="chkNseDeals" id="lblNseDeals" style="margin-right: 15px;">NSE</label>
-                <input type="checkbox" id="chkBseDeals" name="chkBseDeals" checked
-                    onchange="UpdateStockBulkDealTable();">
-                <label for="chkBseDeals" id="lblBseDeals" style="margin-right: 30px;">BSE</label>
-
-                <span style="font-weight: bold; margin-right: 10px;">Type:</span>
-                <input type="checkbox" id="chkMainBoardDeals" name="chkMainBoardDeals" checked
-                    onchange="UpdateStockBulkDealTable();">
-                <label for="chkMainBoardDeals" id="lblMainBoardDeals" style="margin-right: 15px;">MainBoard</label>
-                <input type="checkbox" id="chkSmeDeals" name="chkSmeDeals" checked
-                    onchange="UpdateStockBulkDealTable();">
-                <label for="chkSmeDeals" id="lblSmeDeals" style="margin-right: 0px;">SME</label>
+            <div style="margin-bottom: 10px; display: flex; flex-wrap: wrap; align-items: center; gap: 10px;">
+                <span
+                    style="border: 1px solid #ccc; border-radius: 4px; padding: 4px 8px; display: inline-flex; align-items: center; gap: 6px;">
+                    <span style="font-weight: bold;">Exchange:</span>
+                    <input type="checkbox" id="chkNseDeals" name="chkNseDeals" checked
+                        onchange="UpdateStockBulkDealTable();">
+                    <label for="chkNseDeals" id="lblNseDeals">NSE</label>
+                    <input type="checkbox" id="chkBseDeals" name="chkBseDeals" checked
+                        onchange="UpdateStockBulkDealTable();">
+                    <label for="chkBseDeals" id="lblBseDeals">BSE</label>
+                </span>
+                <span
+                    style="border: 1px solid #ccc; border-radius: 4px; padding: 4px 8px; display: inline-flex; align-items: center; gap: 6px;">
+                    <span style="font-weight: bold;">Type:</span>
+                    <input type="checkbox" id="chkMainBoardDeals" name="chkMainBoardDeals" checked
+                        onchange="UpdateStockBulkDealTable();">
+                    <label for="chkMainBoardDeals" id="lblMainBoardDeals">MainBoard</label>
+                    <input type="checkbox" id="chkSmeDeals" name="chkSmeDeals" checked
+                        onchange="UpdateStockBulkDealTable();">
+                    <label for="chkSmeDeals" id="lblSmeDeals">SME</label>
+                </span>
             </div>
 
             <table id="stockBulkDeals">
@@ -425,7 +430,8 @@
                             <th class="number sort"><a href="#" class="sort-by">No.</a></th>
                             <th class="date sort"><a href="#" class="sort-by">Circuit Change Date</a></th>
                             <th class="text sort"><a href="#" class="sort-by">Stock Name</a></th>
-                            <th class="text sort"><a href="#" class="sort-by">Code</a></th>
+                            <th class="text sort"><a href="#" class="sort-by">Ticker</a></th>
+                            <th class="date sort"><a href="#" class="sort-by">Listing Date</a></th>
                             <th class="text sort"><a href="#" class="sort-by">Series</a></th>
                             <th class="text sort"><a href="#" class="sort-by">Type</a></th>
                             <th class="text sort"><a href="#" class="sort-by">Exchange(s)</a></th>
@@ -437,6 +443,7 @@
                             <td class="date"></td>
                             <td class="text"></td>
                             <td class="text"></td>
+                            <td class="date"></td>
                             <td class="text"></td>
                             <td class="text"></td>
                             <td class="text"></td>
