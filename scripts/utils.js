@@ -1,3 +1,8 @@
+const Exchange = Object.freeze({
+    NSE: 'NSE',
+    BSE: 'BSE'
+});
+
 function addEmptyRow(table, index = undefined) {
     //const emptyRow = table.getElementsByClassName('hide')[0];
     const emptyRow = table.rows[1];

@@ -7,14 +7,23 @@ const flattenDeals = [];
 function InitStockBulkDeals() {
     if (Object.keys(stockBulkDeals) == 0) {
         for (const stockCode of [...new Set([...Object.keys(nseData), ...Object.keys(bseData)])]) {
-            nseData[stockCode] && CheckDeal(nseData[stockCode]);
-            bseData[stockCode] && CheckDeal(bseData[stockCode]);
+            nseData[stockCode] && CheckDeal(nseData[stockCode], Exchange.NSE);
+            bseData[stockCode] && CheckDeal(bseData[stockCode], Exchange.BSE);
         }
 
-        function CheckDeal(stockData) {
+        function CheckDeal(stockData, exchange) {
             if (stockData.BulkDeals) {
                 for (let i = 0; i < stockData.BulkDeals.length; i++) {
-                    flattenDeals.push(stockData.BulkDeals[i]);
+                    const deal = stockData.BulkDeals[i];
+                    if (exchange === Exchange.NSE) {
+                        deal.Ticker = stockData.SecurityCode;
+                    }
+                    else {
+                        deal.Ticker = deal.SecurityName;
+                        deal.SecurityName = stockData.SecurityName;
+                    }
+                    deal.Exchange = exchange;
+                    flattenDeals.push(deal);
                     if (!stockBulkDeals[stockData.BulkDeals[i].SecurityCode]) {
                         stockBulkDeals[stockData.BulkDeals[i].SecurityCode] = [];
                     }
@@ -23,7 +32,7 @@ function InitStockBulkDeals() {
             }
             if (stockData.History) {
                 for (let i = 0; i < stockData.History.length; i++) {
-                    CheckDeal(stockData.History[i]);
+                    CheckDeal(stockData.History[i], exchange);
                 }
             }
         }
