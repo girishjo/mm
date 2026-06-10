@@ -20,10 +20,17 @@ async function InitCircuitChange() {
 }
 
 function BuildCircuitChangeStocks() {
+    const t2tSMESeries = settings.configs.t2tSMESeries || [];
+    const t2tMBSeries = settings.configs.t2tMBSeries || [];
+
     Object.keys(newListingsData).forEach(isin => {
         const entry = newListingsData[isin];
         if (!entry.listingDate) return;
         if (entry.nseCode && entry.nseCode.includes('-RE')) return; // Skip Rights Entitlements
+
+        // Only include T2T series stocks
+        const series = entry.series || '';
+        if (!t2tSMESeries.includes(series) && !t2tMBSeries.includes(series)) return;
 
         const listingDate = new Date(entry.listingDate);
         const circuitChangeDate = GetNthDay(listingDate, 11);
