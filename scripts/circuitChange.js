@@ -92,7 +92,18 @@ function UpdateCircuitChangeTable() {
             day: "2-digit", month: "short", year: "numeric"
         }) + ', ' + stock.circuitChangeDate.toLocaleDateString('en-In', { weekday: "short" });
         row.cells[1].setAttribute('data-sort', stock.circuitChangeDate.toISOString());
-        row.cells[2].innerText = simplifyName(stock.name);
+        // row.cells[2].innerText = simplifyName(stock.name);
+        {           
+            var a = document.createElement('a');
+            var linkText = document.createTextNode(simplifyName(stock.name));
+            a.appendChild(linkText);
+            a.title = simplifyName(stock.name);
+            a.href = "#0";            
+            const codes = GetExchangeCodesFromTicker(stock.code);            
+            a.setAttribute("codes", codes.join(','));
+            a.setAttribute("onclick", "ShowHistory(this, circuitChangeTable);");
+            row.cells[2].appendChild(a);
+        }
         row.cells[3].innerText = stock.code;
         row.cells[4].innerText = stock.listingDate.toLocaleDateString('en-In', {
             day: "2-digit", month: "short", year: "numeric"

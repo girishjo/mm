@@ -422,7 +422,7 @@ function updateDataTable(table, name, nseCode, bseCode, data = undefined, rowInd
             codes.push(nseCode || undefined);
             codes.push(bseCode || undefined);
             a.setAttribute("codes", codes.join(','));
-            a.setAttribute("onclick", "ShowHistory(this);");
+            a.setAttribute("onclick", "ShowHistory(this, dataTable);");
             newRow.cells[1].appendChild(a);
         }
         else {
@@ -494,13 +494,13 @@ function updateDataTable(table, name, nseCode, bseCode, data = undefined, rowInd
                     // Check if exchanges have data for today (global availability)
                     const nseHasGlobalData = nseData && nseData.dateTimeStamp;
                     const bseHasGlobalData = bseData && bseData.dateTimeStamp;
-                    
+
                     // Check if this specific stock has data from each exchange
                     const nseHasStockData = nseData[nseCode].Total !== undefined;
                     const bseHasStockData = bseData[bseCode].Total !== undefined;
-                    
+
                     let msg = "";
-                    
+
                     if (nseHasStockData && !bseHasStockData) {
                         if (bseHasGlobalData) {
                             msg = "BSE delivery data not available for this stock";
@@ -522,7 +522,7 @@ function updateDataTable(table, name, nseCode, bseCode, data = undefined, rowInd
                             msg = "Delivery data not available yet";
                         }
                     }
-                    
+
                     newRow.cells[2].title = msg;
                     newRow.cells[3].title = msg;
                     newRow.cells[4].title = msg;
@@ -777,27 +777,27 @@ listTable.addEventListener('click', function (e) {
 function GetLastAvailableDate() {
     // Check both NSE and BSE data for the most recent timestamp
     let lastDate = null;
-    
+
     if (nseData && nseData.dateTimeStamp) {
         const nseDate = new Date(nseData.dateTimeStamp);
         if (!lastDate || nseDate > lastDate) {
             lastDate = nseDate;
         }
     }
-    
+
     if (bseData && bseData.dateTimeStamp) {
         const bseDate = new Date(bseData.dateTimeStamp);
         if (!lastDate || bseDate > lastDate) {
             lastDate = bseDate;
         }
     }
-    
+
     // If no data timestamp available, use todayDateHour for proper date handling
     if (!lastDate) {
         // After midnight before market hours, use previous working day
         lastDate = typeof todayDateHour !== 'undefined' ? new Date(todayDateHour) : new Date();
     }
-    
+
     return lastDate;
 }
 
@@ -805,13 +805,13 @@ function SetTodayPortfolioDate() {
     const portfolioDateInput = document.getElementById('portfolioDate');
     const currentTime = new Date();
     const lastAvailableDate = GetLastAvailableDate();
-    
+
     // Use todayDateHour to determine the appropriate date to show
     const effectiveDate = typeof todayDateHour !== 'undefined' ? new Date(todayDateHour) : currentTime;
-    
+
     // Check if current effective date's data is available
     const isCurrentData = lastAvailableDate.toDateString() === effectiveDate.toDateString();
-    
+
     if (isCurrentData) {
         portfolioDateInput.value = effectiveDate.toISOString().split('T')[0];
         UpdatePortfolioDateDisplay(effectiveDate);
@@ -820,14 +820,14 @@ function SetTodayPortfolioDate() {
         portfolioDateInput.value = lastAvailableDate.toISOString().split('T')[0];
         UpdatePortfolioDateDisplay(lastAvailableDate);
     }
-    
+
     UpdatePortfolioForDate();
 }
 
 function SetSmartPortfolioDate() {
     const portfolioDateInput = document.getElementById('portfolioDate');
     const lastAvailableDate = GetLastAvailableDate();
-    
+
     portfolioDateInput.value = lastAvailableDate.toISOString().split('T')[0];
     UpdatePortfolioDateDisplay(lastAvailableDate);
     UpdatePortfolioForDate();
@@ -842,7 +842,7 @@ function IsWorkingDay(date) {
         // Manual logic - check if it's not weekend and not holiday
         const dayOfWeek = date.getDay();
         const isWeekend = (dayOfWeek === 0 || dayOfWeek === 6); // Sunday = 0, Saturday = 6
-        
+
         let isHoliday = false;
         if (typeof CheckForHoliday === 'function') {
             try {
@@ -851,7 +851,7 @@ function IsWorkingDay(date) {
                 isHoliday = false;
             }
         }
-        
+
         return !isWeekend && !isHoliday;
     }
 }
@@ -859,30 +859,30 @@ function IsWorkingDay(date) {
 function PreviousWorkingDate() {
     const portfolioDateInput = document.getElementById('portfolioDate');
     const currentDate = new Date(portfolioDateInput.value);
-    
+
     if (!currentDate || isNaN(currentDate)) {
         return;
     }
-    
+
     // Find previous working date
     let previousDate = new Date(currentDate);
     let attempts = 0;
     const maxAttempts = 30; // Prevent infinite loops
-    
+
     do {
         previousDate.setDate(previousDate.getDate() - 1);
         attempts++;
-        
+
         // Safety check to prevent infinite loops
         if (attempts > maxAttempts) {
             break;
         }
-        
+
         if (IsWorkingDay(previousDate)) {
             break;
         }
     } while (attempts < maxAttempts);
-    
+
     portfolioDateInput.value = previousDate.toISOString().split('T')[0];
     UpdatePortfolioDateDisplay(previousDate);
     UpdatePortfolioForDate();
@@ -891,48 +891,48 @@ function PreviousWorkingDate() {
 function NextWorkingDate() {
     const portfolioDateInput = document.getElementById('portfolioDate');
     const currentDate = new Date(portfolioDateInput.value);
-    
+
     if (!currentDate || isNaN(currentDate)) {
         return;
     }
-    
+
     // Check if we're already at today's date
     const today = new Date();
     const todayDateString = today.toISOString().split('T')[0];
     const currentDateString = currentDate.toISOString().split('T')[0];
-    
+
     if (currentDateString >= todayDateString) {
         // Already at or beyond today's date, don't advance
         return;
     }
-    
+
     // Find next working date
     let nextDate = new Date(currentDate);
     let attempts = 0;
     const maxAttempts = 30; // Prevent infinite loops
-    
+
     do {
         nextDate.setDate(nextDate.getDate() + 1);
         attempts++;
-        
+
         // Don't go beyond today's date
         if (nextDate.toISOString().split('T')[0] > todayDateString) {
             // If we would go beyond today, stay at today
             nextDate = new Date(today.getFullYear(), today.getMonth(), today.getDate());
             break;
         }
-        
+
         // Safety check to prevent infinite loops
         if (attempts > maxAttempts) {
             break;
         }
-        
+
         // Use existing utility functions if available
         if (IsWorkingDay(nextDate)) {
             break;
         }
     } while (attempts < maxAttempts);
-    
+
     portfolioDateInput.value = nextDate.toISOString().split('T')[0];
     UpdatePortfolioDateDisplay(nextDate);
     UpdatePortfolioForDate();
@@ -941,24 +941,24 @@ function NextWorkingDate() {
 function UpdatePortfolioForDate() {
     const portfolioDateInput = document.getElementById('portfolioDate');
     const selectedDate = new Date(portfolioDateInput.value);
-    
+
     if (!selectedDate || isNaN(selectedDate)) {
         document.getElementById('portfolioDateInfo').innerText = 'Please select a valid date';
         return;
     }
-    
+
     // Update the date display with day of the week
     UpdatePortfolioDateDisplay(selectedDate);
-    
+
     if (document.getElementById("portfolioDiv").style.display == "block") {
         const lastAvailableDate = GetLastAvailableDate();
         const isLatestData = selectedDate.toDateString() === lastAvailableDate.toDateString();
-        
+
         let loadingMessage = "Loading Portfolio data for " + selectedDate.toLocaleDateString();
         if (isLatestData) {
             loadingMessage += " (Latest available data)";
         }
-        
+
         UpdateLoader(true, loadingMessage, 0.5);
         resetTable(portfolioTable);
         const stockList = watchlists[activeWL];
@@ -984,12 +984,12 @@ function upadtePortfolioTableForDate(stockList, targetDate) {
     let refs1 = [];
     let refs2 = [];
     let dataFoundForDate = false;
-    
+
     // Cache expensive operations
-    const targetDateString = targetDate.toLocaleDateString('en-In', { 
-        weekday: "short", year: "numeric", month: "short", day: "2-digit" 
+    const targetDateString = targetDate.toLocaleDateString('en-In', {
+        weekday: "short", year: "numeric", month: "short", day: "2-digit"
     });
-    
+
     // Use todayDateHour for proper date comparison instead of new Date()
     const effectiveToday = typeof todayDateHour !== 'undefined' ? new Date(todayDateHour) : new Date();
     const isToday = targetDate.toDateString() === effectiveToday.toDateString();
@@ -997,25 +997,25 @@ function upadtePortfolioTableForDate(stockList, targetDate) {
     // Helper function to find data for a specific date
     function findDataForDate(stockData, targetDateString, isToday) {
         if (!stockData) return null;
-        
+
         // Check historical data first
         if (stockData.History && stockData.History.length > 0) {
             const data = stockData.History.find(h => h.HistoryDate === targetDateString);
             if (data) return data;
         }
-        
+
         // For today, use current data if no historical data found
         if (isToday && stockData) {
             return stockData;
         }
-        
+
         return null;
     }
 
     // Helper function to get sorted history (cached per stock)
     function getSortedHistory(stockData) {
         if (!stockData || !stockData.History) return [];
-        
+
         // Cache sorted history to avoid repeated sorting
         if (!stockData._sortedHistory) {
             stockData._sortedHistory = [...stockData.History].sort((a, b) => {
@@ -1029,7 +1029,7 @@ function upadtePortfolioTableForDate(stockList, targetDate) {
     function findPreviousDayData(stockData, targetDateString, isToday) {
         const sortedHistory = getSortedHistory(stockData);
         if (sortedHistory.length === 0) return null;
-        
+
         if (isToday) {
             // For today, use most recent historical data
             return sortedHistory[0];
@@ -1047,17 +1047,17 @@ function upadtePortfolioTableForDate(stockList, targetDate) {
     function calculateDayChange(priceToUse, previousClose, stockDetails, newRow, columnCounter) {
         const dayChange = (priceToUse - previousClose) * 100 / previousClose;
         const dayAbsoluteChange = stockDetails[3] * (priceToUse - previousClose);
-        
+
         // day chg
         newRow.cells[columnCounter].innerText = dayAbsoluteChange.toCustomString();
-        
+
         // day chg %
         newRow.cells[columnCounter + 1].innerText = dayChange.toCustomString(2) + " %";
-        
+
         // Apply color coding
         const isPositiveChange = (dayChange > 0 && stockDetails[3] > 0) || (dayChange < 0 && stockDetails[3] < 0);
         const isNegativeChange = (dayChange < 0 && stockDetails[3] > 0) || (dayChange > 0 && stockDetails[3] < 0);
-        
+
         if (isPositiveChange) {
             newRow.cells[columnCounter].style.color = 'green';
             newRow.cells[columnCounter + 1].style.color = 'green';
@@ -1065,7 +1065,7 @@ function upadtePortfolioTableForDate(stockList, targetDate) {
             newRow.cells[columnCounter].style.color = 'red';
             newRow.cells[columnCounter + 1].style.color = 'red';
         }
-        
+
         return dayAbsoluteChange;
     }
 
@@ -1078,15 +1078,15 @@ function upadtePortfolioTableForDate(stockList, targetDate) {
                 // Get individual NSE and BSE data
                 const nseStockData = nseData[stockDetails[1]];
                 const bseStockData = bseData[stockDetails[2]];
-                
+
                 // Find data for the target date from both sources
                 const nseCurrentData = findDataForDate(nseStockData, targetDateString, isToday);
                 const bseCurrentData = findDataForDate(bseStockData, targetDateString, isToday);
-                
+
                 // Determine which source to use (prefer higher close price)
                 let dateSpecificData = null;
                 let dataSource = null;
-                
+
                 if (nseCurrentData && bseCurrentData) {
                     const nseClose = nseCurrentData.Close || nseCurrentData.Open || 0;
                     const bseClose = bseCurrentData.Close || bseCurrentData.Open || 0;
@@ -1104,7 +1104,7 @@ function upadtePortfolioTableForDate(stockList, targetDate) {
                     dateSpecificData = bseCurrentData;
                     dataSource = bseStockData;
                 }
-                
+
                 // Find previous day data from the same source
                 const previousDayData = dataSource ? findPreviousDayData(dataSource, targetDateString, isToday) : null;
                 // Always create a row for each stock
@@ -1126,11 +1126,11 @@ function upadtePortfolioTableForDate(stockList, targetDate) {
                 // pf %
                 refs1.push(newRow.cells[columnCounter]);
                 newRow.cells[columnCounter++].innerText = stockDetails[3] * stockDetails[4];
-                
+
                 if (dateSpecificData && (dateSpecificData.Close || dateSpecificData.Open)) {
                     dataFoundForDate = true;
                     const priceToUse = dateSpecificData.Close || dateSpecificData.Open;
-                    
+
                     // close
                     newRow.cells[columnCounter++].innerText = priceToUse.toCustomString(2);
                     currentValue += stockDetails[3] * priceToUse;
@@ -1159,13 +1159,13 @@ function upadtePortfolioTableForDate(stockList, targetDate) {
 
                     // Calculate day change if previous day data is available
                     let dayChangeCalculated = false;
-                    
+
                     if (previousDayData && previousDayData.Close && priceToUse) {
                         const dayAbsoluteChange = calculateDayChange(priceToUse, previousDayData.Close, stockDetails, newRow, columnCounter);
                         dayPnL += dayAbsoluteChange;
                         dayChangeCalculated = true;
                         columnCounter += 2; // Skip both day change columns
-                    } 
+                    }
                     // Fallback: try to use PrevClose from dateSpecificData if available
                     else if (dateSpecificData.PrevClose && dateSpecificData.PrevClose > 0 && priceToUse) {
                         const dayAbsoluteChange = calculateDayChange(priceToUse, dateSpecificData.PrevClose, stockDetails, newRow, columnCounter);
@@ -1173,7 +1173,7 @@ function upadtePortfolioTableForDate(stockList, targetDate) {
                         dayChangeCalculated = true;
                         columnCounter += 2; // Skip both day change columns
                     }
-                    
+
                     if (!dayChangeCalculated) {
                         // day chg
                         newRow.cells[columnCounter++].innerText = "N/A";
@@ -1182,7 +1182,7 @@ function upadtePortfolioTableForDate(stockList, targetDate) {
                     }
                 } else {
                     // No data available for this date - show N/A for price-dependent columns
-                    
+
                     // close
                     newRow.cells[columnCounter++].innerText = "N/A";
 
@@ -1225,14 +1225,14 @@ function upadtePortfolioTableForDate(stockList, targetDate) {
         newRow.cells[1].innerText = "Total = ";
         newRow.cells[4].innerText = totalInvestment.toCustomString();
         newRow.cells[5].innerText = (100).toCustomString(2) + " %";
-        
+
         if (dataFoundForDate) {
             // Show actual values when data is available
             newRow.cells[7].innerText = currentValue.toCustomString();
             newRow.cells[8].innerText = (100).toCustomString(2) + " %";
             newRow.cells[9].innerText = (currentValue - totalInvestment).toCustomString();
             newRow.cells[10].innerText = ((currentValue - totalInvestment) * 100 / totalInvestment).toCustomString(2) + " %";
-            
+
             // Apply color coding for P&L
             if ((currentValue - totalInvestment) > 0) {
                 newRow.cells[9].style.color = 'green';
@@ -1242,10 +1242,10 @@ function upadtePortfolioTableForDate(stockList, targetDate) {
                 newRow.cells[9].style.color = 'red';
                 newRow.cells[10].style.color = 'red';
             }
-            
+
             newRow.cells[11].innerText = dayPnL.toCustomString();
             newRow.cells[12].innerText = currentValue > dayPnL ? (dayPnL * 100 / (currentValue - dayPnL)).toCustomString(2) + " %" : "0.00 %";
-            
+
             // Apply color coding for day P&L
             if (dayPnL > 0) {
                 newRow.cells[11].style.color = 'green';
@@ -1265,12 +1265,12 @@ function upadtePortfolioTableForDate(stockList, targetDate) {
             newRow.cells[12].innerText = "N/A"; // day chg %
         }
     }
-    
+
     // Update info text
     const portfolioDateInfo = document.getElementById('portfolioDateInfo');
     const lastAvailableDate = GetLastAvailableDate();
     const isLatestData = targetDate.toDateString() === lastAvailableDate.toDateString();
-    
+
     if (dataFoundForDate) {
         if (isLatestData) {
             portfolioDateInfo.innerText = 'Portfolio calculated with latest available data';
@@ -1302,11 +1302,11 @@ window.addEventListener('load', () => {
         }
 
         SetSmartPortfolioDate();
-        
+
         // Add keyboard navigation for portfolio date input
         const portfolioDateInput = document.getElementById('portfolioDate');
         if (portfolioDateInput) {
-            portfolioDateInput.addEventListener('keydown', function(event) {
+            portfolioDateInput.addEventListener('keydown', function (event) {
                 if (event.key === 'ArrowLeft') {
                     event.preventDefault();
                     PreviousWorkingDate();
@@ -1315,9 +1315,9 @@ window.addEventListener('load', () => {
                     NextWorkingDate();
                 }
             });
-            
+
             // Update day display when user manually changes date
-            portfolioDateInput.addEventListener('change', function(event) {
+            portfolioDateInput.addEventListener('change', function (event) {
                 const selectedDate = new Date(event.target.value);
                 if (selectedDate && !isNaN(selectedDate)) {
                     UpdatePortfolioDateDisplay(selectedDate);
@@ -1349,7 +1349,7 @@ function getSecurityName(stock) {
     if (stock.SecurityName) {
         return stock.SecurityName;
     }
-    
+
     // If no current SecurityName, check history
     if (stock.History && Array.isArray(stock.History) && stock.History.length > 0) {
         // Look through history entries to find a SecurityName
@@ -1359,17 +1359,17 @@ function getSecurityName(stock) {
             }
         }
     }
-    
+
     return null;
 }
 
 function initializeAutoCompleteData() {
     if (autoCompleteCache.initialized) return;
-    
+
     const stockNames = new Set();
     const nseCodes = new Set();
     const bseCodes = new Set();
-    
+
     // Collect NSE data
     if (nseData && typeof nseData === 'object') {
         for (const code in nseData) {
@@ -1379,7 +1379,7 @@ function initializeAutoCompleteData() {
             if (code) nseCodes.add(code);
         }
     }
-    
+
     // Collect BSE data
     if (bseData && typeof bseData === 'object') {
         for (const code in bseData) {
@@ -1389,7 +1389,7 @@ function initializeAutoCompleteData() {
             if (code) bseCodes.add(code);
         }
     }
-    
+
     autoCompleteCache.stockNames = Array.from(stockNames).sort();
     autoCompleteCache.nseCodes = Array.from(nseCodes).sort();
     autoCompleteCache.bseCodes = Array.from(bseCodes).sort();
@@ -1398,26 +1398,26 @@ function initializeAutoCompleteData() {
 
 function showAutoComplete(element, type) {
     initializeAutoCompleteData();
-    
+
     const inputValue = element.textContent.toLowerCase();
     if (inputValue.length < 1) {
         hideAutoComplete();
         return;
     }
-    
+
     let suggestions = [];
     switch (type) {
         case 'stockName':
             // Search in stock names, NSE codes, and BSE codes
             const allMatches = [];
-            
+
             // Search by stock names (fuzzy matching)
             const allNames = autoCompleteCache.stockNames;
             const normalizedInput = normalizeCompanyName(inputValue);
             for (const name of allNames) {
                 // Normalize both input and name for better matching
                 const normalizedName = normalizeCompanyName(name);
-                
+
                 if (normalizedName.includes(normalizedInput)) {
                     // Exact substring match gets priority
                     allMatches.push({ text: name, similarity: 1.0, priority: 1, type: 'name' });
@@ -1429,9 +1429,9 @@ function showAutoComplete(element, type) {
                     }
                 }
             }
-            
+
             // Search by NSE codes
-            const matchingNSECodes = autoCompleteCache.nseCodes.filter(code => 
+            const matchingNSECodes = autoCompleteCache.nseCodes.filter(code =>
                 code.toLowerCase().includes(inputValue)
             );
             for (const code of matchingNSECodes) {
@@ -1439,19 +1439,19 @@ function showAutoComplete(element, type) {
                 if (nseData && nseData[code]) {
                     const securityName = getSecurityName(nseData[code]);
                     if (securityName) {
-                        allMatches.push({ 
-                            text: `${securityName} (${code})`, 
-                            similarity: 1.0, 
-                            priority: 1, 
+                        allMatches.push({
+                            text: `${securityName} (${code})`,
+                            similarity: 1.0,
+                            priority: 1,
                             type: 'nse',
                             originalName: securityName
                         });
                     }
                 }
             }
-            
+
             // Search by BSE codes
-            const matchingBSECodes = autoCompleteCache.bseCodes.filter(code => 
+            const matchingBSECodes = autoCompleteCache.bseCodes.filter(code =>
                 code.toLowerCase().includes(inputValue)
             );
             for (const code of matchingBSECodes) {
@@ -1459,26 +1459,26 @@ function showAutoComplete(element, type) {
                 if (bseData && bseData[code]) {
                     const securityName = getSecurityName(bseData[code]);
                     if (securityName) {
-                        allMatches.push({ 
-                            text: `${securityName} (${code})`, 
-                            similarity: 1.0, 
-                            priority: 1, 
+                        allMatches.push({
+                            text: `${securityName} (${code})`,
+                            similarity: 1.0,
+                            priority: 1,
                             type: 'bse',
                             originalName: securityName
                         });
                     }
                 }
             }
-            
+
             // Remove duplicates and sort by priority, then similarity
             const uniqueMatches = [];
             const seenNames = new Set();
-            
+
             allMatches.sort((a, b) => {
                 if (a.priority !== b.priority) return a.priority - b.priority;
                 return b.similarity - a.similarity;
             });
-            
+
             for (const match of allMatches) {
                 const key = match.originalName || match.text;
                 if (!seenNames.has(key.toLowerCase())) {
@@ -1486,39 +1486,39 @@ function showAutoComplete(element, type) {
                     uniqueMatches.push(match);
                 }
             }
-            
+
             suggestions = uniqueMatches.slice(0, 10).map(match => match.text);
             break;
         case 'nseCode':
-            suggestions = autoCompleteCache.nseCodes.filter(code => 
+            suggestions = autoCompleteCache.nseCodes.filter(code =>
                 code.toLowerCase().includes(inputValue)
             ).slice(0, 10);
             break;
         case 'bseCode':
-            suggestions = autoCompleteCache.bseCodes.filter(code => 
+            suggestions = autoCompleteCache.bseCodes.filter(code =>
                 code.toLowerCase().includes(inputValue)
             ).slice(0, 10);
             break;
     }
-    
+
     if (suggestions.length === 0) {
         hideAutoComplete();
         return;
     }
-    
+
     // Update state
     autoCompleteState.currentElement = element;
     autoCompleteState.currentType = type;
     autoCompleteState.suggestions = suggestions;
     autoCompleteState.selectedIndex = -1;
-    
+
     showAutoCompleteDropdown(element, suggestions, type);
 }
 
 // Helper function to normalize company names for fuzzy matching
 function normalizeCompanyName(name) {
     if (!name) return '';
-    
+
     return name
         .toLowerCase()
         .replace(/\s+(ltd|limited|company|corp|corporation|inc|incorporated)\b/g, '') // Remove common suffixes
@@ -1530,22 +1530,22 @@ function normalizeCompanyName(name) {
 function calculateSimilarity(str1, str2) {
     const normalized1 = normalizeCompanyName(str1);
     const normalized2 = normalizeCompanyName(str2);
-    
+
     if (normalized1 === normalized2) return 1.0; // Perfect match
-    
+
     const maxLength = Math.max(normalized1.length, normalized2.length);
     if (maxLength === 0) return 1.0;
-    
+
     // Simple similarity based on common characters and length
     const commonLength = Math.min(normalized1.length, normalized2.length);
     let matches = 0;
-    
+
     for (let i = 0; i < commonLength; i++) {
         if (normalized1[i] === normalized2[i]) {
             matches++;
         }
     }
-    
+
     // Consider both character matches and length difference
     const similarity = matches / maxLength;
     return similarity;
@@ -1556,40 +1556,40 @@ function findStockData(identifier, searchType) {
     let stockData = null;
     let searchIdentifier = identifier;
     let actualSearchType = searchType;
-    
+
     // Handle formatted suggestions from name field (e.g., "Stock Name (CODE)")
     if (searchType === 'stockName' && identifier.includes('(') && identifier.includes(')')) {
         const nameMatch = identifier.match(/^(.*?)\s*\(([^)]+)\)$/);
         if (nameMatch) {
             const stockName = nameMatch[1].trim();
             const code = nameMatch[2].trim();
-            
+
             // Try to find by code first (more specific)
             stockData = findStockDataByCode(code) || findStockDataByName(stockName);
             return stockData;
         }
     }
-    
+
     // For exact code matches, search by code
     if (searchType === 'nseCode' || searchType === 'bseCode') {
         return findStockDataByCode(identifier);
-    } 
+    }
     // For stock name searches, search by name
     else if (searchType === 'stockName') {
         return findStockDataByName(identifier);
     }
-    
+
     return stockData;
 }
 
 function findStockDataByCode(code) {
     let foundStock = null;
-    
+
     // Search in NSE data first
     if (nseData && typeof nseData === 'object') {
         for (const nseCode in nseData) {
             const stock = nseData[nseCode];
-            if (nseCode.toLowerCase() === code.toLowerCase() || 
+            if (nseCode.toLowerCase() === code.toLowerCase() ||
                 (stock.BSECode && stock.BSECode.toString() === code)) {
                 foundStock = {
                     name: getSecurityName(stock),
@@ -1601,7 +1601,7 @@ function findStockDataByCode(code) {
             }
         }
     }
-    
+
     // Search in BSE data if not found in NSE or if we found an NSE match but need BSE code
     if (bseData && typeof bseData === 'object') {
         for (const bseCode in bseData) {
@@ -1626,7 +1626,7 @@ function findStockDataByCode(code) {
             }
         }
     }
-    
+
     // If we found by NSE code but still missing BSE code, try to find it by name matching
     if (foundStock && foundStock.source === 'NSE' && !foundStock.bseCode && foundStock.name) {
         if (bseData && typeof bseData === 'object') {
@@ -1640,7 +1640,7 @@ function findStockDataByCode(code) {
             }
         }
     }
-    
+
     // If we found by BSE code but still missing NSE code, try to find it by name matching  
     if (foundStock && foundStock.source === 'BSE' && !foundStock.nseCode && foundStock.name) {
         if (nseData && typeof nseData === 'object') {
@@ -1654,7 +1654,7 @@ function findStockDataByCode(code) {
             }
         }
     }
-    
+
     if (foundStock) {
         // Clean up the response - remove the source property
         return {
@@ -1663,7 +1663,7 @@ function findStockDataByCode(code) {
             bseCode: foundStock.bseCode
         };
     }
-    
+
     return null;
 }
 
@@ -1671,9 +1671,9 @@ function findStockDataByName(stockName) {
     let stockData = null;
     let bestMatch = null;
     let bestSimilarity = 0;
-    
+
     const allCandidates = [];
-    
+
     // Collect all potential matches from NSE
     if (nseData && typeof nseData === 'object') {
         for (const code in nseData) {
@@ -1695,7 +1695,7 @@ function findStockDataByName(stockName) {
             }
         }
     }
-    
+
     // Collect all potential matches from BSE
     if (bseData && typeof bseData === 'object') {
         for (const code in bseData) {
@@ -1717,14 +1717,14 @@ function findStockDataByName(stockName) {
             }
         }
     }
-    
+
     // Find the best match and try to merge NSE/BSE data if they're the same company
     if (allCandidates.length > 0) {
         // Sort by similarity
         allCandidates.sort((a, b) => b.similarity - a.similarity);
-        
+
         const topMatch = allCandidates[0];
-        
+
         // Try to find corresponding data from other exchange
         if (topMatch.data.source === 'NSE' && !topMatch.data.bseCode) {
             // Look for BSE equivalent
@@ -1745,49 +1745,49 @@ function findStockDataByName(stockName) {
                 }
             }
         }
-        
+
         stockData = topMatch.data;
     }
-    
+
     return stockData;
 }
 
 function showAutoCompleteDropdown(element, suggestions, type) {
     const dropdown = document.getElementById('autoCompleteDropdown');
     dropdown.innerHTML = '';
-    
+
     suggestions.forEach((suggestion, index) => {
         const item = document.createElement('div');
         item.style.cssText = 'padding: 8px 12px; cursor: pointer; border-bottom: 1px solid #eee;';
         item.textContent = suggestion;
         item.setAttribute('data-index', index);
-        
-        item.addEventListener('mouseenter', function() {
+
+        item.addEventListener('mouseenter', function () {
             // Clear previous selection
             updateSelection(index);
         });
-        
-        item.addEventListener('mouseleave', function() {
+
+        item.addEventListener('mouseleave', function () {
             this.style.backgroundColor = '';
         });
-        
-        item.addEventListener('mousedown', function(e) {
+
+        item.addEventListener('mousedown', function (e) {
             e.preventDefault(); // Prevent blur event
             selectSuggestion(suggestion, element, type);
         });
-        
+
         dropdown.appendChild(item);
     });
-    
+
     // Position dropdown below the element
     const rect = element.getBoundingClientRect();
     dropdown.style.left = rect.left + 'px';
     dropdown.style.top = (rect.bottom) + 'px';
     dropdown.style.minWidth = rect.width + 'px';
     dropdown.style.display = 'block';
-    
+
     autoCompleteState.isVisible = true;
-    
+
     // Add keyboard event listener
     if (!element.hasAutoCompleteKeyListener) {
         element.addEventListener('keydown', handleAutoCompleteKeydown);
@@ -1798,12 +1798,12 @@ function showAutoCompleteDropdown(element, suggestions, type) {
 function updateSelection(newIndex) {
     const dropdown = document.getElementById('autoCompleteDropdown');
     const items = dropdown.children;
-    
+
     // Clear previous selection
     for (let i = 0; i < items.length; i++) {
         items[i].style.backgroundColor = '';
     }
-    
+
     // Set new selection
     if (newIndex >= 0 && newIndex < items.length) {
         autoCompleteState.selectedIndex = newIndex;
@@ -1815,23 +1815,23 @@ function updateSelection(newIndex) {
 
 function handleAutoCompleteKeydown(e) {
     if (!autoCompleteState.isVisible) return;
-    
+
     const suggestions = autoCompleteState.suggestions;
     const currentIndex = autoCompleteState.selectedIndex;
-    
+
     switch (e.key) {
         case 'ArrowDown':
             e.preventDefault();
             const nextIndex = currentIndex < suggestions.length - 1 ? currentIndex + 1 : 0;
             updateSelection(nextIndex);
             break;
-            
+
         case 'ArrowUp':
             e.preventDefault();
             const prevIndex = currentIndex > 0 ? currentIndex - 1 : suggestions.length - 1;
             updateSelection(prevIndex);
             break;
-            
+
         case 'Enter':
             e.preventDefault();
             if (currentIndex >= 0 && currentIndex < suggestions.length) {
@@ -1839,7 +1839,7 @@ function handleAutoCompleteKeydown(e) {
                 selectSuggestion(selectedSuggestion, autoCompleteState.currentElement, autoCompleteState.currentType);
             }
             break;
-            
+
         case 'Escape':
             e.preventDefault();
             hideAutoComplete();
@@ -1850,13 +1850,13 @@ function handleAutoCompleteKeydown(e) {
 function selectSuggestion(suggestion, element, type) {
     // Fill the selected field
     element.textContent = suggestion;
-    
+
     // Find the row containing this element
     const row = element.closest('tr');
     if (row) {
         // Get the stock data for this selection
         const stockData = findStockData(suggestion, type);
-        
+
         // Always clear and update all three fields to prevent stale data
         const cells = row.cells;
         if (cells.length >= 7) {
@@ -1864,7 +1864,7 @@ function selectSuggestion(suggestion, element, type) {
             cells[4].textContent = ''; // Stock name
             cells[5].textContent = ''; // NSE code
             cells[6].textContent = ''; // BSE code
-            
+
             if (stockData) {
                 // Fill with new data
                 if (stockData.name) {
@@ -1879,7 +1879,7 @@ function selectSuggestion(suggestion, element, type) {
             }
         }
     }
-    
+
     hideAutoComplete();
     element.focus();
 }
@@ -1890,7 +1890,7 @@ function hideAutoComplete() {
         if (dropdown) {
             dropdown.style.display = 'none';
         }
-        
+
         // Reset state
         autoCompleteState.isVisible = false;
         autoCompleteState.selectedIndex = -1;

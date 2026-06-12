@@ -148,7 +148,7 @@ function HideModal() {
 }
 
 function OpenClientBulkDealsPage(clientName, nseCode, bseCode) {
-    //HideModal();
+    HideModal();
     openTab('bulkDealersDiv');
     if (nseCode) {
         txtFilterDeals.setAttribute('code', nseCode);
@@ -177,6 +177,7 @@ function OpenClientBulkDealsPage(clientName, nseCode, bseCode) {
 
 
 function OpenStockBulkDealsPage(stockName, nseCode, bseCode) {
+    HideModal();
     openTab('stockBulkDealsDiv');
     ddlStocks.value = nseCode || bseCode;
     document.getElementById('dateFilterDeals').value = '';
