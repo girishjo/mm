@@ -287,12 +287,12 @@ function tableToExcel(tableId, sheetName = 'Worksheet') {
 
 function GetPreviousWorkingDate(inputDate) {
     let refDate = new Date(inputDate);
-    
+
     // If current date is a special trading day, no need to adjust
     if (IsSpecialTradingDay(refDate)) {
         return refDate;
     }
-    
+
     if (refDate.getDay() == 0) {
         // Sunday - check if previous Saturday was special trading day
         let prevSat = new Date(refDate.setDate(refDate.getDate() - 1));
@@ -322,12 +322,12 @@ function GetPreviousWorkingDate(inputDate) {
 
 function GetNextWorkingDate(inputDate) {
     let refDate = new Date(inputDate);
-    
+
     // If current date is a special trading day, no need to adjust
     if (IsSpecialTradingDay(refDate)) {
         return refDate;
     }
-    
+
     if (refDate.getDay() == 0) {
         refDate = new Date(refDate.setDate(refDate.getDate() + 1));
     }
@@ -343,13 +343,13 @@ function GetNextWorkingDate(inputDate) {
     else if (refDate.getDay() == 5) {
         // Friday - check if weekend has special trading days
         let nextSat = new Date(refDate.setDate(refDate.getDate() + 1));
-        let nextSun = new Date(refDate.setDate(refDate.getDate() + 2));
+        let nextSun = new Date(refDate.setDate(refDate.getDate() + 1));
         if (IsSpecialTradingDay(nextSat)) {
             refDate = nextSat;
         } else if (IsSpecialTradingDay(nextSun)) {
             refDate = nextSun;
         } else {
-            refDate = new Date(refDate.setDate(refDate.getDate() + 2)); // Go to Monday
+            refDate = new Date(refDate.setDate(refDate.getDate() + 1)); // Go to Monday
         }
     }
     else {
@@ -398,12 +398,12 @@ function IsTradingDay(inputDate) {
     if (IsHoliday(inputDate)) {
         return false;
     }
-    
+
     // Check if it's a special trading day (overrides weekend check)
     if (IsSpecialTradingDay(inputDate)) {
         return true;
     }
-    
+
     // Regular weekend check (Saturday = 6, Sunday = 0)
     const dayOfWeek = inputDate.getDay();
     return !(dayOfWeek === 0 || dayOfWeek === 6);
@@ -432,4 +432,44 @@ function CheckNumber() {
         }
     }
     event.target.textContent = bseCode;
+}
+
+/// Timer functions
+
+// IST time utilities
+function getISTNow() {
+    const now = new Date();
+    return new Date(now.getTime() + (now.getTimezoneOffset() * 60000) + (5.5 * 3600000));
+}
+
+function getISTHours() {
+    return getISTNow().getHours();
+}
+
+function isMarketClosed() {
+    return getISTHours() >= 16;
+}
+
+// Schedule a callback at a specific IST hour (e.g., 16 for 4 PM)
+// If the hour has already passed, fires the callback immediately
+var _scheduledTimers = {};
+function scheduleAtIST(callback, hour, key) {
+    key = key || callback.name || 'default';
+    if (_scheduledTimers[key]) clearTimeout(_scheduledTimers[key]);
+    const istNow = getISTNow();
+    if (istNow.getHours() < hour) {
+        const target = new Date(istNow);
+        target.setHours(hour, 0, 0, 0);
+        const delay = target - istNow;
+        _scheduledTimers[key] = setTimeout(callback, delay);
+        return true;
+    } else {
+        callback();
+        return false;
+    }
+}
+
+function callNowAndScheduleAtIST(callback, hour, key) {
+    callback();
+    scheduleAtIST(callback, hour, key);
 }

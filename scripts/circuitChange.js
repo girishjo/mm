@@ -17,6 +17,7 @@ async function InitCircuitChange() {
 
     RestoreCircuitChangeFilterSettings();
     UpdateCircuitChangeTable();
+    scheduleAtIST(UpdateCircuitChangeColors, 16, 'circuitColor');
 }
 
 function BuildCircuitChangeStocks() {
@@ -102,14 +103,34 @@ function UpdateCircuitChangeTable() {
         row.cells[7].innerText = stock.exchanges;
 
         if (stock.circuitChangeDate.toDateString() === todayDate.toDateString()) {
-            row.style.background = 'lightgreen';
-        } else if (stock.circuitChangeDate < todayDate) {
+            row.style.background = isMarketClosed() ? '#e8f5e9' : 'lightgreen';
+            row.title = 'Circuit changed from today';
+        } else if (stock.circuitChangeDate.toDateString() === GetNextWorkingDay(todayDate).toDateString()) {
+            row.style.background = 'lightyellow';
+            row.title = 'Circuit will change from next trading day';
+        } else if (stock.listingDate.toDateString() === todayDate.toDateString()) {
+            row.style.background = 'lightcyan';
+            row.title = 'Listed today';
+        }
+        else if (stock.circuitChangeDate < todayDate) {
             row.style.background = '#f0f0f0';
         }
     }
 
     UpdateLoader(false);
     AutoSaveCircuitChangePreferences();
+}
+
+function UpdateCircuitChangeColors() {
+    const rows = circuitChangeTable.querySelectorAll('tbody tr:not(.hide)');
+    rows.forEach(row => {
+        const bg = row.style.backgroundColor;
+        if (bg === 'lightgreen') {
+            row.style.background = '#e8f5e9';
+        } else if (bg === 'lightyellow') {
+            row.style.background = 'lightgoldenrodyellow';
+        }
+    });
 }
 
 function ShareCircuitChanges() {
@@ -131,7 +152,11 @@ function ShareCircuitChanges() {
             day: '2-digit', month: 'short', year: 'numeric'
         }).replace(/ /g, '-') : row.cells[1].innerText;
         const ticker = row.cells[3].innerText;
-        text += dateStr + ' ' + ticker + '\n';
+        if (stock.circuitChangeDate.toDateString() === todayDate.toDateString() || stock.listingDate.toDateString() === todayDate.toDateString()) {
+            text += "*" + dateStr + ' ' + ticker + '*\n';
+        } else {
+            text += dateStr + ' ' + ticker + '\n';
+        }
     });
 
     if (navigator.share) {
