@@ -193,7 +193,7 @@ function CheckAndShowSpecialTradingDay() {
 function RefreshVisitorCounter() {
     const visitorCounter = document.getElementById('visitorCounter');
     if (visitorCounter) {
-        const image = visitorCounter.querySelector('img');
+        const image = visitorCounter.querySelector('a img');
         if (image) {
             const src = image.src;
             image.src = src; // Reload the image by resetting its src
