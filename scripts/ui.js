@@ -38,21 +38,21 @@ function openTab(tabId) {
 
     const watchlistDiv = document.getElementById('watchlistDiv');
     watchlistDiv.style.display = 'none';
-    
+
     // Hide/show specific watchlist management controls
     const addWatchlistBtn = document.getElementById('addWatchlistBtn');
     const newWatchList = document.getElementById('newWatchList');
     const removeWatchlistBtn = document.getElementById('removeWatchlistBtn');
     const lblShowAllWatchlists = document.getElementById('lblShowAllWatchlists');
     const lblPrivacyMode = document.getElementById('lblPrivacyMode');
-    
+
     // Hide watchlist management buttons by default
     if (addWatchlistBtn) addWatchlistBtn.style.display = 'none';
     if (newWatchList) newWatchList.style.display = 'none';
     if (removeWatchlistBtn) removeWatchlistBtn.style.display = 'none';
     if (lblShowAllWatchlists) lblShowAllWatchlists.style.display = 'none';
     if (lblPrivacyMode) lblPrivacyMode.style.display = 'none';
-    
+
     switch (tabId) {
         case "stockListDiv":
             // Show watchlist controls and management buttons on Watchlists tab
@@ -178,20 +178,34 @@ function ShowMessage(message, timeOutInSeconds = 3) {
 function CheckAndShowSpecialTradingDay() {
     const today = new Date();
     const specialDay = IsSpecialTradingDay(today);
-    
+
     if (specialDay) {
         const dayName = today.toLocaleDateString('en-IN', { weekday: 'long' });
         const countingInfo = specialDay.countForNthDay !== false ? " (Counts for T2T)" : " (No T2T count)";
         const message = `🔔 Special Trading Day: ${specialDay.reason} on ${dayName} (${specialDay.tradingHours.start} - ${specialDay.tradingHours.end})${countingInfo}`;
         ShowMessage(message, 10); // Show for 10 seconds due to longer message
-        
+
         // Also log to console for debugging
         console.log(`Special Trading Day detected: ${specialDay.reason} on ${today.toDateString()}, countForNthDay: ${specialDay.countForNthDay !== false}`);
     }
 }
 
+function RefreshVisitorCounter() {
+    const visitorCounter = document.getElementById('visitorCounter');
+    if (visitorCounter) {
+        const image = visitorCounter.querySelector('img');
+        if (image) {
+            const src = image.src;
+            image.src = src; // Reload the image by resetting its src
+        }
+    }
+}
+
 // Initialize special trading day check when page loads
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     // Wait a bit for settings to load
     setTimeout(CheckAndShowSpecialTradingDay, 1000);
+
+    // reload visitor counter every 1 minute
+    callAtInterval(RefreshVisitorCounter, 60000); // 60000 ms = 1 minute
 });

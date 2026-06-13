@@ -452,7 +452,7 @@ function isMarketClosed() {
 
 // Schedule a callback at a specific IST hour (e.g., 16 for 4 PM)
 // If the hour has already passed, fires the callback immediately
-var _scheduledTimers = {};
+let _scheduledTimers = {};
 function scheduleAtIST(callback, hour, key) {
     key = key || callback.name || 'default';
     if (_scheduledTimers[key]) clearTimeout(_scheduledTimers[key]);
@@ -472,4 +472,11 @@ function scheduleAtIST(callback, hour, key) {
 function callNowAndScheduleAtIST(callback, hour, key) {
     callback();
     scheduleAtIST(callback, hour, key);
+}
+
+let _scheduledIntervals = {};
+function callAtInterval(callback, intervalMs, key) {
+    key = key || callback.name || 'default';
+    if (_scheduledIntervals[key]) clearInterval(_scheduledIntervals[key]);
+    _scheduledIntervals[key] = setInterval(callback, intervalMs);
 }
