@@ -14,7 +14,7 @@ function RequestNotificationPermission() {
 
 function ShowNewDataNotification() {
   if ('Notification' in window && Notification.permission === 'granted') {
-    const notification = new Notification('Market Monitor', {
+    const notification = new Notification('Money Makers - Girish Joshi', {
       body: 'Updated data is now available. Tap to refresh.',
       icon: './images/favicon.ico'
     });

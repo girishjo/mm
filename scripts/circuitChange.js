@@ -27,22 +27,37 @@ function BuildCircuitChangeStocks() {
     Object.keys(newListingsData).forEach(isin => {
         const entry = newListingsData[isin];
         if (!entry.listingDate) return;
-        if (entry.nseCode && entry.nseCode.includes('-RE')) return; // Skip Rights Entitlements
+        if (entry.nseCode?.includes('-RE')) return; // Skip Rights Entitlements
+
+        // Skip stocks that are currently in NSE ESM; circuit will not change while ESM is active
+        if (entry.inEsm) return;
 
         // Only include T2T series stocks
         const series = entry.series || '';
         if (!t2tSMESeries.includes(series) && !t2tMBSeries.includes(series)) return;
 
         const listingDate = new Date(entry.listingDate);
-        const circuitChangeDate = GetNthDay(listingDate, 11);
+        let circuitChangeDate = GetNthDay(listingDate, 11);
+        let circuitChangedInfoNotAvailable = false;
 
         // Skip stocks whose circuit change date is more than 10 working days in the past
         const oldCutoff = GetNthDay(todayDate, 10, false);
         if (circuitChangeDate < oldCutoff) return;
 
+        // Skip if no actual price band change confirmed by NSE
+        if (entry.exchanges.includes('NSE')) {
+            if (circuitChangeDate < todayDate || circuitChangeDate.toDateString() == todayDate.toDateString()) {
+                if (!entry.bandChange) {
+                    // mark as info not available and keep date as null
+                    circuitChangedInfoNotAvailable = true;
+                    circuitChangeDate = null;
+                }
+            }
+        }
+
         const isSME = entry.type === 'SME';
 
-        circuitChangeStocks.push({
+        const tableEntry = {
             code: entry.ticker || entry.nseCode || entry.bseCode || '',
             name: entry.name || entry.nseCode || entry.bseCode || '',
             series: entry.series || '',
@@ -50,10 +65,21 @@ function BuildCircuitChangeStocks() {
             exchanges: entry.exchanges || '',
             listingDate: listingDate,
             circuitChangeDate: circuitChangeDate
-        });
+        }
+
+        if (circuitChangedInfoNotAvailable) {
+            tableEntry.circuitChangedInfoNotAvailable = true;
+        }
+
+        circuitChangeStocks.push(tableEntry);
     });
 
-    circuitChangeStocks.sort((a, b) => a.circuitChangeDate - b.circuitChangeDate || a.name.localeCompare(b.name));
+    circuitChangeStocks.sort((a, b) => {
+        const ta = a.circuitChangeDate ? a.circuitChangeDate.getTime() : Infinity;
+        const tb = b.circuitChangeDate ? b.circuitChangeDate.getTime() : Infinity;
+        if (ta !== tb) return ta - tb;
+        return a.name.localeCompare(b.name);
+    });
 }
 
 function UpdateCircuitChangeTable() {
@@ -79,7 +105,7 @@ function UpdateCircuitChangeTable() {
             if (!showMB && stock.type === 'MainBoard') return false;
         }
         if (showToday && stock.listingDate.toDateString() !== todayDate.toDateString()) return false;
-        if (!showOld && stock.circuitChangeDate < todayDate) return false;
+        if (!showOld && stock.circuitChangeDate && stock.circuitChangeDate < todayDate) return false;
         return true;
     });
 
@@ -88,18 +114,23 @@ function UpdateCircuitChangeTable() {
         const row = addEmptyRow(circuitChangeTable);
 
         row.cells[0].innerText = i + 1;
-        row.cells[1].innerText = stock.circuitChangeDate.toLocaleDateString('en-In', {
-            day: "2-digit", month: "short", year: "numeric"
-        }) + ', ' + stock.circuitChangeDate.toLocaleDateString('en-In', { weekday: "short" });
-        row.cells[1].setAttribute('data-sort', stock.circuitChangeDate.toISOString());
+        if (stock.circuitChangeDate && stock.circuitChangeDate.toLocaleDateString) {
+            row.cells[1].innerText = stock.circuitChangeDate.toLocaleDateString('en-In', {
+                day: "2-digit", month: "short", year: "numeric"
+            }) + ', ' + stock.circuitChangeDate.toLocaleDateString('en-In', { weekday: "short" });
+            row.cells[1].setAttribute('data-sort', stock.circuitChangeDate.toISOString());
+        } else {
+            row.cells[1].innerText = '---- N/A ----';
+            row.cells[1].setAttribute('data-sort', '');
+        }
         // row.cells[2].innerText = simplifyName(stock.name);
-        {           
+        {
             var a = document.createElement('a');
             var linkText = document.createTextNode(simplifyName(stock.name));
             a.appendChild(linkText);
             a.title = simplifyName(stock.name);
-            a.href = "#0";            
-            const codes = GetExchangeCodesFromTicker(stock.code);            
+            a.href = "#0";
+            const codes = GetExchangeCodesFromTicker(stock.code);
             a.setAttribute("codes", codes.join(','));
             a.setAttribute("onclick", "ShowHistory(this, circuitChangeTable);");
             row.cells[2].appendChild(a);
@@ -113,17 +144,17 @@ function UpdateCircuitChangeTable() {
         row.cells[6].innerText = stock.type;
         row.cells[7].innerText = stock.exchanges;
 
-        if (stock.circuitChangeDate.toDateString() === todayDate.toDateString()) {
+        if (stock.circuitChangeDate && stock.circuitChangeDate.toDateString && stock.circuitChangeDate.toDateString() === todayDate.toDateString()) {
             row.style.background = isMarketClosed() ? '#e8f5e9' : 'lightgreen';
             row.title = 'Circuit changed from today';
-        } else if (stock.circuitChangeDate.toDateString() === GetNextWorkingDay(todayDate).toDateString()) {
+        } else if (stock.circuitChangeDate && stock.circuitChangeDate.toDateString && stock.circuitChangeDate.toDateString() === GetNextWorkingDay(todayDate).toDateString()) {
             row.style.background = 'lightyellow';
             row.title = 'Circuit will change from next trading day';
         } else if (stock.listingDate.toDateString() === todayDate.toDateString()) {
             row.style.background = 'lightcyan';
             row.title = 'Listed today';
         }
-        else if (stock.circuitChangeDate < todayDate) {
+        else if (stock.circuitChangeDate && stock.circuitChangeDate < todayDate) {
             row.style.background = '#f0f0f0';
         }
     }
@@ -159,11 +190,18 @@ function ShareCircuitChanges() {
     let text = title;
     rows.forEach((row, i) => {
         const stock = circuitChangeStocks.find(s => s.code === row.cells[3].innerText);
-        const dateStr = stock ? stock.circuitChangeDate.toLocaleDateString('en-In', {
-            day: '2-digit', month: 'short', year: 'numeric'
-        }).replace(/ /g, '-') : row.cells[1].innerText;
+        let dateStr;
+        if (stock && stock.circuitChangeDate && stock.circuitChangeDate.toLocaleDateString) {
+            dateStr = stock.circuitChangeDate.toLocaleDateString('en-In', {
+                day: '2-digit', month: 'short', year: 'numeric'
+            }).replace(/ /g, '-');
+        } else {
+            return;
+        }
         const ticker = row.cells[3].innerText;
-        if (stock.circuitChangeDate.toDateString() === todayDate.toDateString() || stock.listingDate.toDateString() === todayDate.toDateString()) {
+        const isTodayCircuit = stock.circuitChangeDate && stock.circuitChangeDate.toDateString && stock.circuitChangeDate.toDateString() === todayDate.toDateString();
+        const isTodayListing = stock.listingDate && stock.listingDate.toDateString && stock.listingDate.toDateString() === todayDate.toDateString();
+        if (isTodayCircuit || isTodayListing) {
             text += "*" + dateStr + ' ' + ticker + '*\n';
         } else {
             text += dateStr + ' ' + ticker + '\n';
