@@ -38,7 +38,6 @@ function BuildCircuitChangeStocks() {
 
         const listingDate = new Date(entry.listingDate);
         let circuitChangeDate = GetNthDay(listingDate, 11);
-        let circuitChangedInfoNotAvailable = false;
 
         // Skip stocks whose circuit change date is more than 10 working days in the past
         const oldCutoff = GetNthDay(todayDate, 10, false);
@@ -46,12 +45,15 @@ function BuildCircuitChangeStocks() {
 
         // Skip if no actual price band change confirmed by NSE
         if (entry.exchanges.includes('NSE')) {
-            if (circuitChangeDate < todayDate || circuitChangeDate.toDateString() == todayDate.toDateString()) {
-                if (!entry.bandChange) {
-                    // mark as info not available and keep date as null
-                    circuitChangedInfoNotAvailable = true;
-                    circuitChangeDate = null;
+            if (entry.bandChange) {
+                if (circuitChangeDate.toDateString() != new Date(entry.bandChange.dateEffectiveFrom).toDateString()) {
+                    console.warn(entry.ticker + ": " + entry.name + ": Circuit change date calculation mismatched");
                 }
+                circuitChangeDate = new Date(entry.bandChange.dateEffectiveFrom);
+            }
+            else if (circuitChangeDate < todayDate || circuitChangeDate.toDateString() == todayDate.toDateString()) {
+                // mark date as null                    
+                circuitChangeDate = null;
             }
         }
 
@@ -67,8 +69,9 @@ function BuildCircuitChangeStocks() {
             circuitChangeDate: circuitChangeDate
         }
 
-        if (circuitChangedInfoNotAvailable) {
-            tableEntry.circuitChangedInfoNotAvailable = true;
+        if (entry.bandChange) {
+            tableEntry["bandFrom"] = entry.bandChange.bandFrom;
+            tableEntry["bandTo"] = entry.bandChange.bandTo;
         }
 
         circuitChangeStocks.push(tableEntry);
@@ -119,9 +122,13 @@ function UpdateCircuitChangeTable() {
                 day: "2-digit", month: "short", year: "numeric"
             }) + ', ' + stock.circuitChangeDate.toLocaleDateString('en-In', { weekday: "short" });
             row.cells[1].setAttribute('data-sort', stock.circuitChangeDate.toISOString());
+            if (stock.bandFrom && stock.bandTo) {
+                row.cells[1].title = "From: " + stock.bandFrom + " => To: " + stock.bandTo;
+            }
         } else {
             row.cells[1].innerText = '---- N/A ----';
             row.cells[1].setAttribute('data-sort', '');
+            row.cells[1].title = "may be due to Surveillance Measures like ESM, ASM, etc...";
         }
         // row.cells[2].innerText = simplifyName(stock.name);
         {
