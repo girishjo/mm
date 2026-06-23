@@ -57,7 +57,7 @@ function ShowBulkDeal(stock) {
         || a.Price - b.Price);
 
     const bulkDealsTable = document.getElementById("bulkDeals");
-    var total = 0;
+    var total = 0, totalNet = 0;
     for (let i = 0; i < bulkDeals.length; i++) {
         const bulkDeal = bulkDeals[i];
         const newRow = addEmptyRow(bulkDealsTable);
@@ -77,25 +77,30 @@ function ShowBulkDeal(stock) {
         newRow.cells[2].innerText = bulkDeal.BuyOrSell;
         if (bulkDeal.BuyOrSell == "Buy") {
             newRow.cells[3].style.color = 'green';
-            total += bulkDeal.Quantity;
+            totalNet += bulkDeal.Quantity;
         }
         else if (bulkDeal.BuyOrSell == "Sell") {
             newRow.cells[3].style.color = 'red';
-            total -= bulkDeal.Quantity;
+            totalNet -= bulkDeal.Quantity;
             //bulkDeal.Quantity *= -1;
         }
+        total += bulkDeal.Quantity;
         newRow.cells[3].innerText = bulkDeal.Quantity.toCustomString();
         newRow.cells[4].innerText = bulkDeal.Price.toCustomString(2);
     }
 
     const newRow = addEmptyRow(bulkDealsTable);
     newRow.setAttribute("frozen", true);
-    newRow.cells[2].innerText = 'Total = ';
-    newRow.cells[3].innerText = total.toLocaleString('en-In');
-    if (total > 0) {
+    newRow.cells[1].style['text-align'] = 'right';
+    newRow.cells[2].style['text-align'] = 'right';
+    newRow.cells[1].innerText = 'Totals (Gross & Net) =';
+    newRow.cells[2].innerText = total.toLocaleString('en-In');
+    newRow.cells[3].innerText = totalNet.toLocaleString('en-In');    
+
+    if (totalNet > 0) {
         newRow.cells[3].style.color = 'green';
     }
-    else if (total < 0) {
+    else if (totalNet < 0) {
         newRow.cells[3].style.color = 'red';
     }
     const bulkDealHeader = document.getElementById("bulkDealHeader");
@@ -168,7 +173,7 @@ function OpenClientBulkDealsPage(clientName, nseCode, bseCode) {
     if (chkFilterDeals.checked) {
         txtFilterDeals.value = txtFilterDeals.getAttribute('code');
     }
-    else{
+    else {
         txtFilterDeals.value = "";
     }
     //chkFilterDeals.checked = true;
