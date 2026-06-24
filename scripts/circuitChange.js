@@ -133,14 +133,20 @@ function UpdateCircuitChangeTable() {
         // row.cells[2].innerText = simplifyName(stock.name);
         {
             var a = document.createElement('a');
-            var linkText = document.createTextNode(simplifyName(stock.name));
+            const simplifiedName = simplifyName(stock.name);
+            var linkText = document.createTextNode(simplifiedName);
             a.appendChild(linkText);
-            a.title = simplifyName(stock.name);
+            a.title = simplifiedName;
             a.href = "#0";
             const codes = GetExchangeCodesFromTicker(stock.code);
-            a.setAttribute("codes", codes.join(','));
-            a.setAttribute("onclick", "ShowHistory(this, circuitChangeTable);");
-            row.cells[2].appendChild(a);
+            if (codes.join(',') == ',') {
+                row.cells[2].innerText = simplifiedName;
+            }
+            else {
+                a.setAttribute("codes", codes.join(','));
+                a.setAttribute("onclick", "ShowHistory(this, circuitChangeTable);");
+                row.cells[2].appendChild(a);
+            }
         }
         row.cells[3].innerText = stock.code;
         row.cells[4].innerText = stock.listingDate.toLocaleDateString('en-In', {
