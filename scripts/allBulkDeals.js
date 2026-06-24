@@ -7,15 +7,15 @@ const flattenDeals = [];
 function InitStockBulkDeals() {
     if (Object.keys(stockBulkDeals) == 0) {
         for (const stockCode of [...new Set([...Object.keys(nseData), ...Object.keys(bseData)])]) {
-            nseData[stockCode] && CheckDeal(nseData[stockCode], Exchange.NSE, nseData[stockCode]);
-            bseData[stockCode] && CheckDeal(bseData[stockCode], Exchange.BSE, bseData[stockCode]);
+            nseData[stockCode] && CheckDeal(nseData[stockCode], Exchanges.NSE, nseData[stockCode]);
+            bseData[stockCode] && CheckDeal(bseData[stockCode], Exchanges.BSE, bseData[stockCode]);
         }
 
         function CheckDeal(stockData, exchange, root) {
             if (stockData.BulkDeals) {
                 for (let i = 0; i < stockData.BulkDeals.length; i++) {
                     const deal = stockData.BulkDeals[i];
-                    if (exchange === Exchange.NSE) {
+                    if (exchange === Exchanges.NSE) {
                         deal.Ticker = stockData.SecurityCode;
                     }
                     else {

@@ -154,7 +154,7 @@ function HideModal() {
 
 function OpenClientBulkDealsPage(clientName, nseCode, bseCode) {
     HideModal();
-    openTab('bulkDealersDiv');
+    openTab(Tabs.bulkdealers);
     if (nseCode) {
         txtFilterDeals.setAttribute('code', nseCode);
         let stock = watchlists[activeWL].data.filter(sh => sh[1] == nseCode);
@@ -183,7 +183,7 @@ function OpenClientBulkDealsPage(clientName, nseCode, bseCode) {
 
 function OpenStockBulkDealsPage(stockName, nseCode, bseCode) {
     HideModal();
-    openTab('stockBulkDealsDiv');
+    openTab(Tabs.bulkdeals);
     ddlStocks.value = nseCode || bseCode;
     document.getElementById('dateFilterDeals').value = '';
     UpdateStockBulkDealTable();

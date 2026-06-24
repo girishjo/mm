@@ -1,6 +1,17 @@
-const Exchange = Object.freeze({
+const Exchanges = Object.freeze({
     NSE: 'NSE',
     BSE: 'BSE'
+});
+
+const Tabs = Object.freeze({
+    datavalidity: 'dataValidityDiv',
+    stocklist: 'stockListDiv',
+    stockdata: 'stockDataDiv',
+    bulkdealers: 'bulkDealersDiv',
+    bulkdeals: 'stockBulkDealsDiv',
+    portfolio: 'portfolioDiv',
+    circuitchanges: 'circuitChangeDiv',
+    settings: 'settingsDiv',
 });
 
 function addEmptyRow(table, index = undefined) {

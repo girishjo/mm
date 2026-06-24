@@ -106,7 +106,7 @@ function ShowClientDeals(table, deals, fieldName1, fieldName2) {
             a.title = deal[fieldName2];
             a.href = "#0";
             if (fieldName2 == 'ClientName') {
-                a.setAttribute("onclick", "openTab('bulkDealersDiv');UpdateBulkDealTable('" + deal[fieldName2] + "');");
+                a.setAttribute("onclick", "openTab(Tabs.bulkdealers);UpdateBulkDealTable('" + deal[fieldName2] + "');");
             } else {
                 a.setAttribute("onclick", "OpenStockBulkDealsPage('" + deal[fieldName2] + "', '" + deal[fieldName1] + "','" + deal[fieldName1] + "');");
             }

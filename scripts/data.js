@@ -72,7 +72,7 @@ async function LoadData() {
   OpenSpecificTab();
 }
 
-async function MergeTodayListings() {  
+async function MergeTodayListings() {
   try {
     newListingsData = await GetData('newListings.json');
   } catch (e) {
@@ -95,25 +95,7 @@ async function MergeTodayListings() {
 function OpenSpecificTab() {
   const urlParams = new URLSearchParams(window.location.search);
   const tab = urlParams.get('tab');
-  switch (tab) {
-    case "stockdata":
-      openTab('stockDataDiv')
-      break;
-    case "bulkdealers":
-      openTab('bulkDealersDiv')
-      break;
-    case "bulkdeals":
-      openTab('stockBulkDealsDiv')
-      break;
-    case "portfolio":
-      openTab('portfolioDiv')
-      break;
-    case "circuitchanges":
-      openTab('circuitChangeDiv')
-      break;
-    default:
-      break;
-  }
+  Tabs[tab] && openTab(Tabs[tab]);
 }
 
 function CheckForT10(result) {

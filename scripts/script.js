@@ -297,7 +297,7 @@ function AddWatchlist() {
             saveDataOnLocal(true, false);
             newWatchlist.checked = true;
             UpdateWatchList();
-            openTab('stockListDiv');
+            openTab(Tabs.stocklist);
         }
         else {
             ShowMessage('Error in adding watchlist');

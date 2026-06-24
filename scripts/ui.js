@@ -90,6 +90,8 @@ function openTab(tabId) {
             InitCircuitChange();
             break;
     }
+
+    UpdateURL(tabId);
 }
 
 document.body.addEventListener('click', function (evt) {
@@ -200,6 +202,17 @@ function RefreshVisitorCounter() {
         }
     }
 }
+
+function UpdateURL(tabId) {
+    const tab = Object.keys(Tabs).find(key => Tabs[key] === tabId);
+    if (tab) {
+        history.pushState(null, "", "?tab=" + tab);
+    }
+}
+
+window.addEventListener('popstate', (event) => {
+    OpenSpecificTab();
+});
 
 // Initialize special trading day check when page loads
 document.addEventListener('DOMContentLoaded', function () {
