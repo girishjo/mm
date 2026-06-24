@@ -1,6 +1,5 @@
 const circuitChangeTable = document.getElementById("circuitChangeTable");
 var circuitChangeStocks = [];
-var newListingsData = null;
 
 async function InitCircuitChange() {
     if (circuitChangeStocks.length === 0) {

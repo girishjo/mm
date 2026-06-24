@@ -7,6 +7,8 @@ function GetBseCodeFromTicker(ticker) {
         return undefined;
     }
 
+    ticker = ticker.toUpperCase();
+
     for (const code in bseData) {
         const stock = bseData[code];
         if (!stock) continue;

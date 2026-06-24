@@ -1,5 +1,6 @@
 var nseData = { data: {} };
 var bseData = { data: {} };
+var newListingsData = null;
 
 const dataFiles = [
   ['nseOpenClose.json', 'nseDelivery.json', 'nseBulkDeal.json'],
@@ -58,6 +59,8 @@ async function LoadData() {
   nseData = preserveTimestamp(nseData);
   bseData = preserveTimestamp(bseData);
 
+  await MergeTodayListings();
+
   // Reinitialize auto-complete cache with new data
   if (typeof autoCompleteCache !== 'undefined') {
     autoCompleteCache.initialized = false;
@@ -67,6 +70,26 @@ async function LoadData() {
   UpdateLoader(false);
   setTimeout(CheckForLatestData, settings.constants.refreshDataTimeOut * 60 * 1000);
   OpenSpecificTab();
+}
+
+async function MergeTodayListings() {  
+  try {
+    newListingsData = await GetData('newListings.json');
+  } catch (e) {
+    newListingsData = {};
+  }
+
+  Object.keys(newListingsData).forEach(isin => {
+    const entry = newListingsData[isin];
+    if (new Date(entry.listingDate).toDateString() == todayDate.toDateString()) {
+      if (entry.nseCode) {
+        newListingsData[isin]["issuePrice"] = nseData[entry.nseCode].PrevClose;
+      }
+      if (entry.bseCode && bseData[entry.bseCode]) {
+        bseData[entry.bseCode].PrevClose = newListingsData[isin].issuePrice;
+      }
+    }
+  });
 }
 
 function OpenSpecificTab() {
@@ -129,10 +152,10 @@ function GetNthDay(startDate, nthDay, forward = true) {
   let endDate = new Date(startDate);
   while (counter < nthDay) {
     endDate = new Date(endDate.setDate(endDate.getDate() + (forward ? 1 : -1)));
-    
+
     // Check if this day should be counted for nth day calculation
     let shouldCount = false;
-    
+
     // Check if it's a special trading day first
     if (typeof IsSpecialTradingDay === 'function') {
       const specialDay = IsSpecialTradingDay(endDate);
@@ -156,7 +179,7 @@ function GetNthDay(startDate, nthDay, forward = true) {
         shouldCount = !(endDate.getDay() == 0 || endDate.getDay() == 6 || CheckForHoliday(endDate));
       }
     }
-    
+
     if (shouldCount) {
       counter++;
     }
