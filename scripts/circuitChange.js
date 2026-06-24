@@ -66,7 +66,8 @@ function BuildCircuitChangeStocks() {
             type: isSME ? 'SME' : 'MainBoard',
             exchanges: entry.exchanges || '',
             listingDate: listingDate,
-            circuitChangeDate: circuitChangeDate
+            circuitChangeDate: circuitChangeDate,
+            issuePrice: entry.issuePrice
         }
 
         if (entry.bandChange) {
@@ -156,6 +157,7 @@ function UpdateCircuitChangeTable() {
         row.cells[5].innerText = stock.series;
         row.cells[6].innerText = stock.type;
         row.cells[7].innerText = stock.exchanges;
+        row.cells[8].innerText = stock.issuePrice || "";
 
         if (stock.circuitChangeDate && stock.circuitChangeDate.toDateString && stock.circuitChangeDate.toDateString() === todayDate.toDateString()) {
             row.style.background = isMarketClosed() ? '#e8f5e9' : 'lightgreen';
@@ -194,32 +196,50 @@ function ShareCircuitChanges() {
 
     const showSME = document.getElementById('chkCircuitSME').checked;
     const showMB = document.getElementById('chkCircuitMB').checked;
+    const showToday = document.getElementById('chkCircuitToday').checked;
 
+    let text;
     let title = '*';
-    if (showSME && !showMB) title += 'SME ';
-    else if (showMB && !showSME) title += 'MainBoard ';
-    title += 'Circuit Changes*\n\n';
+    if (showToday) {
+        if (rows.length > 1)
+            title += 'Today\'s listings,*\n\n';
+        else
+            title += 'Today\'s listing,*\n\n';
 
-    let text = title;
-    rows.forEach((row, i) => {
-        const stock = circuitChangeStocks.find(s => s.code === row.cells[3].innerText);
-        let dateStr;
-        if (stock && stock.circuitChangeDate && stock.circuitChangeDate.toLocaleDateString) {
-            dateStr = stock.circuitChangeDate.toLocaleDateString('en-In', {
-                day: '2-digit', month: 'short', year: 'numeric'
-            }).replace(/ /g, '-');
-        } else {
-            return;
-        }
-        const ticker = row.cells[3].innerText;
-        const isTodayCircuit = stock.circuitChangeDate && stock.circuitChangeDate.toDateString && stock.circuitChangeDate.toDateString() === todayDate.toDateString();
-        const isTodayListing = stock.listingDate && stock.listingDate.toDateString && stock.listingDate.toDateString() === todayDate.toDateString();
-        if (isTodayCircuit || isTodayListing) {
-            text += "*" + dateStr + ' ' + ticker + '*\n';
-        } else {
-            text += dateStr + ' ' + ticker + '\n';
-        }
-    });
+        text = title;
+        rows.forEach((row, i) => {
+            const ticker = row.cells[3].innerText;
+            const price = row.cells[8].innerText;
+            const type = row.cells[6].innerText == 'SME' ? 'SME' : 'MB';
+            text += (i + 1) + ". " + ticker + ' (' + type + ') ' + price + '\n';
+        });
+
+    } else {
+        if (showSME && !showMB) title += 'SME ';
+        else if (showMB && !showSME) title += 'MainBoard ';
+        title += 'Circuit Changes*\n\n';
+
+        text = title;
+        rows.forEach((row, i) => {
+            const stock = circuitChangeStocks.find(s => s.code === row.cells[3].innerText);
+            let dateStr;
+            if (stock && stock.circuitChangeDate && stock.circuitChangeDate.toLocaleDateString) {
+                dateStr = stock.circuitChangeDate.toLocaleDateString('en-In', {
+                    day: '2-digit', month: 'short', year: 'numeric'
+                }).replace(/ /g, '-');
+            } else {
+                return;
+            }
+            const ticker = row.cells[3].innerText;
+            const isTodayCircuit = stock.circuitChangeDate && stock.circuitChangeDate.toDateString && stock.circuitChangeDate.toDateString() === todayDate.toDateString();
+            const isTodayListing = stock.listingDate && stock.listingDate.toDateString && stock.listingDate.toDateString() === todayDate.toDateString();
+            if (isTodayCircuit || isTodayListing) {
+                text += "*" + dateStr + ' ' + ticker + '*\n';
+            } else {
+                text += dateStr + ' ' + ticker + '\n';
+            }
+        });
+    }
 
     if (navigator.share) {
         navigator.share({ text: text });
@@ -230,7 +250,11 @@ function ShareCircuitChanges() {
 }
 
 function simplifyName(name) {
-    return name.replace(/\s*(Private|Pvt\.?|India)?\s*(Limited|Ltd\.?|Limit).*$/i, '').replace(/\s+(Solutions|Technologies|Technology)$/i, '').trim();
+    return name
+        .replace(/\s*\(India\)/i, '')
+        .replace(/\s*(Private|Pvt\.?|India)?\s*(Limited|Ltd\.?|Limit).*$/i, '')
+        .replace(/\s+(Solutions|Technologies|Technology|Industries|Services)$/i, '')
+        .trim();
 }
 
 function OnCircuitFilterChanged() {
