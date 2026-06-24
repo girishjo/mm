@@ -32,7 +32,7 @@ function GetExchangeCodesFromTicker(ticker) {
             nseCode = ticker;
         }
         bseCode = GetBseCodeFromTicker(ticker);
-    }    
+    }
 
     return [nseCode, bseCode];
 }
@@ -46,8 +46,8 @@ function GetHistory(ticker, stockCodes) {
     else if (stockCodes) {
         const codes = stockCodes.split(',');
         if (codes.length == 2) {
-            nseCode = codes[0];
-            bseCode = codes[1];
+            nseCode = codes[0] ? codes[0] : undefined;
+            bseCode = codes[1] ? codes[1] : undefined;
         }
         else {
             nseCode = nseData[stockCodes] ? stockCodes : undefined;
@@ -59,7 +59,8 @@ function GetHistory(ticker, stockCodes) {
         return [];
     }
 
-    const histories = [...MergeStockData({ ...nseData[nseCode] }, { ...bseData[bseCode] }).History];
+    const hist = MergeStockData(nseCode && { ...nseData[nseCode] }, bseCode && { ...bseData[bseCode] })?.History;
+    const histories = hist ? [...hist] : [];
 
     //if (todayDateHour < new Date()) 
     {
