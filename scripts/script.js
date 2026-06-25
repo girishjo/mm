@@ -408,7 +408,7 @@ function updateDataTable(table, name, nseCode, bseCode, data = undefined, rowInd
     //     stockData.Change = 'N/A';
 
 
-    var newRow;
+    let newRow;
     if (stockData.Name) {
         newRow = addEmptyRow(table, rowIndex);
 

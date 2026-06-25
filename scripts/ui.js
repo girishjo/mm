@@ -210,9 +210,9 @@ function UpdateURL(tabId) {
     }
 }
 
-window.addEventListener('popstate', (event) => {
-    OpenSpecificTab();
-});
+// window.addEventListener('popstate', (event) => {
+//     OpenSpecificTab();
+// });
 
 // Initialize special trading day check when page loads
 document.addEventListener('DOMContentLoaded', function () {
