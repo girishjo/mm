@@ -83,7 +83,7 @@ async function MergeTodayListings() {
     const entry = newListingsData[isin];
     if (new Date(entry.listingDate).toDateString() == todayDate.toDateString()) {
       if (entry.nseCode) {
-        newListingsData[isin]["issuePrice"] = nseData[entry.nseCode].PrevClose;
+        newListingsData[isin]["issuePrice"] = nseData[entry.nseCode]?.PrevClose;
       }
       if (entry.bseCode && bseData[entry.bseCode]) {
         bseData[entry.bseCode].PrevClose = newListingsData[isin].issuePrice;
