@@ -31,11 +31,17 @@ function BuildCircuitChangeStocks() {
         // Skip stocks that are currently in NSE ESM; circuit will not change while ESM is active
         if (entry.inEsm) return;
 
-        // Only include T2T series stocks
+        // Include stocks that are still in T2T series, main-board stocks with a confirmed
+        // band-change entry, or today's listed MainBoard stocks so the Today filter can surface them.
         const series = entry.series || '';
-        if (!t2tSMESeries.includes(series) && !t2tMBSeries.includes(series)) return;
-
         const listingDate = new Date(entry.listingDate);
+        const bandChangeSeries = entry.bandChange?.series || '';
+        const isT2TSeries = t2tSMESeries.includes(series) || t2tMBSeries.includes(series);
+        const isT2TBandChangeSeries = t2tSMESeries.includes(bandChangeSeries) || t2tMBSeries.includes(bandChangeSeries);
+        const isMainBoardBandChangeCandidate = entry.type === 'MainBoard' && entry.bandChange && entry.bandChange.dateEffectiveFrom;
+        const isTodayListedMainBoard = entry.type === 'MainBoard' && listingDate.toDateString() === todayDate.toDateString();
+
+        if (!isT2TSeries && !isT2TBandChangeSeries && !isMainBoardBandChangeCandidate && !isTodayListedMainBoard) return;
         let circuitChangeDate = GetNthDay(listingDate, 11);
 
         // Skip stocks whose circuit change date is more than 10 working days in the past
@@ -57,6 +63,11 @@ function BuildCircuitChangeStocks() {
         }
 
         const isSME = entry.type === 'SME';
+        const fallbackIssuePrice = entry.issuePrice || (circuitChangeDate && (
+            entry.exchanges?.includes('NSE') && entry.nseCode ? nseData[entry.nseCode]?.History?.[nseData[entry.nseCode]?.History?.length - 1].PrevClose || nseData?.[entry.nseCode]?.PrevClose : undefined
+        ) || (
+                entry.exchanges?.includes('BSE') && entry.bseCode ? bseData[entry.bseCode]?.History?.[bseData[entry.bseCode]?.History?.length - 1].PrevClose || bseData?.[entry.bseCode]?.PrevClose : undefined
+            ));
 
         const tableEntry = {
             code: entry.ticker || entry.nseCode || entry.bseCode || '',
@@ -66,7 +77,7 @@ function BuildCircuitChangeStocks() {
             exchanges: entry.exchanges || '',
             listingDate: listingDate,
             circuitChangeDate: circuitChangeDate,
-            issuePrice: entry.issuePrice
+            issuePrice: fallbackIssuePrice
         }
 
         if (entry.bandChange) {

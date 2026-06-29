@@ -79,13 +79,19 @@ async function MergeTodayListings() {
     newListingsData = {};
   }
 
+  const previousWorkingDate = GetLastWorkingDay(todayDate);
+
   Object.keys(newListingsData).forEach(isin => {
     const entry = newListingsData[isin];
-    if (new Date(entry.listingDate).toDateString() == todayDate.toDateString()) {
-      if (entry.nseCode) {
-        newListingsData[isin]["issuePrice"] = nseData[entry.nseCode]?.PrevClose;
+    const listingDate = new Date(entry.listingDate);
+    const isRelevantListingDate = listingDate.toDateString() === todayDate.toDateString() ||
+      listingDate.toDateString() === previousWorkingDate.toDateString();
+
+    if (isRelevantListingDate) {
+      if (entry.nseCode && entry.exchanges?.includes('NSE') && !newListingsData[isin]["issuePrice"]) {
+        newListingsData[isin]["issuePrice"] = nseData[entry.nseCode]?.History[0].PrevClose || nseData[entry.nseCode]?.PrevClose;
       }
-      if (entry.bseCode && bseData[entry.bseCode]) {
+      if (entry.bseCode && bseData[entry.bseCode] && !bseData[entry.bseCode].PrevClose) {
         bseData[entry.bseCode].PrevClose = newListingsData[isin].issuePrice;
       }
     }
