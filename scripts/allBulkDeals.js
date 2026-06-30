@@ -76,6 +76,7 @@ function RestoreBulkDealsFilterSettings() {
     document.getElementById('chkBseDeals').checked = settings.bulkDealsPreferences?.bseDeals !== false;
     document.getElementById('chkMainBoardDeals').checked = settings.bulkDealsPreferences?.mainBoardDeals !== false;
     document.getElementById('chkSmeDeals').checked = settings.bulkDealsPreferences?.smeDeals !== false;
+    document.getElementById('chkShareBulkDealsWithImage').checked = settings.bulkDealsPreferences?.shareWithImage !== false;
 }
 
 function AutoSaveBulkDealsPreferences() {
@@ -89,9 +90,105 @@ function AutoSaveBulkDealsPreferences() {
     settings.bulkDealsPreferences.bseDeals = document.getElementById('chkBseDeals').checked;
     settings.bulkDealsPreferences.mainBoardDeals = document.getElementById('chkMainBoardDeals').checked;
     settings.bulkDealsPreferences.smeDeals = document.getElementById('chkSmeDeals').checked;
+    settings.bulkDealsPreferences.shareWithImage = document.getElementById('chkShareBulkDealsWithImage').checked;
 
     // Save to localStorage immediately
     window.localStorage.setItem("userSettings", JSON.stringify(settings));
+}
+
+async function ShareBulkDealsTable() {
+    const rows = stockBulkDealsTable.querySelectorAll('tbody tr:not(.hide)');
+    if (rows.length === 0) return;
+
+    const shareWithImage = document.getElementById('chkShareBulkDealsWithImage').checked;
+    const includeNSE = document.getElementById('chkNseDeals').checked;
+    const includeBSE = document.getElementById('chkBseDeals').checked;
+    const includeMainBoard = document.getElementById('chkMainBoardDeals').checked;
+    const includeSME = document.getElementById('chkSmeDeals').checked;
+
+    let exchangeLabel = '';
+    if (includeNSE && !includeBSE) {
+        exchangeLabel = 'NSE';
+    } else if (!includeNSE && includeBSE) {
+        exchangeLabel = 'BSE';
+    }
+
+    let typeLabel = '';
+    if (includeSME && !includeMainBoard) {
+        typeLabel = 'SMEs';
+    } else if (!includeSME && includeMainBoard) {
+        typeLabel = 'MainBoards';
+    }
+
+    const text = `${exchangeLabel ? exchangeLabel + ' ' : ''}Bulk Deals${typeLabel ? ' for ' + typeLabel : ','}`.trim();
+
+    if (!navigator.share) {
+        ShareOnWhatsApp(text);
+        return;
+    }
+
+    try {
+        if (shareWithImage) {
+            const html2canvas = await EnsureHtml2Canvas();
+            if (html2canvas) {
+                const shareWrapper = document.createElement('div');
+                shareWrapper.style.position = 'fixed';
+                shareWrapper.style.left = '-9999px';
+                shareWrapper.style.top = '0';
+                shareWrapper.style.width = stockBulkDealsTable.offsetWidth;
+                shareWrapper.style.padding = '24px';
+                shareWrapper.style.background = '#fff';
+                shareWrapper.style.fontFamily = 'Arial, sans-serif';
+                shareWrapper.style.color = '#111';
+                shareWrapper.innerHTML = `
+                    <div style="font-size: 18px; font-weight: bold; margin-bottom: 12px;">${text}</div>
+                    <div id="bulkDealsShareBody"></div>`;
+                document.body.appendChild(shareWrapper);
+
+                const tableClone = stockBulkDealsTable.cloneNode(true);
+                tableClone.querySelectorAll('tr.hide').forEach(row => row.remove());
+                tableClone.querySelectorAll('table a').forEach(link => {
+                    link.removeAttribute('href');
+                    link.removeAttribute('onclick');
+                });
+                tableClone.style.width = '100%';
+                tableClone.style.borderCollapse = 'collapse';
+                tableClone.style.fontSize = '16px';
+                shareWrapper.querySelector('#bulkDealsShareBody').appendChild(tableClone);
+
+                const canvas = await html2canvas(shareWrapper, {
+                    backgroundColor: '#ffffff',
+                    logging: false,
+                    scale: 4,
+                    width: shareWrapper.scrollWidth,
+                    height: shareWrapper.scrollHeight
+                });
+
+                const blob = await new Promise((resolve, reject) => {
+                    canvas.toBlob(blob => blob ? resolve(blob) : reject(new Error('Unable to create image')), 'image/png');
+                });
+
+                const file = new File([blob], 'bulk-deals.png', { type: 'image/png' });
+                if (navigator.canShare && navigator.canShare({ files: [file] })) {
+                    await navigator.share({ files: [file] });
+                    shareWrapper.remove();
+                    return;
+                }
+
+                shareWrapper.remove();
+            }
+        }
+
+        if (navigator.canShare && navigator.canShare({ text: text })) {
+            await navigator.share({ text: text });
+            return;
+        }
+
+        ShareOnWhatsApp(text);
+    } catch (error) {
+        console.warn('Unable to share bulk deals image:', error);
+        ShareOnWhatsApp(text);
+    }
 }
 
 function UpdateStockBulkDealTable() {

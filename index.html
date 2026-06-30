@@ -258,12 +258,28 @@
                 <span
                     style="border: 1px solid #ccc; border-radius: 4px; padding: 4px 8px; display: inline-flex; align-items: center; gap: 6px;">
                     <span style="font-weight: bold;">Type:</span>
-                    <input type="checkbox" id="chkMainBoardDeals" name="chkMainBoardDeals" checked
-                        onchange="UpdateStockBulkDealTable();">
-                    <label for="chkMainBoardDeals" id="lblMainBoardDeals">MainBoard</label>
                     <input type="checkbox" id="chkSmeDeals" name="chkSmeDeals" checked
                         onchange="UpdateStockBulkDealTable();">
                     <label for="chkSmeDeals" id="lblSmeDeals">SME</label>
+                    <input type="checkbox" id="chkMainBoardDeals" name="chkMainBoardDeals" checked
+                        onchange="UpdateStockBulkDealTable();">
+                    <label for="chkMainBoardDeals" id="lblMainBoardDeals">MainBoard</label>
+                </span>
+                <span style="display: inline-flex; align-items: center; gap: 6px; margin-left: auto;">
+                    <button onclick="ShareBulkDealsTable();"
+                        style="display: inline-flex; align-items: center; gap: 4px; vertical-align: middle;">Share
+                        <svg width="15" height="15" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"
+                            style="margin-bottom: 0px;">
+                            <circle cx="20" cy="50" r="10" stroke="black" stroke-width="20"></circle>
+                            <circle cx="80" cy="80" r="10" stroke="black" stroke-width="20"></circle>
+                            <circle cx="80" cy="20" r="10" stroke="black" stroke-width="20"></circle>
+                            <line x1="15" y1="50" x2="85" y2="85" stroke="black" stroke-width="10"></line>
+                            <line x1="15" y1="50" x2="85" y2="15" stroke="black" stroke-width="10"></line>
+                        </svg>
+                    </button>
+                    <input type="checkbox" id="chkShareBulkDealsWithImage" name="chkShareBulkDealsWithImage" checked
+                        style="margin-right: 0;">
+                    <label for="chkShareBulkDealsWithImage" style="margin-right: 15px;">Image</label>
                 </span>
             </div>
 
@@ -376,7 +392,7 @@
                             onchange="OnCircuitOldChanged();">
                         <label for="chkCircuitOld">Include past</label>
                         <button onclick="ShareCircuitChanges();"
-                            style="display: inline-flex; align-items: center; gap: 4px; vertical-align: middle; margin-right: 15px;">Share
+                            style="display: inline-flex; align-items: center; gap: 4px; vertical-align: middle;">Share
                             <svg width="15" height="15" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"
                                 style="margin-bottom: 0px;">
                                 <circle cx="20" cy="50" r="10" stroke="black" stroke-width="20"></circle>
@@ -386,6 +402,9 @@
                                 <line x1="15" y1="50" x2="85" y2="15" stroke="black" stroke-width="10"></line>
                             </svg>
                         </button>
+                        <input type="checkbox" id="chkShareWithImage" name="chkShareWithImage" checked
+                            style="margin-right: 0;">
+                        <label for="chkShareWithImage" style="margin-right: 15px;">Image</label>
                     </span>
                 </div>
                 <table id="circuitChangeTable">
@@ -520,7 +539,7 @@
                 </tbody>
             </table>
         </div>
-        
+
         <!-- The Modal -->
         <div id="myModal" class="modal">
 
