@@ -89,7 +89,7 @@ async function MergeTodayListings() {
 
     if (isRelevantListingDate) {
       if (entry.nseCode && entry.exchanges?.includes('NSE') && !newListingsData[isin]["issuePrice"]) {
-        newListingsData[isin]["issuePrice"] = nseData[entry.nseCode]?.History[0].PrevClose || nseData[entry.nseCode]?.PrevClose;
+        newListingsData[isin]["issuePrice"] = (nseData[entry.nseCode]?.History && nseData[entry.nseCode]?.History[0].PrevClose) || nseData[entry.nseCode]?.PrevClose;
       }
       if (entry.bseCode && bseData[entry.bseCode] && !bseData[entry.bseCode].PrevClose) {
         bseData[entry.bseCode].PrevClose = newListingsData[isin].issuePrice;

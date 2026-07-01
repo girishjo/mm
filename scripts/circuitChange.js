@@ -64,9 +64,9 @@ function BuildCircuitChangeStocks() {
 
         const isSME = entry.type === 'SME';
         const fallbackIssuePrice = entry.issuePrice || (circuitChangeDate && (
-            entry.exchanges?.includes('NSE') && entry.nseCode ? nseData[entry.nseCode]?.History?.[nseData[entry.nseCode]?.History?.length - 1].PrevClose || nseData?.[entry.nseCode]?.PrevClose : undefined
+            entry.exchanges?.includes('NSE') && entry.nseCode ? nseData[entry.nseCode]?.History?.[nseData[entry.nseCode]?.History?.length - 1].PrevClose : undefined
         ) || (
-                entry.exchanges?.includes('BSE') && entry.bseCode ? bseData[entry.bseCode]?.History?.[bseData[entry.bseCode]?.History?.length - 1].PrevClose || bseData?.[entry.bseCode]?.PrevClose : undefined
+                entry.exchanges?.includes('BSE') && entry.bseCode ? bseData[entry.bseCode]?.History?.[bseData[entry.bseCode]?.History?.length - 1].PrevClose : undefined
             ));
 
         const tableEntry = {
@@ -77,7 +77,8 @@ function BuildCircuitChangeStocks() {
             exchanges: entry.exchanges || '',
             listingDate: listingDate,
             circuitChangeDate: circuitChangeDate,
-            issuePrice: fallbackIssuePrice
+            issuePrice: fallbackIssuePrice,
+            todayListedMBNotInT2T: isTodayListedMainBoard && !isT2TSeries
         }
 
         if (entry.bandChange) {
@@ -118,9 +119,17 @@ function UpdateCircuitChangeTable() {
             if (!showSME && stock.type === 'SME') return false;
             if (!showMB && stock.type === 'MainBoard') return false;
         }
+        if (!showToday && stock.todayListedMBNotInT2T) return false;
         if (showToday && stock.listingDate.toDateString() !== todayDate.toDateString()) return false;
         if (!showOld && stock.circuitChangeDate && stock.circuitChangeDate < todayDate) return false;
         return true;
+    });
+
+    filtered.sort((a, b) => {
+        const ta = a.circuitChangeDate ? a.circuitChangeDate.getTime() : Infinity;
+        const tb = b.circuitChangeDate ? b.circuitChangeDate.getTime() : Infinity;
+        if (ta !== tb) return ta - tb;
+        return b.type.localeCompare(a.type) || a.code.localeCompare(b.code)
     });
 
     for (let i = 0; i < filtered.length; i++) {
