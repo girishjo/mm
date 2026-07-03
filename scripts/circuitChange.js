@@ -263,7 +263,7 @@ async function ShareCircuitChanges() {
 
     try {
         if (shareWithImage) {
-            await ShareTableAsImage("circuitChangeTable", title.replace(/[\n,*]/g, '') + '_' + FormatDate(todayDate), text);
+            await ShareTableAsImage("circuitChangeTable", title.replace(/[\n,*]/g, '') + ', ' + FormatDate(todayDate), text);
             return;
         }
 

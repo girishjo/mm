@@ -500,17 +500,14 @@ let isSharing = false;
  * Captures a DOM element and opens the native system share dialog.
  * @param {string} elementId - The ID of the DOM element to share.
  */
-async function ShareTableAsImage(tableId, filename = "Shared from mm.girishjoshi.com", text = "Shared from mm.girishjoshi.com", rowsPerImage = 50) {
-    // 1. If currently sharing, exit immediately
+async function ShareTableAsImage(tableId, heading = "Shared from mm.girishjoshi.com", text = "Shared from mm.girishjoshi.com", shouldGroup = false, rowsPerImage = 50) {
     if (isSharing) {
         console.warn("Share already in progress, please wait.");
         return null;
     }
 
     try {
-        // 2. Set the flag to true
         isSharing = true;
-
         if (!navigator.share) {
             ShowMessage("Unable to share, check browser's settings");
             return false;
@@ -522,117 +519,137 @@ async function ShareTableAsImage(tableId, filename = "Shared from mm.girishjoshi
             return null;
         }
 
-        const tableClone = originalTable.cloneNode(true);
-        tableClone.querySelectorAll('tr.hide').forEach(row => row.remove());
-        tableClone.querySelectorAll('table a').forEach(link => {
-            link.removeAttribute('href');
-            link.removeAttribute('onclick');
-        });
+        // 1. Group by Stock Name and prepare rows
+        const rows = Array.from(originalTable.querySelectorAll('tbody tr:not(.hide)'));
 
-        // 1. Analyze the table structure
-        const tbody = tableClone.querySelector('tbody');
-        if (!tbody) return null;
-        const allRows = Array.from(tbody.querySelectorAll('tr'));
+        let rowGroups = []; // We will store arrays of rows here
 
-        console.log(`Table has ${allRows.length} rows. Splitting into multiple captures...`);
+        if (shouldGroup) {
+            const grouped = rows.reduce((acc, row) => {
+                const cells = Array.from(row.querySelectorAll('td'));
+                const stock = cells[2]?.innerText.trim() || 'Unknown';
+                if (!acc[stock]) acc[stock] = [];
 
-        // 2. Partition the rows into groups
-        const rowGroups = [];
-        for (let i = 0; i < allRows.length; i += rowsPerImage) {
-            rowGroups.push(allRows.slice(i, i + rowsPerImage));
-        }
+                const detailRow = document.createElement('tr');
+                detailRow.innerHTML = `${cells.slice(3).map(c => c.outerHTML).join('')}`;
+                acc[stock].push(detailRow);
+                return acc;
+            }, {});
 
-        // 3. Generate images for each partition
-        const filesToShare = [];
-        const tableStyle = getComputedStyle(tableClone);
+            let currentPage = [];
+            let currentCount = 0;
 
-        for (let index = 0; index < rowGroups.length; index++) {
-            // A. Create a container to hold our temporary cloned table
-            const container = document.createElement('div');
-            // Match container styles to original table for correct rendering
-            container.style.position = 'absolute';
-            container.style.left = '-9999px'; // Hide off-screen
-            container.style.width = tableStyle.width;
-            container.style.background = tableStyle.background;
+            Object.keys(grouped).forEach(stock => {
+                // 1. Prepare Header
+                const header = document.createElement('tr');
+                header.innerHTML = `<td colspan="100%" style="background:#bbb; font-weight:bold; padding:8px; border-bottom:1px solid #777;">${stock}</td>`;
 
-            // B. Create a clone of the original table structure
-            const clonedTable = tableClone.cloneNode(true);
-            clonedTable.style.margin = '0'; // Remove external margins that aren't needed
-            const clonedTbody = clonedTable.querySelector('tbody');
-            const clonedRows = Array.from(clonedTbody.querySelectorAll('tr'));
-
-            // C. Hide rows that do NOT belong in this current chunk
-            // This leaves only the relevant rows visible for this capture pass
-            clonedRows.forEach((row, i) => {
-                const isRowInCurrentChunk = rowGroups[index].includes(allRows[i]);
-                if (!isRowInCurrentChunk) {
-                    row.style.display = 'none';
-                }
-            });
-
-            container.appendChild(clonedTable);
-            document.body.appendChild(container);
-
-            // D. Render THIS PARTITION to canvas
-            try {
-                const html2canvas = await EnsureHtml2Canvas();
-                const canvas = await html2canvas(container, {
-                    scale: 2,
-                    useCORS: true,
-                    allowTaint: true,
-                    // Critical: Capture the full scroll area of the partition container
-                    width: container.scrollWidth,
-                    height: container.scrollHeight
+                // 2. Prepare Data Rows
+                const detailRows = grouped[stock].map((detailRow, idx) => {
+                    detailRow.innerHTML = `<td>${idx + 1}</td>${detailRow.innerHTML}`;
+                    detailRow.querySelectorAll('a').forEach(link => {
+                        link.removeAttribute('href');
+                        link.removeAttribute('onclick');
+                    });
+                    return detailRow;
                 });
 
-                // E. Convert canvas to Blob and File
-                const blob = await new Promise((resolve) => canvas.toBlob(resolve, 'image/png', 0.95));
+                const fullGroup = [header, ...detailRows];
 
-                const file = new File(
-                    [blob],
-                    rowGroups.length == 1 ? `${filename}.png` : `${filename}_${index + 1}.png`, // This forces sorting (1, 2, 3...)
-                    { type: 'image/png' }
-                );
-                filesToShare.push(file);
+                // 3. Check if we need a new page
+                // If current group + header > limit, and we already have content, start new page
+                if (currentCount + fullGroup.length > rowsPerImage && currentPage.length > 0) {
+                    rowGroups.push(currentPage);
+                    currentPage = [];
+                    currentCount = 0;
+                }
 
-            } catch (error) {
-                console.error(`Error capturing part ${index + 1}:`, error);
+                currentPage.push(...fullGroup);
+                currentCount += fullGroup.length;
+            });
+
+            if (currentPage.length > 0) rowGroups.push(currentPage);
+        } else {
+            const tableClone = originalTable.cloneNode(true);
+            tableClone.querySelectorAll('tr.hide').forEach(row => row.remove());
+            tableClone.querySelectorAll('table a').forEach(link => {
+                link.removeAttribute('href');
+                link.removeAttribute('onclick');
+                link.classList.remove('sort-by');
+            });
+
+            // 1. Analyze the table structure
+            let processedRows = Array.from(tableClone.querySelectorAll('tr'));
+
+            // Standard slicing for non-grouped
+            for (let i = 0; i < processedRows.length; i += rowsPerImage) {
+                rowGroups.push(processedRows.slice(i, i + rowsPerImage));
+            }
+        }
+
+        const filesToShare = [];
+        const headingParts = heading.split(',');
+        const leftText = headingParts[0]?.trim() || "";
+        const rightDate = headingParts[1]?.trim() || "";
+
+        // 3. Generate images
+        for (let index = 0; index < rowGroups.length; index++) {
+            // A. Container: Add margin and ensure padding is uniform
+            const container = document.createElement('div');
+            // Increased padding and added margin to provide space from the edge of the image
+            container.style.cssText = "position:absolute; left:-9999px; background:#fff; width: max-content; padding: 20px; margin: 20px;";
+            container.style.border = "1px solid grey"
+
+            // Custom Header
+            const titleHeader = document.createElement('div');
+            titleHeader.style.cssText = "display:flex; justify-content:space-between; font-size:24px; font-weight:bold; padding-top:20px; border-bottom:2px solid #000;";
+            titleHeader.innerHTML = `<div style="font-size:24px">${rowGroups.length === 1 ? leftText : leftText + " (Part " + (index + 1) + ")"}</div><div style="color:#555; font-size:24px">${rightDate}</div>`;
+            container.appendChild(titleHeader);
+
+            const table = document.createElement('table');
+            table.style.width = "100%";
+            table.style.borderCollapse = "collapse";
+            table.style.minWidth = "unset";
+            table.style.marginBottom = "unset";
+
+            rowGroups[index].forEach(r => table.appendChild(r));
+            container.appendChild(table);
+            document.body.appendChild(container);
+
+            try {
+                const blob = await CreateImageBlob(container);
+                const cleanName = heading.replace(/[\n,*]/g, '');
+                filesToShare.push(new File([blob], rowGroups.length === 1 ? `${cleanName}.png` : `${cleanName}_${index + 1}.png`, { type: 'image/png' }));
             } finally {
-                // Clean up: Remove the temporary container from the DOM
                 document.body.removeChild(container);
             }
         }
 
-        // 4. Trigger the native share sheet with both images
+        // 4. Share
         if (navigator.canShare && navigator.canShare({ files: filesToShare })) {
-            try {
-                await navigator.clipboard.writeText(text);
-                await navigator.share({
-                    files: filesToShare,
-                    title: filename,
-                    text: text
-                });
-                return true;
-            } catch (error) {
-                console.error('Sharing failed:', error);
-            }
-        } else {
-            console.error("Web Share API not supported for multiple files.");
-            // Fallback: You would need to download them instead
-            filesToShare.forEach(file => {
-                const link = document.createElement('a');
-                link.href = URL.createObjectURL(file);
-                link.download = file.name;
-                link.click();
-            });
+            await navigator.clipboard.writeText(text);
+            await navigator.share({ files: filesToShare, title: heading, text: text });
+            return true;
         }
     } catch (error) {
         console.error("Sharing failed:", error);
     } finally {
-        // 3. Reset the flag to false, even if sharing failed or was cancelled
         isSharing = false;
     }
     return false;
+}
+
+async function CreateImageBlob(container) {
+    const html2canvas = await EnsureHtml2Canvas();
+    const canvas = await html2canvas(container, {
+        scale: 2,
+        useCORS: true,
+        // Remove the 'width: 800' from here too
+        windowWidth: container.scrollWidth,
+        windowHeight: container.scrollHeight
+    });
+    const blob = await new Promise((res) => canvas.toBlob(res, 'image/png', 0.95));
+    return blob;
 }
 
 async function ShareText(text) {
@@ -662,29 +679,34 @@ async function ShareText(text) {
     }
 }
 
-function GetGroupedTableText(tableId) {
+/**
+ * @param {string} tableId - The ID of the table.
+ * @param {boolean} isGrouped - Whether to return grouped data (by date/stock) or flat list.
+ */
+function GetFormattedTableText(tableId, isGrouped = true) {
     const table = document.getElementById(tableId);
     const rows = Array.from(table.querySelectorAll('tbody tr:not(.hide)'));
 
     const data = rows.map(row => {
         const cells = row.querySelectorAll('td');
-        // Extract the deal type (assuming it's in one of the cells)
-        // Adjust the index [4] if "Buy/Sell" is in a different column
         const type = cells[4]?.innerText.trim() || "";
         const date = cells[1]?.innerText.trim() || 'Unknown Date';
         const stock = cells[2]?.innerText.trim() || 'Unknown Stock';
 
-        // Add Green/Red emoji indicator
-        let indicator = "\u26AA"; // White Circle ⚪
-        if (type.toLowerCase().includes("buy")) indicator = "\uD83D\uDFE2"; // Large Green Circle 🟢
-        if (type.toLowerCase().includes("sell")) indicator = "\uD83D\uDD34"; // Red Circle 🔴
+        let indicator = "\u26AA";
+        if (type.toLowerCase().includes("buy")) indicator = "\uD83D\uDFE2";
+        if (type.toLowerCase().includes("sell")) indicator = "\uD83D\uDD34";
 
         const details = Array.from(cells).slice(3).map(c => c.innerText.trim()).join(' | ');
-
         return { date, stock, details: `${indicator} ${details}` };
     });
 
-    // ... (Grouping logic remains the same) ...
+    // Option 1: Return as Flat List
+    if (!isGrouped) {
+        return data.map((item, index) => `${index + 1}. ${item.date} | *${item.stock}* | ${item.details}`).join('\n');
+    }
+
+    // Option 2: Return as Grouped Report
     const grouped = data.reduce((acc, item) => {
         if (!acc[item.date]) acc[item.date] = {};
         if (!acc[item.date][item.stock]) acc[item.date][item.stock] = [];
@@ -692,7 +714,6 @@ function GetGroupedTableText(tableId) {
         return acc;
     }, {});
 
-    // ... (Formatting logic remains the same) ...
     let report = "";
     const dates = Object.keys(grouped);
     dates.forEach((date, dateIndex) => {

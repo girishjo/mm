@@ -76,7 +76,9 @@ function RestoreBulkDealsFilterSettings() {
     document.getElementById('chkBseDeals').checked = settings.bulkDealsPreferences?.bseDeals !== false;
     document.getElementById('chkMainBoardDeals').checked = settings.bulkDealsPreferences?.mainBoardDeals !== false;
     document.getElementById('chkSmeDeals').checked = settings.bulkDealsPreferences?.smeDeals !== false;
-    document.getElementById('chkShareBulkDealsWithImage').checked = settings.bulkDealsPreferences?.shareWithImage !== false;
+    document.getElementById('chkShareText').checked = settings.bulkDealsPreferences?.shareWithText !== false;
+    document.getElementById('chkShareImage').checked = settings.bulkDealsPreferences?.shareWithImage !== false;
+    document.getElementById('chkShareGrouped').checked = settings.bulkDealsPreferences?.shareGrouped !== false;
 }
 
 function AutoSaveBulkDealsPreferences() {
@@ -90,13 +92,17 @@ function AutoSaveBulkDealsPreferences() {
     settings.bulkDealsPreferences.bseDeals = document.getElementById('chkBseDeals').checked;
     settings.bulkDealsPreferences.mainBoardDeals = document.getElementById('chkMainBoardDeals').checked;
     settings.bulkDealsPreferences.smeDeals = document.getElementById('chkSmeDeals').checked;
-    settings.bulkDealsPreferences.shareWithImage = document.getElementById('chkShareBulkDealsWithImage').checked;
+    settings.bulkDealsPreferences.shareWithText = document.getElementById('chkShareText').checked;
+    settings.bulkDealsPreferences.shareWithImage = document.getElementById('chkShareImage').checked;
+    settings.bulkDealsPreferences.shareGrouped = document.getElementById('chkShareGrouped').checked;
 
     // Save to localStorage immediately
     window.localStorage.setItem("userSettings", JSON.stringify(settings));
 }
 
 async function ShareBulkDealsTable() {
+    AutoSaveBulkDealsPreferences();
+
     const tableClone = stockBulkDealsTable.cloneNode(true);
     tableClone.querySelectorAll('tr.hide').forEach(row => row.remove());
     tableClone.querySelectorAll('table a').forEach(link => {
@@ -106,7 +112,15 @@ async function ShareBulkDealsTable() {
     const rows = tableClone.querySelectorAll('tbody tr:not(.hide)');
     if (rows.length === 0) return;
 
-    const shareWithImage = document.getElementById('chkShareBulkDealsWithImage').checked;
+    const shareWithText = document.getElementById('chkShareText').checked;
+    const shareWithImage = document.getElementById('chkShareImage').checked;
+    const shareGrouped = document.getElementById('chkShareGrouped').checked;
+
+    if (!shareWithText && !shareWithImage) {
+        alert("Please select at least one format (Text or Image).");
+        return false;
+    }
+
     const includeNSE = document.getElementById('chkNseDeals').checked;
     const includeBSE = document.getElementById('chkBseDeals').checked;
     const includeMainBoard = document.getElementById('chkMainBoardDeals').checked;
@@ -128,9 +142,9 @@ async function ShareBulkDealsTable() {
 
     try {
         if (shareWithImage) {
-            let heading = `${exchangeLabel ? exchangeLabel + ' ' : ''}Bulk Deals${typeLabel ? ' for ' + typeLabel : ''}_${FormatDate(todayDate)}`.trim();
-            let content = `Source: ${window.location.href}`;
-            const result = await ShareTableAsImage("stockBulkDeals", heading, heading + '\n\n' + content);
+            let heading = `${exchangeLabel ? exchangeLabel + ' ' : ''}Bulk Deals${typeLabel ? ' for ' + typeLabel : ''}, ${FormatDate(todayDate)}`.trim();
+            let content = `Source:\n${window.location.href.split('#')[0]}`;
+            const result = await ShareTableAsImage("stockBulkDeals", heading, shareWithText ? content : '', shareGrouped);
             if (result == null || result) return;
         }
     } catch (error) {
@@ -138,8 +152,8 @@ async function ShareBulkDealsTable() {
     }
 
     let heading = `${exchangeLabel ? exchangeLabel + ' ' : ''}Bulk Deals${typeLabel ? ' for ' + typeLabel : ''}`.trim();
-    let content = GetGroupedTableText("stockBulkDeals");
-    content += `\n\nSource:\n${window.location.href}`;
+    let content = GetFormattedTableText("stockBulkDeals", shareGrouped);
+    content += `\n\nSource:\n${window.location.href.split('#')[0]}`;
 
     await ShareText(heading + '\n\n' + content);
 }

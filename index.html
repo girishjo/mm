@@ -266,7 +266,7 @@
                         onchange="UpdateStockBulkDealTable();">
                     <label for="chkMainBoardDeals" id="lblMainBoardDeals">MainBoard</label>
                 </span>
-                <span style="display: inline-flex; align-items: center; gap: 6px; margin-left: auto;">
+                <!-- <span style="display: inline-flex; align-items: center; gap: 6px; margin-left: auto;">
                     <button onclick="ShareBulkDealsTable();"
                         style="display: inline-flex; align-items: center; gap: 4px; vertical-align: middle;">Share
                         <svg width="15" height="15" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"
@@ -281,6 +281,14 @@
                     <input type="checkbox" id="chkShareBulkDealsWithImage" name="chkShareBulkDealsWithImage" checked
                         style="margin-right: 0;">
                     <label for="chkShareBulkDealsWithImage" style="margin-right: 15px;">Image</label>
+                </span> -->
+                <!-- Share Options (Non-Exclusive) -->
+                <span style="margin-left: auto; border: 1px solid #333; padding: 4px 8px; border-radius: 4px;">
+                    <span style="font-weight: bold;">Share:</span>
+                    <input type="checkbox" id="chkShareText" checked> Text
+                    <input type="checkbox" id="chkShareImage" checked> Image
+                    <input type="checkbox" id="chkShareGrouped" checked> Grouped
+                    <button onclick="ShareBulkDealsTable()" style="margin-left: 5px;">Share Data</button>
                 </span>
             </div>
 
