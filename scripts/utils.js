@@ -491,3 +491,236 @@ function callAtInterval(callback, intervalMs, key) {
     if (_scheduledIntervals[key]) clearInterval(_scheduledIntervals[key]);
     _scheduledIntervals[key] = setInterval(callback, intervalMs);
 }
+
+
+// Define a flag outside the function scope (e.g., in your module or global scope)
+let isSharing = false;
+
+/**
+ * Captures a DOM element and opens the native system share dialog.
+ * @param {string} elementId - The ID of the DOM element to share.
+ */
+async function ShareTableAsImage(tableId, filename = "Shared from mm.girishjoshi.com", text = "Shared from mm.girishjoshi.com", rowsPerImage = 50) {
+    // 1. If currently sharing, exit immediately
+    if (isSharing) {
+        console.warn("Share already in progress, please wait.");
+        return null;
+    }
+
+    try {
+        // 2. Set the flag to true
+        isSharing = true;
+
+        if (!navigator.share) {
+            ShowMessage("Unable to share, check browser's settings");
+            return false;
+        }
+
+        const originalTable = document.getElementById(tableId);
+        if (!originalTable || originalTable.tagName.toLowerCase() !== 'table') {
+            console.error("Valid table element not found.");
+            return null;
+        }
+
+        const tableClone = originalTable.cloneNode(true);
+        tableClone.querySelectorAll('tr.hide').forEach(row => row.remove());
+        tableClone.querySelectorAll('table a').forEach(link => {
+            link.removeAttribute('href');
+            link.removeAttribute('onclick');
+        });
+
+        // 1. Analyze the table structure
+        const tbody = tableClone.querySelector('tbody');
+        if (!tbody) return null;
+        const allRows = Array.from(tbody.querySelectorAll('tr'));
+
+        console.log(`Table has ${allRows.length} rows. Splitting into multiple captures...`);
+
+        // 2. Partition the rows into groups
+        const rowGroups = [];
+        for (let i = 0; i < allRows.length; i += rowsPerImage) {
+            rowGroups.push(allRows.slice(i, i + rowsPerImage));
+        }
+
+        // 3. Generate images for each partition
+        const filesToShare = [];
+        const tableStyle = getComputedStyle(tableClone);
+
+        for (let index = 0; index < rowGroups.length; index++) {
+            // A. Create a container to hold our temporary cloned table
+            const container = document.createElement('div');
+            // Match container styles to original table for correct rendering
+            container.style.position = 'absolute';
+            container.style.left = '-9999px'; // Hide off-screen
+            container.style.width = tableStyle.width;
+            container.style.background = tableStyle.background;
+
+            // B. Create a clone of the original table structure
+            const clonedTable = tableClone.cloneNode(true);
+            clonedTable.style.margin = '0'; // Remove external margins that aren't needed
+            const clonedTbody = clonedTable.querySelector('tbody');
+            const clonedRows = Array.from(clonedTbody.querySelectorAll('tr'));
+
+            // C. Hide rows that do NOT belong in this current chunk
+            // This leaves only the relevant rows visible for this capture pass
+            clonedRows.forEach((row, i) => {
+                const isRowInCurrentChunk = rowGroups[index].includes(allRows[i]);
+                if (!isRowInCurrentChunk) {
+                    row.style.display = 'none';
+                }
+            });
+
+            container.appendChild(clonedTable);
+            document.body.appendChild(container);
+
+            // D. Render THIS PARTITION to canvas
+            try {
+                const html2canvas = await EnsureHtml2Canvas();
+                const canvas = await html2canvas(container, {
+                    scale: 2,
+                    useCORS: true,
+                    allowTaint: true,
+                    // Critical: Capture the full scroll area of the partition container
+                    width: container.scrollWidth,
+                    height: container.scrollHeight
+                });
+
+                // E. Convert canvas to Blob and File
+                const blob = await new Promise((resolve) => canvas.toBlob(resolve, 'image/png', 0.95));
+
+                const file = new File(
+                    [blob],
+                    rowGroups.length == 1 ? `${filename}.png` : `${filename}_${index + 1}.png`, // This forces sorting (1, 2, 3...)
+                    { type: 'image/png' }
+                );
+                filesToShare.push(file);
+
+            } catch (error) {
+                console.error(`Error capturing part ${index + 1}:`, error);
+            } finally {
+                // Clean up: Remove the temporary container from the DOM
+                document.body.removeChild(container);
+            }
+        }
+
+        // 4. Trigger the native share sheet with both images
+        if (navigator.canShare && navigator.canShare({ files: filesToShare })) {
+            try {
+                await navigator.clipboard.writeText(text);
+                await navigator.share({
+                    files: filesToShare,
+                    title: filename,
+                    text: text
+                });
+                return true;
+            } catch (error) {
+                console.error('Sharing failed:', error);
+            }
+        } else {
+            console.error("Web Share API not supported for multiple files.");
+            // Fallback: You would need to download them instead
+            filesToShare.forEach(file => {
+                const link = document.createElement('a');
+                link.href = URL.createObjectURL(file);
+                link.download = file.name;
+                link.click();
+            });
+        }
+
+    } catch (error) {
+        console.error("Sharing failed:", error);
+    } finally {
+        // 3. Reset the flag to false, even if sharing failed or was cancelled
+        isSharing = false;
+    }
+    return false;
+}
+
+async function ShareText(text) {
+    try {
+        await navigator.share({ text: text });
+        return;
+    }
+    catch (error) {
+        console.error(error);
+    }
+
+    const url = 'https://wa.me/?text=' + encodeURIComponent(text);
+    window.open(url, '_blank');
+}
+
+function GetGroupedTableText(tableId) {
+    const table = document.getElementById(tableId);
+    const rows = Array.from(table.querySelectorAll('tbody tr:not(.hide)'));
+
+    const data = rows.map(row => {
+        const cells = row.querySelectorAll('td');
+        // Extract the deal type (assuming it's in one of the cells)
+        // Adjust the index [4] if "Buy/Sell" is in a different column
+        const type = cells[4]?.innerText.trim() || "";
+        const date = cells[1]?.innerText.trim() || 'Unknown Date';
+        const stock = cells[2]?.innerText.trim() || 'Unknown Stock';
+
+        // Add Green/Red emoji indicator
+        let indicator = "\u26AA"; // White Circle ⚪
+        if (type.toLowerCase().includes("buy")) indicator = "\uD83D\uDFE2"; // Large Green Circle 🟢
+        if (type.toLowerCase().includes("sell")) indicator = "\uD83D\uDD34"; // Red Circle 🔴
+
+        const details = Array.from(cells).slice(3).map(c => c.innerText.trim()).join(' | ');
+
+        return { date, stock, details: `${indicator} ${details}` };
+    });
+
+    // ... (Grouping logic remains the same) ...
+    const grouped = data.reduce((acc, item) => {
+        if (!acc[item.date]) acc[item.date] = {};
+        if (!acc[item.date][item.stock]) acc[item.date][item.stock] = [];
+        acc[item.date][item.stock].push(item.details);
+        return acc;
+    }, {});
+
+    // ... (Formatting logic remains the same) ...
+    let report = "";
+    const dates = Object.keys(grouped);
+    dates.forEach((date, dateIndex) => {
+        report += `Date: ${date}\n\n`;
+        const stocks = Object.keys(grouped[date]);
+        stocks.forEach((stock, stockIndex) => {
+            const stockLabel = String.fromCharCode(65 + stockIndex);
+            report += `${stockLabel}. *${stock}*\n`;
+            grouped[date][stock].forEach((detail, dealIndex) => {
+                report += `  ${dealIndex + 1}. ${detail}\n`;
+            });
+            if (stockIndex < stocks.length - 1) report += "\n";
+        });
+        if (dateIndex < dates.length - 1) report += "\n\n";
+    });
+    return report.trim();
+}
+
+async function EnsureHtml2Canvas() {
+    if (window.html2canvas && typeof window.html2canvas === 'function') {
+        return window.html2canvas;
+    }
+
+    await new Promise((resolve, reject) => {
+        const script = document.createElement('script');
+        script.src = 'https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js';
+        script.async = true;
+        script.onload = resolve;
+        script.onerror = () => reject(new Error('Unable to load html2canvas'));
+        document.head.appendChild(script);
+    });
+
+    return window.html2canvas && typeof window.html2canvas === 'function' ? window.html2canvas : null;
+}
+
+function FormatDate(date = new Date()) {
+    return formattedDate.format(new Date(date)).replace(/ /g, '-'); // Removes spaces to match ddMMMyyyy    
+}
+
+const formattedDate = new Intl.DateTimeFormat('en-IN', {
+    day: '2-digit',
+    month: 'short',
+    year: 'numeric'
+})

@@ -97,7 +97,13 @@ function AutoSaveBulkDealsPreferences() {
 }
 
 async function ShareBulkDealsTable() {
-    const rows = stockBulkDealsTable.querySelectorAll('tbody tr:not(.hide)');
+    const tableClone = stockBulkDealsTable.cloneNode(true);
+    tableClone.querySelectorAll('tr.hide').forEach(row => row.remove());
+    tableClone.querySelectorAll('table a').forEach(link => {
+        link.removeAttribute('href');
+        link.removeAttribute('onclick');
+    });
+    const rows = tableClone.querySelectorAll('tbody tr:not(.hide)');
     if (rows.length === 0) return;
 
     const shareWithImage = document.getElementById('chkShareBulkDealsWithImage').checked;
@@ -120,75 +126,22 @@ async function ShareBulkDealsTable() {
         typeLabel = 'MainBoards';
     }
 
-    const text = `${exchangeLabel ? exchangeLabel + ' ' : ''}Bulk Deals${typeLabel ? ' for ' + typeLabel : ','}`.trim();
-
-    if (!navigator.share) {
-        ShareOnWhatsApp(text);
-        return;
-    }
-
     try {
         if (shareWithImage) {
-            const html2canvas = await EnsureHtml2Canvas();
-            if (html2canvas) {
-                const shareWrapper = document.createElement('div');
-                shareWrapper.style.position = 'fixed';
-                shareWrapper.style.left = '-9999px';
-                shareWrapper.style.top = '0';
-                shareWrapper.style.width = stockBulkDealsTable.offsetWidth;
-                shareWrapper.style.padding = '24px';
-                shareWrapper.style.background = '#fff';
-                shareWrapper.style.fontFamily = 'Arial, sans-serif';
-                shareWrapper.style.color = '#111';
-                shareWrapper.innerHTML = `
-                    <div style="font-size: 18px; font-weight: bold; margin-bottom: 12px;">${text}</div>
-                    <div id="bulkDealsShareBody"></div>`;
-                document.body.appendChild(shareWrapper);
-
-                const tableClone = stockBulkDealsTable.cloneNode(true);
-                tableClone.querySelectorAll('tr.hide').forEach(row => row.remove());
-                tableClone.querySelectorAll('table a').forEach(link => {
-                    link.removeAttribute('href');
-                    link.removeAttribute('onclick');
-                });
-                tableClone.style.width = '100%';
-                tableClone.style.borderCollapse = 'collapse';
-                tableClone.style.fontSize = '16px';
-                shareWrapper.querySelector('#bulkDealsShareBody').appendChild(tableClone);
-
-                const canvas = await html2canvas(shareWrapper, {
-                    backgroundColor: '#ffffff',
-                    logging: false,
-                    scale: 4,
-                    width: shareWrapper.scrollWidth,
-                    height: shareWrapper.scrollHeight
-                });
-
-                const blob = await new Promise((resolve, reject) => {
-                    canvas.toBlob(blob => blob ? resolve(blob) : reject(new Error('Unable to create image')), 'image/png');
-                });
-
-                const file = new File([blob], 'bulk-deals.png', { type: 'image/png' });
-                if (navigator.canShare && navigator.canShare({ files: [file] })) {
-                    await navigator.share({ files: [file] });
-                    shareWrapper.remove();
-                    return;
-                }
-
-                shareWrapper.remove();
-            }
+            let heading = `${exchangeLabel ? exchangeLabel + ' ' : ''}Bulk Deals${typeLabel ? ' for ' + typeLabel : ''}_${FormatDate(todayDate)}`.trim();
+            let content = `Source: ${window.location.href}`;
+            const result = await ShareTableAsImage("stockBulkDeals", heading, content);
+            if (result == null || result) return;
         }
-
-        if (navigator.canShare && navigator.canShare({ text: text })) {
-            await navigator.share({ text: text });
-            return;
-        }
-
-        ShareOnWhatsApp(text);
     } catch (error) {
         console.warn('Unable to share bulk deals image:', error);
-        ShareOnWhatsApp(text);
     }
+
+    let heading = `${exchangeLabel ? exchangeLabel + ' ' : ''}Bulk Deals${typeLabel ? ' for ' + typeLabel : ''}`.trim();
+    let content = GetGroupedTableText("stockBulkDeals");
+    content += `\n\nSource:\n${window.location.href}`;
+
+    await ShareText(heading + '\n\n' + content);
 }
 
 function UpdateStockBulkDealTable() {

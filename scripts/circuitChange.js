@@ -209,28 +209,6 @@ function UpdateCircuitChangeColors() {
     });
 }
 
-async function EnsureHtml2Canvas() {
-    if (window.html2canvas && typeof window.html2canvas === 'function') {
-        return window.html2canvas;
-    }
-
-    const isLocalHost = ['localhost', '127.0.0.1', '::1'].includes(window.location.hostname);
-    if (!isLocalHost) {
-        return null;
-    }
-
-    await new Promise((resolve, reject) => {
-        const script = document.createElement('script');
-        script.src = 'https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js';
-        script.async = true;
-        script.onload = resolve;
-        script.onerror = () => reject(new Error('Unable to load html2canvas'));
-        document.head.appendChild(script);
-    });
-
-    return window.html2canvas && typeof window.html2canvas === 'function' ? window.html2canvas : null;
-}
-
 async function ShareCircuitChanges() {
     const rows = circuitChangeTable.querySelectorAll('tbody tr:not(.hide)');
     if (rows.length === 0) return;
@@ -283,50 +261,16 @@ async function ShareCircuitChanges() {
         });
     }
 
-    if (!navigator.share) {
-        ShareOnWhatsApp(text);
-        return;
-    }
-
     try {
         if (shareWithImage) {
-            const html2canvas = await EnsureHtml2Canvas();
-            if (html2canvas) {
-                const canvas = await html2canvas(circuitChangeTable, {
-                    backgroundColor: '#ffffff',
-                    logging: false,
-                    scale: 2,
-                    width: circuitChangeTable.scrollWidth,
-                    height: circuitChangeTable.scrollHeight
-                });
-
-                const blob = await new Promise((resolve, reject) => {
-                    canvas.toBlob(blob => blob ? resolve(blob) : reject(new Error('Unable to create image')), 'image/png');
-                });
-
-                const file = new File([blob], 'circuit-changes.png', { type: 'image/png' });
-                if (navigator.canShare && navigator.canShare({ files: [file], text: text })) {
-                    await navigator.share({ text: text, files: [file] });
-                    return;
-                }
-            }
-        }
-
-        if (navigator.canShare && navigator.canShare({ text: text })) {
-            await navigator.share({ text: text });
+            await ShareTableAsImage("circuitChangeTable", title.replace(/[\n,*]/g, '') + '_' + FormatDate(todayDate), text);
             return;
         }
 
-        ShareOnWhatsApp(text);
     } catch (error) {
         console.warn('Unable to share circuit changes image:', error);
-        ShareOnWhatsApp(text);
     }
-}
-
-function ShareOnWhatsApp(text) {
-    const url = 'https://wa.me/?text=' + encodeURIComponent(text);
-    window.open(url, '_blank');
+    await ShareText(text);
 }
 
 function simplifyName(name) {
