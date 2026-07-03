@@ -130,7 +130,7 @@ async function ShareBulkDealsTable() {
         if (shareWithImage) {
             let heading = `${exchangeLabel ? exchangeLabel + ' ' : ''}Bulk Deals${typeLabel ? ' for ' + typeLabel : ''}_${FormatDate(todayDate)}`.trim();
             let content = `Source: ${window.location.href}`;
-            const result = await ShareTableAsImage("stockBulkDeals", heading, content);
+            const result = await ShareTableAsImage("stockBulkDeals", heading, heading + '\n\n' + content);
             if (result == null || result) return;
         }
     } catch (error) {

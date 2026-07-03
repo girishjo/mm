@@ -626,7 +626,6 @@ async function ShareTableAsImage(tableId, filename = "Shared from mm.girishjoshi
                 link.click();
             });
         }
-
     } catch (error) {
         console.error("Sharing failed:", error);
     } finally {
@@ -638,15 +637,29 @@ async function ShareTableAsImage(tableId, filename = "Shared from mm.girishjoshi
 
 async function ShareText(text) {
     try {
-        await navigator.share({ text: text });
-        return;
+        try {
+            if (navigator.canShare && navigator.canShare({ text: text })) {
+                await navigator.share({ text: text });
+                return;
+            } else {
+                console.warn("Sharing text not supported. Copying to clipboard instead.");
+                await navigator.clipboard.writeText(text);
+                ShowMessage("Text copied to clipboard!");
+            }
+        }
+        catch (err) {
+            console.error(err);
+        }
+
+        const url = 'https://wa.me/?text=' + encodeURIComponent(text);
+        window.open(url, '_blank');
     }
     catch (error) {
+        console.warn("Sharing text not supported. Copying to clipboard instead.");
+        await navigator.clipboard.writeText(text);
+        ShowMessage("Text copied to clipboard!");
         console.error(error);
     }
-
-    const url = 'https://wa.me/?text=' + encodeURIComponent(text);
-    window.open(url, '_blank');
 }
 
 function GetGroupedTableText(tableId) {
