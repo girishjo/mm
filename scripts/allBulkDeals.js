@@ -190,9 +190,10 @@ function UpdateStockBulkDealTable() {
         new Date(b.Date) - new Date(a.Date)
         || a.SecurityName.localeCompare(b.SecurityName)
         || a.BuyOrSell.localeCompare(b.BuyOrSell)
+        || b.Quantity - a.Quantity
+        || a.Price - b.Price
         || a.ClientName.localeCompare(b.ClientName)
-        || a.Quantity - b.Quantity
-        || a.Price - b.Price);
+    );
 
     ShowClientDeals(stockBulkDealsTable, bulkDeals, 'SecurityName', 'ClientName');
     UpdateLoader(false);
