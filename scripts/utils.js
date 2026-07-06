@@ -611,6 +611,7 @@ async function ShareTableAsImage(tableId, heading = "Shared from mm.girishjoshi.
             table.style.borderCollapse = "collapse";
             table.style.minWidth = "unset";
             table.style.marginBottom = "unset";
+            table.style.fontWeight = 500;
 
             rowGroups[index].forEach(r => table.appendChild(r));
             container.appendChild(table);

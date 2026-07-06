@@ -189,8 +189,8 @@ function UpdateStockBulkDealTable() {
     bulkDeals.sort((a, b) =>
         new Date(b.Date) - new Date(a.Date)
         || a.SecurityName.localeCompare(b.SecurityName)
-        || a.ClientName.localeCompare(b.ClientName)
         || a.BuyOrSell.localeCompare(b.BuyOrSell)
+        || a.ClientName.localeCompare(b.ClientName)
         || a.Quantity - b.Quantity
         || a.Price - b.Price);
 
