@@ -70,7 +70,7 @@ function BuildCircuitChangeStocks() {
             ));
 
         const tableEntry = {
-            code: entry.ticker || entry.nseCode || entry.bseCode || '',
+            code: (entry.ticker || entry.nseCode || entry.bseCode || '').trim(),
             name: entry.name || entry.nseCode || entry.bseCode || '',
             series: entry.series || '',
             type: isSME ? 'SME' : 'MainBoard',
