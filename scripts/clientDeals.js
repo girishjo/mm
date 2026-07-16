@@ -97,6 +97,7 @@ function ShowClientDeals(table, deals, fieldName1, fieldName2) {
         } else {
             newRow.cells[columnCounter++].innerText = deal[fieldName1];
         }
+        newRow.cells[columnCounter - 1].setAttribute('ticker', deal.Ticker);
 
         // newRow.cells[columnCounter++].innerText = deal[fieldName2];
         {

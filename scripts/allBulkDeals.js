@@ -134,28 +134,33 @@ async function ShareBulkDealsTable() {
     }
 
     let typeLabel = '';
-    if (includeSME && !includeMainBoard) {
-        typeLabel = 'SMEs';
-    } else if (!includeSME && includeMainBoard) {
-        typeLabel = 'MainBoards';
+    if (txtFilterDealers.value.trim().length > 0) {
+        typeLabel = [...new Set(Object.values(rows).flatMap(r => !r.classList.contains('hide') && r.cells[2].getAttribute('ticker') || []))].slice(0, 4).map((t, i, arr) => i === 3 ? 'etc...' : t).join(', ');
+    } else {
+        if (includeSME && !includeMainBoard) {
+            typeLabel = 'SMEs';
+        } else if (!includeSME && includeMainBoard) {
+            typeLabel = 'MainBoards';
+        }
     }
+
+    let heading = `${exchangeLabel ? exchangeLabel + ' ' : ''}Bulk Deals${typeLabel ? ' for ' + typeLabel : ''}`.trim();
+
+    let content = GetFormattedTableText("stockBulkDeals", shareGrouped, !shareWithImage);
+    content += `\n\nSource:\n${window.location.href.split('#')[0]}`;
 
     try {
         if (shareWithImage) {
-            let heading = `${exchangeLabel ? exchangeLabel + ' ' : ''}Bulk Deals${typeLabel ? ' for ' + typeLabel : ''}, ${FormatDate(todayDate)}`.trim();
-            let content = `Source:\n${window.location.href.split('#')[0]}`;
-            const result = await ShareTableAsImage("stockBulkDeals", heading, shareWithText ? content : '', shareGrouped);
+            const tempHeading = `${heading}, ${FormatDate(todayDate)}`.trim();
+            const tempContent = `${heading},\nDate: ${FormatDate(todayDate)},\n\n ${content}`.trim();
+            const result = await ShareTableAsImage("stockBulkDeals", tempHeading, shareWithText ? tempContent : '', shareGrouped);
             if (result == null || result) return;
         }
     } catch (error) {
         console.warn('Unable to share bulk deals image:', error);
     }
 
-    let heading = `${exchangeLabel ? exchangeLabel + ' ' : ''}Bulk Deals${typeLabel ? ' for ' + typeLabel : ''}`.trim();
-    let content = GetFormattedTableText("stockBulkDeals", shareGrouped);
-    content += `\n\nSource:\n${window.location.href.split('#')[0]}`;
-
-    await ShareText(heading + '\n\n' + content);
+    await ShareText(heading + ',\n' + content);
 }
 
 function UpdateStockBulkDealTable() {

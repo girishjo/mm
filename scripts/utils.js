@@ -684,7 +684,7 @@ async function ShareText(text) {
  * @param {string} tableId - The ID of the table.
  * @param {boolean} isGrouped - Whether to return grouped data (by date/stock) or flat list.
  */
-function GetFormattedTableText(tableId, isGrouped = true) {
+function GetFormattedTableText(tableId, isGrouped = true, addDate = true) {
     const table = document.getElementById(tableId);
     const rows = Array.from(table.querySelectorAll('tbody tr:not(.hide)'));
 
@@ -718,7 +718,7 @@ function GetFormattedTableText(tableId, isGrouped = true) {
     let report = "";
     const dates = Object.keys(grouped);
     dates.forEach((date, dateIndex) => {
-        report += `Date: ${date}\n\n`;
+        addDate && (report += `Date: ${date},\n\n`);
         const stocks = Object.keys(grouped[date]);
         stocks.forEach((stock, stockIndex) => {
             const stockLabel = String.fromCharCode(65 + stockIndex);
@@ -759,3 +759,59 @@ const formattedDate = new Intl.DateTimeFormat('en-IN', {
     month: 'short',
     year: 'numeric'
 })
+
+function GetTickerFromExchangeCodes(nseCode, bseCode) {
+    const normalizeCode = (code) => code ? String(code).toUpperCase() : undefined;
+
+    const resolvedNseCode = normalizeCode(nseCode);
+    if (resolvedNseCode && nseData && typeof nseData === 'object') {
+        const stock = nseData[resolvedNseCode];
+        if (stock && typeof stock === 'object') {
+            const ticker = stock.Ticker || stock.SecurityCode;
+            if (ticker) {
+                return String(ticker).toUpperCase();
+            }
+
+            const historyEntries = stock.History || stock.history;
+            if (Array.isArray(historyEntries)) {
+                const historyTicker = historyEntries.find(entry => entry && (entry.Ticker || entry.SecurityCode));
+                if (historyTicker) {
+                    return String(historyTicker.Ticker || historyTicker.SecurityCode).toUpperCase();
+                }
+            }
+        }
+    }
+
+    const resolvedBseCode = normalizeCode(bseCode);
+    if (resolvedBseCode && bseData && typeof bseData === 'object') {
+        const stock = bseData[resolvedBseCode];
+        if (stock && typeof stock === 'object') {
+            const ticker = stock.Ticker || stock.SecurityCode;
+            if (ticker) {
+                return String(ticker).toUpperCase();
+            }
+
+            const historyEntries = stock.History || stock.history;
+            if (Array.isArray(historyEntries)) {
+                const historyTicker = historyEntries.find(entry => entry && (entry.Ticker || entry.SecurityCode));
+                if (historyTicker) {
+                    return String(historyTicker.Ticker || historyTicker.SecurityCode).toUpperCase();
+                }
+            }
+        }
+    }
+
+    return undefined;
+}
+
+function GetTickerFromSecurityCodes(codes) {
+    if (Array.isArray(codes)) {
+        return GetTickerFromExchangeCodes(codes[0], codes[1]);
+    }
+
+    if (codes && typeof codes === 'object') {
+        return GetTickerFromExchangeCodes(codes.nseCode, codes.bseCode);
+    }
+
+    return GetTickerFromExchangeCodes(codes, codes);
+}
