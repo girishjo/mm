@@ -16,7 +16,7 @@ async function InitCircuitChange() {
 
     RestoreCircuitChangeFilterSettings();
     UpdateCircuitChangeTable();
-    scheduleAtIST(UpdateCircuitChangeColors, 16, 'circuitColor');
+    scheduleAtIST(UpdateCircuitChangeColors, todayDate, 16, 'circuitColor');
 }
 
 function BuildCircuitChangeStocks() {

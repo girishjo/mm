@@ -464,11 +464,11 @@ function isMarketClosed() {
 // Schedule a callback at a specific IST hour (e.g., 16 for 4 PM)
 // If the hour has already passed, fires the callback immediately
 let _scheduledTimers = {};
-function scheduleAtIST(callback, hour, key) {
+function scheduleAtIST(callback, date, hour, key) {
     key = key || callback.name || 'default';
     if (_scheduledTimers[key]) clearTimeout(_scheduledTimers[key]);
     const istNow = getISTNow();
-    if (istNow.getHours() < hour) {
+    if (istNow.getDate() <= date.getDate() && istNow.getHours() < hour) {
         const target = new Date(istNow);
         target.setHours(hour, 0, 0, 0);
         const delay = target - istNow;
@@ -480,9 +480,9 @@ function scheduleAtIST(callback, hour, key) {
     }
 }
 
-function callNowAndScheduleAtIST(callback, hour, key) {
+function callNowAndScheduleAtIST(callback, date, hour, key) {
     callback();
-    scheduleAtIST(callback, hour, key);
+    scheduleAtIST(callback, date, hour, key);
 }
 
 let _scheduledIntervals = {};
