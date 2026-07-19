@@ -215,7 +215,7 @@ function UpdateURL(tabId) {
 // });
 
 // Initialize special trading day check when page loads
-document.addEventListener('DOMContentLoaded', function () {
+window.addEventListener('load', function () {
     // Wait a bit for settings to load
     setTimeout(CheckAndShowSpecialTradingDay, 1000);
 

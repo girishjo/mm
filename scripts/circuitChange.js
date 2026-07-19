@@ -5,7 +5,7 @@ async function InitCircuitChange() {
     if (circuitChangeStocks.length === 0) {
         if (!newListingsData) {
             try {
-                newListingsData = await GetData('newListings.json');
+                newListingsData = await GetData('newListings.json', true);
             } catch (e) {
                 newListingsData = {};
             }

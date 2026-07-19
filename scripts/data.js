@@ -74,7 +74,7 @@ async function LoadData() {
 
 async function MergeTodayListings() {
   try {
-    newListingsData = await GetData('newListings.json');
+    newListingsData = await GetData('newListings.json', true);
   } catch (e) {
     newListingsData = {};
   }

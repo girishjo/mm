@@ -250,8 +250,16 @@ function MergeHistory(historyData1, historyData2) {
         return History;
 }
 
-async function GetData(fileName) {
-    let response = await fetch('./data/' + fileName);
+async function GetData(fileName, hardRefresh = false) {
+    let url = './data/' + fileName;
+    let response;
+    if (hardRefresh) {
+        url += "?t=" + new Date().getTime();
+        response = await fetch(url, { cache: 'no-store' });
+    }
+    else {
+        response = await fetch(url);
+    }
     let dataJson = await response.json();
     return dataJson;
 }
