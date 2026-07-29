@@ -151,8 +151,9 @@ async function ShareBulkDealsTable() {
 
     try {
         if (shareWithImage) {
-            const tempHeading = `${heading}, ${FormatDate(todayDate)}`.trim();
-            const tempContent = `${heading},\nDate: ${FormatDate(todayDate)},\n\n ${content}`.trim();
+            const selectedDate = document.getElementById('dateFilterDeals').value;
+            const tempHeading = `${heading}, ${FormatDate(selectedDate)}`.trim();
+            const tempContent = `${heading},\nDate: ${FormatDate(selectedDate)},\n\n ${content}`.trim();
             const result = await ShareTableAsImage("stockBulkDeals", tempHeading, shareWithText ? tempContent : '', shareGrouped);
             if (result == null || result) return;
         }
