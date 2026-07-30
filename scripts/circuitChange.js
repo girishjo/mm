@@ -20,66 +20,66 @@ async function InitCircuitChange() {
 }
 
 function BuildCircuitChangeStocks() {
-    const t2tSMESeries = settings.configs.t2tSMESeries || [];
-    const t2tMBSeries = settings.configs.t2tMBSeries || [];
+    const t2tSMESeries = settings.configs.t2tSMESeries || ['SM', 'MT', 'ST', 'M'];
+    const t2tMBSeries = settings.configs.t2tMBSeries || ['T', 'BE', 'BT'];
 
     Object.keys(newListingsData).forEach(isin => {
         const entry = newListingsData[isin];
         if (!entry.listingDate) return;
-        if (entry.nseCode?.includes('-RE')) return; // Skip Rights Entitlements
 
-        // Skip stocks that are currently in NSE ESM; circuit will not change while ESM is active
+        // Skip Rights Entitlements and active ESM stocks
+        if (entry.nseCode?.includes('-RE') || entry.ticker?.includes('-RE')) return;
         if (entry.inEsm) return;
 
-        // Include stocks that are still in T2T series, main-board stocks with a confirmed
-        // band-change entry, or today's listed MainBoard stocks so the Today filter can surface them.
-        const series = entry.series || '';
+        const series = (entry.series || '').toUpperCase().trim();
         const listingDate = new Date(entry.listingDate);
-        const bandChangeSeries = entry.bandChange?.series || '';
+        const isSME = entry.type === 'SME';
+        const isTodayListed = listingDate.toDateString() === todayDate.toDateString();
         const isT2TSeries = t2tSMESeries.includes(series) || t2tMBSeries.includes(series);
-        const isT2TBandChangeSeries = t2tSMESeries.includes(bandChangeSeries) || t2tMBSeries.includes(bandChangeSeries);
-        const isMainBoardBandChangeCandidate = entry.type === 'MainBoard' && entry.bandChange && entry.bandChange.dateEffectiveFrom;
-        const isTodayListedMainBoard = entry.type === 'MainBoard' && listingDate.toDateString() === todayDate.toDateString();
+        const hasNSE = entry.exchanges?.includes('NSE');
 
-        if (!isT2TSeries && !isT2TBandChangeSeries && !isMainBoardBandChangeCandidate && !isTodayListedMainBoard) return;
-        let circuitChangeDate = GetNthDay(listingDate, 11);
+        let circuitChangeDate = null;
 
-        // Skip stocks whose circuit change date is more than 10 working days in the past
-        const oldCutoff = GetNthDay(todayDate, 10, false);
-        if (circuitChangeDate < oldCutoff) return;
+        // 1. If explicit exchange bandChange exists, use confirmed date
+        if (entry.bandChange?.dateEffectiveFrom) {
+            circuitChangeDate = new Date(entry.bandChange.dateEffectiveFrom);
+        } else {
+            // 2. Projected 11th working day calculation rules:
 
-        // Skip if no actual price band change confirmed by NSE
-        if (entry.exchanges.includes('NSE')) {
-            if (entry.bandChange) {
-                if (circuitChangeDate.toDateString() != new Date(entry.bandChange.dateEffectiveFrom).toDateString()) {
-                    console.warn(entry.ticker + ": " + entry.name + ": Circuit change date calculation mismatched");
-                }
-                circuitChangeDate = new Date(entry.bandChange.dateEffectiveFrom);
-            }
-            else if (circuitChangeDate < todayDate || circuitChangeDate.toDateString() == todayDate.toDateString()) {
-                // mark date as null                    
+            if (isSME || (hasNSE && isT2TSeries) || (isTodayListed && isT2TSeries)) {
+                // T2T series stocks (e.g., XTRANET in 'BE', ALPINETEX in 'BE', SME stocks) GET calculated date
+                circuitChangeDate = GetNthDay(listingDate, 11);
+            } else if (isTodayListed) {
+                // Today's regular MainBoard EQ listings (e.g., INDOMIM, LCL) stay NULL so UI displays "---- N/A ----"
                 circuitChangeDate = null;
+            } else {
+                // Drop past non-T2T MainBoard stocks without confirmed bandChange (e.g., CMLL, MEEIND)
+                return;
             }
         }
 
-        const isSME = entry.type === 'SME';
+        // Skip stocks whose circuit change date is more than 10 working days in the past
+        const oldCutoff = GetNthDay(todayDate, 10, false);
+        if (circuitChangeDate && circuitChangeDate < oldCutoff) return;
+
         const fallbackIssuePrice = entry.issuePrice || (circuitChangeDate && (
-            entry.exchanges?.includes('NSE') && entry.nseCode ? nseData[entry.nseCode]?.History?.[nseData[entry.nseCode]?.History?.length - 1].PrevClose : undefined
+            entry.exchanges?.includes('NSE') && entry.nseCode ? nseData[entry.nseCode]?.History?.[nseData[entry.nseCode]?.History?.length - 1]?.PrevClose : undefined
         ) || (
-                entry.exchanges?.includes('BSE') && entry.bseCode ? bseData[entry.bseCode]?.History?.[bseData[entry.bseCode]?.History?.length - 1].PrevClose : undefined
+                entry.exchanges?.includes('BSE') && entry.bseCode ? bseData[entry.bseCode]?.History?.[bseData[entry.bseCode]?.History?.length - 1]?.PrevClose : undefined
             ));
 
         const tableEntry = {
             code: (entry.ticker || entry.nseCode || entry.bseCode || '').trim(),
             name: entry.name || entry.nseCode || entry.bseCode || '',
-            series: entry.series || '',
+            series: series,
             type: isSME ? 'SME' : 'MainBoard',
             exchanges: entry.exchanges || '',
             listingDate: listingDate,
             circuitChangeDate: circuitChangeDate,
             issuePrice: fallbackIssuePrice,
-            todayListedMBNotInT2T: isTodayListedMainBoard && !isT2TSeries
-        }
+            todayListedMBNotInT2T: isTodayListed && !isSME && !isT2TSeries,
+            isInT2TSeries: isT2TSeries
+        };
 
         if (entry.bandChange) {
             tableEntry["bandFrom"] = entry.bandChange.bandFrom;
@@ -126,6 +126,15 @@ function UpdateCircuitChangeTable() {
     });
 
     filtered.sort((a, b) => {
+        const aIsToday = a.listingDate.toDateString() === todayDate.toDateString();
+        const bIsToday = b.listingDate.toDateString() === todayDate.toDateString();
+
+        // Special handling ONLY for today's listings:
+        // Do not let Infinity push N/A dates below calculated dates among today's stocks
+        if (aIsToday && bIsToday) {
+            return b.type.localeCompare(a.type) || a.code.localeCompare(b.code);
+        }
+
         const ta = a.circuitChangeDate ? a.circuitChangeDate.getTime() : Infinity;
         const tb = b.circuitChangeDate ? b.circuitChangeDate.getTime() : Infinity;
         if (ta !== tb) return ta - tb;
@@ -168,6 +177,8 @@ function UpdateCircuitChangeTable() {
                 row.cells[2].appendChild(a);
             }
         }
+        row.cells[2].dataset.isInT2TSeries = stock.isInT2TSeries;
+
         row.cells[3].innerText = stock.code;
         row.cells[4].innerText = stock.listingDate.toLocaleDateString('en-In', {
             day: "2-digit", month: "short", year: "numeric"
@@ -231,7 +242,10 @@ async function ShareCircuitChanges() {
             const ticker = row.cells[3].innerText;
             const price = row.cells[8].innerText;
             const type = row.cells[6].innerText == 'SME' ? 'SME' : 'MB';
-            text += (i + 1) + ". " + ticker + ' (' + type + ') ' + price + '\n';
+            const isT2TStock = row.cells[2].dataset.isInT2TSeries === 'true';
+            const t2tSuffix = isT2TStock ? ', *T2T*' : '';
+            text += `${i + 1}. ${ticker} (${type}${t2tSuffix}) ${price}\n`;
+
         });
 
     } else {
