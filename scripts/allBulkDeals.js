@@ -6,15 +6,14 @@ const flattenDeals = [];
 
 function InitStockBulkDeals() {
     if (Object.keys(stockBulkDeals) == 0) {
-        for (const stockCode of [...new Set([...Object.keys(nseData), ...Object.keys(bseData)])]) {
+        for (const stockCode of new Set([...Object.keys(nseData), ...Object.keys(bseData)])) {
             nseData[stockCode] && CheckDeal(nseData[stockCode], Exchanges.NSE, nseData[stockCode]);
             bseData[stockCode] && CheckDeal(bseData[stockCode], Exchanges.BSE, bseData[stockCode]);
         }
 
         function CheckDeal(stockData, exchange, root) {
             if (stockData.BulkDeals) {
-                for (let i = 0; i < stockData.BulkDeals.length; i++) {
-                    const deal = stockData.BulkDeals[i];
+                for (const deal of stockData.BulkDeals) {
                     if (exchange === Exchanges.NSE) {
                         deal.Ticker = stockData.SecurityCode;
                     }
@@ -24,15 +23,15 @@ function InitStockBulkDeals() {
                     }
                     deal.Exchange = exchange;
                     flattenDeals.push(deal);
-                    if (!stockBulkDeals[stockData.BulkDeals[i].SecurityCode]) {
-                        stockBulkDeals[stockData.BulkDeals[i].SecurityCode] = [];
+                    if (!stockBulkDeals[deal.SecurityCode]) {
+                        stockBulkDeals[deal.SecurityCode] = [];
                     }
-                    stockBulkDeals[stockData.BulkDeals[i].SecurityCode].push(stockData.BulkDeals[i]);
+                    stockBulkDeals[deal.SecurityCode].push(deal);
                 }
             }
             if (stockData.History) {
-                for (let i = 0; i < stockData.History.length; i++) {
-                    CheckDeal(stockData.History[i], exchange, root);
+                for (const history of stockData.History) {
+                    CheckDeal(history, exchange, root);
                 }
             }
         }
@@ -136,12 +135,10 @@ async function ShareBulkDealsTable() {
     let typeLabel = '';
     if (txtFilterDealers.value.trim().length > 0) {
         typeLabel = [...new Set(Object.values(rows).flatMap(r => !r.classList.contains('hide') && r.cells[2].getAttribute('ticker') || []))].slice(0, 4).map((t, i, arr) => i === 3 ? 'etc...' : t).join(', ');
-    } else {
-        if (includeSME && !includeMainBoard) {
-            typeLabel = 'SMEs';
-        } else if (!includeSME && includeMainBoard) {
-            typeLabel = 'MainBoards';
-        }
+    } else if (includeSME && !includeMainBoard) {
+        typeLabel = 'SMEs';
+    } else if (!includeSME && includeMainBoard) {
+        typeLabel = 'MainBoards';
     }
 
     let heading = `${exchangeLabel ? exchangeLabel + ' ' : ''}Bulk Deals${typeLabel ? ' for ' + typeLabel : ''}`.trim();
@@ -214,9 +211,8 @@ function FilterExchange(bulkDeals, includeNSE, includeBSE) {
     }
 
     let result = [];
-    for (let i = 0; i < bulkDeals.length; i++) {
-        const bulkDeal = bulkDeals[i];
-        if (isNaN(bulkDeal.SecurityCode)) {
+    for (const bulkDeal of bulkDeals) {
+        if (Number.isNaN(bulkDeal.SecurityCode)) {
             if (includeNSE) {
                 result.push(bulkDeal);
             }
@@ -234,8 +230,7 @@ function FilterStockType(bulkDeals, includeMainBoard, includeSME) {
     }
 
     let result = [];
-    for (let i = 0; i < bulkDeals.length; i++) {
-        const bulkDeal = bulkDeals[i];
+    for (const bulkDeal of bulkDeals) {
         const stockCode = bulkDeal.SecurityCode;
 
         // Determine if stock is SME using settings from settings.json
@@ -276,18 +271,48 @@ function FilterStockType(bulkDeals, includeMainBoard, includeSME) {
 
 function FilterStockDeals(bulkDeals, filter, isDateFilter = false) {
     let result = [];
-    for (let i = 0; i < bulkDeals.length; i++) {
-        const bulkDeal = bulkDeals[i];
-        if (isDateFilter) {
-            if (new Date(bulkDeal.Date).toDateString() == filter) {
+
+    // Guard against empty or invalid filter input
+    if (!filter || typeof filter !== 'string') return result;
+
+    if (isDateFilter) {
+        // Safe date comparison
+        const targetDate = new Date(filter).toDateString();
+        for (const bulkDeal of bulkDeals) {
+            if (bulkDeal.Date && new Date(bulkDeal.Date).toDateString() === targetDate) {
                 result.push(bulkDeal);
             }
         }
-        else {
-            if (bulkDeal.ClientName.toLowerCase().includes(filter) || bulkDeal.SecurityCode.toLowerCase().includes(filter) || bulkDeal.SecurityName.toLowerCase().includes(filter)) {
-                result.push(bulkDeal);
-            }
+        return result;
+    }
+
+    // Split filter string using regex by comma, semicolon, space, pipe, or slashes
+    // e.g., "INFY, TCS; 500209|WIPRO" -> ["infy", "tcs", "500209", "wipro"]
+    const filterTerms = filter
+        .split(/[,;\s|/\\]+/)
+        .map(term => term.trim().toLowerCase())
+        .filter(term => term.length > 0);
+
+    // Return empty if no valid terms were found after splitting
+    if (filterTerms.length === 0) return result;
+
+    for (const bulkDeal of bulkDeals) {
+        // Safe access and conversion to lowercase
+        const clientName = (bulkDeal.ClientName || '').toLowerCase();
+        const securityCode = String(bulkDeal.SecurityCode || '').toLowerCase();
+        const securityName = (bulkDeal.SecurityName || '').toLowerCase();
+
+        // Check if ANY split filter term matches ANY of the three fields
+        const isMatch = filterTerms.some(term =>
+            clientName.includes(term) ||
+            securityCode.includes(term) ||
+            securityName.includes(term)
+        );
+
+        if (isMatch) {
+            result.push(bulkDeal);
         }
     }
+
     return result;
 }
