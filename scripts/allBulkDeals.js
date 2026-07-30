@@ -206,18 +206,21 @@ function UpdateStockBulkDealTable() {
 }
 
 function FilterExchange(bulkDeals, includeNSE, includeBSE) {
-    if (!includeNSE && !includeBSE) {
+    if (!bulkDeals || !Array.isArray(bulkDeals)) return [];
+
+    // If both are checked OR both are unchecked, show all deals
+    if ((includeNSE && includeBSE) || (!includeNSE && !includeBSE)) {
         return bulkDeals;
     }
 
     let result = [];
     for (const bulkDeal of bulkDeals) {
-        if (Number.isNaN(bulkDeal.SecurityCode)) {
-            if (includeNSE) {
-                result.push(bulkDeal);
-            }
-        }
-        else if (includeBSE) {
+        // Uppercase conversion ensures case-insensitive matching against Exchanges enum
+        const exchange = (bulkDeal.Exchange || '').toUpperCase();
+
+        if (includeNSE && exchange === Exchanges.NSE) {
+            result.push(bulkDeal);
+        } else if (includeBSE && exchange === Exchanges.BSE) {
             result.push(bulkDeal);
         }
     }
