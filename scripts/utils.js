@@ -254,7 +254,7 @@ async function GetData(fileName, hardRefresh = false) {
     let url = './data/' + fileName;
     let response;
     if (hardRefresh) {
-        url += "?t=" + new Date().getTime();
+        url += "?t=" + Date.now();
         response = await fetch(url, { cache: 'no-store' });
     }
     else {
@@ -266,8 +266,7 @@ async function GetData(fileName, hardRefresh = false) {
 
 function toObject(table, col = 3) {
     const result = []
-    for (let i = 0; i < table.tBodies[0].rows.length; i++) {
-        const row = table.tBodies[0].rows[i];
+    for (const row of table.tBodies[0].rows) {
         if (!row.classList.contains('hide')) {
             const res = [];
             for (let j = 0; j < row.cells.length; j++) {
@@ -455,34 +454,105 @@ function CheckNumber() {
 
 /// Timer functions
 
-// IST time utilities
+/// IST time utilities
+
+
+/**
+ * Returns a Date object where the wall-clock time matches current IST digits.
+ */
 function getISTNow() {
-    const now = new Date();
-    return new Date(now.getTime() + (now.getTimezoneOffset() * 60000) + (5.5 * 3600000));
+    const options = {
+        timeZone: 'Asia/Kolkata',
+        year: 'numeric',
+        month: '2-digit',
+        day: '2-digit',
+        hour: '2-digit',
+        minute: '2-digit',
+        second: '2-digit',
+        hourCycle: 'h23' // Forces 00-23 hour format
+    };
+
+    const formatter = new Intl.DateTimeFormat('en-US', options);
+    const parts = formatter.formatToParts(new Date());
+
+    const p = {};
+    for (const { type, value } of parts) {
+        p[type] = value;
+    }
+
+    // Constructs YYYY-MM-DDTHH:mm:ss in IST
+    return new Date(`${p.year}-${p.month}-${p.day}T${p.hour}:${p.minute}:${p.second}`);
 }
 
+/**
+ * Returns current hour in IST (0 - 23)
+ */
 function getISTHours() {
     return getISTNow().getHours();
 }
 
+/**
+ * Returns true if current IST time is 4:00 PM (16:00) or later
+ */
 function isMarketClosed() {
     return getISTHours() >= 16;
 }
 
-// Schedule a callback at a specific IST hour (e.g., 16 for 4 PM)
-// If the hour has already passed, fires the callback immediately
-let _scheduledTimers = {};
-function scheduleAtIST(callback, date, hour, key) {
+/**
+ * Converts any local/UTC Date object or date string into an IST YYYY-MM-DD Date object
+ */
+function toISTDate(dateInput) {
+    const dateObj = dateInput instanceof Date ? dateInput : new Date(dateInput);
+
+    const options = {
+        timeZone: 'Asia/Kolkata',
+        year: 'numeric',
+        month: '2-digit',
+        day: '2-digit',
+        hourCycle: 'h23'
+    };
+
+    const parts = new Intl.DateTimeFormat('en-US', options).formatToParts(dateObj);
+    const p = {};
+    for (const { type, value } of parts) {
+        p[type] = value;
+    }
+
+    return new Date(`${p.year}-${p.month}-${p.day}T00:00:00`);
+}
+
+// Module-level timer registry
+const _scheduledTimers = {};
+
+/**
+ * Schedules a callback at a specific IST hour on a given target date.
+ * If the target time is in the past, fires immediately.
+ * 
+ * @param {Function} callback - Function to run
+ * @param {Date|string} targetDate - The date to schedule for
+ * @param {number} hour - Hour in IST (e.g., 16 for 4 PM IST)
+ * @param {string} [key] - Optional unique key to prevent duplicate timers
+ */
+function scheduleAtIST(callback, targetDate, hour, key) {
     key = key || callback.name || 'default';
-    if (_scheduledTimers[key]) clearTimeout(_scheduledTimers[key]);
+    if (_scheduledTimers[key]) {
+        clearTimeout(_scheduledTimers[key]);
+    }
+
     const istNow = getISTNow();
-    if (istNow.getDate() <= date.getDate() && istNow.getHours() < hour) {
-        const target = new Date(istNow);
-        target.setHours(hour, 0, 0, 0);
-        const delay = target - istNow;
+
+    // Standardize target date into IST start-of-day
+    const targetIST = toISTDate(targetDate);
+    targetIST.setHours(hour, 0, 0, 0);
+
+    // Difference in milliseconds between target IST and current IST
+    const delay = targetIST.getTime() - istNow.getTime();
+
+    if (delay > 0) {
         _scheduledTimers[key] = setTimeout(callback, delay);
         return true;
     } else {
+        // Time has already passed, execute immediately
         callback();
         return false;
     }

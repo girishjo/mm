@@ -36,7 +36,7 @@ async function LoadData() {
   for (let j = 0; j < dataFiles[0].length; j++) {
     for (let i = 0; i < dataFiles.length; i++) {
       UpdateLoader(true, 'Downloading ' + messages[i][j]);
-      let dataJson = await GetData(dataFiles[i][j]);
+      let dataJson = await GetData(dataFiles[i][j], true);
       IsUpdateData(dataValidityTable.rows[i + 1].cells[j + 1], dataJson.dateTimeStamp);
       i == 0 && (nseData = MergeData(nseData, dataJson));
       i == 1 && (bseData = MergeData(bseData, dataJson));
