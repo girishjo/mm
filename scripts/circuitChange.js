@@ -21,17 +21,29 @@ async function InitCircuitChange() {
 
 function BuildCircuitChangeStocks() {
     const t2tSMESeries = settings.configs.t2tSMESeries || ['SM', 'MT', 'ST', 'M'];
-    const t2tMBSeries = settings.configs.t2tMBSeries || ['T', 'BE', 'BT'];
+    const t2tMBSeries = settings.configs.t2tMBSeries || ['BE', 'BT'];
+
+    // const validIPOSeries = ['EQ', 'SM', 'ST', 'M', 'MT', 'BE'];
 
     Object.keys(newListingsData).forEach(isin => {
         const entry = newListingsData[isin];
         if (!entry.listingDate) return;
 
-        // Skip Rights Entitlements and active ESM stocks
-        if (entry.nseCode?.includes('-RE') || entry.ticker?.includes('-RE')) return;
+        const ticker = (entry.ticker || '').toUpperCase().trim();
+        const nseCode = (entry.nseCode || '').toUpperCase().trim();
+        const series = (entry.series || '').toUpperCase().trim();
+
+        // if (!validIPOSeries.includes(series)) return;
+
+        // 1. Skip Rights Entitlements (e.g. -RE, -RE1, -RE2)
+        if (/-RE\d*$/i.test(ticker) || /-RE\d*$/i.test(nseCode)) return;
+
+        // 2. Skip active ESM stocks
         if (entry.inEsm) return;
 
-        const series = (entry.series || '').toUpperCase().trim();
+        // 3. Skip BSE Group XT (Demergers, Restructurings & Corporate Actions)
+        if (series === 'XT' || series === 'T') return;
+
         const listingDate = new Date(entry.listingDate);
         const isSME = entry.type === 'SME';
         const isTodayListed = listingDate.toDateString() === todayDate.toDateString();
@@ -45,15 +57,14 @@ function BuildCircuitChangeStocks() {
             circuitChangeDate = new Date(entry.bandChange.dateEffectiveFrom);
         } else {
             // 2. Projected 11th working day calculation rules:
-
             if (isSME || (hasNSE && isT2TSeries) || (isTodayListed && isT2TSeries)) {
                 // T2T series stocks (e.g., XTRANET in 'BE', ALPINETEX in 'BE', SME stocks) GET calculated date
                 circuitChangeDate = GetNthDay(listingDate, 11);
             } else if (isTodayListed) {
-                // Today's regular MainBoard EQ listings (e.g., INDOMIM, LCL) stay NULL so UI displays "---- N/A ----"
+                // Today's regular MainBoard EQ listings stay NULL so UI displays "---- N/A ----"
                 circuitChangeDate = null;
             } else {
-                // Drop past non-T2T MainBoard stocks without confirmed bandChange (e.g., CMLL, MEEIND)
+                // Drop past non-T2T MainBoard stocks without confirmed bandChange
                 return;
             }
         }
@@ -129,8 +140,6 @@ function UpdateCircuitChangeTable() {
         const aIsToday = a.listingDate.toDateString() === todayDate.toDateString();
         const bIsToday = b.listingDate.toDateString() === todayDate.toDateString();
 
-        // Special handling ONLY for today's listings:
-        // Do not let Infinity push N/A dates below calculated dates among today's stocks
         if (aIsToday && bIsToday) {
             return b.type.localeCompare(a.type) || a.code.localeCompare(b.code);
         }
@@ -138,7 +147,7 @@ function UpdateCircuitChangeTable() {
         const ta = a.circuitChangeDate ? a.circuitChangeDate.getTime() : Infinity;
         const tb = b.circuitChangeDate ? b.circuitChangeDate.getTime() : Infinity;
         if (ta !== tb) return ta - tb;
-        return b.type.localeCompare(a.type) || a.code.localeCompare(b.code)
+        return b.type.localeCompare(a.type) || a.code.localeCompare(b.code);
     });
 
     for (let i = 0; i < filtered.length; i++) {
@@ -159,7 +168,7 @@ function UpdateCircuitChangeTable() {
             row.cells[1].setAttribute('data-sort', '');
             row.cells[1].title = "may be due to Surveillance Measures like ESM, ASM, etc...";
         }
-        // row.cells[2].innerText = simplifyName(stock.name);
+
         {
             var a = document.createElement('a');
             const simplifiedName = simplifyName(stock.name);
@@ -170,8 +179,7 @@ function UpdateCircuitChangeTable() {
             const codes = GetExchangeCodesFromTicker(stock.code);
             if (codes.join(',') == ',') {
                 row.cells[2].innerText = simplifiedName;
-            }
-            else {
+            } else {
                 a.setAttribute("codes", codes.join(','));
                 a.setAttribute("onclick", "ShowHistory(this, circuitChangeTable);");
                 row.cells[2].appendChild(a);
@@ -198,8 +206,7 @@ function UpdateCircuitChangeTable() {
         } else if (stock.listingDate.toDateString() === todayDate.toDateString()) {
             row.style.background = 'lightcyan';
             row.title = 'Listed today';
-        }
-        else if (stock.circuitChangeDate && stock.circuitChangeDate < todayDate) {
+        } else if (stock.circuitChangeDate && stock.circuitChangeDate < todayDate) {
             row.style.background = '#f0f0f0';
         }
     }
@@ -232,11 +239,7 @@ async function ShareCircuitChanges() {
     let text;
     let title = '*';
     if (showToday) {
-        if (rows.length > 1)
-            title += 'Today\'s listings,*\n\n';
-        else
-            title += 'Today\'s listing,*\n\n';
-
+        title += rows.length > 1 ? 'Today\'s listings,*\n\n' : 'Today\'s listing,*\n\n';
         text = title;
         rows.forEach((row, i) => {
             const ticker = row.cells[3].innerText;
@@ -245,9 +248,7 @@ async function ShareCircuitChanges() {
             const isT2TStock = row.cells[2].dataset.isInT2TSeries === 'true';
             const t2tSuffix = isT2TStock ? ', *T2T*' : '';
             text += `${i + 1}. ${ticker} (${type}${t2tSuffix}) ${price}\n`;
-
         });
-
     } else {
         if (showSME && !showMB) title += 'SME ';
         else if (showMB && !showSME) title += 'MainBoard ';
@@ -280,7 +281,6 @@ async function ShareCircuitChanges() {
             await ShareTableAsImage("circuitChangeTable", title.replace(/[\n,*]/g, '') + ', ' + FormatDate(todayDate), text);
             return;
         }
-
     } catch (error) {
         console.warn('Unable to share circuit changes image:', error);
     }
