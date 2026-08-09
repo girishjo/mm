@@ -799,7 +799,8 @@
     "issuePrice": 220,
     "totalSecurities": 6417300,
     "circular": "https://nsearchives.nseindia.com/content/circulars/CML75069.zip",
-    "lotSize": 600
+    "lotSize": 600,
+    "freeShares": 1698000
   },
   "INE17QZ01016": {
     "isin": "INE17QZ01016",
