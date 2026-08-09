@@ -88,6 +88,10 @@ function BuildCircuitChangeStocks() {
             listingDate: listingDate,
             circuitChangeDate: circuitChangeDate,
             issuePrice: fallbackIssuePrice,
+            lotSize: entry.lotSize || entry.marketLot || null,
+            freeShares: entry.freeShares || null,
+            circular: entry.circular || null,
+            circularNo: entry.circularNo || null,
             todayListedMBNotInT2T: isTodayListed && !isSME && !isT2TSeries,
             isInT2TSeries: isT2TSeries
         };
@@ -154,7 +158,10 @@ function UpdateCircuitChangeTable() {
         const stock = filtered[i];
         const row = addEmptyRow(circuitChangeTable);
 
+        // 0. Sr No
         row.cells[0].innerText = i + 1;
+
+        // 1. Circuit Change Date
         if (stock.circuitChangeDate && stock.circuitChangeDate.toLocaleDateString) {
             row.cells[1].innerText = stock.circuitChangeDate.toLocaleDateString('en-In', {
                 day: "2-digit", month: "short", year: "numeric"
@@ -169,6 +176,7 @@ function UpdateCircuitChangeTable() {
             row.cells[1].title = "may be due to Surveillance Measures like ESM, ASM, etc...";
         }
 
+        // 2. Company Name
         {
             var a = document.createElement('a');
             const simplifiedName = simplifyName(stock.name);
@@ -187,20 +195,52 @@ function UpdateCircuitChangeTable() {
         }
         row.cells[2].dataset.isInT2TSeries = stock.isInT2TSeries;
 
+        // 3. Code
         row.cells[3].innerText = stock.code;
+
+        // 4. Listing Date
         row.cells[4].innerText = stock.listingDate.toLocaleDateString('en-In', {
             day: "2-digit", month: "short", year: "numeric"
         }) + ', ' + stock.listingDate.toLocaleDateString('en-In', { weekday: "short" });
         row.cells[4].setAttribute('data-sort', stock.listingDate.toISOString());
+
+        // 5. Series
         row.cells[5].innerText = stock.series;
+
+        // 6. Type
         row.cells[6].innerText = stock.type;
+
+        // 7. Exchanges
         row.cells[7].innerText = stock.exchanges;
+
+        // 8. Issue Price
         row.cells[8].innerText = stock.issuePrice || "";
 
-        if (stock.circuitChangeDate && stock.circuitChangeDate.toDateString && stock.circuitChangeDate.toDateString() === todayDate.toDateString()) {
+        // 9. Free Float Shares  
+        if (stock.freeShares) {
+            row.cells[9].innerText = stock.freeShares.toLocaleString('en-IN');
+        }
+        else {
+            row.cells[9].innerText = "-";
+            row.cells[9].setAttribute('data-sort', '');
+        }
+        row.cells[9].innerText = stock.freeShares ? stock.freeShares.toLocaleString('en-IN') : "-";
+
+        // 10. Lot Size (Placed at the END, shown ONLY if SME)
+        if (stock.type === 'SME' && stock.lotSize) {
+            row.cells[10].innerText = stock.lotSize.toLocaleString('en-IN');
+        }
+        else {
+            row.cells[10].innerText = "-";
+            row.cells[10].setAttribute('data-sort', '');
+        }
+
+
+        // Row Highlighting
+        if (stock.circuitChangeDate?.toDateString && stock.circuitChangeDate.toDateString() === todayDate.toDateString()) {
             row.style.background = isMarketClosed() ? '#e8f5e9' : 'lightgreen';
             row.title = 'Circuit changed from today';
-        } else if (stock.circuitChangeDate && stock.circuitChangeDate.toDateString && stock.circuitChangeDate.toDateString() === GetNextWorkingDay(todayDate).toDateString()) {
+        } else if (stock.circuitChangeDate?.toDateString && stock.circuitChangeDate.toDateString() === GetNextWorkingDay(todayDate).toDateString()) {
             row.style.background = 'lightyellow';
             row.title = 'Circuit will change from next trading day';
         } else if (stock.listingDate.toDateString() === todayDate.toDateString()) {
@@ -242,12 +282,20 @@ async function ShareCircuitChanges() {
         title += rows.length > 1 ? 'Today\'s listings,*\n\n' : 'Today\'s listing,*\n\n';
         text = title;
         rows.forEach((row, i) => {
+            const stock = circuitChangeStocks.find(s => s.code === row.cells[3].innerText);
             const ticker = row.cells[3].innerText;
             const price = row.cells[8].innerText;
             const type = row.cells[6].innerText == 'SME' ? 'SME' : 'MB';
             const isT2TStock = row.cells[2].dataset.isInT2TSeries === 'true';
             const t2tSuffix = isT2TStock ? ', *T2T*' : '';
-            text += `${i + 1}. ${ticker} (${type}${t2tSuffix}) ${price}\n`;
+
+            let extraDetails = [];
+            if (stock?.freeShares) extraDetails.push(`FF: ${stock.freeShares.toLocaleString('en-IN')}`);
+            if (type === 'SME' && stock?.lotSize) extraDetails.push(`Lot: ${stock.lotSize.toLocaleString('en-IN')}`);
+
+            const extraSuffix = extraDetails.length > 0 ? `, ${extraDetails.join(', ')}` : '';
+
+            text += `${i + 1}. ${ticker} (${type}${t2tSuffix}) ${price}${extraSuffix}\n`;
         });
     } else {
         if (showSME && !showMB) title += 'SME ';
@@ -255,10 +303,10 @@ async function ShareCircuitChanges() {
         title += 'Circuit Changes,*\n\n';
 
         text = title;
-        rows.forEach((row, i) => {
+        rows.forEach((row) => {
             const stock = circuitChangeStocks.find(s => s.code === row.cells[3].innerText);
             let dateStr;
-            if (stock && stock.circuitChangeDate && stock.circuitChangeDate.toLocaleDateString) {
+            if (stock?.circuitChangeDate?.toLocaleDateString) {
                 dateStr = stock.circuitChangeDate.toLocaleDateString('en-In', {
                     day: '2-digit', month: 'short', year: 'numeric'
                 }).replace(/ /g, '-');
@@ -266,8 +314,8 @@ async function ShareCircuitChanges() {
                 return;
             }
             const ticker = row.cells[3].innerText;
-            const isTodayCircuit = stock.circuitChangeDate && stock.circuitChangeDate.toDateString && stock.circuitChangeDate.toDateString() === todayDate.toDateString();
-            const isTodayListing = stock.listingDate && stock.listingDate.toDateString && stock.listingDate.toDateString() === todayDate.toDateString();
+            const isTodayCircuit = stock.circuitChangeDate?.toDateString && stock.circuitChangeDate.toDateString() === todayDate.toDateString();
+            const isTodayListing = stock.listingDate?.toDateString && stock.listingDate.toDateString() === todayDate.toDateString();
             if (isTodayCircuit || isTodayListing) {
                 text += "*" + dateStr + ' ' + ticker + '*\n';
             } else {
