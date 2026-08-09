@@ -632,7 +632,11 @@
       "bandFrom": "5",
       "bandTo": "20",
       "dateEffectiveFrom": "Thu, 16 Jul, 2026"
-    }
+    },
+    "freeShares": 11130880,
+    "totalSecurities": 51603472,
+    "freeFloatPercentage": "21.57%",
+    "circular": "https://nsearchives.nseindia.com/content/circulars/CML74968.zip"
   },
   "INE1YPB01014": {
     "isin": "INE1YPB01014",
@@ -682,7 +686,11 @@
       "bandFrom": "20",
       "bandTo": "10",
       "dateEffectiveFrom": "Wed, 29 Jul, 2026"
-    }
+    },
+    "freeShares": 12500000,
+    "totalSecurities": 44142190,
+    "freeFloatPercentage": "28.32%",
+    "circular": "https://nsearchives.nseindia.com/content/circulars/CML75036.zip"
   },
   "INE1SME01017": {
     "isin": "INE1SME01017",
@@ -763,7 +771,12 @@
       "bandFrom": "10",
       "bandTo": "5",
       "dateEffectiveFrom": "Fri, 24 Jul, 2026"
-    }
+    },
+    "issuePrice": 158,
+    "freeShares": 2160000,
+    "totalSecurities": 6170000,
+    "freeFloatPercentage": "35.01%",
+    "circular": "https://nsearchives.nseindia.com/content/circulars/CML75068.zip"
   },
   "INE0R1301019": {
     "isin": "INE0R1301019",
@@ -779,7 +792,10 @@
       "bandFrom": "5",
       "bandTo": "20",
       "dateEffectiveFrom": "Tue, 21 Jul, 2026"
-    }
+    },
+    "issuePrice": 220,
+    "totalSecurities": 6417300,
+    "circular": "https://nsearchives.nseindia.com/content/circulars/CML75069.zip"
   },
   "INE17QZ01016": {
     "isin": "INE17QZ01016",
@@ -791,7 +807,11 @@
     "listingDate": "Wed, 08 Jul, 2026",
     "exchanges": "NSE, BSE",
     "bseCode": "544814",
-    "issuePrice": 170
+    "issuePrice": 170,
+    "freeShares": 18144577,
+    "totalSecurities": 122365164,
+    "freeFloatPercentage": "14.83%",
+    "circular": "https://nsearchives.nseindia.com/content/circulars/CML75084.zip"
   },
   "INE691Z20015": {
     "isin": "INE691Z20015",
@@ -834,7 +854,12 @@
       "bandFrom": "5",
       "bandTo": "20",
       "dateEffectiveFrom": "Fri, 24 Jul, 2026"
-    }
+    },
+    "issuePrice": 99,
+    "freeShares": 3471600,
+    "totalSecurities": 18261600,
+    "freeFloatPercentage": "19.01%",
+    "circular": "https://nsearchives.nseindia.com/content/circulars/CML75132.zip"
   },
   "INE0ISX01025": {
     "isin": "INE0ISX01025",
