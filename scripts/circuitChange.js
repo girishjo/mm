@@ -290,12 +290,12 @@ async function ShareCircuitChanges() {
             const t2tSuffix = isT2TStock ? ', *T2T*' : '';
 
             let extraDetails = [];
-            if (stock?.freeShares) extraDetails.push(`FF: ${stock.freeShares.toLocaleString('en-IN')}`);
-            if (type === 'SME' && stock?.lotSize) extraDetails.push(`Lot: ${stock.lotSize.toLocaleString('en-IN')}`);
+            if (type === 'SME' && stock?.lotSize) extraDetails.push(`*Lot*: ${stock.lotSize.toLocaleString('en-IN')}`);
+            if (stock?.freeShares) extraDetails.push(`*FF*: ${stock.freeShares.toLocaleString('en-IN')}`);
 
             const extraSuffix = extraDetails.length > 0 ? `, ${extraDetails.join(', ')}` : '';
 
-            text += `${i + 1}. ${ticker} (${type}${t2tSuffix}) ${price}${extraSuffix}\n`;
+            text += `${i + 1}. *${ticker}* (${type}${t2tSuffix}), *Price*: ${price}${extraSuffix}\n`;
         });
     } else {
         if (showSME && !showMB) title += 'SME ';
