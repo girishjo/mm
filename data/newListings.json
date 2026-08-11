@@ -1079,7 +1079,7 @@
     "nseCode": "METALIC",
     "ticker": "METALIC",
     "name": "Metalic Technoforge Limited",
-    "series": "ST",
+    "series": "SM",
     "type": "SME",
     "listingDate": "Tue, 28 Jul, 2026",
     "exchanges": "NSE",
@@ -1393,5 +1393,18 @@
     "totalSecurities": 21820000,
     "circular": "https://nsearchives.nseindia.com/content/circulars/CML75660.zip",
     "lotSize": 1
+  },
+  "INE0WR901013": {
+    "isin": "INE0WR901013",
+    "nseCode": "",
+    "ticker": "AEGEUS",
+    "name": "Aegeus Technologies Ltd",
+    "series": "MT",
+    "type": "SME",
+    "listingDate": "Sun, 08 Nov, 2026",
+    "exchanges": "BSE",
+    "bseCode": "544858",
+    "issuePrice": 105,
+    "ltp": null
   }
 }
