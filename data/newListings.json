@@ -1089,7 +1089,13 @@
     "freeFloatPercentage": "19.38%",
     "circularNo": "NSE/CML/75410",
     "circular": "https://nsearchives.nseindia.com/content/circulars/CML75410.zip",
-    "lotSize": 1600
+    "lotSize": 1600,
+    "bandChange": {
+      "series": "SM",
+      "bandFrom": "5",
+      "bandTo": "20",
+      "dateEffectiveFrom": "2026-08-11"
+    }
   },
   "INE1N3Y01016": {
     "isin": "INE1N3Y01016",
@@ -1374,5 +1380,18 @@
     "circular": "https://nsearchives.nseindia.com/content/circulars/CML75648.zip",
     "lotSize": 400,
     "marketLot": 400
+  },
+  "INE0MGM01017": {
+    "isin": "INE0MGM01017",
+    "nseCode": "ANNAPURNA",
+    "ticker": "ANNAPURNA",
+    "name": "Annapurna Swadisht Limited",
+    "series": "EQ",
+    "type": "MainBoard",
+    "listingDate": "Wed, 12 Aug, 2026",
+    "exchanges": "NSE",
+    "totalSecurities": 21820000,
+    "circular": "https://nsearchives.nseindia.com/content/circulars/CML75660.zip",
+    "lotSize": 1
   }
 }
