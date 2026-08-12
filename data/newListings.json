@@ -1405,6 +1405,36 @@
     "exchanges": "BSE",
     "bseCode": "544858",
     "issuePrice": 105,
-    "ltp": null
+    "ltp": 130.7
+  },
+  "INE0XNF01022": {
+    "isin": "INE0XNF01022",
+    "nseCode": "ARDEE",
+    "ticker": "ARDEE",
+    "name": "Ardee Industries Limited",
+    "series": "EQ",
+    "type": "MainBoard",
+    "listingDate": "Wed, 12 Aug, 2026",
+    "exchanges": "NSE, BSE",
+    "bseCode": "544860",
+    "issuePrice": 53,
+    "freeShares": 56246366,
+    "totalSecurities": 315200950,
+    "circular": "https://nsearchives.nseindia.com/content/circulars/CML75684.zip",
+    "lotSize": 1
+  },
+  "INE0GMR01016": {
+    "isin": "INE0GMR01016",
+    "nseCode": "SWARAJ",
+    "ticker": "SWARAJ",
+    "name": "Swaraj Suiting Limited",
+    "series": "EQ",
+    "type": "MainBoard",
+    "listingDate": "Thu, 13 Aug, 2026",
+    "exchanges": "NSE",
+    "freeShares": 18851260,
+    "totalSecurities": 26418260,
+    "circular": "https://nsearchives.nseindia.com/content/circulars/CML75683.zip",
+    "lotSize": 1
   }
 }
