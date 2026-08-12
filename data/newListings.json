@@ -1162,7 +1162,13 @@
     "freeFloatPercentage": "17.58%",
     "circularNo": "NSE/CML/75450",
     "circular": "https://nsearchives.nseindia.com/content/circulars/CML75450.zip",
-    "lotSize": 1
+    "lotSize": 1,
+    "bandChange": {
+      "series": "EQ",
+      "bandFrom": "5",
+      "bandTo": "20",
+      "dateEffectiveFrom": "2026-08-13"
+    }
   },
   "INE1EJ401023": {
     "isin": "INE1EJ401023",
@@ -1444,10 +1450,10 @@
     "name": "G V Electricals Ltd",
     "series": "MT",
     "type": "SME",
-    "listingDate": "Tue, 12 Aug, 2026",
+    "listingDate": "Wed, 12 Aug, 2026",
     "exchanges": "BSE",
     "bseCode": "544859",
     "issuePrice": 130,
-    "ltp": null
+    "ltp": 165.9
   }
 }
