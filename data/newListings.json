@@ -1436,5 +1436,18 @@
     "totalSecurities": 26418260,
     "circular": "https://nsearchives.nseindia.com/content/circulars/CML75683.zip",
     "lotSize": 1
+  },
+  "INE1ZGR01024": {
+    "isin": "INE1ZGR01024",
+    "nseCode": "",
+    "ticker": "GVELECTRIC",
+    "name": "G V Electricals Ltd",
+    "series": "MT",
+    "type": "SME",
+    "listingDate": "Tue, 08 Dec, 2026",
+    "exchanges": "BSE",
+    "bseCode": "544859",
+    "issuePrice": 130,
+    "ltp": null
   }
 }
