@@ -1151,7 +1151,7 @@
     "nseCode": "XTRANET",
     "ticker": "XTRANET",
     "name": "Xtranet Technologies Limited",
-    "series": "BE",
+    "series": "EQ",
     "type": "MainBoard",
     "listingDate": "Thu, 30 Jul, 2026",
     "exchanges": "NSE, BSE",
@@ -1437,11 +1437,12 @@
     "series": "EQ",
     "type": "MainBoard",
     "listingDate": "Thu, 13 Aug, 2026",
-    "exchanges": "NSE",
+    "exchanges": "NSE, BSE",
     "freeShares": 18851260,
     "totalSecurities": 26418260,
     "circular": "https://nsearchives.nseindia.com/content/circulars/CML75683.zip",
-    "lotSize": 1
+    "lotSize": 1,
+    "bseCode": "544861"
   },
   "INE1ZGR01024": {
     "isin": "INE1ZGR01024",
@@ -1455,5 +1456,36 @@
     "bseCode": "544859",
     "issuePrice": 130,
     "ltp": 165.9
+  },
+  "INE727B20018": {
+    "isin": "INE727B20018",
+    "nseCode": "GENESYS-RE",
+    "ticker": "GENESYS-RE",
+    "name": "Genesys International Corporation Limited-RE",
+    "series": "BE",
+    "type": "MainBoard",
+    "listingDate": "Fri, 14 Aug, 2026",
+    "exchanges": "NSE"
+  },
+  "INE06ZD20017": {
+    "isin": "INE06ZD20017",
+    "nseCode": "SHANTI-RE",
+    "ticker": "SHANTI-RE",
+    "name": "Shanti Gold International Limited-RE",
+    "series": "BE",
+    "type": "MainBoard",
+    "listingDate": "Fri, 14 Aug, 2026",
+    "exchanges": "NSE"
+  },
+  "INE551C01044": {
+    "isin": "INE551C01044",
+    "nseCode": "SHUKRAPHAR",
+    "ticker": "SHUKRAPHAR",
+    "name": "Shukra Pharmaceuticals Limited",
+    "series": "EQ",
+    "type": "MainBoard",
+    "listingDate": "Fri, 14 Aug, 2026",
+    "exchanges": "NSE, BSE",
+    "bseCode": "524632"
   }
 }
