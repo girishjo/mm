@@ -1,873 +1,4 @@
 {
-  "INE1V1R01014": {
-    "isin": "INE1V1R01014",
-    "nseCode": "UTKAL",
-    "ticker": "UTKAL",
-    "name": "Utkal Speciality Industries India Limited",
-    "series": "SM",
-    "type": "SME",
-    "listingDate": "Wed, 17 Jun, 2026",
-    "exchanges": "NSE",
-    "inEsm": false,
-    "bandChange": {
-      "series": "SM",
-      "bandFrom": "10",
-      "bandTo": "5",
-      "dateEffectiveFrom": "Tue, 07 Jul, 2026"
-    }
-  },
-  "INE1W0N01014": {
-    "isin": "INE1W0N01014",
-    "nseCode": "GENXAI",
-    "ticker": "GENXAI",
-    "name": "GenXAI Analytics Limited",
-    "series": "SM",
-    "type": "SME",
-    "listingDate": "Fri, 12 Jun, 2026",
-    "exchanges": "NSE",
-    "inEsm": false,
-    "bandChange": {
-      "series": "SM",
-      "bandFrom": "5",
-      "bandTo": "20",
-      "dateEffectiveFrom": "Mon, 29 Jun, 2026"
-    }
-  },
-  "INE1G2W01011": {
-    "isin": "INE1G2W01011",
-    "nseCode": "QLINE",
-    "ticker": "QLINE",
-    "name": "Q-Line Biotech Limited",
-    "series": "SM",
-    "type": "SME",
-    "listingDate": "Fri, 29 May, 2026",
-    "exchanges": "NSE",
-    "inEsm": false,
-    "bandChange": {
-      "series": "SM",
-      "bandFrom": "5",
-      "bandTo": "20",
-      "dateEffectiveFrom": "Fri, 12 Jun, 2026"
-    }
-  },
-  "INE1BKA01015": {
-    "isin": "INE1BKA01015",
-    "nseCode": "BMLL",
-    "ticker": "BMLL",
-    "name": "Bio Medica Laboratories Limited",
-    "series": "SM",
-    "type": "SME",
-    "listingDate": "Fri, 29 May, 2026",
-    "exchanges": "NSE",
-    "inEsm": false,
-    "bandChange": {
-      "series": "SM",
-      "bandFrom": "5",
-      "bandTo": "20",
-      "dateEffectiveFrom": "Fri, 12 Jun, 2026"
-    }
-  },
-  "INE2OL601013": {
-    "isin": "INE2OL601013",
-    "nseCode": "TEAMTECH",
-    "ticker": "TEAMTECH",
-    "name": "Teamtech Formwork Solutions Limited",
-    "series": "SM",
-    "type": "SME",
-    "listingDate": "Tue, 26 May, 2026",
-    "exchanges": "NSE",
-    "inEsm": false,
-    "bandChange": {
-      "series": "SM",
-      "bandFrom": "5",
-      "bandTo": "20",
-      "dateEffectiveFrom": "Wed, 10 Jun, 2026"
-    }
-  },
-  "INE0T1501010": {
-    "isin": "INE0T1501010",
-    "nseCode": "NFPSAMPOOR",
-    "ticker": "NFPSAMPOOR",
-    "name": "NFP Sampoorna Foods Limited",
-    "series": "SM",
-    "type": "SME",
-    "listingDate": "Mon, 25 May, 2026",
-    "exchanges": "NSE",
-    "inEsm": false,
-    "bandChange": {
-      "series": "SM",
-      "bandFrom": "5",
-      "bandTo": "20",
-      "dateEffectiveFrom": "Tue, 09 Jun, 2026"
-    }
-  },
-  "INE0V2V01015": {
-    "isin": "INE0V2V01015",
-    "nseCode": "RFBL",
-    "ticker": "RFBL",
-    "name": "RFBL Flexi Pack Limited",
-    "series": "SM",
-    "type": "SME",
-    "listingDate": "Tue, 19 May, 2026, 12:00:00 am",
-    "exchanges": "NSE",
-    "inEsm": false
-  },
-  "INE00WV01027": {
-    "isin": "INE00WV01027",
-    "nseCode": "CMRGREEN",
-    "ticker": "CMRGREEN",
-    "name": "CMR Green Technologies Limited",
-    "series": "EQ",
-    "type": "MainBoard",
-    "listingDate": "Wed, 10 Jun, 2026",
-    "exchanges": "NSE, BSE",
-    "inEsm": false,
-    "bseCode": "544777"
-  },
-  "INE0JUI01012": {
-    "isin": "INE0JUI01012",
-    "nseCode": "HEXAGON",
-    "ticker": "HEXAGON",
-    "name": "Hexagon Nutrition Limited",
-    "series": "EQ",
-    "type": "MainBoard",
-    "listingDate": "Fri, 12 Jun, 2026",
-    "exchanges": "NSE, BSE",
-    "inEsm": false,
-    "bseCode": "544785",
-    "bandChange": {
-      "series": "EQ",
-      "bandFrom": "5",
-      "bandTo": "20",
-      "dateEffectiveFrom": "Mon, 29 Jun, 2026"
-    }
-  },
-  "INE763M01028": {
-    "isin": "INE763M01028",
-    "nseCode": "MERCURYEV",
-    "ticker": "MERCURYEV",
-    "name": "Mercury Ev-Tech Limited",
-    "series": "BE",
-    "type": "MainBoard",
-    "listingDate": "Tue, 02 Jun, 2026",
-    "exchanges": "NSE, BSE",
-    "inEsm": false,
-    "bseCode": "531357"
-  },
-  "INE0FMW01018": {
-    "isin": "INE0FMW01018",
-    "nseCode": "QMSMEDI",
-    "ticker": "QMSMEDI",
-    "name": "QMS Medical Allied Services Limited",
-    "series": "EQ",
-    "type": "MainBoard",
-    "listingDate": "Thu, 18 Jun, 2026",
-    "exchanges": "NSE",
-    "inEsm": false
-  },
-  "INE206N20018": {
-    "isin": "INE206N20018",
-    "nseCode": "RELTD-RE",
-    "ticker": "RELTD-RE",
-    "name": "Ravindra Energy Ltd-RE",
-    "series": "BE",
-    "type": "MainBoard",
-    "listingDate": "Tue, 16 Jun, 2026, 12:00:00 am",
-    "exchanges": "NSE, BSE",
-    "inEsm": false,
-    "bseCode": "751122"
-  },
-  "INE482J20021": {
-    "isin": "INE482J20021",
-    "nseCode": "SHAH-RE1",
-    "ticker": "SHAH-RE1",
-    "name": "Shah Metacorp Ltd-RE",
-    "series": "BE",
-    "type": "MainBoard",
-    "listingDate": "Thu, 11 Jun, 2026, 12:00:00 am",
-    "exchanges": "NSE, BSE",
-    "inEsm": false,
-    "bandChange": {
-      "series": "BE",
-      "bandFrom": "20",
-      "bandTo": "10",
-      "dateEffectiveFrom": "Fri, 19 Jun, 2026"
-    },
-    "bseCode": "751121"
-  },
-  "INE1CDF01017": {
-    "isin": "INE1CDF01017",
-    "nseCode": "VAML",
-    "ticker": "VAML",
-    "name": "Vedanta Aluminium Metal Limited",
-    "series": "EQ",
-    "type": "MainBoard",
-    "listingDate": "Mon, 15 Jun, 2026",
-    "exchanges": "NSE, BSE",
-    "inEsm": false,
-    "bseCode": "544780",
-    "bandChange": {
-      "series": "EQ",
-      "bandFrom": "5",
-      "bandTo": "20",
-      "dateEffectiveFrom": "Tue, 30 Jun, 2026"
-    }
-  },
-  "INE694L01019": {
-    "isin": "INE694L01019",
-    "nseCode": "VEDPOWER",
-    "ticker": "VEDPOWER",
-    "name": "Vedanta Power Limited",
-    "series": "EQ",
-    "type": "MainBoard",
-    "listingDate": "Mon, 15 Jun, 2026",
-    "exchanges": "NSE, BSE",
-    "inEsm": false,
-    "bseCode": "544781",
-    "bandChange": {
-      "series": "EQ",
-      "bandFrom": "5",
-      "bandTo": "20",
-      "dateEffectiveFrom": "Tue, 30 Jun, 2026"
-    }
-  },
-  "INE1CLE01013": {
-    "isin": "INE1CLE01013",
-    "nseCode": "VISL",
-    "ticker": "VISL",
-    "name": "Vedanta Iron and Steel Limited",
-    "series": "EQ",
-    "type": "MainBoard",
-    "listingDate": "Mon, 15 Jun, 2026",
-    "exchanges": "NSE, BSE",
-    "inEsm": false,
-    "bseCode": "544784",
-    "bandChange": {
-      "series": "EQ",
-      "bandFrom": "10",
-      "bandTo": "5",
-      "dateEffectiveFrom": "Fri, 03 Jul, 2026"
-    }
-  },
-  "INE0MEG01014": {
-    "isin": "INE0MEG01014",
-    "nseCode": "VIVIANA",
-    "ticker": "VIVIANA",
-    "name": "Viviana Power Tech Limited",
-    "series": "BE",
-    "type": "MainBoard",
-    "listingDate": "Tue, 02 Jun, 2026",
-    "exchanges": "NSE",
-    "inEsm": false
-  },
-  "INE704J01044": {
-    "isin": "INE704J01044",
-    "nseCode": "VOGL",
-    "ticker": "VOGL",
-    "name": "Vedanta Oil and Gas Limited",
-    "series": "EQ",
-    "type": "MainBoard",
-    "listingDate": "Mon, 15 Jun, 2026",
-    "exchanges": "NSE, BSE",
-    "inEsm": false,
-    "bseCode": "544782",
-    "bandChange": {
-      "series": "EQ",
-      "bandFrom": "5",
-      "bandTo": "20",
-      "dateEffectiveFrom": "Tue, 30 Jun, 2026"
-    }
-  },
-  "INE1L3801017": {
-    "bseCode": "544765",
-    "ticker": "VPAL",
-    "name": "Vegorama Punjabi Angithi Ltd",
-    "series": "M",
-    "type": "SME",
-    "listingDate": "Wed, 27 May, 2026",
-    "isin": "INE1L3801017",
-    "exchanges": "BSE"
-  },
-  "INE18HI01019": {
-    "bseCode": "544767",
-    "ticker": "AFLTD",
-    "name": "Autofurnish Ltd",
-    "series": "M",
-    "type": "SME",
-    "listingDate": "Fri, 29 May, 2026",
-    "isin": "INE18HI01019",
-    "exchanges": "BSE"
-  },
-  "INE0YD301010": {
-    "bseCode": "544768",
-    "ticker": "MANIVENI",
-    "name": "M.R.Maniveni Foods Ltd",
-    "series": "M",
-    "type": "SME",
-    "listingDate": "Mon, 01 Jun, 2026",
-    "isin": "INE0YD301010",
-    "exchanges": "BSE"
-  },
-  "INE1UYW01010": {
-    "bseCode": "544769",
-    "ticker": "HARIKANTA",
-    "name": "Harikanta Overseas Ltd",
-    "series": "M",
-    "type": "SME",
-    "listingDate": "Tue, 02 Jun, 2026",
-    "isin": "INE1UYW01010",
-    "exchanges": "BSE"
-  },
-  "INE1T6L01010": {
-    "bseCode": "544770",
-    "ticker": "YAASHVI",
-    "name": "Yaashvi Jewellers Ltd",
-    "series": "M",
-    "type": "SME",
-    "listingDate": "Tue, 02 Jun, 2026",
-    "isin": "INE1T6L01010",
-    "exchanges": "BSE"
-  },
-  "INE1GM501015": {
-    "bseCode": "544771",
-    "ticker": "RFIL",
-    "name": "Rajnandini Fashion India Ltd",
-    "series": "M",
-    "type": "SME",
-    "listingDate": "Wed, 03 Jun, 2026",
-    "isin": "INE1GM501015",
-    "exchanges": "BSE"
-  },
-  "INE1KVL01010": {
-    "bseCode": "544772",
-    "ticker": "AUREATE",
-    "name": "Aureate Tradde Ltd",
-    "series": "M",
-    "type": "SME",
-    "listingDate": "Fri, 05 Jun, 2026",
-    "isin": "INE1KVL01010",
-    "exchanges": "BSE"
-  },
-  "INE1RQS01010": {
-    "bseCode": "544773",
-    "ticker": "MRTX",
-    "name": "Merritronix Ltd",
-    "series": "M",
-    "type": "SME",
-    "listingDate": "Mon, 08 Jun, 2026",
-    "isin": "INE1RQS01010",
-    "exchanges": "BSE"
-  },
-  "INE11XK01017": {
-    "bseCode": "544774",
-    "ticker": "SMR",
-    "name": "SMR Jewels Ltd",
-    "series": "M",
-    "type": "SME",
-    "listingDate": "Mon, 08 Jun, 2026",
-    "isin": "INE11XK01017",
-    "exchanges": "BSE"
-  },
-  "INE0H3U01013": {
-    "bseCode": "544778",
-    "ticker": "VAHH",
-    "name": "Vahh Chemicals Ltd",
-    "series": "MT",
-    "type": "SME",
-    "listingDate": "Thu, 11 Jun, 2026",
-    "isin": "INE0H3U01013",
-    "exchanges": "BSE"
-  },
-  "INE0YZ901011": {
-    "bseCode": "544779",
-    "ticker": "UHMVL",
-    "name": "UHM Vacation Ltd",
-    "series": "MT",
-    "type": "SME",
-    "listingDate": "Thu, 11 Jun, 2026",
-    "isin": "INE0YZ901011",
-    "exchanges": "BSE"
-  },
-  "INE2L0V01019": {
-    "bseCode": "544793",
-    "ticker": "SUSAN",
-    "name": "Susan Electricals India Ltd",
-    "series": "MT",
-    "type": "SME",
-    "listingDate": "Thu, 18 Jun, 2026",
-    "isin": "INE2L0V01019",
-    "exchanges": "BSE"
-  },
-  "INE235C20010": {
-    "isin": "INE235C20010",
-    "nseCode": "SUMEET-RE",
-    "ticker": "SUMEET-RE",
-    "name": "Sumeet Industries Limited-RE",
-    "series": "BE",
-    "type": "MainBoard",
-    "listingDate": "Mon, 22 Jun, 2026",
-    "exchanges": "NSE, BSE",
-    "inEsm": false,
-    "bseCode": "751123",
-    "bandChange": {
-      "series": "BE",
-      "bandFrom": "20",
-      "bandTo": "10",
-      "dateEffectiveFrom": "Wed, 01 Jul, 2026"
-    }
-  },
-  "INE1SEO01013": {
-    "bseCode": "544794",
-    "ticker": "HORIZON",
-    "name": "Horizon Reclaim (India) Ltd",
-    "series": "MT",
-    "type": "SME",
-    "listingDate": "Fri, 19 Jun, 2026",
-    "isin": "INE1SEO01013",
-    "exchanges": "BSE"
-  },
-  "INE1QGM01024": {
-    "isin": "INE1QGM01024",
-    "nseCode": "CLAYCRAFT",
-    "ticker": "CLAYCRAFT",
-    "name": "Clay Craft India Limited",
-    "series": "SM",
-    "type": "SME",
-    "listingDate": "Wed, 24 Jun, 2026",
-    "exchanges": "NSE",
-    "inEsm": false,
-    "bandChange": {
-      "series": "SM",
-      "bandFrom": "5",
-      "bandTo": "20",
-      "dateEffectiveFrom": "Thu, 09 Jul, 2026"
-    }
-  },
-  "INE0TKX01011": {
-    "isin": "INE0TKX01011",
-    "nseCode": "",
-    "ticker": "LIOTECH",
-    "name": "Liotech Industries Ltd",
-    "series": "MT",
-    "type": "SME",
-    "listingDate": "Wed, 24 Jun, 2026",
-    "exchanges": "BSE",
-    "bseCode": 544796,
-    "issuePrice": 321,
-    "ltp": 244.15
-  },
-  "INE0X6O01027": {
-    "isin": "INE0X6O01027",
-    "nseCode": "",
-    "ticker": "LESL",
-    "name": "Leapfrog Engineering Services Ltd",
-    "series": "MT",
-    "type": "SME",
-    "listingDate": "Wed, 24 Jun, 2026",
-    "exchanges": "BSE",
-    "bseCode": 544797,
-    "issuePrice": 23,
-    "ltp": 23.1
-  },
-  "INE1OSI01014": {
-    "isin": "INE1OSI01014",
-    "nseCode": "",
-    "ticker": "DIKSHA",
-    "name": "Diksha Polymers Ltd",
-    "series": "MT",
-    "type": "SME",
-    "listingDate": "Wed, 24 Jun, 2026",
-    "exchanges": "BSE",
-    "bseCode": 544798,
-    "issuePrice": 112,
-    "ltp": 120.2
-  },
-  "INE0V9I01017": {
-    "isin": "INE0V9I01017",
-    "nseCode": "AVIENCE",
-    "ticker": "AVIENCE",
-    "name": "Avience Biomedicals Limited",
-    "series": "SM",
-    "type": "SME",
-    "listingDate": "Thu, 25 Jun, 2026",
-    "exchanges": "NSE",
-    "bandChange": {
-      "series": "SM",
-      "bandFrom": "5",
-      "bandTo": "20",
-      "dateEffectiveFrom": "Fri, 10 Jul, 2026"
-    }
-  },
-  "INE0OC301013": {
-    "isin": "INE0OC301013",
-    "nseCode": "TURTLEMINT",
-    "ticker": "TURTLEMINT",
-    "name": "Turtlemint Fintech Solutions Limited",
-    "series": "EQ",
-    "type": "MainBoard",
-    "listingDate": "Mon, 29 Jun, 2026",
-    "exchanges": "NSE, BSE",
-    "bseCode": "544799",
-    "issuePrice": 152
-  },
-  "INE1O7201010": {
-    "isin": "INE1O7201010",
-    "nseCode": "",
-    "ticker": "ANUBHAV",
-    "name": "Anubhav Plast Ltd",
-    "series": "MT",
-    "type": "SME",
-    "listingDate": "Mon, 29 Jun, 2026",
-    "exchanges": "BSE",
-    "bseCode": 544800,
-    "issuePrice": 80,
-    "ltp": null
-  },
-  "INE0I0T01010": {
-    "isin": "INE0I0T01010",
-    "nseCode": "VOEPL",
-    "ticker": "VOEPL",
-    "name": "Virtuoso Optoelectronics Limited",
-    "series": "EQ",
-    "type": "MainBoard",
-    "listingDate": "Wed, 01 Jul, 2026",
-    "exchanges": "NSE, BSE",
-    "bseCode": "543597"
-  },
-  "INE0LZF01013": {
-    "isin": "INE0LZF01013",
-    "nseCode": "CORDELIA",
-    "ticker": "CORDELIA",
-    "name": "Waterways Leisure Tourism Limited",
-    "series": "EQ",
-    "type": "MainBoard",
-    "listingDate": "Wed, 01 Jul, 2026",
-    "exchanges": "NSE, BSE",
-    "bseCode": "544802",
-    "issuePrice": 808
-  },
-  "IN90I0M01022": {
-    "isin": "IN90I0M01022",
-    "nseCode": "PRABHAPP1",
-    "ticker": "PRABHAPP1",
-    "name": "Prabha Energy Limited",
-    "series": "EQ",
-    "type": "MainBoard",
-    "listingDate": "Thu, 02 Jul, 2026",
-    "exchanges": "NSE"
-  },
-  "INE1SJO01012": {
-    "isin": "INE1SJO01012",
-    "nseCode": "RAMBHAJO",
-    "ticker": "RAMBHAJO",
-    "name": "Advit Jewels Limited",
-    "series": "EQ",
-    "type": "MainBoard",
-    "listingDate": "Wed, 01 Jul, 2026",
-    "exchanges": "NSE, BSE",
-    "bseCode": "544803",
-    "issuePrice": 138,
-    "bandChange": {
-      "series": "EQ",
-      "bandFrom": "5",
-      "bandTo": "20",
-      "dateEffectiveFrom": "Wed, 15 Jul, 2026"
-    }
-  },
-  "INE0K3301012": {
-    "isin": "INE0K3301012",
-    "nseCode": "SHREEDHAR",
-    "ticker": "SHREEDHAR",
-    "name": "Shreedhar Spinners Limited",
-    "series": "SM",
-    "type": "SME",
-    "listingDate": "Wed, 01 Jul, 2026",
-    "exchanges": "NSE",
-    "bandChange": {
-      "series": "SM",
-      "bandFrom": "5",
-      "bandTo": "20",
-      "dateEffectiveFrom": "Wed, 15 Jul, 2026"
-    }
-  },
-  "INE0KYI01012": {
-    "isin": "INE0KYI01012",
-    "nseCode": "",
-    "ticker": "RIYAASAT",
-    "name": "Riyaasat Lifestyle Ltd",
-    "series": "MT",
-    "type": "SME",
-    "listingDate": "Wed, 01 Jul, 2026",
-    "exchanges": "BSE",
-    "bseCode": 544804,
-    "issuePrice": 106,
-    "ltp": 80.6
-  },
-  "INE0V3T01017": {
-    "isin": "INE0V3T01017",
-    "nseCode": "",
-    "ticker": "JIVIAL",
-    "name": "Jivial Industries Ltd",
-    "series": "MT",
-    "type": "SME",
-    "listingDate": "Wed, 01 Jul, 2026",
-    "exchanges": "BSE",
-    "bseCode": 544805,
-    "issuePrice": 196,
-    "ltp": 161.7
-  },
-  "INE0ZK601013": {
-    "isin": "INE0ZK601013",
-    "nseCode": "CSM",
-    "ticker": "CSM",
-    "name": "CSM Technologies Limited",
-    "series": "EQ",
-    "type": "MainBoard",
-    "listingDate": "Thu, 02 Jul, 2026",
-    "exchanges": "NSE, BSE",
-    "bseCode": "544806",
-    "issuePrice": 113,
-    "bandChange": {
-      "series": "EQ",
-      "bandFrom": "5",
-      "bandTo": "20",
-      "dateEffectiveFrom": "Thu, 16 Jul, 2026"
-    },
-    "freeShares": 11130880,
-    "totalSecurities": 51603472,
-    "freeFloatPercentage": "21.57%",
-    "circular": "https://nsearchives.nseindia.com/content/circulars/CML74968.zip",
-    "lotSize": 1
-  },
-  "INE1YPB01014": {
-    "isin": "INE1YPB01014",
-    "nseCode": "AGL",
-    "ticker": "AGL",
-    "name": "Allcargo Global Limited",
-    "series": "EQ",
-    "type": "MainBoard",
-    "listingDate": "Fri, 03 Jul, 2026",
-    "exchanges": "NSE, BSE",
-    "bseCode": "544602",
-    "issuePrice": 2,
-    "ltp": null,
-    "bandChange": {
-      "series": "EQ",
-      "bandFrom": "5",
-      "bandTo": "10",
-      "dateEffectiveFrom": "Fri, 17 Jul, 2026"
-    }
-  },
-  "INE0RBX01014": {
-    "isin": "INE0RBX01014",
-    "nseCode": "",
-    "ticker": "CRAZY",
-    "name": "Crazy Snacks Ltd",
-    "series": "MT",
-    "type": "SME",
-    "listingDate": "Fri, 03 Jul, 2026",
-    "exchanges": "BSE",
-    "bseCode": 544807,
-    "issuePrice": 42,
-    "ltp": null
-  },
-  "INE2FMX01012": {
-    "isin": "INE2FMX01012",
-    "nseCode": "AASTHA",
-    "ticker": "AASTHA",
-    "name": "Aastha Spintex Limited",
-    "series": "EQ",
-    "type": "MainBoard",
-    "listingDate": "Mon, 06 Jul, 2026",
-    "exchanges": "NSE, BSE",
-    "bseCode": "544808",
-    "issuePrice": 136,
-    "bandChange": {
-      "series": "EQ",
-      "bandFrom": "20",
-      "bandTo": "10",
-      "dateEffectiveFrom": "Wed, 29 Jul, 2026"
-    },
-    "freeShares": 12500000,
-    "totalSecurities": 44142190,
-    "freeFloatPercentage": "28.32%",
-    "circular": "https://nsearchives.nseindia.com/content/circulars/CML75036.zip",
-    "lotSize": 1
-  },
-  "INE1SME01017": {
-    "isin": "INE1SME01017",
-    "nseCode": "",
-    "ticker": " ADON",
-    "name": "Adon Agro Commodities Ltd",
-    "series": "MT",
-    "type": "SME",
-    "listingDate": "Mon, 06 Jul, 2026",
-    "exchanges": "BSE",
-    "bseCode": 544809,
-    "issuePrice": 70,
-    "ltp": null
-  },
-  "INE147701010": {
-    "isin": "INE147701010",
-    "nseCode": "",
-    "ticker": "SILL",
-    "name": "Sampark India Logistics Ltd",
-    "series": "MT",
-    "type": "SME",
-    "listingDate": "Tue, 07 Jul, 2026",
-    "exchanges": "BSE",
-    "bseCode": 544810,
-    "issuePrice": 84,
-    "ltp": 93.45
-  },
-  "INE1L0M01019": {
-    "isin": "INE1L0M01019",
-    "nseCode": "",
-    "ticker": "KRATIKAL",
-    "name": "Kratikal Tech Ltd",
-    "series": "MT",
-    "type": "SME",
-    "listingDate": "Tue, 07 Jul, 2026",
-    "exchanges": "BSE",
-    "bseCode": 544811,
-    "issuePrice": 135,
-    "ltp": 182.4
-  },
-  "INE226801012": {
-    "isin": "INE226801012",
-    "nseCode": "",
-    "ticker": "ATHARVA",
-    "name": "Atharva Poly-Plast Ltd",
-    "series": "MT",
-    "type": "SME",
-    "listingDate": "Tue, 07 Jul, 2026",
-    "exchanges": "BSE",
-    "bseCode": 544812,
-    "issuePrice": 60,
-    "ltp": 72.45
-  },
-  "INE1EVO01017": {
-    "isin": "INE1EVO01017",
-    "nseCode": "",
-    "ticker": "SEEMAX",
-    "name": "Seemax Resources Ltd",
-    "series": "MT",
-    "type": "SME",
-    "listingDate": "Tue, 07 Jul, 2026",
-    "exchanges": "BSE",
-    "bseCode": 544813,
-    "issuePrice": 141,
-    "ltp": 107.2
-  },
-  "INE27V201011": {
-    "isin": "INE27V201011",
-    "nseCode": "VMOBILE",
-    "ticker": "VMOBILE",
-    "name": "Vinit Mobile Limited",
-    "series": "SM",
-    "type": "SME",
-    "listingDate": "Tue, 07 Jul, 2026",
-    "exchanges": "NSE",
-    "bandChange": {
-      "series": "SM",
-      "bandFrom": "10",
-      "bandTo": "5",
-      "dateEffectiveFrom": "Fri, 24 Jul, 2026"
-    },
-    "issuePrice": 158,
-    "freeShares": 2160000,
-    "totalSecurities": 6170000,
-    "freeFloatPercentage": "35.01%",
-    "circular": "https://nsearchives.nseindia.com/content/circulars/CML75068.zip",
-    "lotSize": 800
-  },
-  "INE0R1301019": {
-    "isin": "INE0R1301019",
-    "nseCode": "TEJA",
-    "ticker": "TEJA",
-    "name": "Teja Engineering Industries Limited",
-    "series": "SM",
-    "type": "SME",
-    "listingDate": "Tue, 07 Jul, 2026",
-    "exchanges": "NSE",
-    "bandChange": {
-      "series": "SM",
-      "bandFrom": "5",
-      "bandTo": "20",
-      "dateEffectiveFrom": "Tue, 21 Jul, 2026"
-    },
-    "issuePrice": 220,
-    "totalSecurities": 6417300,
-    "circular": "https://nsearchives.nseindia.com/content/circulars/CML75069.zip",
-    "lotSize": 600,
-    "freeShares": 1698000
-  },
-  "INE17QZ01016": {
-    "isin": "INE17QZ01016",
-    "nseCode": "KNACK",
-    "ticker": "KNACK",
-    "name": "Knack Packaging Limited",
-    "series": "EQ",
-    "type": "MainBoard",
-    "listingDate": "Wed, 08 Jul, 2026",
-    "exchanges": "NSE, BSE",
-    "bseCode": "544814",
-    "issuePrice": 170,
-    "freeShares": 18144577,
-    "totalSecurities": 122365164,
-    "freeFloatPercentage": "14.83%",
-    "circular": "https://nsearchives.nseindia.com/content/circulars/CML75084.zip",
-    "lotSize": 1
-  },
-  "INE691Z20015": {
-    "isin": "INE691Z20015",
-    "nseCode": "GANGAFO-RE",
-    "ticker": "GANGAFO-RE",
-    "name": "Ganga Forging Ltd-RE",
-    "series": "BE",
-    "type": "MainBoard",
-    "listingDate": "Fri, 10 Jul, 2026",
-    "exchanges": "NSE",
-    "bandChange": {
-      "series": "BE",
-      "bandFrom": "40",
-      "bandTo": "20",
-      "dateEffectiveFrom": "Wed, 15 Jul, 2026"
-    }
-  },
-  "INE724A01017": {
-    "isin": "INE724A01017",
-    "nseCode": "GYFTR",
-    "ticker": "GYFTR",
-    "name": "Gyftr Limited",
-    "series": "EQ",
-    "type": "MainBoard",
-    "listingDate": "Fri, 10 Jul, 2026",
-    "exchanges": "NSE, BSE",
-    "bseCode": "507912"
-  },
-  "INE0XE501015": {
-    "isin": "INE0XE501015",
-    "nseCode": "ICELCO",
-    "ticker": "ICELCO",
-    "name": "IC Electricals Company Limited",
-    "series": "SM",
-    "type": "SME",
-    "listingDate": "Fri, 10 Jul, 2026",
-    "exchanges": "NSE",
-    "bandChange": {
-      "series": "SM",
-      "bandFrom": "5",
-      "bandTo": "20",
-      "dateEffectiveFrom": "Fri, 24 Jul, 2026"
-    },
-    "issuePrice": 99,
-    "freeShares": 3471600,
-    "totalSecurities": 18261600,
-    "freeFloatPercentage": "19.01%",
-    "circular": "https://nsearchives.nseindia.com/content/circulars/CML75132.zip",
-    "lotSize": 1200
-  },
   "INE0ISX01025": {
     "isin": "INE0ISX01025",
     "nseCode": "KUSUMGAR",
@@ -884,7 +15,12 @@
     "freeFloatPercentage": "14.81%",
     "circularNo": "NSE/CML/75197",
     "circular": "https://nsearchives.nseindia.com/content/circulars/CML75197.zip",
-    "lotSize": 1
+    "lotSize": 1,
+    "ltp": null,
+    "nseCircular": null,
+    "nseNoticeNo": null,
+    "bseCircular": null,
+    "bseNoticeNo": null
   },
   "INE302D01024": {
     "isin": "INE302D01024",
@@ -895,7 +31,17 @@
     "type": "MainBoard",
     "listingDate": "Thu, 16 Jul, 2026",
     "exchanges": "NSE, BSE",
-    "bseCode": "517035"
+    "bseCode": "517035",
+    "issuePrice": null,
+    "ltp": null,
+    "lotSize": null,
+    "totalSecurities": null,
+    "freeShares": null,
+    "freeFloatPercentage": null,
+    "nseCircular": null,
+    "nseNoticeNo": null,
+    "bseCircular": null,
+    "bseNoticeNo": null
   },
   "INE17IR01028": {
     "isin": "INE17IR01028",
@@ -913,7 +59,12 @@
     "freeFloatPercentage": "17.29%",
     "circularNo": "NSE/CML/75205",
     "circular": "https://nsearchives.nseindia.com/content/circulars/CML75205.zip",
-    "lotSize": 1
+    "lotSize": 1,
+    "ltp": null,
+    "nseCircular": null,
+    "nseNoticeNo": null,
+    "bseCircular": null,
+    "bseNoticeNo": null
   },
   "INE1GFG01011": {
     "isin": "INE1GFG01011",
@@ -936,7 +87,13 @@
     "freeFloatPercentage": "18.98%",
     "circularNo": "NSE/CML/75214",
     "circular": "https://nsearchives.nseindia.com/content/circulars/CML75214.zip",
-    "lotSize": 2000
+    "lotSize": 2000,
+    "bseCode": "",
+    "ltp": null,
+    "nseCircular": null,
+    "nseNoticeNo": null,
+    "bseCircular": null,
+    "bseNoticeNo": null
   },
   "INE2KRP01017": {
     "isin": "INE2KRP01017",
@@ -973,7 +130,12 @@
     "freeFloatPercentage": "31.44%",
     "circularNo": "NSE/CML/75290",
     "circular": "https://nsearchives.nseindia.com/content/circulars/CML75290.zip",
-    "lotSize": 1
+    "lotSize": 1,
+    "ltp": null,
+    "nseCircular": null,
+    "nseNoticeNo": null,
+    "bseCircular": null,
+    "bseNoticeNo": null
   },
   "INE640G01020": {
     "isin": "INE640G01020",
@@ -991,7 +153,12 @@
     "freeFloatPercentage": "7.16%",
     "circularNo": "NSE/CML/75302",
     "circular": "https://nsearchives.nseindia.com/content/circulars/CML75302.zip",
-    "lotSize": 1
+    "lotSize": 1,
+    "ltp": null,
+    "nseCircular": null,
+    "nseNoticeNo": null,
+    "bseCircular": null,
+    "bseNoticeNo": null
   },
   "INE1SRC01010": {
     "isin": "INE1SRC01010",
@@ -1015,7 +182,17 @@
     "type": "MainBoard",
     "listingDate": "Thu, 23 Jul, 2026",
     "exchanges": "NSE, BSE",
-    "bseCode": "536974"
+    "bseCode": "536974",
+    "issuePrice": null,
+    "ltp": null,
+    "lotSize": null,
+    "totalSecurities": null,
+    "freeShares": null,
+    "freeFloatPercentage": null,
+    "nseCircular": null,
+    "nseNoticeNo": null,
+    "bseCircular": null,
+    "bseNoticeNo": null
   },
   "INE208H01016": {
     "isin": "INE208H01016",
@@ -1059,7 +236,12 @@
     "freeFloatPercentage": "14.55%",
     "circularNo": "NSE/CML/75363",
     "circular": "https://nsearchives.nseindia.com/content/circulars/CML75363.zip",
-    "lotSize": 1
+    "lotSize": 1,
+    "ltp": null,
+    "nseCircular": null,
+    "nseNoticeNo": null,
+    "bseCircular": null,
+    "bseNoticeNo": null
   },
   "INE1WDC01012": {
     "isin": "INE1WDC01012",
@@ -1095,7 +277,13 @@
       "bandFrom": "5",
       "bandTo": "20",
       "dateEffectiveFrom": "2026-08-11"
-    }
+    },
+    "bseCode": "",
+    "ltp": null,
+    "nseCircular": null,
+    "nseNoticeNo": null,
+    "bseCircular": null,
+    "bseNoticeNo": null
   },
   "INE1N3Y01016": {
     "isin": "INE1N3Y01016",
@@ -1126,7 +314,12 @@
     "freeFloatPercentage": "17.11%",
     "circularNo": "NSE/CML/75447",
     "circular": "https://nsearchives.nseindia.com/content/circulars/CML75447.zip",
-    "lotSize": 1
+    "lotSize": 1,
+    "ltp": null,
+    "nseCircular": null,
+    "nseNoticeNo": null,
+    "bseCircular": null,
+    "bseNoticeNo": null
   },
   "INE0QJW01029": {
     "isin": "INE0QJW01029",
@@ -1144,7 +337,12 @@
     "freeFloatPercentage": "13.58%",
     "circularNo": "NSE/CML/75448",
     "circular": "https://nsearchives.nseindia.com/content/circulars/CML75448.zip",
-    "lotSize": 1
+    "lotSize": 1,
+    "ltp": null,
+    "nseCircular": null,
+    "nseNoticeNo": null,
+    "bseCircular": null,
+    "bseNoticeNo": null
   },
   "INE0NG701011": {
     "isin": "INE0NG701011",
@@ -1167,8 +365,13 @@
       "series": "EQ",
       "bandFrom": "5",
       "bandTo": "20",
-      "dateEffectiveFrom": "2026-08-13"
-    }
+      "dateEffectiveFrom": "Thu, 13 Aug, 2026"
+    },
+    "ltp": null,
+    "nseCircular": null,
+    "nseNoticeNo": null,
+    "bseCircular": null,
+    "bseNoticeNo": null
   },
   "INE1EJ401023": {
     "isin": "INE1EJ401023",
@@ -1192,7 +395,17 @@
     "type": "MainBoard",
     "listingDate": "Tue, 04 Aug, 2026",
     "exchanges": "NSE, BSE",
-    "bseCode": "506414"
+    "bseCode": "506414",
+    "issuePrice": null,
+    "ltp": null,
+    "lotSize": null,
+    "totalSecurities": null,
+    "freeShares": null,
+    "freeFloatPercentage": null,
+    "nseCircular": null,
+    "nseNoticeNo": null,
+    "bseCircular": null,
+    "bseNoticeNo": null
   },
   "INE1FFX01018": {
     "isin": "INE1FFX01018",
@@ -1209,7 +422,13 @@
     "freeFloatPercentage": "28.3%",
     "circularNo": "NSE/CML/75516",
     "circular": "https://nsearchives.nseindia.com/content/circulars/CML75516.zip",
-    "lotSize": 2000
+    "lotSize": 2000,
+    "bseCode": "",
+    "ltp": null,
+    "nseCircular": null,
+    "nseNoticeNo": null,
+    "bseCircular": null,
+    "bseNoticeNo": null
   },
   "INE13ZJ01010": {
     "isin": "INE13ZJ01010",
@@ -1253,7 +472,12 @@
     "freeFloatPercentage": "6.58%",
     "circularNo": "NSE/CML/75569",
     "circular": "https://nsearchives.nseindia.com/content/circulars/CML75569.zip",
-    "lotSize": 1
+    "lotSize": 1,
+    "ltp": null,
+    "nseCircular": null,
+    "nseNoticeNo": null,
+    "bseCircular": null,
+    "bseNoticeNo": null
   },
   "INE17DP01015": {
     "isin": "INE17DP01015",
@@ -1284,7 +508,12 @@
     "freeFloatPercentage": "9.85%",
     "circularNo": "NSE/CML/75585",
     "circular": "https://nsearchives.nseindia.com/content/circulars/CML75585.zip",
-    "lotSize": 1
+    "lotSize": 1,
+    "ltp": null,
+    "nseCircular": null,
+    "nseNoticeNo": null,
+    "bseCircular": null,
+    "bseNoticeNo": null
   },
   "INE0OWZ01020": {
     "isin": "INE0OWZ01020",
@@ -1302,7 +531,12 @@
     "freeFloatPercentage": "13.76%",
     "circularNo": "NSE/CML/75583",
     "circular": "https://nsearchives.nseindia.com/content/circulars/CML75583.zip",
-    "lotSize": 1
+    "lotSize": 1,
+    "ltp": null,
+    "nseCircular": null,
+    "nseNoticeNo": null,
+    "bseCircular": null,
+    "bseNoticeNo": null
   },
   "INE754X01016": {
     "isin": "INE754X01016",
@@ -1385,7 +619,13 @@
     "circularNo": "NSE/CML/75648",
     "circular": "https://nsearchives.nseindia.com/content/circulars/CML75648.zip",
     "lotSize": 400,
-    "marketLot": 400
+    "marketLot": 400,
+    "bseCode": "",
+    "ltp": null,
+    "nseCircular": null,
+    "nseNoticeNo": null,
+    "bseCircular": null,
+    "bseNoticeNo": null
   },
   "INE0MGM01017": {
     "isin": "INE0MGM01017",
@@ -1398,7 +638,16 @@
     "exchanges": "NSE",
     "totalSecurities": 21820000,
     "circular": "https://nsearchives.nseindia.com/content/circulars/CML75660.zip",
-    "lotSize": 1
+    "lotSize": 1,
+    "bseCode": "",
+    "issuePrice": null,
+    "ltp": null,
+    "freeShares": null,
+    "freeFloatPercentage": null,
+    "nseCircular": null,
+    "nseNoticeNo": null,
+    "bseCircular": null,
+    "bseNoticeNo": null
   },
   "INE0WR901013": {
     "isin": "INE0WR901013",
@@ -1427,7 +676,13 @@
     "freeShares": 56246366,
     "totalSecurities": 315200950,
     "circular": "https://nsearchives.nseindia.com/content/circulars/CML75684.zip",
-    "lotSize": 1
+    "lotSize": 1,
+    "ltp": null,
+    "freeFloatPercentage": null,
+    "nseCircular": null,
+    "nseNoticeNo": null,
+    "bseCircular": null,
+    "bseNoticeNo": null
   },
   "INE0GMR01016": {
     "isin": "INE0GMR01016",
@@ -1443,7 +698,13 @@
     "circular": "https://nsearchives.nseindia.com/content/circulars/CML75683.zip",
     "lotSize": 1,
     "bseCode": "544861",
-    "issuePrice": 10
+    "issuePrice": 10,
+    "ltp": 370.35,
+    "freeFloatPercentage": null,
+    "nseCircular": null,
+    "nseNoticeNo": null,
+    "bseCircular": null,
+    "bseNoticeNo": null
   },
   "INE1ZGR01024": {
     "isin": "INE1ZGR01024",
@@ -1466,7 +727,18 @@
     "series": "BE",
     "type": "MainBoard",
     "listingDate": "Fri, 14 Aug, 2026",
-    "exchanges": "NSE"
+    "exchanges": "NSE",
+    "bseCode": "",
+    "issuePrice": null,
+    "ltp": null,
+    "lotSize": null,
+    "totalSecurities": null,
+    "freeShares": null,
+    "freeFloatPercentage": null,
+    "nseCircular": null,
+    "nseNoticeNo": null,
+    "bseCircular": null,
+    "bseNoticeNo": null
   },
   "INE06ZD20017": {
     "isin": "INE06ZD20017",
@@ -1476,7 +748,18 @@
     "series": "BE",
     "type": "MainBoard",
     "listingDate": "Fri, 14 Aug, 2026",
-    "exchanges": "NSE"
+    "exchanges": "NSE",
+    "bseCode": "",
+    "issuePrice": null,
+    "ltp": null,
+    "lotSize": null,
+    "totalSecurities": null,
+    "freeShares": null,
+    "freeFloatPercentage": null,
+    "nseCircular": null,
+    "nseNoticeNo": null,
+    "bseCircular": null,
+    "bseNoticeNo": null
   },
   "INE551C01044": {
     "isin": "INE551C01044",
@@ -1487,7 +770,17 @@
     "type": "MainBoard",
     "listingDate": "Fri, 14 Aug, 2026",
     "exchanges": "NSE, BSE",
-    "bseCode": "524632"
+    "bseCode": "524632",
+    "issuePrice": null,
+    "ltp": null,
+    "lotSize": null,
+    "totalSecurities": null,
+    "freeShares": null,
+    "freeFloatPercentage": null,
+    "nseCircular": null,
+    "nseNoticeNo": null,
+    "bseCircular": null,
+    "bseNoticeNo": null
   },
   "INE880Y01017": {
     "isin": "INE880Y01017",
@@ -1500,7 +793,15 @@
     "exchanges": "BSE",
     "bseCode": "544862",
     "issuePrice": 10,
-    "ltp": 883
+    "ltp": 882.9,
+    "lotSize": null,
+    "totalSecurities": null,
+    "freeShares": null,
+    "freeFloatPercentage": null,
+    "nseCircular": null,
+    "nseNoticeNo": null,
+    "bseCircular": null,
+    "bseNoticeNo": null
   },
   "INE0X9I01023": {
     "isin": "INE0X9I01023",
@@ -1513,11 +814,14 @@
     "exchanges": "BSE",
     "bseCode": "544863",
     "issuePrice": 94,
-    "ltp": 130.35,
+    "ltp": 130.25,
     "freeShares": 2469600,
     "totalSecurities": 12536218,
     "freeFloatPercentage": 19.7,
     "lotSize": 1200,
-    "bseCircular": "https://www.bseindia.com/downloads/UploadDocs/Notices/20260812-34/20260812-34.pdf"
+    "bseCircular": "https://www.bseindia.com/downloads/UploadDocs/Notices/20260812-34/20260812-34.pdf",
+    "nseCircular": null,
+    "nseNoticeNo": null,
+    "bseNoticeNo": "20260812-34"
   }
 }
