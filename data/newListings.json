@@ -1500,7 +1500,7 @@
     "exchanges": "BSE",
     "bseCode": "544862",
     "issuePrice": 10,
-    "ltp": null
+    "ltp": 883
   },
   "INE0X9I01023": {
     "isin": "INE0X9I01023",
@@ -1513,6 +1513,11 @@
     "exchanges": "BSE",
     "bseCode": "544863",
     "issuePrice": 94,
-    "ltp": null
+    "ltp": 130.35,
+    "freeShares": 2469600,
+    "totalSecurities": 12536218,
+    "freeFloatPercentage": 19.7,
+    "lotSize": 1200,
+    "bseCircular": "https://www.bseindia.com/downloads/UploadDocs/Notices/20260812-34/20260812-34.pdf"
   }
 }
