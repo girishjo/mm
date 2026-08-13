@@ -1442,7 +1442,8 @@
     "totalSecurities": 26418260,
     "circular": "https://nsearchives.nseindia.com/content/circulars/CML75683.zip",
     "lotSize": 1,
-    "bseCode": "544861"
+    "bseCode": "544861",
+    "issuePrice": 10
   },
   "INE1ZGR01024": {
     "isin": "INE1ZGR01024",
@@ -1487,5 +1488,31 @@
     "listingDate": "Fri, 14 Aug, 2026",
     "exchanges": "NSE, BSE",
     "bseCode": "524632"
+  },
+  "INE880Y01017": {
+    "isin": "INE880Y01017",
+    "nseCode": "",
+    "ticker": "SOLEX",
+    "name": "Solex Energy Ltd",
+    "series": "B",
+    "type": "MainBoard",
+    "listingDate": "Thu, 13 Aug, 2026",
+    "exchanges": "BSE",
+    "bseCode": "544862",
+    "issuePrice": 10,
+    "ltp": null
+  },
+  "INE0X9I01023": {
+    "isin": "INE0X9I01023",
+    "nseCode": "",
+    "ticker": "LAPL",
+    "name": "LAPL Automotive Ltd",
+    "series": "MT",
+    "type": "SME",
+    "listingDate": "Thu, 13 Aug, 2026",
+    "exchanges": "BSE",
+    "bseCode": "544863",
+    "issuePrice": 94,
+    "ltp": null
   }
 }
