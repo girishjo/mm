@@ -865,5 +865,26 @@
     "nseNoticeNo": "75738",
     "bseCircular": "https://www.bseindia.com/downloads/UploadDocs/Notices/20260813-37/20260813-37.pdf",
     "bseNoticeNo": "20260813-37"
+  },
+  "INE1JZB01022": {
+    "isin": "INE1JZB01022",
+    "nseCode": "OPTIMYSTIX",
+    "bseCode": "",
+    "ticker": "OPTIMYSTIX",
+    "name": "Optimystix Entertainment India Limited",
+    "series": "ST",
+    "type": "SME",
+    "listingDate": "Fri, 14 Aug, 2026",
+    "exchanges": "NSE",
+    "issuePrice": null,
+    "ltp": null,
+    "lotSize": null,
+    "totalSecurities": null,
+    "freeShares": null,
+    "freeFloatPercentage": null,
+    "nseCircular": null,
+    "nseNoticeNo": null,
+    "bseCircular": null,
+    "bseNoticeNo": null
   }
 }
