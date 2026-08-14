@@ -761,27 +761,6 @@
     "bseCircular": null,
     "bseNoticeNo": null
   },
-  "INE551C01044": {
-    "isin": "INE551C01044",
-    "nseCode": "SHUKRAPHAR",
-    "ticker": "SHUKRAPHAR",
-    "name": "Shukra Pharmaceuticals Limited",
-    "series": "EQ",
-    "type": "MainBoard",
-    "listingDate": "Fri, 14 Aug, 2026",
-    "exchanges": "NSE, BSE",
-    "bseCode": "524632",
-    "issuePrice": null,
-    "ltp": null,
-    "lotSize": null,
-    "totalSecurities": null,
-    "freeShares": null,
-    "freeFloatPercentage": null,
-    "nseCircular": null,
-    "nseNoticeNo": null,
-    "bseCircular": null,
-    "bseNoticeNo": null
-  },
   "INE880Y01017": {
     "isin": "INE880Y01017",
     "nseCode": "",
