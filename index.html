@@ -371,32 +371,49 @@
             </table>
         </div>
         <div id="circuitChangeDiv" class="tabcontent" style="display: none;">
-            <div style="display: inline-block;">
-                <div style="margin-bottom: 10px; display: flex; flex-wrap: wrap; align-items: center; gap: 10px;">
+            <div style="width: 100%;">
+                <div
+                    style="margin-bottom: 10px; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 10px;">
+
+                    <!-- Left: Exchange & Type Filters -->
+                    <div style="display: inline-flex; align-items: center; gap: 10px;">
+                        <span
+                            style="border: 1px solid #ccc; border-radius: 4px; padding: 4px 8px; display: inline-flex; align-items: center; gap: 6px;">
+                            <span style="font-weight: bold;">Exchange:</span>
+                            <input type="checkbox" id="chkCircuitNSE" name="chkCircuitNSE" checked
+                                onchange="OnCircuitFilterChanged();">
+                            <label for="chkCircuitNSE">NSE</label>
+                            <input type="checkbox" id="chkCircuitBSE" name="chkCircuitBSE" checked
+                                onchange="OnCircuitFilterChanged();">
+                            <label for="chkCircuitBSE">BSE</label>
+                        </span>
+                        <span
+                            style="border: 1px solid #ccc; border-radius: 4px; padding: 4px 8px; display: inline-flex; align-items: center; gap: 6px;">
+                            <span style="font-weight: bold;">Type:</span>
+                            <input type="checkbox" id="chkCircuitSME" name="chkCircuitSME" checked
+                                onchange="OnCircuitFilterChanged();">
+                            <label for="chkCircuitSME">SME</label>
+                            <input type="checkbox" id="chkCircuitMB" name="chkCircuitMB" checked
+                                onchange="OnCircuitFilterChanged();">
+                            <label for="chkCircuitMB">MainBoard</label>
+                        </span>
+                    </div>
+
+                    <!-- Center: Date Selection & Navigation -->
                     <span
-                        style="border: 1px solid #ccc; border-radius: 4px; padding: 4px 8px; display: inline-flex; align-items: center; gap: 6px;">
-                        <span style="font-weight: bold;">Exchange:</span>
-                        <input type="checkbox" id="chkCircuitNSE" name="chkCircuitNSE" checked
-                            onchange="OnCircuitFilterChanged();">
-                        <label for="chkCircuitNSE">NSE</label>
-                        <input type="checkbox" id="chkCircuitBSE" name="chkCircuitBSE" checked
-                            onchange="OnCircuitFilterChanged();">
-                        <label for="chkCircuitBSE">BSE</label>
+                        style="margin: 0 auto; border: 1px solid #ccc; border-radius: 4px; padding: 4px 8px; display: inline-flex; align-items: center; gap: 4px;">
+                        <label for="circuitChangeDateFilter" style="font-weight: bold; margin-right: 4px;">Date:</label>
+                        <button onclick="PreviousCircuitDate();" title="Previous date">◀</button>
+                        <input type="date" id="circuitChangeDateFilter" onchange="OnCircuitDateChanged();">
+                        <button onclick="NextCircuitDate();" title="Next date">▶</button>
+                        <button onclick="ResetCircuitDateToToday();" style="margin-left: 4px;">Today</button>
                     </span>
-                    <span
-                        style="border: 1px solid #ccc; border-radius: 4px; padding: 4px 8px; display: inline-flex; align-items: center; gap: 6px;">
-                        <span style="font-weight: bold;">Type:</span>
-                        <input type="checkbox" id="chkCircuitSME" name="chkCircuitSME" checked
-                            onchange="OnCircuitFilterChanged();">
-                        <label for="chkCircuitSME">SME</label>
-                        <input type="checkbox" id="chkCircuitMB" name="chkCircuitMB" checked
-                            onchange="OnCircuitFilterChanged();">
-                        <label for="chkCircuitMB">MainBoard</label>
-                    </span>
-                    <span style="display: inline-flex; align-items: center; gap: 6px; margin-left: auto;">
+
+                    <!-- Right: Display Checkboxes & Share -->
+                    <span style="display: inline-flex; align-items: center; gap: 6px;">
                         <input type="checkbox" id="chkCircuitToday" name="chkCircuitToday"
                             onchange="OnCircuitTodayChanged();">
-                        <label for="chkCircuitToday">Today's listings</label>
+                        <label for="chkCircuitToday" id="lblCircuitToday">Day's listings</label>
                         <input type="checkbox" id="chkCircuitOld" name="chkCircuitOld"
                             onchange="OnCircuitOldChanged();">
                         <label for="chkCircuitOld">Include past</label>
@@ -415,7 +432,9 @@
                             style="margin-right: 0;">
                         <label for="chkShareWithImage" style="margin-right: 15px;">Image</label>
                     </span>
+
                 </div>
+
                 <table id="circuitChangeTable">
                     <thead>
                         <tr>
