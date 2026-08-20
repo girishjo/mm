@@ -43,6 +43,8 @@ function openTab(tabId) {
     const addWatchlistBtn = document.getElementById('addWatchlistBtn');
     const newWatchList = document.getElementById('newWatchList');
     const removeWatchlistBtn = document.getElementById('removeWatchlistBtn');
+    const renameWatchlistBtn = document.getElementById('renameWatchlistBtn');
+    const combineWatchlistsBtn = document.getElementById('combineWatchlistsBtn');
     const lblShowAllWatchlists = document.getElementById('lblShowAllWatchlists');
     const lblPrivacyMode = document.getElementById('lblPrivacyMode');
 
@@ -50,26 +52,30 @@ function openTab(tabId) {
     if (addWatchlistBtn) addWatchlistBtn.style.display = 'none';
     if (newWatchList) newWatchList.style.display = 'none';
     if (removeWatchlistBtn) removeWatchlistBtn.style.display = 'none';
+    if (renameWatchlistBtn) renameWatchlistBtn.style.display = 'none';
+    if (combineWatchlistsBtn) combineWatchlistsBtn.style.display = 'none';
     if (lblShowAllWatchlists) lblShowAllWatchlists.style.display = 'none';
     if (lblPrivacyMode) lblPrivacyMode.style.display = 'none';
 
     switch (tabId) {
         case "stockListDiv":
             // Show watchlist controls and management buttons on Watchlists tab
-            watchlistDiv.style.display = 'block';
+            watchlistDiv.style.display = 'flex';
             if (addWatchlistBtn) addWatchlistBtn.style.display = 'inline-block';
             if (newWatchList) newWatchList.style.display = 'inline-block';
             if (removeWatchlistBtn) removeWatchlistBtn.style.display = 'inline-block';
+            if (renameWatchlistBtn) renameWatchlistBtn.style.display = 'inline-block';
+            if (combineWatchlistsBtn) combineWatchlistsBtn.style.display = 'inline-block';
             UpdateWatchList();
             break;
         case "stockDataDiv":
             // Show watchlist dropdown but hide management buttons
-            watchlistDiv.style.display = 'block';
+            watchlistDiv.style.display = 'flex';
             UpdateWatchList();
             break;
         case "portfolioDiv":
             // Show watchlist dropdown but hide management buttons
-            watchlistDiv.style.display = 'block';
+            watchlistDiv.style.display = 'flex';
             if (lblShowAllWatchlists) lblShowAllWatchlists.style.display = 'inline-block';
             if (lblPrivacyMode) lblPrivacyMode.style.display = 'inline-block';
             // Initialize portfolio date if not set
@@ -104,6 +110,25 @@ document.body.addEventListener('click', function (evt) {
 
 function AddWatchlistCode(value, name) {
     try {
+        const watchlistItems = document.getElementById('watchlistItems');
+        const item = document.createElement('span');
+        item.className = 'watchlist-item';
+        item.draggable = true;
+        item.addEventListener('dragstart', event => {
+            event.dataTransfer.setData('text/plain', item.id);
+            item.classList.add('watchlist-item-dragging');
+        });
+        item.addEventListener('dragend', () => item.classList.remove('watchlist-item-dragging'));
+        item.addEventListener('dragover', event => {
+            event.preventDefault();
+            const dragging = document.querySelector('.watchlist-item-dragging');
+            if (dragging && dragging !== item) {
+                const rect = item.getBoundingClientRect();
+                item.parentNode.insertBefore(dragging, event.clientX < rect.left + rect.width / 2 ? item : item.nextSibling);
+            }
+        });
+        item.addEventListener('drop', () => saveDataOnLocal(true, false));
+
         let input = document.createElement("input");
         input.type = "radio";
         input.name = "stockListRadio";
@@ -116,11 +141,10 @@ function AddWatchlistCode(value, name) {
         label.innerText = name;
         label.setAttribute("for", input.id);
 
-        const watchlistDiv = document.getElementById('watchlistDiv');
-        const button = document.getElementById('addWatchlistBtn');
-
-        watchlistDiv.insertBefore(input, button);
-        watchlistDiv.insertBefore(label, button);
+        item.id = 'watchlistItem' + value;
+        item.appendChild(input);
+        item.appendChild(label);
+        watchlistItems.appendChild(item);
         return input;
     }
     catch (e) {
@@ -131,11 +155,9 @@ function AddWatchlistCode(value, name) {
 function RemoveWatchlistCode(watchlistId) {
     const selectedWatchList = document.getElementById(watchlistId);
     if (selectedWatchList) {
-        const selectedLabel = document.querySelector('label[for=' + selectedWatchList.id + ']')
-        if (selectedLabel) {
-            const watchlistDiv = document.getElementById('watchlistDiv');
-            watchlistDiv.removeChild(selectedWatchList);
-            watchlistDiv.removeChild(selectedLabel);
+        const item = selectedWatchList.closest('.watchlist-item');
+        if (item) {
+            item.remove();
             return true;
         }
     }

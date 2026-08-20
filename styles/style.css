@@ -4,6 +4,14 @@
     font-size: 17px;
 }
 
+button,
+input,
+select,
+label {
+    font-size: 17px;
+    margin-bottom: 0;
+}
+
 body {
     font-family: Arial;
     margin: 0px 10px 10px 10px;
@@ -164,6 +172,130 @@ td.attention {
 
 label[for] {
     margin-right: 15px;
+}
+
+.watchlist-item {
+    display: inline-flex;
+    align-items: center;
+    cursor: grab;
+    margin-right: 8px;
+    margin-bottom: 0;
+    white-space: nowrap;
+}
+
+.watchlist-item input[type="radio"] {
+    margin: 0 2px 0 0;
+}
+
+.watchlist-item-dragging {
+    opacity: 0.45;
+}
+
+#watchlistDiv {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    min-height: 42px;
+    padding: 0 10px;
+    border-bottom: 1px solid #dddddd;
+}
+
+#watchlistDiv > label {
+    white-space: nowrap;
+}
+
+#watchlistItems {
+    display: inline-flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 4px;
+}
+
+#watchlistSummary {
+    margin: 10px;
+}
+
+#watchlistSummaryTable {
+    min-width: 700px;
+    margin-top: 8px;
+}
+
+#combinedWatchlistName {
+    min-width: 190px;
+    display: block;
+    margin: 12px 0;
+}
+
+.combined-watchlist-dialog {
+    max-width: 420px;
+}
+
+.combined-watchlist-dialog h2 {
+    margin: 0;
+}
+
+.combined-watchlist-dialog p {
+    margin: 0 0 10px;
+}
+
+.combined-watchlist-options {
+    display: grid;
+    gap: 7px;
+    max-height: 240px;
+    overflow-y: auto;
+    padding: 10px;
+    border: 1px solid #dddddd;
+    background: #fafafa;
+}
+
+.combined-watchlist-option {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin: 0;
+}
+
+.watchlist-actions {
+    padding: 8px 10px 4px;
+    margin-bottom: 8px;
+    border-bottom: 1px solid #dddddd;
+}
+
+.watchlist-action-row {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 8px;
+}
+
+.watchlist-actions button,
+.watchlist-actions input,
+.watchlist-actions select {
+    margin: 0;
+}
+
+#newWatchList {
+    min-width: 190px;
+}
+
+.watchlist-export-option {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    margin: 0;
+}
+
+@media (max-width: 700px) {
+    .watchlist-action-row {
+        align-items: stretch;
+    }
+
+    .watchlist-actions button,
+    .watchlist-actions input,
+    .watchlist-actions select {
+        flex: 1 1 auto;
+    }
 }
 
 

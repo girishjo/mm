@@ -120,6 +120,8 @@ function filterWatchlistsForPortfolio() {
             radio.style.display = '';
             const label = document.querySelector('label[for="' + radio.id + '"]');
             if (label) label.style.display = '';
+            const item = radio.closest('.watchlist-item');
+            if (item) item.style.display = '';
         });
         return;
     }
@@ -131,6 +133,8 @@ function filterWatchlistsForPortfolio() {
         radio.style.display = visible ? '' : 'none';
         const label = document.querySelector('label[for="' + radio.id + '"]');
         if (label) label.style.display = visible ? '' : 'none';
+        const item = radio.closest('.watchlist-item');
+        if (item) item.style.display = visible ? '' : 'none';
         if (radio.checked && !visible) needsReselect = true;
     });
     // If current selection is hidden, select first visible
@@ -309,23 +313,52 @@ function AddWatchlist() {
     }
 }
 
-function RemoveWatchlist() {
-    if (document.querySelectorAll('input[name="stockListRadio"]').length > 1) {
-        const selectedWatchList = document.querySelector('input[name="stockListRadio"]:checked');
-        if (confirm("It will delete Watchlist: " + watchlists[selectedWatchList.value].name + ".\r\nProceed?")) {
-            if (RemoveWatchlistCode(selectedWatchList.id)) {
-                delete watchlists[selectedWatchList.value];
-                saveDataOnLocal(true, false);
-                if (Object.keys(watchlists).length < 10) {
-                    document.getElementById('addWatchlistBtn').style.display = '';
-                    document.getElementById('newWatchList').style.display = '';
-                }
-                UpdateWatchList(false);
-            }
-        }
+function RenameWatchlist() {
+    const selectedWatchList = document.querySelector('input[name="stockListRadio"]:checked');
+    if (!selectedWatchList || !watchlists[selectedWatchList.value]) return;
+
+    const currentName = watchlists[selectedWatchList.value].name;
+    const newName = prompt('Enter a new watchlist name:', currentName)?.trim();
+    if (!newName || newName === currentName) return;
+    if (Object.values(watchlists).some(watchlist => watchlist.name === newName)) {
+        alert('Watchlist name should be unique.');
+        return;
     }
-    else {
-        alert('You can not delete the last list');
+
+    watchlists[selectedWatchList.value].name = newName;
+    const label = document.querySelector('label[for="' + selectedWatchList.id + '"]');
+    if (label) label.innerText = newName;
+    saveDataOnLocal(true, false);
+    ShowMessage('Watchlist renamed');
+}
+
+function RemoveWatchlist() {
+    const selectedWatchList = document.querySelector('input[name="stockListRadio"]:checked');
+    if (!selectedWatchList || !watchlists[selectedWatchList.value]) return;
+
+    if (confirm("It will delete Watchlist: " + watchlists[selectedWatchList.value].name + ".\r\nProceed?")) {
+        if (RemoveWatchlistCode(selectedWatchList.id)) {
+            delete watchlists[selectedWatchList.value];
+
+            if (Object.keys(watchlists).length === 0) {
+                watchlists['0'] = {
+                    name: 'New Watchlist',
+                    data: []
+                };
+                activeWL = '0';
+            }
+
+            saveDataOnLocal(true, false);
+            if (Object.keys(watchlists).length < 10) {
+                document.getElementById('addWatchlistBtn').style.display = '';
+                document.getElementById('newWatchList').style.display = '';
+            }
+            ResetWatchlist(true);
+            const replacement = document.getElementById('w' + activeWL);
+            if (replacement) replacement.checked = true;
+            UpdateWatchList(false);
+            ShowMessage('Watchlist deleted');
+        }
     }
 }
 
@@ -1898,4 +1931,123 @@ function hideAutoComplete() {
         autoCompleteState.currentType = null;
         autoCompleteState.suggestions = [];
     }, 150); // Small delay to allow click events to register
+}
+
+function toggleCombinedWatchlistForm() {
+    const modal = document.getElementById('combinedWatchlistModal');
+    populateCombinedWatchlistOptions();
+    document.getElementById('combinedWatchlistName').value = '';
+    modal.style.display = 'block';
+    document.body.setAttribute('modal-shown', 'true');
+}
+
+document.getElementById('combinedWatchlistModalCloser').onclick = function () {
+    document.getElementById('combinedWatchlistModal').style.display = 'none';
+    document.body.removeAttribute('modal-shown');
+};
+
+function populateCombinedWatchlistOptions() {
+    const options = document.getElementById('combinedWatchlistOptions');
+    if (!options) return;
+    options.innerHTML = '';
+    for (const [key, watchlist] of Object.entries(watchlists)) {
+        const label = document.createElement('label');
+        label.className = 'combined-watchlist-option';
+        const checkbox = document.createElement('input');
+        checkbox.type = 'checkbox';
+        checkbox.value = key;
+        checkbox.setAttribute('aria-label', watchlist.name);
+        label.appendChild(checkbox);
+        label.appendChild(document.createTextNode(watchlist.name));
+        options.appendChild(label);
+    }
+}
+
+function getSelectedWatchlistKeys() {
+    return [...document.querySelectorAll('#combinedWatchlistOptions input[type="checkbox"]:checked')]
+        .map(checkbox => checkbox.value);
+}
+
+function aggregateSelectedWatchlists() {
+    const totals = [];
+    for (const watchlistKey of getSelectedWatchlistKeys()) {
+        const stockList = watchlists[watchlistKey];
+        for (const stock of stockList?.data || []) {
+            if (!stock[0]) continue;
+            const name = String(stock[0]).trim();
+            const nse = String(stock[1] || '').trim();
+            const bse = String(stock[2] || '').trim();
+            const count = Number(String(stock[3] || '').replace(/,/g, ''));
+            const price = Number(String(stock[4] || '').replace(/,/g, ''));
+            let record = totals.find(existing =>
+                (nse && existing.nse === nse) ||
+                (bse && existing.bse === bse) ||
+                (!nse && !bse && existing.name.toUpperCase() === name.toUpperCase())
+            );
+            if (!record) {
+                record = {
+                name: name,
+                nse: nse,
+                bse: bse,
+                totalCount: 0,
+                pricedCount: 0,
+                priceTotal: 0
+                };
+                totals.push(record);
+            } else {
+                record.nse = record.nse || nse;
+                record.bse = record.bse || bse;
+            }
+            const effectiveCount = Number.isFinite(count) && count > 0 ? count : 1;
+            record.totalCount += effectiveCount;
+            if (Number.isFinite(price) && price > 0) {
+                record.pricedCount += effectiveCount;
+                record.priceTotal += effectiveCount * price;
+            }
+        }
+    }
+    return totals.map(record => [
+        record.name,
+        record.nse,
+        record.bse,
+        record.totalCount,
+        record.pricedCount ? record.priceTotal / record.pricedCount : ''
+    ]);
+}
+
+function combineSelectedWatchlists() {
+    const selectedKeys = getSelectedWatchlistKeys();
+    if (selectedKeys.length < 2) {
+        alert('Select at least two watchlists to combine');
+        return;
+    }
+
+    if (document.getElementById('stockListDiv').style.display === 'block' && watchlists[activeWL]) {
+        watchlists[activeWL].data = toObject(listTable);
+    }
+    let name = document.getElementById('combinedWatchlistName').value.trim();
+    if (!name) {
+        alert('Combined watchlist name is required');
+        return;
+    }
+    if (Object.values(watchlists).some(watchlist => watchlist.name === name)) {
+        alert('Watchlist name should be unique.');
+        return;
+    }
+
+    let newKey = 0;
+    while (watchlists[newKey]) newKey++;
+    watchlists[newKey] = { name: name, data: aggregateSelectedWatchlists() };
+    document.getElementById('combinedWatchlistModal').style.display = 'none';
+    document.body.removeAttribute('modal-shown');
+    ResetWatchlist(true);
+    const newRadio = document.getElementById('w' + newKey);
+    if (newRadio) {
+        document.querySelectorAll('input[name="stockListRadio"]').forEach(radio => radio.checked = false);
+        newRadio.checked = true;
+        activeWL = String(newKey);
+        UpdateWatchList(false);
+    }
+    saveDataOnLocal(true, false);
+    ShowMessage('Combined watchlist created');
 }
