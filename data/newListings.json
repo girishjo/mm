@@ -824,5 +824,26 @@
     "nseNoticeNo": null,
     "bseCircular": "https://www.bseindia.com/downloads/UploadDocs/Notices/20260818-34/20260818-34.pdf",
     "bseNoticeNo": "20260818-34"
+  },
+  "INE1KPX01025": {
+    "isin": "INE1KPX01025",
+    "nseCode": "CREDENT",
+    "bseCode": "",
+    "ticker": "CREDENT",
+    "name": "Credent Connect N Care Limited",
+    "series": "ST",
+    "type": "SME",
+    "listingDate": "Thu, 20 Aug, 2026",
+    "exchanges": "NSE",
+    "issuePrice": 189,
+    "ltp": null,
+    "lotSize": 600,
+    "totalSecurities": 18222900,
+    "freeShares": 3564000,
+    "freeFloatPercentage": 19.56,
+    "nseCircular": "https://nsearchives.nseindia.com/content/circulars/CML75834.zip",
+    "nseNoticeNo": "75834",
+    "bseCircular": null,
+    "bseNoticeNo": null
   }
 }
