@@ -83,7 +83,7 @@
                     <button id="removeWatchlistBtn" onclick="RemoveWatchlist();">Remove Watchlist</button>
                 </div>
                 <div class="watchlist-action-row">
-                    <button id="saveWatchlistsBtn" onclick="saveDataOnLocal();UpdateWatchList();">Save Watchlists</button>
+                    <button id="saveWatchlistsBtn" onclick="saveDataOnLocal();">Save Watchlists</button>
                     <button onclick="loadDefaultWatchLists()">Load Default Watchlists</button>
                     <button onclick="uploadWatchLists()">Import Watchlists</button>
                     <button onclick="downloadWatchlists()">Export Watchlists</button>
@@ -101,6 +101,10 @@
                         <p>Select watchlists to combine:</p>
                         <div id="combinedWatchlistOptions" class="combined-watchlist-options"></div>
                         <input type="text" id="combinedWatchlistName" placeholder="Combined watchlist name">
+                        <label class="combined-watchlist-dynamic-option" for="combinedWatchlistDynamic">
+                            <input type="checkbox" id="combinedWatchlistDynamic" checked>
+                            Keep this watchlist dynamic
+                        </label>
                         <button onclick="combineSelectedWatchlists();">Create Watchlist</button>
                     </div>
                 </div>

@@ -6,6 +6,139 @@ const portfolioTable = document.querySelector('#portfolioTable');
 var watchlists = {};
 var activeWL;
 
+function createWatchlistId() {
+    if (window.crypto?.randomUUID) return window.crypto.randomUUID();
+    return 'wl_' + Date.now() + '_' + Math.random().toString(36).slice(2);
+}
+
+function ensureWatchlistIds() {
+    const usedIds = new Set();
+    for (const watchlist of Object.values(watchlists)) {
+        if (!watchlist.id || usedIds.has(watchlist.id)) watchlist.id = createWatchlistId();
+        usedIds.add(watchlist.id);
+    }
+}
+
+function isDynamicWatchlist(watchlist) {
+    return Array.isArray(watchlist?.combinedFrom);
+}
+
+function getWatchlistKeyById(id) {
+    return Object.keys(watchlists).find(key => watchlists[key].id === id);
+}
+
+function aggregateWatchlistData(sourceKeys) {
+    const totals = [];
+    for (const watchlistKey of sourceKeys) {
+        const stockList = watchlists[watchlistKey];
+        for (const stock of stockList?.data || []) {
+            if (!stock[0]) continue;
+            const name = String(stock[0]).trim();
+            const nse = String(stock[1] || '').trim();
+            const bse = String(stock[2] || '').trim();
+            const count = Number(String(stock[3] || '').replace(/,/g, ''));
+            const price = Number(String(stock[4] || '').replace(/,/g, ''));
+            let record = totals.find(existing =>
+                (nse && existing.nse === nse) ||
+                (bse && existing.bse === bse) ||
+                (!nse && !bse && existing.name.toUpperCase() === name.toUpperCase())
+            );
+            if (!record) {
+                record = { name, nse, bse, totalCount: 0, pricedCount: 0, priceTotal: 0 };
+                totals.push(record);
+            } else {
+                record.nse = record.nse || nse;
+                record.bse = record.bse || bse;
+            }
+            const effectiveCount = Number.isFinite(count) && count > 0 ? count : 1;
+            record.totalCount += effectiveCount;
+            if (Number.isFinite(price) && price > 0) {
+                record.pricedCount += effectiveCount;
+                record.priceTotal += effectiveCount * price;
+            }
+        }
+    }
+    return totals.map(record => [
+        record.name,
+        record.nse,
+        record.bse,
+        record.totalCount,
+        record.pricedCount ? Number((record.priceTotal / record.pricedCount).toFixed(4)) : ''
+    ]);
+}
+
+function refreshDynamicWatchlists() {
+    for (const watchlist of Object.values(watchlists)) {
+        if (!isDynamicWatchlist(watchlist)) continue;
+        const sourceKeys = watchlist.combinedFrom
+            .map(getWatchlistKeyById)
+            .filter(key => key !== undefined && !isDynamicWatchlist(watchlists[key]));
+        watchlist.data = aggregateWatchlistData(sourceKeys);
+    }
+}
+
+function getWatchlistDataInDisplayOrder(watchlist) {
+    if (!watchlist?.data) return [];
+    const data = [...watchlist.data];
+    if (Array.isArray(watchlist.displayOrder) && watchlist.displayOrder.length) {
+        const byIdentity = new Map(data.map(stock => [getStockIdentity(stock), stock]));
+        const ordered = watchlist.displayOrder.map(identity => byIdentity.get(identity)).filter(Boolean);
+        return ordered.concat(data.filter(stock => !watchlist.displayOrder.includes(getStockIdentity(stock))));
+    }
+    if (!watchlist.sort) return data;
+    const dataColumn = Number(watchlist.sort.column) - 4;
+    if (dataColumn < 0 || dataColumn > 4) return data;
+    const direction = watchlist.sort.direction === 'desc' ? -1 : 1;
+    return data.sort((first, second) => {
+        const firstValue = first[dataColumn] ?? '';
+        const secondValue = second[dataColumn] ?? '';
+        const firstNumber = Number(String(firstValue).replace(/,/g, ''));
+        const secondNumber = Number(String(secondValue).replace(/,/g, ''));
+        if (Number.isFinite(firstNumber) && Number.isFinite(secondNumber) && firstValue !== '' && secondValue !== '') {
+            return (firstNumber - secondNumber) * direction;
+        }
+        return String(firstValue).localeCompare(String(secondValue), undefined, { sensitivity: 'base' }) * direction;
+    });
+}
+
+function getStockIdentity(stock) {
+    return stock[1] ? 'NSE:' + stock[1] : stock[2] ? 'BSE:' + stock[2] : 'NAME:' + String(stock[0] || '').toUpperCase();
+}
+
+function saveDynamicDisplayOrder() {
+    const watchlist = watchlists[activeWL];
+    if (!isDynamicWatchlist(watchlist)) return;
+    const order = [];
+    for (const row of listTable.tBodies[0].rows) {
+        if (row.classList.contains('hide') || !row.cells[4].innerText.trim()) continue;
+        order.push(getStockIdentity([row.cells[4].innerText, row.cells[5].innerText, row.cells[6].innerText]));
+    }
+    watchlist.displayOrder = order;
+    delete watchlist.sort;
+}
+
+function removeWatchlistFromDynamicSources(deletedId) {
+    for (const watchlist of Object.values(watchlists)) {
+        if (!isDynamicWatchlist(watchlist)) continue;
+        watchlist.combinedFrom = watchlist.combinedFrom.filter(id => id !== deletedId);
+    }
+}
+
+function updateDynamicWatchlistTitles() {
+    document.querySelectorAll('.dynamic-watchlist').forEach(item => {
+        const radio = item.querySelector('input[name="stockListRadio"]');
+        const watchlist = radio && watchlists[radio.value];
+        if (!watchlist) return;
+        const sourceNames = watchlist.combinedFrom
+            .map(getWatchlistKeyById)
+            .filter(key => key !== undefined)
+            .map(key => watchlists[key].name)
+            .join(', ');
+        item.title = 'Dynamic watchlist created from: ' + sourceNames;
+        item.setAttribute('aria-label', item.title);
+    });
+}
+
 function loadDataFromLocal() {
     if (localStorage.length > 0) {
         let storedWatchlists = localStorage.getItem("watchlists");
@@ -44,15 +177,21 @@ function loadDataFromLocal() {
         watchlists = defaultWatchlists;
         //saveDataOnLocal(true, true);
     }
+    ensureWatchlistIds();
+    refreshDynamicWatchlists();
     ResetWatchlist(false);
     UpdateLoader(false);
 }
 
 function saveDataOnLocal(silentUpdate = false, loadDefault = false) {
-    if (!silentUpdate) {
+    if (!silentUpdate && !isDynamicWatchlist(watchlists[activeWL])) {
         let listTableObj = toObject(listTable);
         watchlists[activeWL].data = listTableObj;
     }
+    if (isDynamicWatchlist(watchlists[activeWL])) saveDynamicDisplayOrder();
+
+    ensureWatchlistIds();
+    refreshDynamicWatchlists();
 
     let newWatchlists = {};
     if (loadDefault) {
@@ -73,6 +212,7 @@ function saveDataOnLocal(silentUpdate = false, loadDefault = false) {
 }
 
 function ResetWatchlist(deleteExisting = true) {
+    ensureWatchlistIds();
     if (deleteExisting) {
         const watchlistsRadios = document.querySelectorAll('input[name="stockListRadio"]');
         for (let i = 0; i < watchlistsRadios.length; i++) {
@@ -175,7 +315,10 @@ function UpdateWatchList(saveLast = true) {
     if (document.getElementById("stockListDiv").style.display == "block") {
         UpdateLoader(true, "Loading Watchlists", 0.5);
         if (saveLast && lastSelectedWL != activeWL) {
-            watchlists[lastSelectedWL].data = toObject(listTable);
+            if (watchlists[lastSelectedWL] && !isDynamicWatchlist(watchlists[lastSelectedWL])) {
+                watchlists[lastSelectedWL].data = toObject(listTable);
+                refreshDynamicWatchlists();
+            }
         }
         resetTable(listTable);
         updateListTable(watchlists[activeWL]);
@@ -189,9 +332,10 @@ function UpdateWatchList(saveLast = true) {
         resetTable(dataTable);
         const stockList = watchlists[activeWL];
         if (stockList && stockList.data) {
-            for (let i = 0; i < stockList.data.length; i++) {
-                if (stockList.data[i][0]) {
-                    updateDataTable(dataTable, stockList.data[i][0], stockList.data[i][1], stockList.data[i][2]);
+            const orderedData = getWatchlistDataInDisplayOrder(stockList);
+            for (let i = 0; i < orderedData.length; i++) {
+                if (orderedData[i][0]) {
+                    updateDataTable(dataTable, orderedData[i][0], orderedData[i][1], orderedData[i][2]);
                 }
             }
         }
@@ -208,7 +352,7 @@ function UpdateWatchList(saveLast = true) {
             // Fallback to regular portfolio function for today
             UpdateLoader(true, "Loading Portfolio data", 0.5);
             resetTable(portfolioTable);
-            upadtePortfolioTable(watchlists[activeWL].data);
+            upadtePortfolioTable(getWatchlistDataInDisplayOrder(watchlists[activeWL]));
             updateRowNumber(portfolioTable);
             UpdateLoader(false);
         }
@@ -292,7 +436,9 @@ function AddWatchlist() {
         const newWatchlist = AddWatchlistCode(j + "", wlName);
         if (newWatchlist != undefined) {
             watchlists[j + ""] = {
-                name: wlName
+                id: createWatchlistId(),
+                name: wlName,
+                data: []
             }
             if (j >= 9) {
                 document.getElementById('addWatchlistBtn').style.display = 'none';
@@ -328,6 +474,7 @@ function RenameWatchlist() {
     watchlists[selectedWatchList.value].name = newName;
     const label = document.querySelector('label[for="' + selectedWatchList.id + '"]');
     if (label) label.innerText = newName;
+    updateDynamicWatchlistTitles();
     saveDataOnLocal(true, false);
     ShowMessage('Watchlist renamed');
 }
@@ -338,7 +485,9 @@ function RemoveWatchlist() {
 
     if (confirm("It will delete Watchlist: " + watchlists[selectedWatchList.value].name + ".\r\nProceed?")) {
         if (RemoveWatchlistCode(selectedWatchList.id)) {
+            const deletedId = watchlists[selectedWatchList.value].id;
             delete watchlists[selectedWatchList.value];
+            removeWatchlistFromDynamicSources(deletedId);
 
             if (Object.keys(watchlists).length === 0) {
                 watchlists['0'] = {
@@ -415,20 +564,31 @@ async function uploadWatchLists() {
 }
 
 function updateListTable(stockList) {
+    const dynamic = isDynamicWatchlist(stockList);
+    listTable.classList.toggle('dynamic-watchlist-table', dynamic);
     if (stockList && stockList.data) {
-        for (let i = 0; i < stockList.data.length; i++) {
-            if (stockList.data[i][0]) {
+        const orderedData = getWatchlistDataInDisplayOrder(stockList);
+        for (let i = 0; i < orderedData.length; i++) {
+            if (orderedData[i][0]) {
                 const newRow = addEmptyRow(listTable);
-                newRow.cells[4].innerText = stockList.data[i][0];
-                newRow.cells[5].innerText = stockList.data[i][1];
-                newRow.cells[6].innerText = stockList.data[i][2];
-                stockList.data[i][3] && (newRow.cells[7].innerText = stockList.data[i][3]);
-                stockList.data[i][4] && (newRow.cells[8].innerText = stockList.data[i][4]);
+                newRow.cells[4].innerText = orderedData[i][0];
+                newRow.cells[5].innerText = orderedData[i][1];
+                newRow.cells[6].innerText = orderedData[i][2];
+                orderedData[i][3] && (newRow.cells[7].innerText = orderedData[i][3]);
+                orderedData[i][4] && (newRow.cells[8].innerText = orderedData[i][4]);
             }
         }
     }
     if (listTable.rows.length == 2) {
         addEmptyRow(listTable);
+    }
+    if (dynamic) {
+        listTable.querySelectorAll('tbody tr:not(.hide) [contenteditable="true"]').forEach(cell => cell.setAttribute('contenteditable', 'false'));
+        const sortState = stockList.sort;
+        const sortHeader = sortState && listTable.tHead.rows[0].cells[sortState.column];
+        if (sortHeader) sortTable(sortHeader, sortState.direction);
+    } else {
+        listTable.querySelectorAll('tbody tr.hide [contenteditable="false"]').forEach(cell => cell.setAttribute('contenteditable', 'true'));
     }
 }
 
@@ -770,6 +930,7 @@ function upadtePortfolioTable(stockList) {
 }
 
 listTable.addEventListener('click', function (e) {
+    if (isDynamicWatchlist(watchlists[activeWL])) return;
     const cell = e.target.closest('td');
     if (!cell) { return; } // Quit, not clicked on a cell
     const row = cell.parentElement;
@@ -804,6 +965,10 @@ listTable.addEventListener('click', function (e) {
             document.body.classList.add('modal-shown');
         }
     }
+});
+
+listTable.addEventListener('dragend', function () {
+    if (isDynamicWatchlist(watchlists[activeWL])) saveDataOnLocal(true, false);
 });
 
 // Portfolio date functionality
@@ -996,7 +1161,7 @@ function UpdatePortfolioForDate() {
         resetTable(portfolioTable);
         const stockList = watchlists[activeWL];
         if (stockList && stockList.data) {
-            upadtePortfolioTableForDate(watchlists[activeWL].data, selectedDate);
+            upadtePortfolioTableForDate(getWatchlistDataInDisplayOrder(watchlists[activeWL]), selectedDate);
         }
         updateRowNumber(portfolioTable);
         UpdateLoader(false);
@@ -1937,6 +2102,7 @@ function toggleCombinedWatchlistForm() {
     const modal = document.getElementById('combinedWatchlistModal');
     populateCombinedWatchlistOptions();
     document.getElementById('combinedWatchlistName').value = '';
+    document.getElementById('combinedWatchlistDynamic').checked = true;
     modal.style.display = 'block';
     document.body.setAttribute('modal-shown', 'true');
 }
@@ -1951,6 +2117,7 @@ function populateCombinedWatchlistOptions() {
     if (!options) return;
     options.innerHTML = '';
     for (const [key, watchlist] of Object.entries(watchlists)) {
+        if (isDynamicWatchlist(watchlist)) continue;
         const label = document.createElement('label');
         label.className = 'combined-watchlist-option';
         const checkbox = document.createElement('input');
@@ -1969,50 +2136,7 @@ function getSelectedWatchlistKeys() {
 }
 
 function aggregateSelectedWatchlists() {
-    const totals = [];
-    for (const watchlistKey of getSelectedWatchlistKeys()) {
-        const stockList = watchlists[watchlistKey];
-        for (const stock of stockList?.data || []) {
-            if (!stock[0]) continue;
-            const name = String(stock[0]).trim();
-            const nse = String(stock[1] || '').trim();
-            const bse = String(stock[2] || '').trim();
-            const count = Number(String(stock[3] || '').replace(/,/g, ''));
-            const price = Number(String(stock[4] || '').replace(/,/g, ''));
-            let record = totals.find(existing =>
-                (nse && existing.nse === nse) ||
-                (bse && existing.bse === bse) ||
-                (!nse && !bse && existing.name.toUpperCase() === name.toUpperCase())
-            );
-            if (!record) {
-                record = {
-                name: name,
-                nse: nse,
-                bse: bse,
-                totalCount: 0,
-                pricedCount: 0,
-                priceTotal: 0
-                };
-                totals.push(record);
-            } else {
-                record.nse = record.nse || nse;
-                record.bse = record.bse || bse;
-            }
-            const effectiveCount = Number.isFinite(count) && count > 0 ? count : 1;
-            record.totalCount += effectiveCount;
-            if (Number.isFinite(price) && price > 0) {
-                record.pricedCount += effectiveCount;
-                record.priceTotal += effectiveCount * price;
-            }
-        }
-    }
-    return totals.map(record => [
-        record.name,
-        record.nse,
-        record.bse,
-        record.totalCount,
-        record.pricedCount ? record.priceTotal / record.pricedCount : ''
-    ]);
+    return aggregateWatchlistData(getSelectedWatchlistKeys());
 }
 
 function combineSelectedWatchlists() {
@@ -2037,7 +2161,13 @@ function combineSelectedWatchlists() {
 
     let newKey = 0;
     while (watchlists[newKey]) newKey++;
-    watchlists[newKey] = { name: name, data: aggregateSelectedWatchlists() };
+    const dynamic = document.getElementById('combinedWatchlistDynamic').checked;
+    watchlists[newKey] = {
+        id: createWatchlistId(),
+        name: name,
+        data: aggregateSelectedWatchlists()
+    };
+    if (dynamic) watchlists[newKey].combinedFrom = selectedKeys.map(key => watchlists[key].id);
     document.getElementById('combinedWatchlistModal').style.display = 'none';
     document.body.removeAttribute('modal-shown');
     ResetWatchlist(true);

@@ -191,6 +191,25 @@ label[for] {
     opacity: 0.45;
 }
 
+.watchlist-item.dynamic-watchlist {
+    opacity: 0.62;
+    cursor: help;
+}
+
+.dynamic-watchlist-table tbody tr:not(.hide) {
+    opacity: 0.72;
+}
+
+.dynamic-watchlist-table tbody tr:not(.hide) td.icon {
+    color: #999999;
+    cursor: not-allowed;
+}
+
+.dynamic-watchlist-table thead th,
+.dynamic-watchlist-table thead th a {
+    cursor: pointer;
+}
+
 #watchlistDiv {
     display: flex;
     align-items: center;
@@ -253,6 +272,13 @@ label[for] {
     align-items: center;
     gap: 8px;
     margin: 0;
+}
+
+.combined-watchlist-dynamic-option {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin: 0 0 12px;
 }
 
 .watchlist-actions {

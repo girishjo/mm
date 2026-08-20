@@ -38,15 +38,15 @@ function updateRowNumber(table) {
     }
 }
 
-function sortTable(header) {
+function sortTable(header, requestedDirection = undefined) {
     UpdateLoader(true, "Sorting table");
-    event.preventDefault();
+    if (typeof event !== 'undefined' && typeof event.preventDefault === 'function') event.preventDefault();
     var rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
     var table = header.closest('table');
     var n = header.cellIndex;
     switching = true;
     //Set the sorting direction to ascending:
-    dir = "asc";
+    dir = requestedDirection || "asc";
     /*Make a loop that will continue until
     no switching has been done:*/
     while (switching) {
@@ -138,7 +138,7 @@ function sortTable(header) {
         } else {
             /*If no switching has been done AND the direction is "asc",
             set the direction to "desc" and run the while loop again.*/
-            if (switchcount == 0 && dir == "asc") {
+            if (switchcount == 0 && dir == "asc" && requestedDirection === undefined) {
                 dir = "desc";
                 switching = true;
             }
@@ -146,6 +146,10 @@ function sortTable(header) {
     }
     if (n > 0) {
         updateRowNumber(table);
+    }
+    if (table.id === 'stocksList' && typeof watchlists !== 'undefined' && isDynamicWatchlist(watchlists[activeWL])) {
+        watchlists[activeWL].sort = { column: n, direction: dir };
+        saveDataOnLocal(true, false);
     }
     UpdateLoader(false);
 }

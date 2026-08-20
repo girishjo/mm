@@ -142,6 +142,17 @@ function AddWatchlistCode(value, name) {
         label.setAttribute("for", input.id);
 
         item.id = 'watchlistItem' + value;
+        const watchlist = watchlists[value];
+        if (isDynamicWatchlist(watchlist)) {
+            const sourceNames = watchlist.combinedFrom
+                .map(getWatchlistKeyById)
+                .filter(key => key !== undefined)
+                .map(key => watchlists[key].name)
+                .join(', ');
+            item.classList.add('dynamic-watchlist');
+            item.title = 'Dynamic watchlist created from: ' + sourceNames;
+            item.setAttribute('aria-label', item.title);
+        }
         item.appendChild(input);
         item.appendChild(label);
         watchlistItems.appendChild(item);
