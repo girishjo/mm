@@ -902,7 +902,7 @@
     "ltp": null,
     "lotSize": 1200,
     "totalSecurities": 13594912,
-    "freeShares": null,
+    "freeShares": 2576400,
     "freeFloatPercentage": null,
     "nseCircular": null,
     "nseNoticeNo": null,
