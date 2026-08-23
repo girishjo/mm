@@ -1,1626 +1,8 @@
 {
-  "dateTimeStamp": "Mon, 24 Aug, 2026, 03:00:57 AM",
-  "totalSecurities": 1187,
+  "dateTimeStamp": "Mon, 24 Aug, 2026, 03:24:44 AM",
+  "scope": "SME",
+  "totalSecurities": 1023,
   "data": {
-    "500009": {
-      "SecurityCode": "500009",
-      "Exchange": "BSE",
-      "Series": "B",
-      "CompanyName": "Ambalal Sarabhai Enterprises Ltd",
-      "LTP": 45.28,
-      "PrevClose": 47.64,
-      "High52": 47.5,
-      "Low52": 45.26,
-      "esmStage": "ESM :Stage 1",
-      "LastUpdated": "Mon, 24 Aug, 2026, 01:19:16 am"
-    },
-    "500051": {
-      "SecurityCode": "500051",
-      "Exchange": "BSE",
-      "Series": "XT",
-      "CompanyName": "Bhagawati Gas Ltd",
-      "LTP": 9.88,
-      "PrevClose": 10.4,
-      "High52": 10.73,
-      "Low52": 9.88,
-      "esmStage": "ESM :Stage 1",
-      "LastUpdated": "Mon, 24 Aug, 2026, 01:19:16 am"
-    },
-    "500371": {
-      "SecurityCode": "500371",
-      "Exchange": "BSE",
-      "Series": "XT",
-      "CompanyName": "Samtel India Ltd-$",
-      "LTP": 39,
-      "PrevClose": 39.6,
-      "High52": 39.6,
-      "Low52": 38.81,
-      "esmStage": "ESM :Stage 2",
-      "LastUpdated": "Mon, 24 Aug, 2026, 01:19:16 am"
-    },
-    "500450": {
-      "SecurityCode": "500450",
-      "Exchange": "BSE",
-      "Series": "XT",
-      "CompanyName": "MPIL Corporation Ltd",
-      "LTP": 426.85,
-      "PrevClose": 435.55,
-      "High52": 426.85,
-      "Low52": 426.85,
-      "esmStage": "ESM :Stage 2",
-      "LastUpdated": "Mon, 24 Aug, 2026, 01:19:16 am"
-    },
-    "500464": {
-      "SecurityCode": "500464",
-      "Exchange": "BSE",
-      "Series": "B",
-      "CompanyName": "Ucal  Ltd",
-      "LTP": 143.7,
-      "PrevClose": 139.25,
-      "High52": 143.7,
-      "Low52": 136,
-      "esmStage": "ESM :Stage 1",
-      "LastUpdated": "Mon, 24 Aug, 2026, 01:19:16 am"
-    },
-    "500500": {
-      "SecurityCode": "500500",
-      "Exchange": "BSE",
-      "Series": "XT",
-      "CompanyName": "Hindustan Motors Ltd",
-      "LTP": 14.74,
-      "PrevClose": 14.66,
-      "High52": 14.84,
-      "Low52": 14.55,
-      "esmStage": "None",
-      "LastUpdated": "Mon, 24 Aug, 2026, 03:00:57 AM",
-      "asmStage": "None"
-    },
-    "501151": {
-      "SecurityCode": "501151",
-      "Exchange": "BSE",
-      "Series": "XT",
-      "CompanyName": "Kartik Investments Trust Ltd",
-      "LTP": 9986.5,
-      "PrevClose": 9969.3,
-      "High52": 10101,
-      "Low52": 9470.85,
-      "esmStage": "ESM :Stage 1",
-      "LastUpdated": "Mon, 24 Aug, 2026, 01:19:16 am"
-    },
-    "502589": {
-      "SecurityCode": "502589",
-      "Symbol": "VAPIENTER",
-      "Exchange": "BSE",
-      "Series": "XT",
-      "CompanyName": "VAPI ENTERPRISE LIMITED",
-      "ISIN": "INE464D01014",
-      "LTP": 156.75,
-      "PrevClose": 165,
-      "High52": 172.85,
-      "Low52": 156.75,
-      "MarketCapCr": 35.76,
-      "ListingDate": "",
-      "esmStage": "ESM :Stage 1",
-      "asmStage": "None",
-      "isEsmEligible": true,
-      "LastUpdated": "Mon, 24 Aug, 2026, 02:42:33 am"
-    },
-    "503031": {
-      "SecurityCode": "503031",
-      "Symbol": "PENINLAND",
-      "Exchange": "BSE",
-      "Series": "T",
-      "CompanyName": "Peninsula Land Limited",
-      "ISIN": "INE138A01028",
-      "LTP": 15.48,
-      "PrevClose": 15.18,
-      "High52": 15.48,
-      "Low52": 15.48,
-      "MarketCapCr": 513.52,
-      "ListingDate": "",
-      "esmStage": "ESM :Stage 1",
-      "asmStage": "None",
-      "isEsmEligible": false,
-      "LastUpdated": "Mon, 24 Aug, 2026, 02:42:33 am"
-    },
-    "503639": {
-      "SecurityCode": "503639",
-      "Symbol": "APOLLOIN",
-      "Exchange": "BSE",
-      "Series": "XT",
-      "CompanyName": "Apollo Ingredients Limited",
-      "ISIN": "INE314N01028",
-      "LTP": 114.95,
-      "PrevClose": 117.25,
-      "High52": 114.95,
-      "Low52": 114.95,
-      "MarketCapCr": 119.55,
-      "ListingDate": "",
-      "esmStage": "ESM :Stage 1",
-      "asmStage": "None",
-      "isEsmEligible": true,
-      "LastUpdated": "Mon, 24 Aug, 2026, 02:42:33 am"
-    },
-    "503659": {
-      "SecurityCode": "503659",
-      "Symbol": "SW1",
-      "Exchange": "BSE",
-      "Series": "XT",
-      "CompanyName": "SW Investments Limited",
-      "ISIN": "INE948K01011",
-      "LTP": 148.9,
-      "PrevClose": 146,
-      "High52": 148.9,
-      "Low52": 148.9,
-      "MarketCapCr": 13.4,
-      "ListingDate": "",
-      "esmStage": "ESM :Stage 1",
-      "asmStage": "None",
-      "isEsmEligible": true,
-      "LastUpdated": "Mon, 24 Aug, 2026, 02:42:33 am"
-    },
-    "503663": {
-      "SecurityCode": "503663",
-      "Exchange": "BSE",
-      "Series": "XT",
-      "CompanyName": "Tilak Ventures Ltd",
-      "LTP": 1.31,
-      "PrevClose": 1.33,
-      "High52": 1.33,
-      "Low52": 1.27,
-      "esmStage": "None",
-      "LastUpdated": "Mon, 24 Aug, 2026, 03:00:57 AM",
-      "asmStage": "None"
-    },
-    "504351": {
-      "SecurityCode": "504351",
-      "Exchange": "BSE",
-      "Series": "T",
-      "CompanyName": "Empower India Ltd",
-      "LTP": 2.28,
-      "PrevClose": 2.3,
-      "High52": 2.38,
-      "Low52": 2.25,
-      "esmStage": "None",
-      "LastUpdated": "Mon, 24 Aug, 2026, 03:00:57 AM",
-      "asmStage": "None"
-    },
-    "504375": {
-      "SecurityCode": "504375",
-      "Exchange": "BSE",
-      "Series": "P",
-      "CompanyName": "IDream Film Infrastructure Company Ltd",
-      "LTP": 649.5,
-      "PrevClose": 629.95,
-      "High52": 659,
-      "Low52": 600,
-      "esmStage": "ESM :Stage 1",
-      "LastUpdated": "Mon, 24 Aug, 2026, 01:19:16 am"
-    },
-    "504392": {
-      "SecurityCode": "504392",
-      "Symbol": "KRISHNA",
-      "Exchange": "BSE",
-      "Series": "XT",
-      "CompanyName": "Krishna Ventures Limited",
-      "ISIN": "INE537L01010",
-      "LTP": 37.53,
-      "PrevClose": 36.8,
-      "High52": 37.53,
-      "Low52": 37.53,
-      "MarketCapCr": 40.53,
-      "ListingDate": "",
-      "esmStage": "ESM :Stage 1",
-      "asmStage": "None",
-      "isEsmEligible": true,
-      "LastUpdated": "Mon, 24 Aug, 2026, 02:42:33 am"
-    },
-    "504398": {
-      "SecurityCode": "504398",
-      "Symbol": "SJCORP",
-      "Exchange": "BSE",
-      "Series": "XT",
-      "CompanyName": "SJ Corporation Limited",
-      "ISIN": "INE312B01027",
-      "LTP": 180.85,
-      "PrevClose": 179.1,
-      "High52": 180.85,
-      "Low52": 180.85,
-      "MarketCapCr": 784.08,
-      "ListingDate": "",
-      "esmStage": "ESM :Stage 1",
-      "asmStage": "None",
-      "isEsmEligible": false,
-      "LastUpdated": "Mon, 24 Aug, 2026, 02:42:33 am"
-    },
-    "504786": {
-      "SecurityCode": "504786",
-      "Exchange": "BSE",
-      "Series": "T",
-      "CompanyName": "Investment & Precision Castings Ltd",
-      "LTP": 1319.9,
-      "PrevClose": 1346.8,
-      "High52": 1319.9,
-      "Low52": 1319.9,
-      "esmStage": "ESM :Stage 2",
-      "LastUpdated": "Mon, 24 Aug, 2026, 01:19:16 am"
-    },
-    "505075": {
-      "SecurityCode": "505075",
-      "Symbol": "SETCO",
-      "Exchange": "BSE",
-      "Series": "T",
-      "CompanyName": "Setco Automotive Limited",
-      "ISIN": "INE878E01021",
-      "LTP": 17.13,
-      "PrevClose": 16.8,
-      "High52": 17.13,
-      "Low52": 17.13,
-      "MarketCapCr": 229.14,
-      "ListingDate": "",
-      "esmStage": "ESM :Stage 1",
-      "asmStage": "None",
-      "isEsmEligible": true,
-      "LastUpdated": "Mon, 24 Aug, 2026, 02:42:33 am"
-    },
-    "505368": {
-      "SecurityCode": "505368",
-      "Exchange": "BSE",
-      "Series": "T",
-      "CompanyName": "Semac Construction Ltd-$",
-      "LTP": 282.2,
-      "PrevClose": 285,
-      "High52": 282.2,
-      "Low52": 272.5,
-      "esmStage": "None",
-      "LastUpdated": "Mon, 24 Aug, 2026, 03:00:57 AM",
-      "asmStage": "None"
-    },
-    "505590": {
-      "SecurityCode": "505590",
-      "Exchange": "BSE",
-      "Series": "T",
-      "CompanyName": "SVP Global Textiles Ltd",
-      "LTP": 3.79,
-      "PrevClose": 3.77,
-      "High52": 3.8,
-      "Low52": 3.71,
-      "esmStage": "None",
-      "LastUpdated": "Mon, 24 Aug, 2026, 03:00:57 AM",
-      "asmStage": "None"
-    },
-    "505685": {
-      "SecurityCode": "505685",
-      "Exchange": "BSE",
-      "Series": "X",
-      "CompanyName": "Taparia Tools Ltd",
-      "LTP": 12.14,
-      "PrevClose": 11.57,
-      "High52": 12.14,
-      "Low52": 12.14,
-      "esmStage": "ESM :Stage 1",
-      "LastUpdated": "Mon, 24 Aug, 2026, 01:19:16 am"
-    },
-    "506134": {
-      "SecurityCode": "506134",
-      "Exchange": "BSE",
-      "Series": "XT",
-      "CompanyName": "Gourmet Gateway India Ltd",
-      "LTP": 12.48,
-      "PrevClose": 12.73,
-      "High52": 12.73,
-      "Low52": 12.48,
-      "esmStage": "ESM :Stage 2",
-      "LastUpdated": "Mon, 24 Aug, 2026, 01:29:09 am"
-    },
-    "506528": {
-      "SecurityCode": "506528",
-      "Exchange": "BSE",
-      "Series": "XT",
-      "CompanyName": "KELTECH Energies Ltd",
-      "LTP": 14250,
-      "PrevClose": 14000,
-      "High52": 14278,
-      "Low52": 13999.95,
-      "esmStage": "ESM :Stage 2",
-      "LastUpdated": "Mon, 24 Aug, 2026, 01:19:16 am"
-    },
-    "506642": {
-      "SecurityCode": "506642",
-      "Exchange": "BSE",
-      "Series": "T",
-      "CompanyName": "Sadhana Nitro Chem Ltd",
-      "LTP": 3,
-      "PrevClose": 2.95,
-      "High52": 3,
-      "Low52": 2.9,
-      "esmStage": "ESM :Stage 2",
-      "LastUpdated": "Mon, 24 Aug, 2026, 01:29:09 am"
-    },
-    "506734": {
-      "SecurityCode": "506734",
-      "Symbol": "MYSORPETRO",
-      "Exchange": "BSE",
-      "Series": "B",
-      "CompanyName": "Mysore Petro Chemicals Ltd.",
-      "ISIN": "INE741A01011",
-      "LTP": 165.35,
-      "PrevClose": 165.97,
-      "High52": 182,
-      "Low52": 161,
-      "MarketCapCr": 108.86,
-      "ListingDate": "",
-      "esmStage": "ESM :Stage 1",
-      "asmStage": "None",
-      "isEsmEligible": true,
-      "LastUpdated": "Mon, 24 Aug, 2026, 02:42:33 am"
-    },
-    "507438": {
-      "SecurityCode": "507438",
-      "Exchange": "BSE",
-      "Series": "T",
-      "CompanyName": "IFB Agro Industries Ltd",
-      "LTP": 1006.3,
-      "PrevClose": 1013.4,
-      "High52": 1023.95,
-      "Low52": 975.5,
-      "esmStage": "None",
-      "LastUpdated": "Mon, 24 Aug, 2026, 03:00:57 AM",
-      "asmStage": "None"
-    },
-    "507917": {
-      "SecurityCode": "507917",
-      "Exchange": "BSE",
-      "Series": "XT",
-      "CompanyName": "East Buildtech Ltd",
-      "LTP": 60.5,
-      "PrevClose": 60.69,
-      "High52": 60.5,
-      "Low52": 60.5,
-      "esmStage": "ESM :Stage 2",
-      "LastUpdated": "Mon, 24 Aug, 2026, 01:19:16 am"
-    },
-    "507962": {
-      "SecurityCode": "507962",
-      "Exchange": "BSE",
-      "Series": "X",
-      "CompanyName": "Fynx Capital Ltd",
-      "LTP": 6.79,
-      "PrevClose": 7.14,
-      "High52": 6.8,
-      "Low52": 6.79,
-      "esmStage": "ESM :Stage 1",
-      "LastUpdated": "Mon, 24 Aug, 2026, 01:19:16 am"
-    },
-    "508961": {
-      "SecurityCode": "508961",
-      "Exchange": "BSE",
-      "Series": "XT",
-      "CompanyName": "Shricon Industries Ltd",
-      "LTP": 180.5,
-      "PrevClose": 189.95,
-      "High52": 180.5,
-      "Low52": 180.5,
-      "esmStage": "None",
-      "LastUpdated": "Mon, 24 Aug, 2026, 03:00:57 AM",
-      "asmStage": "None"
-    },
-    "509084": {
-      "SecurityCode": "509084",
-      "Symbol": "PHOTON",
-      "Exchange": "BSE",
-      "Series": "XT",
-      "CompanyName": "Photon Capital Advisors Ltd",
-      "ISIN": "INE107J01016",
-      "LTP": 341.25,
-      "PrevClose": 337.9,
-      "High52": 341.25,
-      "Low52": 341.25,
-      "MarketCapCr": 92.84,
-      "ListingDate": "",
-      "esmStage": "ESM :Stage 1",
-      "asmStage": "None",
-      "isEsmEligible": true,
-      "LastUpdated": "Mon, 24 Aug, 2026, 02:42:33 am"
-    },
-    "509486": {
-      "SecurityCode": "509486",
-      "Exchange": "BSE",
-      "Series": "X",
-      "CompanyName": "Caprihans India Ltd-$",
-      "LTP": 127.96,
-      "PrevClose": 133.9,
-      "High52": 133,
-      "Low52": 127.21,
-      "esmStage": "ESM :Stage 1",
-      "LastUpdated": "Mon, 24 Aug, 2026, 01:19:16 am"
-    },
-    "509953": {
-      "SecurityCode": "509953",
-      "Exchange": "BSE",
-      "Series": "XT",
-      "CompanyName": "Trade Wings Ltd",
-      "LTP": 602.2,
-      "PrevClose": 614.45,
-      "High52": 602.2,
-      "Low52": 602.2,
-      "esmStage": "ESM :Stage 2",
-      "LastUpdated": "Mon, 24 Aug, 2026, 01:19:16 am"
-    },
-    "511169": {
-      "SecurityCode": "511169",
-      "Exchange": "BSE",
-      "Series": "XT",
-      "CompanyName": "RKD Agri & Retail Ltd",
-      "LTP": 4.41,
-      "PrevClose": 4.2,
-      "High52": 4.41,
-      "Low52": 4.41,
-      "esmStage": "None",
-      "LastUpdated": "Mon, 24 Aug, 2026, 03:00:57 AM",
-      "asmStage": "None"
-    },
-    "511726": {
-      "SecurityCode": "511726",
-      "Exchange": "BSE",
-      "Series": "T",
-      "CompanyName": "Vipul Ltd",
-      "LTP": 15.77,
-      "PrevClose": 15.47,
-      "High52": 15.77,
-      "Low52": 15.77,
-      "esmStage": "ESM :Stage 2",
-      "LastUpdated": "Mon, 24 Aug, 2026, 01:29:09 am"
-    },
-    "512065": {
-      "SecurityCode": "512065",
-      "Symbol": "MRUTR",
-      "Exchange": "BSE",
-      "Series": "XT",
-      "CompanyName": "Mrugesh Trading Ltd.",
-      "ISIN": "INE738D01029",
-      "LTP": 82.01,
-      "PrevClose": 83.68,
-      "High52": 82.01,
-      "Low52": 82.01,
-      "MarketCapCr": 5924.81,
-      "ListingDate": "",
-      "esmStage": "ESM :Stage 1",
-      "asmStage": "None",
-      "isEsmEligible": false,
-      "LastUpdated": "Mon, 24 Aug, 2026, 02:42:33 am"
-    },
-    "512093": {
-      "SecurityCode": "512093",
-      "Exchange": "BSE",
-      "Series": "Z",
-      "CompanyName": "Cranes Software International Ltd",
-      "LTP": 4.93,
-      "PrevClose": 4.93,
-      "High52": 4.99,
-      "Low52": 4.69,
-      "esmStage": "ESM :Stage 1",
-      "LastUpdated": "Mon, 24 Aug, 2026, 01:19:16 am"
-    },
-    "512131": {
-      "SecurityCode": "512131",
-      "Symbol": "SIGIND",
-      "Exchange": "BSE",
-      "Series": "B",
-      "CompanyName": "Signet Industries Limited",
-      "ISIN": "INE529F01035",
-      "LTP": 72.23,
-      "PrevClose": 73.37,
-      "High52": 74.5,
-      "Low52": 71.18,
-      "MarketCapCr": 212.62,
-      "ListingDate": "",
-      "esmStage": "ESM :Stage 1",
-      "asmStage": "None",
-      "isEsmEligible": true,
-      "LastUpdated": "Mon, 24 Aug, 2026, 02:42:33 am"
-    },
-    "512301": {
-      "SecurityCode": "512301",
-      "Symbol": "CHMBBRW",
-      "Exchange": "BSE",
-      "Series": "XT",
-      "CompanyName": "Chambal Breweries & Distilleries Li",
-      "ISIN": "INE417N01011",
-      "LTP": 39.86,
-      "PrevClose": 40.67,
-      "High52": 39.86,
-      "Low52": 39.86,
-      "MarketCapCr": 29.85,
-      "ListingDate": "",
-      "esmStage": "ESM :Stage 1",
-      "asmStage": "None",
-      "isEsmEligible": true,
-      "LastUpdated": "Mon, 24 Aug, 2026, 02:42:33 am"
-    },
-    "512345": {
-      "SecurityCode": "512345",
-      "Exchange": "BSE",
-      "Series": "XT",
-      "CompanyName": "Lexora Global Ltd",
-      "LTP": 176.3,
-      "PrevClose": 185.55,
-      "High52": 177.55,
-      "Low52": 176.3,
-      "esmStage": "None",
-      "LastUpdated": "Mon, 24 Aug, 2026, 03:00:57 AM",
-      "asmStage": "None"
-    },
-    "512479": {
-      "SecurityCode": "512479",
-      "Exchange": "BSE",
-      "Series": "XT",
-      "CompanyName": "Virya Resources Ltd",
-      "LTP": 896.75,
-      "PrevClose": 854.05,
-      "High52": 896.75,
-      "Low52": 811.35,
-      "esmStage": "ESM :Stage 1",
-      "LastUpdated": "Mon, 24 Aug, 2026, 01:29:09 am"
-    },
-    "512485": {
-      "SecurityCode": "512485",
-      "Exchange": "BSE",
-      "Series": "XT",
-      "CompanyName": "Dhanlaxmi Cotex Ltd",
-      "LTP": 145,
-      "PrevClose": 145.05,
-      "High52": 145,
-      "Low52": 145,
-      "esmStage": "ESM :Stage 2",
-      "LastUpdated": "Mon, 24 Aug, 2026, 01:29:09 am"
-    },
-    "512608": {
-      "SecurityCode": "512608",
-      "Exchange": "BSE",
-      "Series": "T",
-      "CompanyName": "Bhandari Hosiery Exports Ltd",
-      "LTP": 3.05,
-      "PrevClose": 3.02,
-      "High52": 3.1,
-      "Low52": 2.99,
-      "esmStage": "None",
-      "LastUpdated": "Mon, 24 Aug, 2026, 03:00:57 AM",
-      "asmStage": "None"
-    },
-    "513544": {
-      "SecurityCode": "513544",
-      "Exchange": "BSE",
-      "Series": "X",
-      "CompanyName": "Mardia Samyoung Capillary Tubes Company Ltd",
-      "LTP": 49.52,
-      "PrevClose": 47.17,
-      "High52": 49.52,
-      "Low52": 44.82,
-      "esmStage": "ESM :Stage 1",
-      "LastUpdated": "Mon, 24 Aug, 2026, 01:29:09 am"
-    },
-    "514223": {
-      "SecurityCode": "514223",
-      "Exchange": "BSE",
-      "Series": "XT",
-      "CompanyName": "Ramgopal Polytex Ltd",
-      "LTP": 34.15,
-      "PrevClose": 34.84,
-      "High52": 34.15,
-      "Low52": 34.15,
-      "esmStage": "ESM :Stage 2",
-      "LastUpdated": "Mon, 24 Aug, 2026, 01:29:09 am"
-    },
-    "514322": {
-      "SecurityCode": "514322",
-      "Exchange": "BSE",
-      "Series": "XT",
-      "CompanyName": "Kamadgiri Fashion Ltd-$",
-      "LTP": 103.4,
-      "PrevClose": 103.4,
-      "High52": 103.4,
-      "Low52": 100.5,
-      "esmStage": "None",
-      "LastUpdated": "Mon, 24 Aug, 2026, 03:00:57 AM",
-      "asmStage": "None"
-    },
-    "514324": {
-      "SecurityCode": "514324",
-      "Exchange": "BSE",
-      "Series": "XT",
-      "CompanyName": "Omnitex Industries India Ltd",
-      "LTP": 751,
-      "PrevClose": 751.1,
-      "High52": 751.1,
-      "Low52": 748,
-      "esmStage": "None",
-      "LastUpdated": "Mon, 24 Aug, 2026, 03:00:57 AM",
-      "asmStage": "None"
-    },
-    "514450": {
-      "SecurityCode": "514450",
-      "Exchange": "BSE",
-      "Series": "B",
-      "CompanyName": "Mahalaxmi Rubtech Ltd",
-      "LTP": 189,
-      "PrevClose": 189.15,
-      "High52": 189,
-      "Low52": 187.8,
-      "esmStage": "ESM :Stage 1",
-      "LastUpdated": "Mon, 24 Aug, 2026, 01:19:16 am"
-    },
-    "514454": {
-      "SecurityCode": "514454",
-      "Exchange": "BSE",
-      "Series": "XT",
-      "CompanyName": "Southern Latex Ltd",
-      "LTP": 30.33,
-      "PrevClose": 28.89,
-      "High52": 30.33,
-      "Low52": 27.46,
-      "esmStage": "ESM :Stage 1",
-      "LastUpdated": "Mon, 24 Aug, 2026, 01:26:13 am"
-    },
-    "517096": {
-      "SecurityCode": "517096",
-      "Exchange": "BSE",
-      "Series": "XT",
-      "CompanyName": "Aplab Ltd-$",
-      "LTP": 82.25,
-      "PrevClose": 83.7,
-      "High52": 85.34,
-      "Low52": 78.81,
-      "esmStage": "None",
-      "LastUpdated": "Mon, 24 Aug, 2026, 03:00:57 AM",
-      "asmStage": "ASM ST : Stage 1"
-    },
-    "517356": {
-      "SecurityCode": "517356",
-      "Exchange": "BSE",
-      "Series": "X",
-      "CompanyName": "ACI Infocom Ltd",
-      "LTP": 2.35,
-      "PrevClose": 2.24,
-      "High52": 2.35,
-      "Low52": 2.35,
-      "esmStage": "ESM :Stage 1",
-      "LastUpdated": "Mon, 24 Aug, 2026, 01:26:13 am"
-    },
-    "517411": {
-      "SecurityCode": "517411",
-      "Exchange": "BSE",
-      "Series": "T",
-      "CompanyName": "Shyam Telecom Ltd",
-      "LTP": 14.31,
-      "PrevClose": 14.21,
-      "High52": 14.31,
-      "Low52": 14.15,
-      "esmStage": "None",
-      "LastUpdated": "Mon, 24 Aug, 2026, 03:00:57 AM",
-      "asmStage": "None"
-    },
-    "519031": {
-      "SecurityCode": "519031",
-      "Symbol": "SHAHFOOD",
-      "Exchange": "BSE",
-      "Series": "XT",
-      "CompanyName": "Shah Foods Ltd",
-      "ISIN": "INE455D01012",
-      "LTP": 349.55,
-      "PrevClose": 342.7,
-      "High52": 349.55,
-      "Low52": 338,
-      "MarketCapCr": 814.98,
-      "ListingDate": "",
-      "esmStage": "ESM :Stage 1",
-      "asmStage": "None",
-      "isEsmEligible": false,
-      "LastUpdated": "Mon, 24 Aug, 2026, 02:42:33 am"
-    },
-    "519471": {
-      "SecurityCode": "519471",
-      "Symbol": "AMBARPIL",
-      "Exchange": "BSE",
-      "Series": "X",
-      "CompanyName": "Ambar Protein Industries Limited",
-      "ISIN": "INE072V01017",
-      "LTP": 263.8,
-      "PrevClose": 281.2,
-      "High52": 282,
-      "Low52": 260,
-      "MarketCapCr": 151.69,
-      "ListingDate": "",
-      "esmStage": "ESM :Stage 1",
-      "asmStage": "None",
-      "isEsmEligible": true,
-      "LastUpdated": "Mon, 24 Aug, 2026, 02:42:33 am"
-    },
-    "521003": {
-      "SecurityCode": "521003",
-      "Exchange": "BSE",
-      "Series": "P",
-      "CompanyName": "Shiva Suitings Ltd",
-      "LTP": 49.47,
-      "PrevClose": 52.07,
-      "High52": 49.47,
-      "Low52": 49.47,
-      "esmStage": "None",
-      "LastUpdated": "Mon, 24 Aug, 2026, 03:00:57 AM",
-      "asmStage": "None"
-    },
-    "521018": {
-      "SecurityCode": "521018",
-      "Exchange": "BSE",
-      "Series": "T",
-      "CompanyName": "Maral Overseas Ltd",
-      "LTP": 56.1,
-      "PrevClose": 55,
-      "High52": 56.5,
-      "Low52": 55.1,
-      "esmStage": "None",
-      "LastUpdated": "Mon, 24 Aug, 2026, 03:00:57 AM",
-      "asmStage": "None"
-    },
-    "521137": {
-      "SecurityCode": "521137",
-      "Exchange": "BSE",
-      "Series": "XT",
-      "CompanyName": "Eureka Industries Ltd",
-      "LTP": 5.68,
-      "PrevClose": 5.79,
-      "High52": 5.72,
-      "Low52": 5.68,
-      "esmStage": "ESM :Stage 2",
-      "LastUpdated": "Mon, 24 Aug, 2026, 01:26:13 am"
-    },
-    "522027": {
-      "SecurityCode": "522027",
-      "Exchange": "BSE",
-      "Series": "XT",
-      "CompanyName": "EMA India Ltd",
-      "LTP": 686,
-      "PrevClose": 672.55,
-      "High52": 686,
-      "Low52": 685,
-      "esmStage": "None",
-      "LastUpdated": "Mon, 24 Aug, 2026, 03:00:57 AM",
-      "asmStage": "None"
-    },
-    "523411": {
-      "SecurityCode": "523411",
-      "Exchange": "BSE",
-      "Series": "XT",
-      "CompanyName": "ADC India Communications Ltd-$",
-      "LTP": 2448,
-      "PrevClose": 2400,
-      "High52": 2448,
-      "Low52": 2380,
-      "esmStage": "ESM :Stage 2",
-      "LastUpdated": "Mon, 24 Aug, 2026, 01:29:09 am"
-    },
-    "523832": {
-      "SecurityCode": "523832",
-      "Symbol": "MUKATPIP",
-      "Exchange": "BSE",
-      "Series": "XT",
-      "CompanyName": "Mukat Pipes Limited",
-      "ISIN": "INE862C01029",
-      "LTP": 15.19,
-      "PrevClose": 15.5,
-      "High52": 15.19,
-      "Low52": 15.19,
-      "MarketCapCr": 17.97,
-      "ListingDate": "",
-      "esmStage": "ESM :Stage 1",
-      "asmStage": "None",
-      "isEsmEligible": true,
-      "LastUpdated": "Mon, 24 Aug, 2026, 02:42:33 am"
-    },
-    "524336": {
-      "SecurityCode": "524336",
-      "Exchange": "BSE",
-      "Series": "X",
-      "CompanyName": "Shree Hari Chemicals Export Ltd",
-      "LTP": 152.25,
-      "PrevClose": 159.5,
-      "High52": 166,
-      "Low52": 151.6,
-      "esmStage": "ESM :Stage 1",
-      "LastUpdated": "Mon, 24 Aug, 2026, 01:29:09 am"
-    },
-    "524412": {
-      "SecurityCode": "524412",
-      "Exchange": "BSE",
-      "Series": "T",
-      "CompanyName": "Aarey Drugs & Pharmaceuticals Ltd",
-      "LTP": 79.46,
-      "PrevClose": 82.04,
-      "High52": 81.44,
-      "Low52": 78.1,
-      "esmStage": "None",
-      "LastUpdated": "Mon, 24 Aug, 2026, 03:00:57 AM",
-      "asmStage": "None"
-    },
-    "526075": {
-      "SecurityCode": "526075",
-      "Exchange": "BSE",
-      "Series": "X",
-      "CompanyName": "Rekvina Laboratories Ltd",
-      "LTP": 41.72,
-      "PrevClose": 42,
-      "High52": 43,
-      "Low52": 39.9,
-      "esmStage": "ESM :Stage 1",
-      "LastUpdated": "Mon, 24 Aug, 2026, 01:26:13 am"
-    },
-    "526179": {
-      "SecurityCode": "526179",
-      "Exchange": "BSE",
-      "Series": "XT",
-      "CompanyName": "Ludlow Jute & Specialities Ltd",
-      "LTP": 348.65,
-      "PrevClose": 337.9,
-      "High52": 352,
-      "Low52": 340.25,
-      "esmStage": "None",
-      "LastUpdated": "Mon, 24 Aug, 2026, 03:00:57 AM",
-      "asmStage": "None"
-    },
-    "526397": {
-      "SecurityCode": "526397",
-      "Exchange": "BSE",
-      "Series": "B",
-      "CompanyName": "Alphageo (India) Ltd-$",
-      "LTP": 328.7,
-      "PrevClose": 328,
-      "High52": 333,
-      "Low52": 318,
-      "esmStage": "ESM :Stage 1",
-      "LastUpdated": "Mon, 24 Aug, 2026, 01:26:13 am"
-    },
-    "526544": {
-      "SecurityCode": "526544",
-      "Exchange": "BSE",
-      "Series": "XT",
-      "CompanyName": "SGL Resources Ltd",
-      "LTP": 2.49,
-      "PrevClose": 2.43,
-      "High52": 2.55,
-      "Low52": 2.38,
-      "esmStage": "None",
-      "LastUpdated": "Mon, 24 Aug, 2026, 03:00:57 AM",
-      "asmStage": "None"
-    },
-    "526841": {
-      "SecurityCode": "526841",
-      "Exchange": "BSE",
-      "Series": "XT",
-      "CompanyName": "Shakti Press Ltd",
-      "LTP": 12.78,
-      "PrevClose": 12.78,
-      "High52": 13.1,
-      "Low52": 12.7,
-      "esmStage": "None",
-      "LastUpdated": "Mon, 24 Aug, 2026, 03:00:57 AM",
-      "asmStage": "None"
-    },
-    "526853": {
-      "SecurityCode": "526853",
-      "Exchange": "BSE",
-      "Series": "B",
-      "CompanyName": "Bilcare Ltd-$",
-      "LTP": 94.08,
-      "PrevClose": 96.33,
-      "High52": 99,
-      "Low52": 92,
-      "esmStage": "ESM :Stage 1",
-      "LastUpdated": "Mon, 24 Aug, 2026, 01:26:13 am"
-    },
-    "526887": {
-      "SecurityCode": "526887",
-      "Symbol": "INDOCRED",
-      "Exchange": "BSE",
-      "Series": "XT",
-      "CompanyName": "Indo Credit Capital Ltd.",
-      "ISIN": "INE147D01015",
-      "LTP": 8.93,
-      "PrevClose": 9.11,
-      "High52": 8.93,
-      "Low52": 8.93,
-      "MarketCapCr": 6.46,
-      "ListingDate": "",
-      "esmStage": "ESM :Stage 1",
-      "asmStage": "None",
-      "isEsmEligible": true,
-      "LastUpdated": "Mon, 24 Aug, 2026, 02:42:33 am"
-    },
-    "526971": {
-      "SecurityCode": "526971",
-      "Exchange": "BSE",
-      "Series": "X",
-      "CompanyName": "Dhoot Industrial Finance Ltd",
-      "LTP": 291.65,
-      "PrevClose": 287.8,
-      "High52": 293.85,
-      "Low52": 282.05,
-      "esmStage": "ESM :Stage 1",
-      "LastUpdated": "Mon, 24 Aug, 2026, 01:26:13 am"
-    },
-    "530141": {
-      "SecurityCode": "530141",
-      "Symbol": "GYANDEV",
-      "Exchange": "BSE",
-      "Series": "XT",
-      "CompanyName": "Gyan Developers & Builders Ltd.",
-      "ISIN": "INE487G01018",
-      "LTP": 47.65,
-      "PrevClose": 48.6,
-      "High52": 47.65,
-      "Low52": 47.65,
-      "MarketCapCr": 14.3,
-      "ListingDate": "",
-      "esmStage": "ESM :Stage 1",
-      "asmStage": "None",
-      "isEsmEligible": true,
-      "LastUpdated": "Mon, 24 Aug, 2026, 02:42:33 am"
-    },
-    "530197": {
-      "SecurityCode": "530197",
-      "Exchange": "BSE",
-      "Series": "XT",
-      "CompanyName": "Fundviser Capital (India) Ltd",
-      "LTP": 414.45,
-      "PrevClose": 414.9,
-      "High52": 435.6,
-      "Low52": 403,
-      "esmStage": "ESM :Stage 1",
-      "LastUpdated": "Mon, 24 Aug, 2026, 01:26:13 am"
-    },
-    "530231": {
-      "SecurityCode": "530231",
-      "Exchange": "BSE",
-      "Series": "XT",
-      "CompanyName": "Subhash Silk Mills Ltd",
-      "LTP": 70,
-      "PrevClose": 69.83,
-      "High52": 70,
-      "Low52": 70,
-      "esmStage": "None",
-      "LastUpdated": "Mon, 24 Aug, 2026, 03:00:57 AM",
-      "asmStage": "None"
-    },
-    "530271": {
-      "SecurityCode": "530271",
-      "Exchange": "BSE",
-      "Series": "XT",
-      "CompanyName": "Rich Universe Network Ltd",
-      "LTP": 10.22,
-      "PrevClose": 10.5,
-      "High52": 10.44,
-      "Low52": 9.98,
-      "esmStage": "None",
-      "LastUpdated": "Mon, 24 Aug, 2026, 03:00:57 AM",
-      "asmStage": "None"
-    },
-    "530525": {
-      "SecurityCode": "530525",
-      "Exchange": "BSE",
-      "Series": "X",
-      "CompanyName": "Rajnish Retail Ltd",
-      "LTP": 2.2,
-      "PrevClose": 2.21,
-      "High52": 2.23,
-      "Low52": 2.1,
-      "esmStage": "ESM :Stage 1",
-      "LastUpdated": "Mon, 24 Aug, 2026, 01:26:13 am"
-    },
-    "530557": {
-      "SecurityCode": "530557",
-      "Exchange": "BSE",
-      "Series": "XT",
-      "CompanyName": "NCL Research & Financial Services Ltd",
-      "LTP": 0.77,
-      "PrevClose": 0.78,
-      "High52": 0.78,
-      "Low52": 0.77,
-      "esmStage": "ESM :Stage 2",
-      "LastUpdated": "Mon, 24 Aug, 2026, 01:26:13 am"
-    },
-    "530579": {
-      "SecurityCode": "530579",
-      "Exchange": "BSE",
-      "Series": "B",
-      "CompanyName": "U. Y. Fincorp Ltd",
-      "LTP": 20.13,
-      "PrevClose": 20.5,
-      "High52": 21.28,
-      "Low52": 19.8,
-      "esmStage": "ESM :Stage 1",
-      "LastUpdated": "Mon, 24 Aug, 2026, 01:26:13 am"
-    },
-    "530595": {
-      "SecurityCode": "530595",
-      "Symbol": "TELECANOR",
-      "Exchange": "BSE",
-      "Series": "X",
-      "CompanyName": "TeleCanor Global Limited",
-      "ISIN": "INE381G01013",
-      "LTP": 23.43,
-      "PrevClose": 22.32,
-      "High52": 23.43,
-      "Low52": 22.36,
-      "MarketCapCr": 22.51,
-      "ListingDate": "",
-      "esmStage": "ESM :Stage 1",
-      "asmStage": "None",
-      "isEsmEligible": true,
-      "LastUpdated": "Mon, 24 Aug, 2026, 02:42:33 am"
-    },
-    "530757": {
-      "SecurityCode": "530757",
-      "Exchange": "BSE",
-      "Series": "XT",
-      "CompanyName": "Shentracon Chemicals Ltd",
-      "LTP": 131,
-      "PrevClose": 131,
-      "High52": 131,
-      "Low52": 130.95,
-      "esmStage": "ESM :Stage 1",
-      "LastUpdated": "Mon, 24 Aug, 2026, 01:26:13 am"
-    },
-    "530853": {
-      "SecurityCode": "530853",
-      "Symbol": "HIPOLIN",
-      "Exchange": "BSE",
-      "Series": "XT",
-      "CompanyName": "Hipolin Ltd.",
-      "ISIN": "INE963A01011",
-      "LTP": 93.5,
-      "PrevClose": 95.4,
-      "High52": 93.5,
-      "Low52": 93.5,
-      "MarketCapCr": 29.28,
-      "ListingDate": "",
-      "esmStage": "ESM :Stage 1",
-      "asmStage": "None",
-      "isEsmEligible": true,
-      "LastUpdated": "Mon, 24 Aug, 2026, 02:42:33 am"
-    },
-    "530871": {
-      "SecurityCode": "530871",
-      "Exchange": "BSE",
-      "Series": "T",
-      "CompanyName": "Chembond Material Technologies Ltd-$",
-      "LTP": 172.4,
-      "PrevClose": 167.5,
-      "High52": 193,
-      "Low52": 167,
-      "esmStage": "None",
-      "LastUpdated": "Mon, 24 Aug, 2026, 03:00:57 AM",
-      "asmStage": "None"
-    },
-    "530883": {
-      "SecurityCode": "530883",
-      "Exchange": "BSE",
-      "Series": "X",
-      "CompanyName": "Super Crop Safe Ltd",
-      "LTP": 14.53,
-      "PrevClose": 14.73,
-      "High52": 15,
-      "Low52": 14.3,
-      "esmStage": "ESM :Stage 1",
-      "LastUpdated": "Mon, 24 Aug, 2026, 01:26:13 am"
-    },
-    "530907": {
-      "SecurityCode": "530907",
-      "Exchange": "BSE",
-      "Series": "XT",
-      "CompanyName": "SI Capital & Financial Services Ltd",
-      "LTP": 15.22,
-      "PrevClose": 15.42,
-      "High52": 15.37,
-      "Low52": 14.65,
-      "esmStage": "ESM :Stage 1",
-      "LastUpdated": "Mon, 24 Aug, 2026, 01:26:13 am"
-    },
-    "530993": {
-      "SecurityCode": "530993",
-      "Symbol": "SARTHAKGL",
-      "Exchange": "BSE",
-      "Series": "XT",
-      "CompanyName": "Sarthak Global Ltd.",
-      "ISIN": "INE075H01019",
-      "LTP": 39,
-      "PrevClose": 39,
-      "High52": 39,
-      "Low52": 38.22,
-      "MarketCapCr": 11.7,
-      "ListingDate": "",
-      "esmStage": "ESM :Stage 1",
-      "asmStage": "None",
-      "isEsmEligible": true,
-      "LastUpdated": "Mon, 24 Aug, 2026, 02:42:33 am"
-    },
-    "531049": {
-      "SecurityCode": "531049",
-      "Exchange": "BSE",
-      "Series": "Z",
-      "CompanyName": "Neelkanth Rockminerals Ltd",
-      "LTP": 58.59,
-      "PrevClose": 59.78,
-      "High52": 60.96,
-      "Low52": 58.59,
-      "esmStage": "ESM :Stage 2",
-      "LastUpdated": "Mon, 24 Aug, 2026, 01:29:09 am"
-    },
-    "531099": {
-      "SecurityCode": "531099",
-      "Exchange": "BSE",
-      "Series": "X",
-      "CompanyName": "Centuple Global Ltd",
-      "LTP": 34.65,
-      "PrevClose": 34.8,
-      "High52": 36.49,
-      "Low52": 33.06,
-      "esmStage": "ESM :Stage 1",
-      "LastUpdated": "Mon, 24 Aug, 2026, 01:26:13 am"
-    },
-    "531221": {
-      "SecurityCode": "531221",
-      "Exchange": "BSE",
-      "Series": "XT",
-      "CompanyName": "Mayur Floorings Ltd",
-      "LTP": 18.89,
-      "PrevClose": 18.25,
-      "High52": 19.13,
-      "Low52": 17.5,
-      "esmStage": "None",
-      "LastUpdated": "Mon, 24 Aug, 2026, 03:00:57 AM",
-      "asmStage": "None"
-    },
-    "531274": {
-      "SecurityCode": "531274",
-      "Exchange": "BSE",
-      "Series": "XT",
-      "CompanyName": "Kinetic Trust Ltd",
-      "LTP": 57.33,
-      "PrevClose": 54.89,
-      "High52": 57.63,
-      "Low52": 57.32,
-      "esmStage": "ESM :Stage 1",
-      "LastUpdated": "Mon, 24 Aug, 2026, 01:26:13 am"
-    },
-    "531279": {
-      "SecurityCode": "531279",
-      "Exchange": "BSE",
-      "Series": "XT",
-      "CompanyName": "Trishakti Industries Ltd",
-      "LTP": 249.1,
-      "PrevClose": 248.2,
-      "High52": 253,
-      "Low52": 245,
-      "esmStage": "ESM :Stage 1",
-      "LastUpdated": "Mon, 24 Aug, 2026, 01:26:13 am"
-    },
-    "531406": {
-      "SecurityCode": "531406",
-      "Symbol": "ANSINDUS",
-      "Exchange": "BSE",
-      "Series": "X",
-      "CompanyName": "ANS Limited",
-      "ISIN": "INE234J01018",
-      "LTP": 19.44,
-      "PrevClose": 18.52,
-      "High52": 19.44,
-      "Low52": 19.44,
-      "MarketCapCr": 17.99,
-      "ListingDate": "",
-      "esmStage": "ESM :Stage 1",
-      "asmStage": "None",
-      "isEsmEligible": true,
-      "LastUpdated": "Mon, 24 Aug, 2026, 02:42:33 am"
-    },
-    "531417": {
-      "SecurityCode": "531417",
-      "Exchange": "BSE",
-      "Series": "XT",
-      "CompanyName": "Mega Corporation Ltd",
-      "LTP": 2.88,
-      "PrevClose": 2.85,
-      "High52": 2.9,
-      "Low52": 2.71,
-      "esmStage": "None",
-      "LastUpdated": "Mon, 24 Aug, 2026, 03:00:57 AM",
-      "asmStage": "None"
-    },
-    "531460": {
-      "SecurityCode": "531460",
-      "Exchange": "BSE",
-      "Series": "X",
-      "CompanyName": "Continental Controls Ltd",
-      "LTP": 15,
-      "PrevClose": 14.9,
-      "High52": 15.23,
-      "Low52": 14.9,
-      "esmStage": "ESM :Stage 1",
-      "LastUpdated": "Mon, 24 Aug, 2026, 01:29:09 am"
-    },
-    "531525": {
-      "SecurityCode": "531525",
-      "Exchange": "BSE",
-      "Series": "X",
-      "CompanyName": "ACE Software Exports Ltd-$",
-      "LTP": 169.5,
-      "PrevClose": 171.2,
-      "High52": 177.45,
-      "Low52": 168,
-      "esmStage": "ESM :Stage 1",
-      "LastUpdated": "Mon, 24 Aug, 2026, 01:26:13 am"
-    },
-    "531594": {
-      "SecurityCode": "531594",
-      "Exchange": "BSE",
-      "Series": "XT",
-      "CompanyName": "Incon Engineers Ltd",
-      "LTP": 30.39,
-      "PrevClose": 31.98,
-      "High52": 33.57,
-      "Low52": 30.39,
-      "esmStage": "ESM :Stage 1",
-      "LastUpdated": "Mon, 24 Aug, 2026, 01:26:13 am"
-    },
-    "531613": {
-      "SecurityCode": "531613",
-      "Exchange": "BSE",
-      "Series": "XT",
-      "CompanyName": "Meyer Apparel Ltd",
-      "LTP": 2.45,
-      "PrevClose": 2.34,
-      "High52": 2.45,
-      "Low52": 2.45,
-      "esmStage": "ESM :Stage 1",
-      "LastUpdated": "Mon, 24 Aug, 2026, 01:26:13 am"
-    },
-    "531628": {
-      "SecurityCode": "531628",
-      "Symbol": "TEJASSVI",
-      "Exchange": "BSE",
-      "Series": "XT",
-      "CompanyName": "TEJASSVI AAHARAM LIMITED",
-      "ISIN": "INE173E01019",
-      "LTP": 61.72,
-      "PrevClose": 62.97,
-      "High52": 61.72,
-      "Low52": 61.72,
-      "MarketCapCr": 43.2,
-      "ListingDate": "",
-      "esmStage": "ESM :Stage 1",
-      "asmStage": "None",
-      "isEsmEligible": true,
-      "LastUpdated": "Mon, 24 Aug, 2026, 02:42:33 am"
-    },
-    "531780": {
-      "SecurityCode": "531780",
-      "Exchange": "BSE",
-      "Series": "XT",
-      "CompanyName": "Kaiser Corporation Ltd",
-      "LTP": 6.2,
-      "PrevClose": 6.12,
-      "High52": 6.25,
-      "Low52": 5.9,
-      "esmStage": "ESM :Stage 1",
-      "LastUpdated": "Mon, 24 Aug, 2026, 01:26:13 am"
-    },
-    "531977": {
-      "SecurityCode": "531977",
-      "Exchange": "BSE",
-      "Series": "X",
-      "CompanyName": "Chartered Logistics Ltd",
-      "LTP": 10.74,
-      "PrevClose": 10.95,
-      "High52": 11,
-      "Low52": 10.74,
-      "esmStage": "ESM :Stage 2",
-      "LastUpdated": "Mon, 24 Aug, 2026, 01:26:13 am"
-    },
-    "532015": {
-      "SecurityCode": "532015",
-      "Exchange": "BSE",
-      "Series": "XT",
-      "CompanyName": "Gravity India Ltd-$",
-      "LTP": 12.49,
-      "PrevClose": 11.9,
-      "High52": 12.49,
-      "Low52": 11.95,
-      "esmStage": "None",
-      "LastUpdated": "Mon, 24 Aug, 2026, 03:00:57 AM",
-      "asmStage": "ASM ST : Stage 1"
-    },
-    "532090": {
-      "SecurityCode": "532090",
-      "Exchange": "BSE",
-      "Series": "XT",
-      "CompanyName": "Atvo Enterprises Ltd",
-      "LTP": 41.02,
-      "PrevClose": 39.39,
-      "High52": 41.35,
-      "Low52": 39,
-      "esmStage": "None",
-      "LastUpdated": "Mon, 24 Aug, 2026, 03:00:57 AM",
-      "asmStage": "None"
-    },
-    "532124": {
-      "SecurityCode": "532124",
-      "Exchange": "BSE",
-      "Series": "XT",
-      "CompanyName": "Reliable Ventures India Ltd",
-      "LTP": 26.18,
-      "PrevClose": 26.71,
-      "High52": 26.18,
-      "Low52": 26.18,
-      "esmStage": "ESM :Stage 2",
-      "LastUpdated": "Mon, 24 Aug, 2026, 01:29:09 am"
-    },
-    "532348": {
-      "SecurityCode": "532348",
-      "Exchange": "BSE",
-      "Series": "T",
-      "CompanyName": "Subex Ltd",
-      "LTP": 18.75,
-      "PrevClose": 17.09,
-      "High52": 19.4,
-      "Low52": 17.13,
-      "esmStage": "None",
-      "LastUpdated": "Mon, 24 Aug, 2026, 03:00:57 AM",
-      "asmStage": "ASM ST : Stage 1"
-    },
-    "532351": {
-      "SecurityCode": "532351",
-      "Exchange": "BSE",
-      "Series": "T",
-      "CompanyName": "Aksh Optifibre Ltd",
-      "LTP": 7.71,
-      "PrevClose": 7.35,
-      "High52": 7.71,
-      "Low52": 6.99,
-      "esmStage": "None",
-      "LastUpdated": "Mon, 24 Aug, 2026, 03:00:57 AM",
-      "asmStage": "None"
-    },
-    "532386": {
-      "SecurityCode": "532386",
-      "Exchange": "BSE",
-      "Series": "T",
-      "CompanyName": "California Software Company Ltd",
-      "LTP": 27.67,
-      "PrevClose": 26.97,
-      "High52": 28.31,
-      "Low52": 25.63,
-      "esmStage": "None",
-      "LastUpdated": "Mon, 24 Aug, 2026, 03:00:57 AM",
-      "asmStage": "ASM ST : Stage 1"
-    },
-    "532470": {
-      "SecurityCode": "532470",
-      "Exchange": "BSE",
-      "Series": "XT",
-      "CompanyName": "MPF Systems Ltd",
-      "LTP": 4.99,
-      "PrevClose": 4.76,
-      "High52": 4.99,
-      "Low52": 4.99,
-      "esmStage": "ESM :Stage 1",
-      "LastUpdated": "Mon, 24 Aug, 2026, 01:26:13 am"
-    },
-    "532481": {
-      "SecurityCode": "532481",
-      "Exchange": "BSE",
-      "Series": "T",
-      "CompanyName": "Noida Toll Bridge Company Ltd",
-      "LTP": 4,
-      "PrevClose": 4.1,
-      "High52": 4.21,
-      "Low52": 4,
-      "esmStage": "None",
-      "LastUpdated": "Mon, 24 Aug, 2026, 03:00:57 AM",
-      "asmStage": "None"
-    },
-    "532613": {
-      "SecurityCode": "532613",
-      "Exchange": "BSE",
-      "Series": "T",
-      "CompanyName": "VIP Clothing Ltd",
-      "LTP": 20.43,
-      "PrevClose": 21.23,
-      "High52": 21.13,
-      "Low52": 20,
-      "esmStage": "None",
-      "LastUpdated": "Mon, 24 Aug, 2026, 03:00:57 AM",
-      "asmStage": "None"
-    },
-    "532628": {
-      "SecurityCode": "532628",
-      "Exchange": "BSE",
-      "Series": "B",
-      "CompanyName": "3i Infotech Ltd",
-      "LTP": 23.1,
-      "PrevClose": 22,
-      "High52": 23.1,
-      "Low52": 21.6,
-      "esmStage": "ESM :Stage 1",
-      "LastUpdated": "Mon, 24 Aug, 2026, 01:29:09 am"
-    },
-    "532640": {
-      "SecurityCode": "532640",
-      "Exchange": "BSE",
-      "Series": "T",
-      "CompanyName": "Cyber Media India Ltd",
-      "LTP": 16.97,
-      "PrevClose": 16.28,
-      "High52": 17.01,
-      "Low52": 16.26,
-      "esmStage": "None",
-      "LastUpdated": "Mon, 24 Aug, 2026, 03:00:57 AM",
-      "asmStage": "None"
-    },
-    "532649": {
-      "SecurityCode": "532649",
-      "Exchange": "BSE",
-      "Series": "T",
-      "CompanyName": "Nectar Lifesciences Ltd",
-      "LTP": 10.63,
-      "PrevClose": 10.26,
-      "High52": 10.74,
-      "Low52": 10.16,
-      "esmStage": "None",
-      "LastUpdated": "Mon, 24 Aug, 2026, 03:00:57 AM",
-      "asmStage": "None"
-    },
-    "532721": {
-      "SecurityCode": "532721",
-      "Exchange": "BSE",
-      "Series": "T",
-      "CompanyName": "VISA Chrome Ltd",
-      "LTP": 37.32,
-      "PrevClose": 36.57,
-      "High52": 38.24,
-      "Low52": 36.7,
-      "esmStage": "None",
-      "LastUpdated": "Mon, 24 Aug, 2026, 03:00:57 AM",
-      "asmStage": "None"
-    },
-    "532740": {
-      "SecurityCode": "532740",
-      "Exchange": "BSE",
-      "Series": "T",
-      "CompanyName": "Lokesh Machines Ltd",
-      "LTP": 322.2,
-      "PrevClose": 329.35,
-      "High52": 333.9,
-      "Low52": 322.1,
-      "esmStage": "ESM :Stage 1",
-      "LastUpdated": "Mon, 24 Aug, 2026, 01:26:13 am"
-    },
-    "532776": {
-      "SecurityCode": "532776",
-      "Exchange": "BSE",
-      "Series": "T",
-      "CompanyName": "Shivam Autotech Ltd",
-      "LTP": 17.03,
-      "PrevClose": 16.22,
-      "High52": 17.03,
-      "Low52": 16.2,
-      "esmStage": "ESM :Stage 1",
-      "LastUpdated": "Mon, 24 Aug, 2026, 01:26:13 am"
-    },
-    "532797": {
-      "SecurityCode": "532797",
-      "Exchange": "BSE",
-      "Series": "T",
-      "CompanyName": "Autoline Industries Ltd",
-      "LTP": 93.27,
-      "PrevClose": 88.84,
-      "High52": 93.28,
-      "Low52": 88.5,
-      "esmStage": "None",
-      "LastUpdated": "Mon, 24 Aug, 2026, 03:00:57 AM",
-      "asmStage": "None"
-    },
-    "532847": {
-      "SecurityCode": "532847",
-      "Exchange": "BSE",
-      "Series": "T",
-      "CompanyName": "Hilton Metal Forging Ltd",
-      "LTP": 20.27,
-      "PrevClose": 19.98,
-      "High52": 20.3,
-      "Low52": 19.44,
-      "esmStage": "None",
-      "LastUpdated": "Mon, 24 Aug, 2026, 03:00:57 AM",
-      "asmStage": "None"
-    },
-    "532986": {
-      "SecurityCode": "532986",
-      "Exchange": "BSE",
-      "Series": "T",
-      "CompanyName": "Niraj Cement Structurals Ltd",
-      "LTP": 28.22,
-      "PrevClose": 27.9,
-      "High52": 29.4,
-      "Low52": 27.84,
-      "esmStage": "None",
-      "LastUpdated": "Mon, 24 Aug, 2026, 03:00:57 AM",
-      "asmStage": "None"
-    },
-    "532989": {
-      "SecurityCode": "532989",
-      "Symbol": "BAFNAPH",
-      "Exchange": "BSE",
-      "Series": "T",
-      "CompanyName": "Bafna Pharmaceuticals Limited",
-      "ISIN": "INE878I01022",
-      "LTP": 247,
-      "PrevClose": 242.2,
-      "High52": 247,
-      "Low52": 237.4,
-      "MarketCapCr": 584.31,
-      "ListingDate": "",
-      "esmStage": "ESM :Stage 1",
-      "asmStage": "None",
-      "isEsmEligible": false,
-      "LastUpdated": "Mon, 24 Aug, 2026, 02:42:33 am"
-    },
-    "533048": {
-      "SecurityCode": "533048",
-      "Exchange": "BSE",
-      "Series": "B",
-      "CompanyName": "Teamo Productions HQ Ltd",
-      "LTP": 0.62,
-      "PrevClose": 0.68,
-      "High52": 0.7,
-      "Low52": 0.62,
-      "esmStage": "ESM :Stage 1",
-      "LastUpdated": "Mon, 24 Aug, 2026, 01:26:13 am"
-    },
-    "533202": {
-      "SecurityCode": "533202",
-      "Exchange": "BSE",
-      "Series": "XT",
-      "CompanyName": "Satchmo Holdings Ltd",
-      "LTP": 3.87,
-      "PrevClose": 4.01,
-      "High52": 4.07,
-      "Low52": 3.82,
-      "esmStage": "None",
-      "LastUpdated": "Mon, 24 Aug, 2026, 03:00:57 AM",
-      "asmStage": "None"
-    },
-    "533296": {
-      "SecurityCode": "533296",
-      "Exchange": "BSE",
-      "Series": "T",
-      "CompanyName": "Future Market Networks Ltd",
-      "LTP": 8.56,
-      "PrevClose": 8.42,
-      "High52": 8.83,
-      "Low52": 8.5,
-      "esmStage": "None",
-      "LastUpdated": "Mon, 24 Aug, 2026, 03:00:57 AM",
-      "asmStage": "None"
-    },
-    "533301": {
-      "SecurityCode": "533301",
-      "Exchange": "BSE",
-      "Series": "B",
-      "CompanyName": "Shekhawati Industries Ltd",
-      "LTP": 18.25,
-      "PrevClose": 17.71,
-      "High52": 18.49,
-      "Low52": 17.52,
-      "esmStage": "ESM :Stage 1",
-      "LastUpdated": "Mon, 24 Aug, 2026, 01:29:09 am"
-    },
     "534109": {
       "SecurityCode": "534109",
       "Symbol": "PYXISFIN",
@@ -1637,19 +19,7 @@
       "esmStage": "None",
       "asmStage": "None",
       "isEsmEligible": true,
-      "LastUpdated": "Mon, 24 Aug, 2026, 03:00:57 AM"
-    },
-    "534425": {
-      "SecurityCode": "534425",
-      "Exchange": "BSE",
-      "Series": "B",
-      "CompanyName": "Speciality Restaurants Ltd",
-      "LTP": 137.4,
-      "PrevClose": 140.35,
-      "High52": 144.8,
-      "Low52": 136.8,
-      "esmStage": "ESM :Stage 1",
-      "LastUpdated": "Mon, 24 Aug, 2026, 01:29:09 am"
+      "LastUpdated": "Mon, 24 Aug, 2026, 03:24:43 AM"
     },
     "534563": {
       "SecurityCode": "534563",
@@ -1667,7 +37,7 @@
       "esmStage": "None",
       "asmStage": "None",
       "isEsmEligible": true,
-      "LastUpdated": "Mon, 24 Aug, 2026, 03:00:57 AM"
+      "LastUpdated": "Mon, 24 Aug, 2026, 03:24:43 AM"
     },
     "534659": {
       "SecurityCode": "534659",
@@ -1685,7 +55,7 @@
       "esmStage": "None",
       "asmStage": "None",
       "isEsmEligible": true,
-      "LastUpdated": "Mon, 24 Aug, 2026, 03:00:57 AM"
+      "LastUpdated": "Mon, 24 Aug, 2026, 03:24:43 AM"
     },
     "534708": {
       "SecurityCode": "534708",
@@ -1703,43 +73,7 @@
       "esmStage": "None",
       "asmStage": "None",
       "isEsmEligible": true,
-      "LastUpdated": "Mon, 24 Aug, 2026, 03:00:57 AM"
-    },
-    "534732": {
-      "SecurityCode": "534732",
-      "Symbol": "CASPIAN",
-      "Exchange": "BSE",
-      "Series": "XT",
-      "CompanyName": "CASPIAN CORPORATE SERVICES LIMITED",
-      "ISIN": "INE176N01039",
-      "LTP": 35.57,
-      "PrevClose": 34.8,
-      "High52": 36.54,
-      "Low52": 34,
-      "MarketCapCr": 45.03,
-      "ListingDate": "",
-      "esmStage": "None",
-      "asmStage": "None",
-      "isEsmEligible": true,
-      "LastUpdated": "Mon, 24 Aug, 2026, 03:00:57 AM"
-    },
-    "534755": {
-      "SecurityCode": "534755",
-      "Symbol": "TRIOMERC",
-      "Exchange": "BSE",
-      "Series": "XT",
-      "CompanyName": "Trio Mercantile & Trading Limited",
-      "ISIN": "INE234G01022",
-      "LTP": 2.69,
-      "PrevClose": 2.74,
-      "High52": 2.69,
-      "Low52": 2.69,
-      "MarketCapCr": 18.27,
-      "ListingDate": "",
-      "esmStage": "ESM :Stage 1",
-      "asmStage": "None",
-      "isEsmEligible": true,
-      "LastUpdated": "Mon, 24 Aug, 2026, 02:42:33 am"
+      "LastUpdated": "Mon, 24 Aug, 2026, 03:24:43 AM"
     },
     "534839": {
       "SecurityCode": "534839",
@@ -1757,7 +91,7 @@
       "esmStage": "None",
       "asmStage": "None",
       "isEsmEligible": true,
-      "LastUpdated": "Mon, 24 Aug, 2026, 03:00:57 AM"
+      "LastUpdated": "Mon, 24 Aug, 2026, 03:24:43 AM"
     },
     "534927": {
       "SecurityCode": "534927",
@@ -1775,7 +109,7 @@
       "esmStage": "None",
       "asmStage": "None",
       "isEsmEligible": true,
-      "LastUpdated": "Mon, 24 Aug, 2026, 03:00:57 AM"
+      "LastUpdated": "Mon, 24 Aug, 2026, 03:24:43 AM"
     },
     "535142": {
       "SecurityCode": "535142",
@@ -1793,7 +127,7 @@
       "esmStage": "None",
       "asmStage": "None",
       "isEsmEligible": true,
-      "LastUpdated": "Mon, 24 Aug, 2026, 03:00:57 AM"
+      "LastUpdated": "Mon, 24 Aug, 2026, 03:24:43 AM"
     },
     "535217": {
       "SecurityCode": "535217",
@@ -1811,7 +145,7 @@
       "esmStage": "None",
       "asmStage": "None",
       "isEsmEligible": true,
-      "LastUpdated": "Mon, 24 Aug, 2026, 03:00:57 AM"
+      "LastUpdated": "Mon, 24 Aug, 2026, 03:24:43 AM"
     },
     "535279": {
       "SecurityCode": "535279",
@@ -1829,7 +163,7 @@
       "esmStage": "None",
       "asmStage": "None",
       "isEsmEligible": true,
-      "LastUpdated": "Mon, 24 Aug, 2026, 02:51:47 AM"
+      "LastUpdated": "Mon, 24 Aug, 2026, 03:24:43 AM"
     },
     "535466": {
       "SecurityCode": "535466",
@@ -1847,7 +181,7 @@
       "esmStage": "None",
       "asmStage": "None",
       "isEsmEligible": true,
-      "LastUpdated": "Mon, 24 Aug, 2026, 02:51:47 AM"
+      "LastUpdated": "Mon, 24 Aug, 2026, 03:24:43 AM"
     },
     "535647": {
       "SecurityCode": "535647",
@@ -1865,7 +199,7 @@
       "esmStage": "None",
       "asmStage": "None",
       "isEsmEligible": true,
-      "LastUpdated": "Mon, 24 Aug, 2026, 02:51:47 AM"
+      "LastUpdated": "Mon, 24 Aug, 2026, 03:24:43 AM"
     },
     "535917": {
       "SecurityCode": "535917",
@@ -1883,19 +217,7 @@
       "esmStage": "None",
       "asmStage": "None",
       "isEsmEligible": true,
-      "LastUpdated": "Mon, 24 Aug, 2026, 02:51:47 AM"
-    },
-    "536264": {
-      "SecurityCode": "536264",
-      "Exchange": "BSE",
-      "Series": "T",
-      "CompanyName": "Tiger Logistics (India) Ltd",
-      "LTP": 30.31,
-      "PrevClose": 29.41,
-      "High52": 30.83,
-      "Low52": 29.49,
-      "esmStage": "None",
-      "LastUpdated": "Mon, 24 Aug, 2026, 01:29:09 am"
+      "LastUpdated": "Mon, 24 Aug, 2026, 03:24:43 AM"
     },
     "536456": {
       "SecurityCode": "536456",
@@ -1913,7 +235,7 @@
       "esmStage": "None",
       "asmStage": "None",
       "isEsmEligible": true,
-      "LastUpdated": "Mon, 24 Aug, 2026, 02:51:47 AM"
+      "LastUpdated": "Mon, 24 Aug, 2026, 03:24:43 AM"
     },
     "536492": {
       "SecurityCode": "536492",
@@ -1931,7 +253,7 @@
       "esmStage": "None",
       "asmStage": "None",
       "isEsmEligible": true,
-      "LastUpdated": "Mon, 24 Aug, 2026, 02:51:47 AM"
+      "LastUpdated": "Mon, 24 Aug, 2026, 03:24:43 AM"
     },
     "536644": {
       "SecurityCode": "536644",
@@ -1949,7 +271,7 @@
       "esmStage": "None",
       "asmStage": "None",
       "isEsmEligible": true,
-      "LastUpdated": "Mon, 24 Aug, 2026, 02:51:47 AM"
+      "LastUpdated": "Mon, 24 Aug, 2026, 03:24:43 AM"
     },
     "536671": {
       "SecurityCode": "536671",
@@ -1967,7 +289,7 @@
       "esmStage": "None",
       "asmStage": "None",
       "isEsmEligible": true,
-      "LastUpdated": "Mon, 24 Aug, 2026, 02:51:47 AM"
+      "LastUpdated": "Mon, 24 Aug, 2026, 03:24:43 AM"
     },
     "536710": {
       "SecurityCode": "536710",
@@ -1985,7 +307,7 @@
       "esmStage": "None",
       "asmStage": "ASM LT : Stage 1",
       "isEsmEligible": true,
-      "LastUpdated": "Mon, 24 Aug, 2026, 02:51:47 AM"
+      "LastUpdated": "Mon, 24 Aug, 2026, 03:24:43 AM"
     },
     "536737": {
       "SecurityCode": "536737",
@@ -2021,7 +343,7 @@
       "esmStage": "None",
       "asmStage": "None",
       "isEsmEligible": true,
-      "LastUpdated": "Mon, 24 Aug, 2026, 02:51:47 AM"
+      "LastUpdated": "Mon, 24 Aug, 2026, 03:24:43 AM"
     },
     "537119": {
       "SecurityCode": "537119",
@@ -2039,7 +361,7 @@
       "esmStage": "None",
       "asmStage": "None",
       "isEsmEligible": true,
-      "LastUpdated": "Mon, 24 Aug, 2026, 02:51:47 AM"
+      "LastUpdated": "Mon, 24 Aug, 2026, 03:24:43 AM"
     },
     "537492": {
       "SecurityCode": "537492",
@@ -2057,7 +379,7 @@
       "esmStage": "None",
       "asmStage": "None",
       "isEsmEligible": true,
-      "LastUpdated": "Mon, 24 Aug, 2026, 02:51:47 AM"
+      "LastUpdated": "Mon, 24 Aug, 2026, 03:24:43 AM"
     },
     "537573": {
       "SecurityCode": "537573",
@@ -2075,7 +397,7 @@
       "esmStage": "None",
       "asmStage": "ASM LT : Stage 1",
       "isEsmEligible": true,
-      "LastUpdated": "Mon, 24 Aug, 2026, 02:51:47 AM"
+      "LastUpdated": "Mon, 24 Aug, 2026, 03:24:43 AM"
     },
     "537582": {
       "SecurityCode": "537582",
@@ -2093,7 +415,7 @@
       "esmStage": "None",
       "asmStage": "None",
       "isEsmEligible": true,
-      "LastUpdated": "Mon, 24 Aug, 2026, 02:51:47 AM"
+      "LastUpdated": "Mon, 24 Aug, 2026, 03:24:43 AM"
     },
     "537669": {
       "SecurityCode": "537669",
@@ -2129,7 +451,7 @@
       "esmStage": "None",
       "asmStage": "None",
       "isEsmEligible": true,
-      "LastUpdated": "Mon, 24 Aug, 2026, 02:51:47 AM"
+      "LastUpdated": "Mon, 24 Aug, 2026, 03:24:43 AM"
     },
     "538128": {
       "SecurityCode": "538128",
@@ -2147,7 +469,7 @@
       "esmStage": "None",
       "asmStage": "None",
       "isEsmEligible": true,
-      "LastUpdated": "Mon, 24 Aug, 2026, 02:51:47 AM"
+      "LastUpdated": "Mon, 24 Aug, 2026, 03:24:43 AM"
     },
     "538319": {
       "SecurityCode": "538319",
@@ -2165,19 +487,7 @@
       "esmStage": "None",
       "asmStage": "None",
       "isEsmEligible": true,
-      "LastUpdated": "Mon, 24 Aug, 2026, 02:51:47 AM"
-    },
-    "538451": {
-      "SecurityCode": "538451",
-      "Exchange": "BSE",
-      "Series": "XT",
-      "CompanyName": "Worth Investment & Trading Co Ltd",
-      "LTP": 3.03,
-      "PrevClose": 3.15,
-      "High52": 3.21,
-      "Low52": 3,
-      "esmStage": "None",
-      "LastUpdated": "Mon, 24 Aug, 2026, 01:29:09 am"
+      "LastUpdated": "Mon, 24 Aug, 2026, 03:24:43 AM"
     },
     "538496": {
       "SecurityCode": "538496",
@@ -2195,7 +505,7 @@
       "esmStage": "None",
       "asmStage": "None",
       "isEsmEligible": true,
-      "LastUpdated": "Mon, 24 Aug, 2026, 02:51:47 AM"
+      "LastUpdated": "Mon, 24 Aug, 2026, 03:24:43 AM"
     },
     "538576": {
       "SecurityCode": "538576",
@@ -2213,7 +523,7 @@
       "esmStage": "None",
       "asmStage": "None",
       "isEsmEligible": true,
-      "LastUpdated": "Mon, 24 Aug, 2026, 02:51:47 AM"
+      "LastUpdated": "Mon, 24 Aug, 2026, 03:24:43 AM"
     },
     "538579": {
       "SecurityCode": "538579",
@@ -2231,7 +541,7 @@
       "esmStage": "None",
       "asmStage": "None",
       "isEsmEligible": true,
-      "LastUpdated": "Mon, 24 Aug, 2026, 02:51:47 AM"
+      "LastUpdated": "Mon, 24 Aug, 2026, 03:24:43 AM"
     },
     "538667": {
       "SecurityCode": "538667",
@@ -2249,7 +559,7 @@
       "esmStage": "None",
       "asmStage": "None",
       "isEsmEligible": true,
-      "LastUpdated": "Mon, 24 Aug, 2026, 02:51:47 AM"
+      "LastUpdated": "Mon, 24 Aug, 2026, 03:24:43 AM"
     },
     "538684": {
       "SecurityCode": "538684",
@@ -2267,19 +577,7 @@
       "esmStage": "None",
       "asmStage": "None",
       "isEsmEligible": true,
-      "LastUpdated": "Mon, 24 Aug, 2026, 02:51:47 AM"
-    },
-    "538715": {
-      "SecurityCode": "538715",
-      "Exchange": "BSE",
-      "Series": "X",
-      "CompanyName": "Dhabriya Polywood Ltd",
-      "LTP": 570.5,
-      "PrevClose": 556.8,
-      "High52": 584.2,
-      "Low52": 551.2,
-      "esmStage": "ESM :Stage 1",
-      "LastUpdated": "Mon, 24 Aug, 2026, 01:26:13 am"
+      "LastUpdated": "Mon, 24 Aug, 2026, 03:24:43 AM"
     },
     "538731": {
       "SecurityCode": "538731",
@@ -2297,19 +595,7 @@
       "esmStage": "None",
       "asmStage": "None",
       "isEsmEligible": true,
-      "LastUpdated": "Mon, 24 Aug, 2026, 02:51:47 AM"
-    },
-    "538732": {
-      "SecurityCode": "538732",
-      "Exchange": "BSE",
-      "Series": "XT",
-      "CompanyName": "Vibrant Global Capital Ltd",
-      "LTP": 60.9,
-      "PrevClose": 59.77,
-      "High52": 61,
-      "Low52": 57.02,
-      "esmStage": "None",
-      "LastUpdated": "Mon, 24 Aug, 2026, 01:29:09 am"
+      "LastUpdated": "Mon, 24 Aug, 2026, 03:24:43 AM"
     },
     "538765": {
       "SecurityCode": "538765",
@@ -2327,7 +613,7 @@
       "esmStage": "None",
       "asmStage": "None",
       "isEsmEligible": true,
-      "LastUpdated": "Mon, 24 Aug, 2026, 02:51:47 AM"
+      "LastUpdated": "Mon, 24 Aug, 2026, 03:24:44 AM"
     },
     "538794": {
       "SecurityCode": "538794",
@@ -2345,25 +631,7 @@
       "esmStage": "None",
       "asmStage": "ASM LT : Stage 1",
       "isEsmEligible": true,
-      "LastUpdated": "Mon, 24 Aug, 2026, 02:51:47 AM"
-    },
-    "538881": {
-      "SecurityCode": "538881",
-      "Symbol": "GALADAFIN",
-      "Exchange": "BSE",
-      "Series": "XT",
-      "CompanyName": "Galada Finance Limited",
-      "ISIN": "INE243E01010",
-      "LTP": 39.19,
-      "PrevClose": 41.25,
-      "High52": 43,
-      "Low52": 39.19,
-      "MarketCapCr": 11.76,
-      "ListingDate": "",
-      "esmStage": "None",
-      "asmStage": "None",
-      "isEsmEligible": true,
-      "LastUpdated": "Mon, 24 Aug, 2026, 02:42:33 am"
+      "LastUpdated": "Mon, 24 Aug, 2026, 03:24:44 AM"
     },
     "538921": {
       "SecurityCode": "538921",
@@ -2381,7 +649,7 @@
       "esmStage": "None",
       "asmStage": "None",
       "isEsmEligible": true,
-      "LastUpdated": "Mon, 24 Aug, 2026, 02:51:47 AM"
+      "LastUpdated": "Mon, 24 Aug, 2026, 03:24:44 AM"
     },
     "539026": {
       "SecurityCode": "539026",
@@ -2399,7 +667,7 @@
       "esmStage": "None",
       "asmStage": "None",
       "isEsmEligible": true,
-      "LastUpdated": "Mon, 24 Aug, 2026, 02:51:47 AM"
+      "LastUpdated": "Mon, 24 Aug, 2026, 03:24:44 AM"
     },
     "539041": {
       "SecurityCode": "539041",
@@ -2435,7 +703,7 @@
       "esmStage": "None",
       "asmStage": "None",
       "isEsmEligible": true,
-      "LastUpdated": "Mon, 24 Aug, 2026, 02:51:47 AM"
+      "LastUpdated": "Mon, 24 Aug, 2026, 03:24:44 AM"
     },
     "539099": {
       "SecurityCode": "539099",
@@ -2453,7 +721,7 @@
       "esmStage": "None",
       "asmStage": "None",
       "isEsmEligible": true,
-      "LastUpdated": "Mon, 24 Aug, 2026, 02:51:47 AM"
+      "LastUpdated": "Mon, 24 Aug, 2026, 03:24:44 AM"
     },
     "539116": {
       "SecurityCode": "539116",
@@ -2471,7 +739,7 @@
       "esmStage": "None",
       "asmStage": "None",
       "isEsmEligible": true,
-      "LastUpdated": "Mon, 24 Aug, 2026, 02:51:47 AM"
+      "LastUpdated": "Mon, 24 Aug, 2026, 03:24:44 AM"
     },
     "539229": {
       "SecurityCode": "539229",
@@ -2489,7 +757,7 @@
       "esmStage": "None",
       "asmStage": "None",
       "isEsmEligible": true,
-      "LastUpdated": "Mon, 24 Aug, 2026, 02:51:47 AM"
+      "LastUpdated": "Mon, 24 Aug, 2026, 03:24:44 AM"
     },
     "539265": {
       "SecurityCode": "539265",
@@ -2525,25 +793,7 @@
       "esmStage": "None",
       "asmStage": "None",
       "isEsmEligible": true,
-      "LastUpdated": "Mon, 24 Aug, 2026, 02:51:47 AM"
-    },
-    "539276": {
-      "SecurityCode": "539276",
-      "Symbol": "KAYA",
-      "Exchange": "BSE",
-      "Series": "B",
-      "CompanyName": "Kaya Limited",
-      "ISIN": "INE587G01015",
-      "LTP": 383,
-      "PrevClose": 375.55,
-      "High52": 390.25,
-      "Low52": 373,
-      "MarketCapCr": 581.69,
-      "ListingDate": "",
-      "esmStage": "ESM :Stage 1",
-      "asmStage": "None",
-      "isEsmEligible": false,
-      "LastUpdated": "Mon, 24 Aug, 2026, 02:42:33 am"
+      "LastUpdated": "Mon, 24 Aug, 2026, 03:24:44 AM"
     },
     "539337": {
       "SecurityCode": "539337",
@@ -2561,7 +811,7 @@
       "esmStage": "None",
       "asmStage": "None",
       "isEsmEligible": true,
-      "LastUpdated": "Mon, 24 Aug, 2026, 02:51:47 AM"
+      "LastUpdated": "Mon, 24 Aug, 2026, 03:24:44 AM"
     },
     "539352": {
       "SecurityCode": "539352",
@@ -2579,7 +829,7 @@
       "esmStage": "None",
       "asmStage": "None",
       "isEsmEligible": true,
-      "LastUpdated": "Mon, 24 Aug, 2026, 02:55:12 AM"
+      "LastUpdated": "Mon, 24 Aug, 2026, 03:24:44 AM"
     },
     "539401": {
       "SecurityCode": "539401",
@@ -2597,25 +847,7 @@
       "esmStage": "None",
       "asmStage": "None",
       "isEsmEligible": true,
-      "LastUpdated": "Mon, 24 Aug, 2026, 02:51:47 AM"
-    },
-    "539402": {
-      "SecurityCode": "539402",
-      "Symbol": "NAKSH",
-      "Exchange": "BSE",
-      "Series": "Z",
-      "CompanyName": "Naksh Precious Metals Limited",
-      "ISIN": "INE256S01012",
-      "LTP": 3.51,
-      "PrevClose": 3.67,
-      "High52": 3.85,
-      "Low52": 3.49,
-      "MarketCapCr": 3.69,
-      "ListingDate": "",
-      "esmStage": "None",
-      "asmStage": "None",
-      "isEsmEligible": true,
-      "LastUpdated": "Mon, 24 Aug, 2026, 02:42:33 am"
+      "LastUpdated": "Mon, 24 Aug, 2026, 03:24:44 AM"
     },
     "539403": {
       "SecurityCode": "539403",
@@ -2633,7 +865,7 @@
       "esmStage": "None",
       "asmStage": "None",
       "isEsmEligible": true,
-      "LastUpdated": "Mon, 24 Aug, 2026, 02:51:47 AM"
+      "LastUpdated": "Mon, 24 Aug, 2026, 03:24:44 AM"
     },
     "539521": {
       "SecurityCode": "539521",
@@ -2651,31 +883,7 @@
       "esmStage": "None",
       "asmStage": "None",
       "isEsmEligible": true,
-      "LastUpdated": "Mon, 24 Aug, 2026, 02:51:47 AM"
-    },
-    "539522": {
-      "SecurityCode": "539522",
-      "Exchange": "BSE",
-      "Series": "X",
-      "CompanyName": "Grovy India Ltd",
-      "LTP": 67.93,
-      "PrevClose": 71.5,
-      "High52": 71.5,
-      "Low52": 67.93,
-      "esmStage": "ESM :Stage 1",
-      "LastUpdated": "Mon, 24 Aug, 2026, 01:26:13 am"
-    },
-    "539562": {
-      "SecurityCode": "539562",
-      "Exchange": "BSE",
-      "Series": "B",
-      "CompanyName": "Aarnav Fashions Ltd",
-      "LTP": 33.45,
-      "PrevClose": 33.93,
-      "High52": 33.94,
-      "Low52": 32.5,
-      "esmStage": "ESM :Stage 1",
-      "LastUpdated": "Mon, 24 Aug, 2026, 01:26:13 am"
+      "LastUpdated": "Mon, 24 Aug, 2026, 03:24:44 AM"
     },
     "539570": {
       "SecurityCode": "539570",
@@ -2693,7 +901,7 @@
       "esmStage": "None",
       "asmStage": "None",
       "isEsmEligible": true,
-      "LastUpdated": "Mon, 24 Aug, 2026, 02:51:47 AM"
+      "LastUpdated": "Mon, 24 Aug, 2026, 03:24:44 AM"
     },
     "539637": {
       "SecurityCode": "539637",
@@ -2711,19 +919,7 @@
       "esmStage": "None",
       "asmStage": "None",
       "isEsmEligible": true,
-      "LastUpdated": "Mon, 24 Aug, 2026, 02:51:47 AM"
-    },
-    "539669": {
-      "SecurityCode": "539669",
-      "Exchange": "BSE",
-      "Series": "XT",
-      "CompanyName": "RGF Capital Markets Ltd",
-      "LTP": 1.92,
-      "PrevClose": 2.02,
-      "High52": 2.01,
-      "Low52": 1.92,
-      "esmStage": "ESM :Stage 1",
-      "LastUpdated": "Mon, 24 Aug, 2026, 01:26:13 am"
+      "LastUpdated": "Mon, 24 Aug, 2026, 03:24:44 AM"
     },
     "539680": {
       "SecurityCode": "539680",
@@ -2741,7 +937,7 @@
       "esmStage": "None",
       "asmStage": "None",
       "isEsmEligible": true,
-      "LastUpdated": "Mon, 24 Aug, 2026, 02:51:47 AM"
+      "LastUpdated": "Mon, 24 Aug, 2026, 03:24:44 AM"
     },
     "539788": {
       "SecurityCode": "539788",
@@ -2759,7 +955,7 @@
       "esmStage": "None",
       "asmStage": "None",
       "isEsmEligible": true,
-      "LastUpdated": "Mon, 24 Aug, 2026, 02:51:47 AM"
+      "LastUpdated": "Mon, 24 Aug, 2026, 03:24:44 AM"
     },
     "539836": {
       "SecurityCode": "539836",
@@ -2777,7 +973,7 @@
       "esmStage": "None",
       "asmStage": "None",
       "isEsmEligible": true,
-      "LastUpdated": "Mon, 24 Aug, 2026, 02:51:47 AM"
+      "LastUpdated": "Mon, 24 Aug, 2026, 03:24:44 AM"
     },
     "539839": {
       "SecurityCode": "539839",
@@ -2795,7 +991,7 @@
       "esmStage": "None",
       "asmStage": "None",
       "isEsmEligible": true,
-      "LastUpdated": "Mon, 24 Aug, 2026, 02:51:47 AM"
+      "LastUpdated": "Mon, 24 Aug, 2026, 03:24:44 AM"
     },
     "539842": {
       "SecurityCode": "539842",
@@ -2813,7 +1009,7 @@
       "esmStage": "None",
       "asmStage": "None",
       "isEsmEligible": true,
-      "LastUpdated": "Mon, 24 Aug, 2026, 02:51:47 AM"
+      "LastUpdated": "Mon, 24 Aug, 2026, 03:24:44 AM"
     },
     "539864": {
       "SecurityCode": "539864",
@@ -2831,37 +1027,7 @@
       "esmStage": "None",
       "asmStage": "None",
       "isEsmEligible": true,
-      "LastUpdated": "Mon, 24 Aug, 2026, 02:51:47 AM"
-    },
-    "539922": {
-      "SecurityCode": "539922",
-      "Exchange": "BSE",
-      "Series": "XT",
-      "CompanyName": "Rotographics (India) Ltd",
-      "LTP": 280,
-      "PrevClose": 268.1,
-      "High52": 281,
-      "Low52": 265,
-      "esmStage": "ESM :Stage 1",
-      "LastUpdated": "Mon, 24 Aug, 2026, 01:26:13 am"
-    },
-    "539947": {
-      "SecurityCode": "539947",
-      "Symbol": "JLL",
-      "Exchange": "BSE",
-      "Series": "XT",
-      "CompanyName": "JINDAL LEASEFIN LIMITED",
-      "ISIN": "INE919T01013",
-      "LTP": 105.7,
-      "PrevClose": 107.85,
-      "High52": 105.7,
-      "Low52": 105.7,
-      "MarketCapCr": 31.8,
-      "ListingDate": "",
-      "esmStage": "ESM :Stage 1",
-      "asmStage": "None",
-      "isEsmEligible": true,
-      "LastUpdated": "Mon, 24 Aug, 2026, 02:42:33 am"
+      "LastUpdated": "Mon, 24 Aug, 2026, 03:24:44 AM"
     },
     "539985": {
       "SecurityCode": "539985",
@@ -2897,7 +1063,7 @@
       "esmStage": "None",
       "asmStage": "None",
       "isEsmEligible": true,
-      "LastUpdated": "Mon, 24 Aug, 2026, 02:51:47 AM"
+      "LastUpdated": "Mon, 24 Aug, 2026, 03:24:44 AM"
     },
     "540082": {
       "SecurityCode": "540082",
@@ -2933,7 +1099,7 @@
       "esmStage": "None",
       "asmStage": "None",
       "isEsmEligible": true,
-      "LastUpdated": "Mon, 24 Aug, 2026, 02:51:47 AM"
+      "LastUpdated": "Mon, 24 Aug, 2026, 03:24:44 AM"
     },
     "540144": {
       "SecurityCode": "540144",
@@ -2951,7 +1117,7 @@
       "esmStage": "None",
       "asmStage": "None",
       "isEsmEligible": true,
-      "LastUpdated": "Mon, 24 Aug, 2026, 02:51:47 AM"
+      "LastUpdated": "Mon, 24 Aug, 2026, 03:24:44 AM"
     },
     "540146": {
       "SecurityCode": "540146",
@@ -2969,7 +1135,7 @@
       "esmStage": "None",
       "asmStage": "None",
       "isEsmEligible": true,
-      "LastUpdated": "Mon, 24 Aug, 2026, 02:51:47 AM"
+      "LastUpdated": "Mon, 24 Aug, 2026, 03:24:44 AM"
     },
     "540148": {
       "SecurityCode": "540148",
@@ -2987,7 +1153,7 @@
       "esmStage": "None",
       "asmStage": "None",
       "isEsmEligible": true,
-      "LastUpdated": "Mon, 24 Aug, 2026, 02:51:47 AM"
+      "LastUpdated": "Mon, 24 Aug, 2026, 03:24:44 AM"
     },
     "540150": {
       "SecurityCode": "540150",
@@ -3005,7 +1171,7 @@
       "esmStage": "None",
       "asmStage": "None",
       "isEsmEligible": true,
-      "LastUpdated": "Mon, 24 Aug, 2026, 02:51:47 AM"
+      "LastUpdated": "Mon, 24 Aug, 2026, 03:24:44 AM"
     },
     "540151": {
       "SecurityCode": "540151",
@@ -3023,7 +1189,7 @@
       "esmStage": "None",
       "asmStage": "None",
       "isEsmEligible": true,
-      "LastUpdated": "Mon, 24 Aug, 2026, 02:51:47 AM"
+      "LastUpdated": "Mon, 24 Aug, 2026, 03:24:44 AM"
     },
     "540152": {
       "SecurityCode": "540152",
@@ -3041,25 +1207,7 @@
       "esmStage": "None",
       "asmStage": "None",
       "isEsmEligible": true,
-      "LastUpdated": "Mon, 24 Aug, 2026, 02:51:47 AM"
-    },
-    "540254": {
-      "SecurityCode": "540254",
-      "Symbol": "MTPL",
-      "Exchange": "BSE",
-      "Series": "XT",
-      "CompanyName": "MARG TECHNO PROJECTS LIMITED",
-      "ISIN": "INE245H01018",
-      "LTP": 14.48,
-      "PrevClose": 14.77,
-      "High52": 14.48,
-      "Low52": 14.48,
-      "MarketCapCr": 113.09,
-      "ListingDate": "",
-      "esmStage": "ESM :Stage 1",
-      "asmStage": "None",
-      "isEsmEligible": true,
-      "LastUpdated": "Mon, 24 Aug, 2026, 02:42:33 am"
+      "LastUpdated": "Mon, 24 Aug, 2026, 03:24:44 AM"
     },
     "540269": {
       "SecurityCode": "540269",
@@ -3095,7 +1243,7 @@
       "esmStage": "None",
       "asmStage": "ASM LT : Stage 1",
       "isEsmEligible": true,
-      "LastUpdated": "Mon, 24 Aug, 2026, 02:51:47 AM"
+      "LastUpdated": "Mon, 24 Aug, 2026, 03:24:44 AM"
     },
     "540394": {
       "SecurityCode": "540394",
@@ -3113,7 +1261,7 @@
       "esmStage": "None",
       "asmStage": "None",
       "isEsmEligible": true,
-      "LastUpdated": "Mon, 24 Aug, 2026, 02:51:47 AM"
+      "LastUpdated": "Mon, 24 Aug, 2026, 03:24:44 AM"
     },
     "540402": {
       "SecurityCode": "540402",
@@ -3131,7 +1279,7 @@
       "esmStage": "None",
       "asmStage": "None",
       "isEsmEligible": true,
-      "LastUpdated": "Mon, 24 Aug, 2026, 02:51:47 AM"
+      "LastUpdated": "Mon, 24 Aug, 2026, 03:24:44 AM"
     },
     "540416": {
       "SecurityCode": "540416",
@@ -3167,7 +1315,7 @@
       "esmStage": "None",
       "asmStage": "None",
       "isEsmEligible": true,
-      "LastUpdated": "Mon, 24 Aug, 2026, 02:51:47 AM"
+      "LastUpdated": "Mon, 24 Aug, 2026, 03:24:44 AM"
     },
     "540468": {
       "SecurityCode": "540468",
@@ -3185,19 +1333,7 @@
       "esmStage": "None",
       "asmStage": "None",
       "isEsmEligible": true,
-      "LastUpdated": "Mon, 24 Aug, 2026, 02:51:47 AM"
-    },
-    "540515": {
-      "SecurityCode": "540515",
-      "Exchange": "BSE",
-      "Series": "X",
-      "CompanyName": "Kanungo Financiers Ltd",
-      "LTP": 14.76,
-      "PrevClose": 14.76,
-      "High52": 14.76,
-      "Low52": 14.76,
-      "esmStage": "ESM :Stage 1",
-      "LastUpdated": "Mon, 24 Aug, 2026, 01:26:13 am"
+      "LastUpdated": "Mon, 24 Aug, 2026, 03:24:44 AM"
     },
     "540550": {
       "SecurityCode": "540550",
@@ -3233,7 +1369,7 @@
       "esmStage": "None",
       "asmStage": "ASM LT : Stage 1",
       "isEsmEligible": true,
-      "LastUpdated": "Mon, 24 Aug, 2026, 02:51:47 AM"
+      "LastUpdated": "Mon, 24 Aug, 2026, 03:24:44 AM"
     },
     "540651": {
       "SecurityCode": "540651",
@@ -3251,7 +1387,7 @@
       "esmStage": "None",
       "asmStage": "None",
       "isEsmEligible": true,
-      "LastUpdated": "Mon, 24 Aug, 2026, 02:51:47 AM"
+      "LastUpdated": "Mon, 24 Aug, 2026, 03:24:44 AM"
     },
     "540652": {
       "SecurityCode": "540652",
@@ -3270,18 +1406,6 @@
       "asmStage": "None",
       "isEsmEligible": false,
       "LastUpdated": "Mon, 24 Aug, 2026, 02:51:47 AM"
-    },
-    "540654": {
-      "SecurityCode": "540654",
-      "Exchange": "BSE",
-      "Series": "XT",
-      "CompanyName": "Globalspace Technologies Ltd",
-      "LTP": 35.38,
-      "PrevClose": 36.13,
-      "High52": 37.2,
-      "Low52": 35.01,
-      "esmStage": "None",
-      "LastUpdated": "Mon, 24 Aug, 2026, 01:29:09 am"
     },
     "540681": {
       "SecurityCode": "540681",
@@ -3317,7 +1441,7 @@
       "esmStage": "None",
       "asmStage": "None",
       "isEsmEligible": true,
-      "LastUpdated": "Mon, 24 Aug, 2026, 02:51:47 AM"
+      "LastUpdated": "Mon, 24 Aug, 2026, 03:24:44 AM"
     },
     "540698": {
       "SecurityCode": "540698",
@@ -3335,7 +1459,7 @@
       "esmStage": "None",
       "asmStage": "None",
       "isEsmEligible": true,
-      "LastUpdated": "Mon, 24 Aug, 2026, 02:51:47 AM"
+      "LastUpdated": "Mon, 24 Aug, 2026, 03:24:44 AM"
     },
     "540715": {
       "SecurityCode": "540715",
@@ -3353,7 +1477,7 @@
       "esmStage": "None",
       "asmStage": "None",
       "isEsmEligible": true,
-      "LastUpdated": "Mon, 24 Aug, 2026, 02:51:47 AM"
+      "LastUpdated": "Mon, 24 Aug, 2026, 03:24:44 AM"
     },
     "540718": {
       "SecurityCode": "540718",
@@ -3371,7 +1495,7 @@
       "esmStage": "None",
       "asmStage": "None",
       "isEsmEligible": false,
-      "LastUpdated": "Mon, 24 Aug, 2026, 02:51:47 AM"
+      "LastUpdated": "Mon, 24 Aug, 2026, 03:24:44 AM"
     },
     "540729": {
       "SecurityCode": "540729",
@@ -3407,7 +1531,7 @@
       "esmStage": "None",
       "asmStage": "None",
       "isEsmEligible": true,
-      "LastUpdated": "Mon, 24 Aug, 2026, 02:51:47 AM"
+      "LastUpdated": "Mon, 24 Aug, 2026, 03:24:44 AM"
     },
     "540756": {
       "SecurityCode": "540756",
@@ -3425,19 +1549,7 @@
       "esmStage": "None",
       "asmStage": "None",
       "isEsmEligible": true,
-      "LastUpdated": "Mon, 24 Aug, 2026, 02:51:47 AM"
-    },
-    "540757": {
-      "SecurityCode": "540757",
-      "Exchange": "BSE",
-      "Series": "B",
-      "CompanyName": "Sheetal Cool Products Ltd",
-      "LTP": 680.6,
-      "PrevClose": 667.85,
-      "High52": 688,
-      "Low52": 659.8,
-      "esmStage": "ESM :Stage 1",
-      "LastUpdated": "Mon, 24 Aug, 2026, 01:26:13 am"
+      "LastUpdated": "Mon, 24 Aug, 2026, 03:24:44 AM"
     },
     "540782": {
       "SecurityCode": "540782",
@@ -3455,25 +1567,7 @@
       "esmStage": "None",
       "asmStage": "None",
       "isEsmEligible": true,
-      "LastUpdated": "Mon, 24 Aug, 2026, 02:42:33 am"
-    },
-    "540786": {
-      "SecurityCode": "540786",
-      "Symbol": "SHARIKA",
-      "Exchange": "BSE",
-      "Series": "T",
-      "CompanyName": "SHARIKA ENTERPRISES LIMITED",
-      "ISIN": "INE669Y01022",
-      "LTP": 19.71,
-      "PrevClose": 20.11,
-      "High52": 20.18,
-      "Low52": 19.71,
-      "MarketCapCr": 85.34,
-      "ListingDate": "",
-      "esmStage": "ESM :Stage 1",
-      "asmStage": "None",
-      "isEsmEligible": true,
-      "LastUpdated": "Mon, 24 Aug, 2026, 02:42:33 am"
+      "LastUpdated": "Mon, 24 Aug, 2026, 03:24:44 AM"
     },
     "540811": {
       "SecurityCode": "540811",
@@ -3491,7 +1585,7 @@
       "esmStage": "None",
       "asmStage": "None",
       "isEsmEligible": true,
-      "LastUpdated": "Mon, 24 Aug, 2026, 02:51:47 AM"
+      "LastUpdated": "Mon, 24 Aug, 2026, 03:24:44 AM"
     },
     "540812": {
       "SecurityCode": "540812",
@@ -3509,19 +1603,7 @@
       "esmStage": "None",
       "asmStage": "None",
       "isEsmEligible": true,
-      "LastUpdated": "Mon, 24 Aug, 2026, 02:51:47 AM"
-    },
-    "540821": {
-      "SecurityCode": "540821",
-      "Exchange": "BSE",
-      "Series": "XT",
-      "CompanyName": "Crystal Business System Ltd",
-      "LTP": 1.94,
-      "PrevClose": 1.95,
-      "High52": 1.99,
-      "Low52": 1.94,
-      "esmStage": "None",
-      "LastUpdated": "Mon, 24 Aug, 2026, 01:26:13 am"
+      "LastUpdated": "Mon, 24 Aug, 2026, 03:24:44 AM"
     },
     "540843": {
       "SecurityCode": "540843",
@@ -3539,7 +1621,7 @@
       "esmStage": "None",
       "asmStage": "None",
       "isEsmEligible": true,
-      "LastUpdated": "Mon, 24 Aug, 2026, 02:51:47 AM"
+      "LastUpdated": "Mon, 24 Aug, 2026, 03:24:44 AM"
     },
     "540850": {
       "SecurityCode": "540850",
@@ -3557,7 +1639,7 @@
       "esmStage": "None",
       "asmStage": "None",
       "isEsmEligible": true,
-      "LastUpdated": "Mon, 24 Aug, 2026, 02:51:47 AM"
+      "LastUpdated": "Mon, 24 Aug, 2026, 03:24:44 AM"
     },
     "540903": {
       "SecurityCode": "540903",
@@ -3575,7 +1657,7 @@
       "esmStage": "None",
       "asmStage": "None",
       "isEsmEligible": true,
-      "LastUpdated": "Mon, 24 Aug, 2026, 02:51:47 AM"
+      "LastUpdated": "Mon, 24 Aug, 2026, 03:24:44 AM"
     },
     "540938": {
       "SecurityCode": "540938",
@@ -3611,7 +1693,7 @@
       "esmStage": "None",
       "asmStage": "None",
       "isEsmEligible": true,
-      "LastUpdated": "Mon, 24 Aug, 2026, 02:51:47 AM"
+      "LastUpdated": "Mon, 24 Aug, 2026, 03:24:44 AM"
     },
     "541006": {
       "SecurityCode": "541006",
@@ -3629,7 +1711,7 @@
       "esmStage": "None",
       "asmStage": "None",
       "isEsmEligible": true,
-      "LastUpdated": "Mon, 24 Aug, 2026, 02:51:47 AM"
+      "LastUpdated": "Mon, 24 Aug, 2026, 03:24:44 AM"
     },
     "541053": {
       "SecurityCode": "541053",
@@ -3647,7 +1729,7 @@
       "esmStage": "None",
       "asmStage": "None",
       "isEsmEligible": true,
-      "LastUpdated": "Mon, 24 Aug, 2026, 02:51:47 AM"
+      "LastUpdated": "Mon, 24 Aug, 2026, 03:24:44 AM"
     },
     "541083": {
       "SecurityCode": "541083",
@@ -3665,7 +1747,7 @@
       "esmStage": "None",
       "asmStage": "None",
       "isEsmEligible": true,
-      "LastUpdated": "Mon, 24 Aug, 2026, 02:51:47 AM"
+      "LastUpdated": "Mon, 24 Aug, 2026, 03:24:44 AM"
     },
     "541112": {
       "SecurityCode": "541112",
@@ -3683,7 +1765,7 @@
       "esmStage": "None",
       "asmStage": "None",
       "isEsmEligible": true,
-      "LastUpdated": "Mon, 24 Aug, 2026, 02:51:47 AM"
+      "LastUpdated": "Mon, 24 Aug, 2026, 03:24:44 AM"
     },
     "541151": {
       "SecurityCode": "541151",
@@ -3701,7 +1783,7 @@
       "esmStage": "None",
       "asmStage": "None",
       "isEsmEligible": true,
-      "LastUpdated": "Mon, 24 Aug, 2026, 02:51:47 AM"
+      "LastUpdated": "Mon, 24 Aug, 2026, 03:24:44 AM"
     },
     "541178": {
       "SecurityCode": "541178",
@@ -3719,7 +1801,7 @@
       "esmStage": "None",
       "asmStage": "None",
       "isEsmEligible": true,
-      "LastUpdated": "Mon, 24 Aug, 2026, 02:51:47 AM"
+      "LastUpdated": "Mon, 24 Aug, 2026, 03:24:44 AM"
     },
     "541196": {
       "SecurityCode": "541196",
@@ -3737,19 +1819,7 @@
       "esmStage": "None",
       "asmStage": "None",
       "isEsmEligible": true,
-      "LastUpdated": "Mon, 24 Aug, 2026, 02:51:47 AM"
-    },
-    "541269": {
-      "SecurityCode": "541269",
-      "Exchange": "BSE",
-      "Series": "T",
-      "CompanyName": "Chemfab Alkalis Ltd",
-      "LTP": 354.55,
-      "PrevClose": 369.9,
-      "High52": 372,
-      "Low52": 354,
-      "esmStage": "None",
-      "LastUpdated": "Mon, 24 Aug, 2026, 01:26:13 am"
+      "LastUpdated": "Mon, 24 Aug, 2026, 03:24:44 AM"
     },
     "541299": {
       "SecurityCode": "541299",
@@ -3767,7 +1837,7 @@
       "esmStage": "None",
       "asmStage": "ASM LT : Stage 1",
       "isEsmEligible": true,
-      "LastUpdated": "Mon, 24 Aug, 2026, 02:51:47 AM"
+      "LastUpdated": "Mon, 24 Aug, 2026, 03:24:44 AM"
     },
     "541337": {
       "SecurityCode": "541337",
@@ -3785,7 +1855,7 @@
       "esmStage": "None",
       "asmStage": "None",
       "isEsmEligible": true,
-      "LastUpdated": "Mon, 24 Aug, 2026, 02:42:33 am"
+      "LastUpdated": "Mon, 24 Aug, 2026, 03:24:44 AM"
     },
     "541353": {
       "SecurityCode": "541353",
@@ -3803,19 +1873,7 @@
       "esmStage": "None",
       "asmStage": "None",
       "isEsmEligible": true,
-      "LastUpdated": "Mon, 24 Aug, 2026, 02:55:12 AM"
-    },
-    "541400": {
-      "SecurityCode": "541400",
-      "Exchange": "BSE",
-      "Series": "T",
-      "CompanyName": "Zim Laboratories Ltd",
-      "LTP": 125.05,
-      "PrevClose": 121.45,
-      "High52": 126.05,
-      "Low52": 120.75,
-      "esmStage": "None",
-      "LastUpdated": "Mon, 24 Aug, 2026, 01:29:09 am"
+      "LastUpdated": "Mon, 24 Aug, 2026, 03:24:44 AM"
     },
     "541401": {
       "SecurityCode": "541401",
@@ -3833,25 +1891,7 @@
       "esmStage": "None",
       "asmStage": "None",
       "isEsmEligible": true,
-      "LastUpdated": "Mon, 24 Aug, 2026, 02:55:12 AM"
-    },
-    "541418": {
-      "SecurityCode": "541418",
-      "Symbol": "NGIL",
-      "Exchange": "BSE",
-      "Series": "T",
-      "CompanyName": "NAKODA GROUP OF INDUSTRIES LIMITED",
-      "ISIN": "INE236Y01012",
-      "LTP": 40.5,
-      "PrevClose": 41.95,
-      "High52": 40.5,
-      "Low52": 40.5,
-      "MarketCapCr": 71.03,
-      "ListingDate": "",
-      "esmStage": "None",
-      "asmStage": "None",
-      "isEsmEligible": true,
-      "LastUpdated": "Mon, 24 Aug, 2026, 02:42:33 am"
+      "LastUpdated": "Mon, 24 Aug, 2026, 03:24:44 AM"
     },
     "541445": {
       "SecurityCode": "541445",
@@ -3869,7 +1909,7 @@
       "esmStage": "None",
       "asmStage": "None",
       "isEsmEligible": true,
-      "LastUpdated": "Mon, 24 Aug, 2026, 02:55:12 AM"
+      "LastUpdated": "Mon, 24 Aug, 2026, 03:24:44 AM"
     },
     "541701": {
       "SecurityCode": "541701",
@@ -3887,7 +1927,7 @@
       "esmStage": "None",
       "asmStage": "None",
       "isEsmEligible": true,
-      "LastUpdated": "Mon, 24 Aug, 2026, 02:55:12 AM"
+      "LastUpdated": "Mon, 24 Aug, 2026, 03:24:44 AM"
     },
     "541703": {
       "SecurityCode": "541703",
@@ -3905,7 +1945,7 @@
       "esmStage": "None",
       "asmStage": "ASM LT : Stage 1",
       "isEsmEligible": true,
-      "LastUpdated": "Mon, 24 Aug, 2026, 02:55:12 AM"
+      "LastUpdated": "Mon, 24 Aug, 2026, 03:24:44 AM"
     },
     "541799": {
       "SecurityCode": "541799",
@@ -3923,7 +1963,7 @@
       "esmStage": "None",
       "asmStage": "None",
       "isEsmEligible": true,
-      "LastUpdated": "Mon, 24 Aug, 2026, 02:55:12 AM"
+      "LastUpdated": "Mon, 24 Aug, 2026, 03:24:44 AM"
     },
     "541945": {
       "SecurityCode": "541945",
@@ -3941,7 +1981,7 @@
       "esmStage": "None",
       "asmStage": "None",
       "isEsmEligible": true,
-      "LastUpdated": "Mon, 24 Aug, 2026, 02:55:12 AM"
+      "LastUpdated": "Mon, 24 Aug, 2026, 03:24:44 AM"
     },
     "541973": {
       "SecurityCode": "541973",
@@ -3959,7 +1999,7 @@
       "esmStage": "None",
       "asmStage": "None",
       "isEsmEligible": true,
-      "LastUpdated": "Mon, 24 Aug, 2026, 02:55:12 AM"
+      "LastUpdated": "Mon, 24 Aug, 2026, 03:24:44 AM"
     },
     "541983": {
       "SecurityCode": "541983",
@@ -3977,7 +2017,7 @@
       "esmStage": "None",
       "asmStage": "None",
       "isEsmEligible": true,
-      "LastUpdated": "Mon, 24 Aug, 2026, 02:55:12 AM"
+      "LastUpdated": "Mon, 24 Aug, 2026, 03:24:44 AM"
     },
     "542002": {
       "SecurityCode": "542002",
@@ -3995,7 +2035,7 @@
       "esmStage": "None",
       "asmStage": "None",
       "isEsmEligible": true,
-      "LastUpdated": "Mon, 24 Aug, 2026, 02:55:12 AM"
+      "LastUpdated": "Mon, 24 Aug, 2026, 03:24:44 AM"
     },
     "542025": {
       "SecurityCode": "542025",
@@ -4429,18 +2469,6 @@
       "isEsmEligible": true,
       "LastUpdated": "Mon, 24 Aug, 2026, 02:55:12 AM"
     },
-    "543210": {
-      "SecurityCode": "543210",
-      "Exchange": "BSE",
-      "Series": "B",
-      "CompanyName": "Aarti Surfactants Ltd",
-      "LTP": 567.3,
-      "PrevClose": 575.3,
-      "High52": 582.9,
-      "Low52": 546.55,
-      "esmStage": "ESM :Stage 1",
-      "LastUpdated": "Mon, 24 Aug, 2026, 01:29:09 am"
-    },
     "543239": {
       "SecurityCode": "543239",
       "Symbol": "GMPL",
@@ -4764,18 +2792,6 @@
       "asmStage": "ASM LT : Stage 1",
       "isEsmEligible": true,
       "LastUpdated": "Mon, 24 Aug, 2026, 02:55:12 AM"
-    },
-    "543389": {
-      "SecurityCode": "543389",
-      "Exchange": "BSE",
-      "Series": "T",
-      "CompanyName": "Sigachi Industries Ltd",
-      "LTP": 30.09,
-      "PrevClose": 30.31,
-      "High52": 30.85,
-      "Low52": 29.34,
-      "esmStage": "None",
-      "LastUpdated": "Mon, 24 Aug, 2026, 01:29:09 am"
     },
     "543391": {
       "SecurityCode": "543391",
@@ -5136,18 +3152,6 @@
       "asmStage": "ASM LT : Stage 1",
       "isEsmEligible": true,
       "LastUpdated": "Mon, 24 Aug, 2026, 02:55:12 AM"
-    },
-    "543535": {
-      "SecurityCode": "543535",
-      "Exchange": "BSE",
-      "Series": "T",
-      "CompanyName": "We Win Ltd",
-      "LTP": 47,
-      "PrevClose": 45.55,
-      "High52": 47.44,
-      "Low52": 44,
-      "esmStage": "None",
-      "LastUpdated": "Mon, 24 Aug, 2026, 01:29:09 am"
     },
     "543536": {
       "SecurityCode": "543536",
@@ -6175,18 +4179,6 @@
       "isEsmEligible": true,
       "LastUpdated": "Mon, 24 Aug, 2026, 03:00:53 AM"
     },
-    "543914": {
-      "SecurityCode": "543914",
-      "Exchange": "BSE",
-      "Series": "X",
-      "CompanyName": "Swati Projects Ltd",
-      "LTP": 59.82,
-      "PrevClose": 62.96,
-      "High52": 59.82,
-      "Low52": 59.82,
-      "esmStage": "ESM :Stage 1",
-      "LastUpdated": "Mon, 24 Aug, 2026, 01:26:13 am"
-    },
     "543916": {
       "SecurityCode": "543916",
       "Symbol": "HSIL",
@@ -6438,24 +4430,6 @@
       "asmStage": "None",
       "isEsmEligible": false,
       "LastUpdated": "Mon, 24 Aug, 2026, 03:00:53 AM"
-    },
-    "543958": {
-      "SecurityCode": "543958",
-      "Symbol": "VLEGOV",
-      "Exchange": "BSE",
-      "Series": "T",
-      "CompanyName": "VL E-Governance & IT Solutions Limited",
-      "ISIN": "INE03HW01020",
-      "LTP": 9.91,
-      "PrevClose": 9.72,
-      "High52": 9.91,
-      "Low52": 9.9,
-      "MarketCapCr": 107.48,
-      "ListingDate": "",
-      "esmStage": "ESM :Stage 1",
-      "asmStage": "None",
-      "isEsmEligible": true,
-      "LastUpdated": "Mon, 24 Aug, 2026, 02:42:33 am"
     },
     "543963": {
       "SecurityCode": "543963",
@@ -7913,18 +5887,6 @@
       "isEsmEligible": true,
       "LastUpdated": "Mon, 24 Aug, 2026, 03:00:53 AM"
     },
-    "544281": {
-      "SecurityCode": "544281",
-      "Exchange": "BSE",
-      "Series": "B",
-      "CompanyName": "A B Infrabuild Ltd",
-      "LTP": 12.7,
-      "PrevClose": 13.37,
-      "High52": 13.7,
-      "Low52": 12.25,
-      "esmStage": "ESM :Stage 1",
-      "LastUpdated": "Mon, 24 Aug, 2026, 01:26:13 am"
-    },
     "544287": {
       "SecurityCode": "544287",
       "Symbol": "MANGALCOMP",
@@ -8772,7 +6734,7 @@
     "544417": {
       "SecurityCode": "544417",
       "Exchange": "BSE",
-      "Series": "MT",
+      "Series": "M",
       "CompanyName": "Aten Papers & Foam Ltd",
       "LTP": 20,
       "PrevClose": 20,
@@ -8806,7 +6768,7 @@
     "544425": {
       "SecurityCode": "544425",
       "Exchange": "BSE",
-      "Series": "M",
+      "Series": "MT",
       "CompanyName": "AJC Jewel Manufacturers Ltd",
       "LTP": 188,
       "PrevClose": 188,
@@ -9000,7 +6962,7 @@
     "544442": {
       "SecurityCode": "544442",
       "Exchange": "BSE",
-      "Series": "MT",
+      "Series": "M",
       "CompanyName": "Chemkart India Ltd",
       "LTP": 181.3,
       "PrevClose": 181.3,
@@ -9016,7 +6978,7 @@
     "544444": {
       "SecurityCode": "544444",
       "Exchange": "BSE",
-      "Series": "M",
+      "Series": "MT",
       "CompanyName": "Glen Industries Ltd",
       "LTP": 121.5,
       "PrevClose": 121.48,
@@ -9173,18 +7135,6 @@
       "isEsmEligible": true,
       "LastUpdated": "Mon, 24 Aug, 2026, 03:00:53 AM"
     },
-    "544465": {
-      "SecurityCode": "544465",
-      "Exchange": "BSE",
-      "Series": "T",
-      "CompanyName": "Laxmi India Finance Ltd",
-      "LTP": 129.25,
-      "PrevClose": 132.65,
-      "High52": 134.9,
-      "Low52": 128.3,
-      "esmStage": "None",
-      "LastUpdated": "Mon, 24 Aug, 2026, 01:29:09 am"
-    },
     "544468": {
       "SecurityCode": "544468",
       "Symbol": "BDI",
@@ -9311,18 +7261,6 @@
       "isEsmEligible": true,
       "LastUpdated": "Mon, 24 Aug, 2026, 03:00:53 AM"
     },
-    "544485": {
-      "SecurityCode": "544485",
-      "Exchange": "BSE",
-      "Series": "T",
-      "CompanyName": "Regaal Resources Ltd",
-      "LTP": 95.98,
-      "PrevClose": 95.55,
-      "High52": 98.7,
-      "Low52": 95.03,
-      "esmStage": "None",
-      "LastUpdated": "Mon, 24 Aug, 2026, 01:29:09 am"
-    },
     "544489": {
       "SecurityCode": "544489",
       "Symbol": "LGT",
@@ -9430,18 +7368,6 @@
       "asmStage": "None",
       "isEsmEligible": true,
       "LastUpdated": "Mon, 24 Aug, 2026, 03:00:53 AM"
-    },
-    "544502": {
-      "SecurityCode": "544502",
-      "Exchange": "BSE",
-      "Series": "T",
-      "CompanyName": "Amanta Healthcare Ltd",
-      "LTP": 195.35,
-      "PrevClose": 186.05,
-      "High52": 195.35,
-      "Low52": 186,
-      "esmStage": "ESM :Stage 1",
-      "LastUpdated": "Mon, 24 Aug, 2026, 01:26:13 am"
     },
     "544503": {
       "SecurityCode": "544503",
@@ -9980,24 +7906,6 @@
       "asmStage": "None",
       "isEsmEligible": true,
       "LastUpdated": "Mon, 24 Aug, 2026, 03:00:53 AM"
-    },
-    "544557": {
-      "SecurityCode": "544557",
-      "Symbol": "GLOTTIS",
-      "Exchange": "BSE",
-      "Series": "T",
-      "CompanyName": "Glottis Limited",
-      "ISIN": "INE0TQE01026",
-      "LTP": 66.5,
-      "PrevClose": 66,
-      "High52": 66.5,
-      "Low52": 66,
-      "MarketCapCr": 614.48,
-      "ListingDate": "",
-      "esmStage": "None",
-      "asmStage": "None",
-      "isEsmEligible": false,
-      "LastUpdated": "Mon, 24 Aug, 2026, 02:42:33 am"
     },
     "544559": {
       "SecurityCode": "544559",
@@ -11046,7 +8954,7 @@
     "544693": {
       "SecurityCode": "544693",
       "Exchange": "BSE",
-      "Series": "MT",
+      "Series": "M",
       "CompanyName": "Kanishk Aluminium India Ltd",
       "LTP": 24.74,
       "PrevClose": 23.72,
@@ -11062,7 +8970,7 @@
     "544694": {
       "SecurityCode": "544694",
       "Exchange": "BSE",
-      "Series": "MT",
+      "Series": "M",
       "CompanyName": "Accretion Nutraveda Ltd",
       "LTP": 286,
       "PrevClose": 277,
@@ -11110,18 +9018,6 @@
       "asmStage": "None",
       "isEsmEligible": true,
       "LastUpdated": "Mon, 24 Aug, 2026, 03:00:53 AM"
-    },
-    "544702": {
-      "SecurityCode": "544702",
-      "Exchange": "BSE",
-      "Series": "T",
-      "CompanyName": "DCM Shriram International Ltd",
-      "LTP": 78.76,
-      "PrevClose": 76.08,
-      "High52": 79.01,
-      "Low52": 70.61,
-      "esmStage": "None",
-      "LastUpdated": "Mon, 24 Aug, 2026, 01:26:13 am"
     },
     "544707": {
       "SecurityCode": "544707",
@@ -11198,7 +9094,7 @@
     "544724": {
       "SecurityCode": "544724",
       "Exchange": "BSE",
-      "Series": "MT",
+      "Series": "M",
       "CompanyName": "Elfin Agro India Ltd",
       "LTP": 88,
       "PrevClose": 86,
@@ -11354,36 +9250,6 @@
       "asmStage": "None",
       "isEsmEligible": true,
       "LastUpdated": "Mon, 24 Aug, 2026, 03:00:53 AM"
-    },
-    "544756": {
-      "SecurityCode": "544756",
-      "Symbol": "UNITEDPOLY",
-      "Exchange": "BSE",
-      "Series": "T",
-      "CompanyName": "United Polyfab Gujarat Limited",
-      "ISIN": "INE368U01029",
-      "LTP": 37.66,
-      "PrevClose": 36.46,
-      "High52": 38,
-      "Low52": 35.54,
-      "MarketCapCr": 864.36,
-      "ListingDate": "",
-      "esmStage": "None",
-      "asmStage": "None",
-      "isEsmEligible": false,
-      "LastUpdated": "Mon, 24 Aug, 2026, 02:42:33 am"
-    },
-    "544757": {
-      "SecurityCode": "544757",
-      "Exchange": "BSE",
-      "Series": "T",
-      "CompanyName": "Bombay Super Hybrid Seeds Ltd",
-      "LTP": 88.9,
-      "PrevClose": 89.9,
-      "High52": 91,
-      "Low52": 87,
-      "esmStage": "None",
-      "LastUpdated": "Mon, 24 Aug, 2026, 01:26:13 am"
     },
     "544759": {
       "SecurityCode": "544759",
@@ -15424,14 +13290,6 @@
       "isEsmEligible": true,
       "LastUpdated": "Mon, 24 Aug, 2026, 01:28:59 am"
     },
-    "KAYA": {
-      "Symbol": "KAYA",
-      "Exchange": "NSE",
-      "CompanyName": "Kaya Limited",
-      "ISIN": "INE587G01015",
-      "esmStage": "Stage I",
-      "LastUpdated": "Mon, 24 Aug, 2026, 01:36:18 am"
-    },
     "METALIC": {
       "Symbol": "METALIC",
       "Exchange": "NSE",
@@ -15451,22 +13309,6 @@
       "isEsmEligible": true,
       "LastUpdated": "Mon, 24 Aug, 2026, 02:35:44 am",
       "ISIN": "INE1II801013"
-    },
-    "MYSORPETRO": {
-      "Symbol": "MYSORPETRO",
-      "Exchange": "NSE",
-      "CompanyName": "Mysore Petro Chemicals Limited",
-      "ISIN": "INE741A01011",
-      "esmStage": "Stage I",
-      "LastUpdated": "Mon, 24 Aug, 2026, 01:36:18 am"
-    },
-    "SIGIND": {
-      "Symbol": "SIGIND",
-      "Exchange": "NSE",
-      "CompanyName": "Signet Industries Limited",
-      "ISIN": "INE529F01035",
-      "esmStage": "Stage I",
-      "LastUpdated": "Mon, 24 Aug, 2026, 01:36:18 am"
     },
     "UHTL": {
       "Symbol": "UHTL",
@@ -15488,34 +13330,10 @@
       "LastUpdated": "Mon, 24 Aug, 2026, 02:55:00 AM",
       "ISIN": "INE0SMR01011"
     },
-    "BAFNAPH": {
-      "Symbol": "BAFNAPH",
-      "Exchange": "NSE",
-      "CompanyName": "Bafna Pharmaceuticals Limited",
-      "ISIN": "INE878I01022",
-      "esmStage": "Stage I",
-      "LastUpdated": "Mon, 24 Aug, 2026, 01:36:18 am"
-    },
-    "PENINLAND": {
-      "Symbol": "PENINLAND",
-      "Exchange": "NSE",
-      "CompanyName": "Peninsula Land Limited",
-      "ISIN": "INE138A01028",
-      "esmStage": "Stage I",
-      "LastUpdated": "Mon, 24 Aug, 2026, 01:36:18 am"
-    },
-    "SETCO": {
-      "Symbol": "SETCO",
-      "Exchange": "NSE",
-      "CompanyName": "Setco Automotive Limited",
-      "ISIN": "INE878E01021",
-      "esmStage": "Stage I",
-      "LastUpdated": "Mon, 24 Aug, 2026, 01:36:18 am"
-    },
     "SWASTIK": {
       "Symbol": "SWASTIK",
       "Exchange": "NSE",
-      "Series": "SM",
+      "Series": "ST",
       "LTP": 19,
       "PrevClose": 0,
       "LotSize": 1,
@@ -15530,14 +13348,6 @@
       "isEsmEligible": true,
       "LastUpdated": "Mon, 24 Aug, 2026, 02:51:31 AM",
       "ISIN": "INE0DGC01025"
-    },
-    "VLEGOV": {
-      "Symbol": "VLEGOV",
-      "Exchange": "NSE",
-      "CompanyName": "VL E-Governance & IT Solutions Limited",
-      "ISIN": "INE03HW01020",
-      "esmStage": "Stage I",
-      "LastUpdated": "Mon, 24 Aug, 2026, 01:36:18 am"
     },
     "GOLDSTAR": {
       "Symbol": "GOLDSTAR",
