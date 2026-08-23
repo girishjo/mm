@@ -1,6 +1,6 @@
 {
-  "dateTimeStamp": "Mon, 24 Aug, 2026, 01:24:16 am",
-  "totalSecurities": 237,
+  "dateTimeStamp": "Mon, 24 Aug, 2026, 01:26:13 am",
+  "totalSecurities": 233,
   "data": {
     "500009": {
       "SecurityCode": "500009",
@@ -492,7 +492,7 @@
       "High52": 30.33,
       "Low52": 27.46,
       "esmStage": "ESM :Stage 1",
-      "LastUpdated": "Mon, 24 Aug, 2026, 01:24:16 am"
+      "LastUpdated": "Mon, 24 Aug, 2026, 01:26:13 am"
     },
     "517096": {
       "SecurityCode": "517096",
@@ -504,7 +504,7 @@
       "High52": 85.34,
       "Low52": 78.81,
       "esmStage": "None",
-      "LastUpdated": "Mon, 24 Aug, 2026, 01:24:16 am"
+      "LastUpdated": "Mon, 24 Aug, 2026, 01:26:13 am"
     },
     "517356": {
       "SecurityCode": "517356",
@@ -516,7 +516,7 @@
       "High52": 2.35,
       "Low52": 2.35,
       "esmStage": "ESM :Stage 1",
-      "LastUpdated": "Mon, 24 Aug, 2026, 01:24:16 am"
+      "LastUpdated": "Mon, 24 Aug, 2026, 01:26:13 am"
     },
     "519031": {
       "SecurityCode": "519031",
@@ -528,7 +528,7 @@
       "High52": 349.55,
       "Low52": 338,
       "esmStage": "ESM :Stage 1",
-      "LastUpdated": "Mon, 24 Aug, 2026, 01:24:16 am"
+      "LastUpdated": "Mon, 24 Aug, 2026, 01:26:13 am"
     },
     "519471": {
       "SecurityCode": "519471",
@@ -540,7 +540,7 @@
       "High52": 282,
       "Low52": 260,
       "esmStage": "ESM :Stage 1",
-      "LastUpdated": "Mon, 24 Aug, 2026, 01:24:16 am"
+      "LastUpdated": "Mon, 24 Aug, 2026, 01:26:13 am"
     },
     "521137": {
       "SecurityCode": "521137",
@@ -552,7 +552,7 @@
       "High52": 5.72,
       "Low52": 5.68,
       "esmStage": "ESM :Stage 2",
-      "LastUpdated": "Mon, 24 Aug, 2026, 01:24:16 am"
+      "LastUpdated": "Mon, 24 Aug, 2026, 01:26:13 am"
     },
     "522027": {
       "SecurityCode": "522027",
@@ -564,7 +564,7 @@
       "High52": 686,
       "Low52": 685,
       "esmStage": "None",
-      "LastUpdated": "Mon, 24 Aug, 2026, 01:24:16 am"
+      "LastUpdated": "Mon, 24 Aug, 2026, 01:26:13 am"
     },
     "523832": {
       "SecurityCode": "523832",
@@ -576,7 +576,7 @@
       "High52": 15.19,
       "Low52": 15.19,
       "esmStage": "ESM :Stage 1",
-      "LastUpdated": "Mon, 24 Aug, 2026, 01:24:16 am"
+      "LastUpdated": "Mon, 24 Aug, 2026, 01:26:13 am"
     },
     "524412": {
       "SecurityCode": "524412",
@@ -588,7 +588,7 @@
       "High52": 81.44,
       "Low52": 78.1,
       "esmStage": "None",
-      "LastUpdated": "Mon, 24 Aug, 2026, 01:24:16 am"
+      "LastUpdated": "Mon, 24 Aug, 2026, 01:26:13 am"
     },
     "526075": {
       "SecurityCode": "526075",
@@ -600,7 +600,7 @@
       "High52": 43,
       "Low52": 39.9,
       "esmStage": "ESM :Stage 1",
-      "LastUpdated": "Mon, 24 Aug, 2026, 01:24:16 am"
+      "LastUpdated": "Mon, 24 Aug, 2026, 01:26:13 am"
     },
     "526397": {
       "SecurityCode": "526397",
@@ -612,7 +612,7 @@
       "High52": 333,
       "Low52": 318,
       "esmStage": "ESM :Stage 1",
-      "LastUpdated": "Mon, 24 Aug, 2026, 01:24:16 am"
+      "LastUpdated": "Mon, 24 Aug, 2026, 01:26:13 am"
     },
     "526841": {
       "SecurityCode": "526841",
@@ -624,7 +624,7 @@
       "High52": 13.1,
       "Low52": 12.7,
       "esmStage": "None",
-      "LastUpdated": "Mon, 24 Aug, 2026, 01:24:16 am"
+      "LastUpdated": "Mon, 24 Aug, 2026, 01:26:13 am"
     },
     "526853": {
       "SecurityCode": "526853",
@@ -636,7 +636,7 @@
       "High52": 99,
       "Low52": 92,
       "esmStage": "ESM :Stage 1",
-      "LastUpdated": "Mon, 24 Aug, 2026, 01:24:16 am"
+      "LastUpdated": "Mon, 24 Aug, 2026, 01:26:13 am"
     },
     "526887": {
       "SecurityCode": "526887",
@@ -648,7 +648,7 @@
       "High52": 8.93,
       "Low52": 8.93,
       "esmStage": "ESM :Stage 1",
-      "LastUpdated": "Mon, 24 Aug, 2026, 01:24:16 am"
+      "LastUpdated": "Mon, 24 Aug, 2026, 01:26:13 am"
     },
     "526971": {
       "SecurityCode": "526971",
@@ -660,7 +660,7 @@
       "High52": 293.85,
       "Low52": 282.05,
       "esmStage": "ESM :Stage 1",
-      "LastUpdated": "Mon, 24 Aug, 2026, 01:24:16 am"
+      "LastUpdated": "Mon, 24 Aug, 2026, 01:26:13 am"
     },
     "530141": {
       "SecurityCode": "530141",
@@ -672,7 +672,7 @@
       "High52": 47.65,
       "Low52": 47.65,
       "esmStage": "ESM :Stage 1",
-      "LastUpdated": "Mon, 24 Aug, 2026, 01:24:16 am"
+      "LastUpdated": "Mon, 24 Aug, 2026, 01:26:13 am"
     },
     "530197": {
       "SecurityCode": "530197",
@@ -684,7 +684,7 @@
       "High52": 435.6,
       "Low52": 403,
       "esmStage": "ESM :Stage 1",
-      "LastUpdated": "Mon, 24 Aug, 2026, 01:24:16 am"
+      "LastUpdated": "Mon, 24 Aug, 2026, 01:26:13 am"
     },
     "530525": {
       "SecurityCode": "530525",
@@ -696,7 +696,7 @@
       "High52": 2.23,
       "Low52": 2.1,
       "esmStage": "ESM :Stage 1",
-      "LastUpdated": "Mon, 24 Aug, 2026, 01:24:16 am"
+      "LastUpdated": "Mon, 24 Aug, 2026, 01:26:13 am"
     },
     "530557": {
       "SecurityCode": "530557",
@@ -708,7 +708,7 @@
       "High52": 0.78,
       "Low52": 0.77,
       "esmStage": "ESM :Stage 2",
-      "LastUpdated": "Mon, 24 Aug, 2026, 01:24:16 am"
+      "LastUpdated": "Mon, 24 Aug, 2026, 01:26:13 am"
     },
     "530579": {
       "SecurityCode": "530579",
@@ -720,7 +720,7 @@
       "High52": 21.28,
       "Low52": 19.8,
       "esmStage": "ESM :Stage 1",
-      "LastUpdated": "Mon, 24 Aug, 2026, 01:24:16 am"
+      "LastUpdated": "Mon, 24 Aug, 2026, 01:26:13 am"
     },
     "530595": {
       "SecurityCode": "530595",
@@ -732,7 +732,7 @@
       "High52": 23.43,
       "Low52": 22.36,
       "esmStage": "ESM :Stage 1",
-      "LastUpdated": "Mon, 24 Aug, 2026, 01:24:16 am"
+      "LastUpdated": "Mon, 24 Aug, 2026, 01:26:13 am"
     },
     "530757": {
       "SecurityCode": "530757",
@@ -744,7 +744,7 @@
       "High52": 131,
       "Low52": 130.95,
       "esmStage": "ESM :Stage 1",
-      "LastUpdated": "Mon, 24 Aug, 2026, 01:24:16 am"
+      "LastUpdated": "Mon, 24 Aug, 2026, 01:26:13 am"
     },
     "530853": {
       "SecurityCode": "530853",
@@ -756,7 +756,7 @@
       "High52": 93.5,
       "Low52": 93.5,
       "esmStage": "ESM :Stage 1",
-      "LastUpdated": "Mon, 24 Aug, 2026, 01:24:16 am"
+      "LastUpdated": "Mon, 24 Aug, 2026, 01:26:13 am"
     },
     "530871": {
       "SecurityCode": "530871",
@@ -768,7 +768,7 @@
       "High52": 193,
       "Low52": 167,
       "esmStage": "None",
-      "LastUpdated": "Mon, 24 Aug, 2026, 01:24:16 am"
+      "LastUpdated": "Mon, 24 Aug, 2026, 01:26:13 am"
     },
     "530883": {
       "SecurityCode": "530883",
@@ -780,7 +780,7 @@
       "High52": 15,
       "Low52": 14.3,
       "esmStage": "ESM :Stage 1",
-      "LastUpdated": "Mon, 24 Aug, 2026, 01:24:16 am"
+      "LastUpdated": "Mon, 24 Aug, 2026, 01:26:13 am"
     },
     "530907": {
       "SecurityCode": "530907",
@@ -792,7 +792,7 @@
       "High52": 15.37,
       "Low52": 14.65,
       "esmStage": "ESM :Stage 1",
-      "LastUpdated": "Mon, 24 Aug, 2026, 01:24:16 am"
+      "LastUpdated": "Mon, 24 Aug, 2026, 01:26:13 am"
     },
     "530993": {
       "SecurityCode": "530993",
@@ -804,7 +804,7 @@
       "High52": 39,
       "Low52": 38.22,
       "esmStage": "ESM :Stage 1",
-      "LastUpdated": "Mon, 24 Aug, 2026, 01:24:16 am"
+      "LastUpdated": "Mon, 24 Aug, 2026, 01:26:13 am"
     },
     "531099": {
       "SecurityCode": "531099",
@@ -816,7 +816,7 @@
       "High52": 36.49,
       "Low52": 33.06,
       "esmStage": "ESM :Stage 1",
-      "LastUpdated": "Mon, 24 Aug, 2026, 01:24:16 am"
+      "LastUpdated": "Mon, 24 Aug, 2026, 01:26:13 am"
     },
     "531274": {
       "SecurityCode": "531274",
@@ -828,7 +828,7 @@
       "High52": 57.63,
       "Low52": 57.32,
       "esmStage": "ESM :Stage 1",
-      "LastUpdated": "Mon, 24 Aug, 2026, 01:24:16 am"
+      "LastUpdated": "Mon, 24 Aug, 2026, 01:26:13 am"
     },
     "531279": {
       "SecurityCode": "531279",
@@ -840,7 +840,7 @@
       "High52": 253,
       "Low52": 245,
       "esmStage": "ESM :Stage 1",
-      "LastUpdated": "Mon, 24 Aug, 2026, 01:24:16 am"
+      "LastUpdated": "Mon, 24 Aug, 2026, 01:26:13 am"
     },
     "531406": {
       "SecurityCode": "531406",
@@ -852,7 +852,7 @@
       "High52": 19.44,
       "Low52": 19.44,
       "esmStage": "ESM :Stage 1",
-      "LastUpdated": "Mon, 24 Aug, 2026, 01:24:16 am"
+      "LastUpdated": "Mon, 24 Aug, 2026, 01:26:13 am"
     },
     "531525": {
       "SecurityCode": "531525",
@@ -864,7 +864,7 @@
       "High52": 177.45,
       "Low52": 168,
       "esmStage": "ESM :Stage 1",
-      "LastUpdated": "Mon, 24 Aug, 2026, 01:24:16 am"
+      "LastUpdated": "Mon, 24 Aug, 2026, 01:26:13 am"
     },
     "531594": {
       "SecurityCode": "531594",
@@ -876,7 +876,7 @@
       "High52": 33.57,
       "Low52": 30.39,
       "esmStage": "ESM :Stage 1",
-      "LastUpdated": "Mon, 24 Aug, 2026, 01:24:16 am"
+      "LastUpdated": "Mon, 24 Aug, 2026, 01:26:13 am"
     },
     "531613": {
       "SecurityCode": "531613",
@@ -888,7 +888,7 @@
       "High52": 2.45,
       "Low52": 2.45,
       "esmStage": "ESM :Stage 1",
-      "LastUpdated": "Mon, 24 Aug, 2026, 01:24:16 am"
+      "LastUpdated": "Mon, 24 Aug, 2026, 01:26:13 am"
     },
     "531628": {
       "SecurityCode": "531628",
@@ -900,7 +900,7 @@
       "High52": 61.72,
       "Low52": 61.72,
       "esmStage": "ESM :Stage 1",
-      "LastUpdated": "Mon, 24 Aug, 2026, 01:24:16 am"
+      "LastUpdated": "Mon, 24 Aug, 2026, 01:26:13 am"
     },
     "531780": {
       "SecurityCode": "531780",
@@ -912,7 +912,7 @@
       "High52": 6.25,
       "Low52": 5.9,
       "esmStage": "ESM :Stage 1",
-      "LastUpdated": "Mon, 24 Aug, 2026, 01:24:16 am"
+      "LastUpdated": "Mon, 24 Aug, 2026, 01:26:13 am"
     },
     "531977": {
       "SecurityCode": "531977",
@@ -924,7 +924,7 @@
       "High52": 11,
       "Low52": 10.74,
       "esmStage": "ESM :Stage 2",
-      "LastUpdated": "Mon, 24 Aug, 2026, 01:24:16 am"
+      "LastUpdated": "Mon, 24 Aug, 2026, 01:26:13 am"
     },
     "532090": {
       "SecurityCode": "532090",
@@ -936,7 +936,7 @@
       "High52": 41.35,
       "Low52": 39,
       "esmStage": "None",
-      "LastUpdated": "Mon, 24 Aug, 2026, 01:24:16 am"
+      "LastUpdated": "Mon, 24 Aug, 2026, 01:26:13 am"
     },
     "532351": {
       "SecurityCode": "532351",
@@ -948,7 +948,7 @@
       "High52": 7.71,
       "Low52": 6.99,
       "esmStage": "None",
-      "LastUpdated": "Mon, 24 Aug, 2026, 01:24:16 am"
+      "LastUpdated": "Mon, 24 Aug, 2026, 01:26:13 am"
     },
     "532386": {
       "SecurityCode": "532386",
@@ -960,7 +960,7 @@
       "High52": 28.31,
       "Low52": 25.63,
       "esmStage": "None",
-      "LastUpdated": "Mon, 24 Aug, 2026, 01:24:16 am"
+      "LastUpdated": "Mon, 24 Aug, 2026, 01:26:13 am"
     },
     "532470": {
       "SecurityCode": "532470",
@@ -972,7 +972,7 @@
       "High52": 4.99,
       "Low52": 4.99,
       "esmStage": "ESM :Stage 1",
-      "LastUpdated": "Mon, 24 Aug, 2026, 01:24:16 am"
+      "LastUpdated": "Mon, 24 Aug, 2026, 01:26:13 am"
     },
     "532481": {
       "SecurityCode": "532481",
@@ -984,7 +984,7 @@
       "High52": 4.21,
       "Low52": 4,
       "esmStage": "None",
-      "LastUpdated": "Mon, 24 Aug, 2026, 01:24:16 am"
+      "LastUpdated": "Mon, 24 Aug, 2026, 01:26:13 am"
     },
     "532640": {
       "SecurityCode": "532640",
@@ -996,7 +996,7 @@
       "High52": 17.01,
       "Low52": 16.26,
       "esmStage": "None",
-      "LastUpdated": "Mon, 24 Aug, 2026, 01:24:16 am"
+      "LastUpdated": "Mon, 24 Aug, 2026, 01:26:13 am"
     },
     "532740": {
       "SecurityCode": "532740",
@@ -1008,7 +1008,7 @@
       "High52": 333.9,
       "Low52": 322.1,
       "esmStage": "ESM :Stage 1",
-      "LastUpdated": "Mon, 24 Aug, 2026, 01:24:16 am"
+      "LastUpdated": "Mon, 24 Aug, 2026, 01:26:13 am"
     },
     "532776": {
       "SecurityCode": "532776",
@@ -1020,7 +1020,7 @@
       "High52": 17.03,
       "Low52": 16.2,
       "esmStage": "ESM :Stage 1",
-      "LastUpdated": "Mon, 24 Aug, 2026, 01:24:16 am"
+      "LastUpdated": "Mon, 24 Aug, 2026, 01:26:13 am"
     },
     "532797": {
       "SecurityCode": "532797",
@@ -1032,7 +1032,7 @@
       "High52": 93.28,
       "Low52": 88.5,
       "esmStage": "None",
-      "LastUpdated": "Mon, 24 Aug, 2026, 01:24:16 am"
+      "LastUpdated": "Mon, 24 Aug, 2026, 01:26:13 am"
     },
     "532847": {
       "SecurityCode": "532847",
@@ -1044,7 +1044,7 @@
       "High52": 20.3,
       "Low52": 19.44,
       "esmStage": "None",
-      "LastUpdated": "Mon, 24 Aug, 2026, 01:24:16 am"
+      "LastUpdated": "Mon, 24 Aug, 2026, 01:26:13 am"
     },
     "532989": {
       "SecurityCode": "532989",
@@ -1056,7 +1056,7 @@
       "High52": 247,
       "Low52": 237.4,
       "esmStage": "ESM :Stage 1",
-      "LastUpdated": "Mon, 24 Aug, 2026, 01:24:16 am"
+      "LastUpdated": "Mon, 24 Aug, 2026, 01:26:13 am"
     },
     "533048": {
       "SecurityCode": "533048",
@@ -1068,7 +1068,7 @@
       "High52": 0.7,
       "Low52": 0.62,
       "esmStage": "ESM :Stage 1",
-      "LastUpdated": "Mon, 24 Aug, 2026, 01:24:16 am"
+      "LastUpdated": "Mon, 24 Aug, 2026, 01:26:13 am"
     },
     "533296": {
       "SecurityCode": "533296",
@@ -1080,7 +1080,7 @@
       "High52": 8.83,
       "Low52": 8.5,
       "esmStage": "None",
-      "LastUpdated": "Mon, 24 Aug, 2026, 01:24:16 am"
+      "LastUpdated": "Mon, 24 Aug, 2026, 01:26:13 am"
     },
     "534732": {
       "SecurityCode": "534732",
@@ -1092,7 +1092,7 @@
       "High52": 36.54,
       "Low52": 34,
       "esmStage": "None",
-      "LastUpdated": "Mon, 24 Aug, 2026, 01:24:16 am"
+      "LastUpdated": "Mon, 24 Aug, 2026, 01:26:13 am"
     },
     "534755": {
       "SecurityCode": "534755",
@@ -1104,7 +1104,7 @@
       "High52": 2.69,
       "Low52": 2.69,
       "esmStage": "ESM :Stage 1",
-      "LastUpdated": "Mon, 24 Aug, 2026, 01:24:16 am"
+      "LastUpdated": "Mon, 24 Aug, 2026, 01:26:13 am"
     },
     "538715": {
       "SecurityCode": "538715",
@@ -1116,7 +1116,7 @@
       "High52": 584.2,
       "Low52": 551.2,
       "esmStage": "ESM :Stage 1",
-      "LastUpdated": "Mon, 24 Aug, 2026, 01:24:16 am"
+      "LastUpdated": "Mon, 24 Aug, 2026, 01:26:13 am"
     },
     "538881": {
       "SecurityCode": "538881",
@@ -1128,7 +1128,7 @@
       "High52": 43,
       "Low52": 39.19,
       "esmStage": "None",
-      "LastUpdated": "Mon, 24 Aug, 2026, 01:24:16 am"
+      "LastUpdated": "Mon, 24 Aug, 2026, 01:26:13 am"
     },
     "539265": {
       "SecurityCode": "539265",
@@ -1140,7 +1140,7 @@
       "High52": 33.91,
       "Low52": 33.91,
       "esmStage": "ESM :Stage 1",
-      "LastUpdated": "Mon, 24 Aug, 2026, 01:24:16 am"
+      "LastUpdated": "Mon, 24 Aug, 2026, 01:26:13 am"
     },
     "539276": {
       "SecurityCode": "539276",
@@ -1152,7 +1152,7 @@
       "High52": 390.25,
       "Low52": 373,
       "esmStage": "ESM :Stage 1",
-      "LastUpdated": "Mon, 24 Aug, 2026, 01:24:16 am"
+      "LastUpdated": "Mon, 24 Aug, 2026, 01:26:13 am"
     },
     "539402": {
       "SecurityCode": "539402",
@@ -1164,7 +1164,7 @@
       "High52": 3.85,
       "Low52": 3.49,
       "esmStage": "None",
-      "LastUpdated": "Mon, 24 Aug, 2026, 01:24:16 am"
+      "LastUpdated": "Mon, 24 Aug, 2026, 01:26:13 am"
     },
     "539522": {
       "SecurityCode": "539522",
@@ -1176,7 +1176,7 @@
       "High52": 71.5,
       "Low52": 67.93,
       "esmStage": "ESM :Stage 1",
-      "LastUpdated": "Mon, 24 Aug, 2026, 01:24:16 am"
+      "LastUpdated": "Mon, 24 Aug, 2026, 01:26:13 am"
     },
     "539562": {
       "SecurityCode": "539562",
@@ -1188,7 +1188,7 @@
       "High52": 33.94,
       "Low52": 32.5,
       "esmStage": "ESM :Stage 1",
-      "LastUpdated": "Mon, 24 Aug, 2026, 01:24:16 am"
+      "LastUpdated": "Mon, 24 Aug, 2026, 01:26:13 am"
     },
     "539669": {
       "SecurityCode": "539669",
@@ -1200,7 +1200,7 @@
       "High52": 2.01,
       "Low52": 1.92,
       "esmStage": "ESM :Stage 1",
-      "LastUpdated": "Mon, 24 Aug, 2026, 01:24:16 am"
+      "LastUpdated": "Mon, 24 Aug, 2026, 01:26:13 am"
     },
     "539922": {
       "SecurityCode": "539922",
@@ -1212,7 +1212,7 @@
       "High52": 281,
       "Low52": 265,
       "esmStage": "ESM :Stage 1",
-      "LastUpdated": "Mon, 24 Aug, 2026, 01:24:16 am"
+      "LastUpdated": "Mon, 24 Aug, 2026, 01:26:13 am"
     },
     "539947": {
       "SecurityCode": "539947",
@@ -1224,7 +1224,7 @@
       "High52": 105.7,
       "Low52": 105.7,
       "esmStage": "ESM :Stage 1",
-      "LastUpdated": "Mon, 24 Aug, 2026, 01:24:16 am"
+      "LastUpdated": "Mon, 24 Aug, 2026, 01:26:13 am"
     },
     "540254": {
       "SecurityCode": "540254",
@@ -1236,7 +1236,7 @@
       "High52": 14.48,
       "Low52": 14.48,
       "esmStage": "ESM :Stage 1",
-      "LastUpdated": "Mon, 24 Aug, 2026, 01:24:16 am"
+      "LastUpdated": "Mon, 24 Aug, 2026, 01:26:13 am"
     },
     "540515": {
       "SecurityCode": "540515",
@@ -1248,7 +1248,7 @@
       "High52": 14.76,
       "Low52": 14.76,
       "esmStage": "ESM :Stage 1",
-      "LastUpdated": "Mon, 24 Aug, 2026, 01:24:16 am"
+      "LastUpdated": "Mon, 24 Aug, 2026, 01:26:13 am"
     },
     "540652": {
       "SecurityCode": "540652",
@@ -1260,7 +1260,7 @@
       "High52": 289,
       "Low52": 289,
       "esmStage": "ESM :Stage 1",
-      "LastUpdated": "Mon, 24 Aug, 2026, 01:24:16 am"
+      "LastUpdated": "Mon, 24 Aug, 2026, 01:26:13 am"
     },
     "540757": {
       "SecurityCode": "540757",
@@ -1272,7 +1272,7 @@
       "High52": 688,
       "Low52": 659.8,
       "esmStage": "ESM :Stage 1",
-      "LastUpdated": "Mon, 24 Aug, 2026, 01:24:16 am"
+      "LastUpdated": "Mon, 24 Aug, 2026, 01:26:13 am"
     },
     "540782": {
       "SecurityCode": "540782",
@@ -1284,7 +1284,7 @@
       "High52": 11,
       "Low52": 11,
       "esmStage": "None",
-      "LastUpdated": "Mon, 24 Aug, 2026, 01:24:16 am"
+      "LastUpdated": "Mon, 24 Aug, 2026, 01:26:13 am"
     },
     "540786": {
       "SecurityCode": "540786",
@@ -1296,7 +1296,7 @@
       "High52": 20.18,
       "Low52": 19.71,
       "esmStage": "ESM :Stage 1",
-      "LastUpdated": "Mon, 24 Aug, 2026, 01:24:16 am"
+      "LastUpdated": "Mon, 24 Aug, 2026, 01:26:13 am"
     },
     "540821": {
       "SecurityCode": "540821",
@@ -1308,7 +1308,7 @@
       "High52": 1.99,
       "Low52": 1.94,
       "esmStage": "None",
-      "LastUpdated": "Mon, 24 Aug, 2026, 01:24:16 am"
+      "LastUpdated": "Mon, 24 Aug, 2026, 01:26:13 am"
     },
     "541269": {
       "SecurityCode": "541269",
@@ -1320,7 +1320,7 @@
       "High52": 372,
       "Low52": 354,
       "esmStage": "None",
-      "LastUpdated": "Mon, 24 Aug, 2026, 01:24:16 am"
+      "LastUpdated": "Mon, 24 Aug, 2026, 01:26:13 am"
     },
     "541337": {
       "SecurityCode": "541337",
@@ -1332,7 +1332,7 @@
       "High52": 20.9,
       "Low52": 20.9,
       "esmStage": "None",
-      "LastUpdated": "Mon, 24 Aug, 2026, 01:24:16 am"
+      "LastUpdated": "Mon, 24 Aug, 2026, 01:26:13 am"
     },
     "541418": {
       "SecurityCode": "541418",
@@ -1344,7 +1344,7 @@
       "High52": 40.5,
       "Low52": 40.5,
       "esmStage": "None",
-      "LastUpdated": "Mon, 24 Aug, 2026, 01:24:16 am"
+      "LastUpdated": "Mon, 24 Aug, 2026, 01:26:13 am"
     },
     "542446": {
       "SecurityCode": "542446",
@@ -1356,7 +1356,7 @@
       "High52": 4,
       "Low52": 3.8,
       "esmStage": "None",
-      "LastUpdated": "Mon, 24 Aug, 2026, 01:24:16 am"
+      "LastUpdated": "Mon, 24 Aug, 2026, 01:26:13 am"
     },
     "543286": {
       "SecurityCode": "543286",
@@ -1368,7 +1368,7 @@
       "High52": 101.55,
       "Low52": 101.55,
       "esmStage": "ESM :Stage 1",
-      "LastUpdated": "Mon, 24 Aug, 2026, 01:24:16 am"
+      "LastUpdated": "Mon, 24 Aug, 2026, 01:26:13 am"
     },
     "543914": {
       "SecurityCode": "543914",
@@ -1380,7 +1380,7 @@
       "High52": 59.82,
       "Low52": 59.82,
       "esmStage": "ESM :Stage 1",
-      "LastUpdated": "Mon, 24 Aug, 2026, 01:24:16 am"
+      "LastUpdated": "Mon, 24 Aug, 2026, 01:26:13 am"
     },
     "543916": {
       "SecurityCode": "543916",
@@ -1392,7 +1392,7 @@
       "High52": 351.95,
       "Low52": 340,
       "esmStage": "None",
-      "LastUpdated": "Mon, 24 Aug, 2026, 01:24:16 am"
+      "LastUpdated": "Mon, 24 Aug, 2026, 01:26:13 am"
     },
     "543958": {
       "SecurityCode": "543958",
@@ -1404,7 +1404,7 @@
       "High52": 9.91,
       "Low52": 9.9,
       "esmStage": "ESM :Stage 1",
-      "LastUpdated": "Mon, 24 Aug, 2026, 01:24:16 am"
+      "LastUpdated": "Mon, 24 Aug, 2026, 01:26:13 am"
     },
     "543970": {
       "SecurityCode": "543970",
@@ -1416,7 +1416,7 @@
       "High52": 80,
       "Low52": 80,
       "esmStage": "None",
-      "LastUpdated": "Mon, 24 Aug, 2026, 01:24:16 am"
+      "LastUpdated": "Mon, 24 Aug, 2026, 01:26:13 am"
     },
     "543982": {
       "SecurityCode": "543982",
@@ -1428,7 +1428,7 @@
       "High52": 173,
       "Low52": 167,
       "esmStage": "ESM :Stage 1",
-      "LastUpdated": "Mon, 24 Aug, 2026, 01:24:16 am"
+      "LastUpdated": "Mon, 24 Aug, 2026, 01:26:13 am"
     },
     "544001": {
       "SecurityCode": "544001",
@@ -1440,7 +1440,7 @@
       "High52": 929.85,
       "Low52": 929,
       "esmStage": "ESM :Stage 1",
-      "LastUpdated": "Mon, 24 Aug, 2026, 01:24:16 am"
+      "LastUpdated": "Mon, 24 Aug, 2026, 01:26:13 am"
     },
     "544281": {
       "SecurityCode": "544281",
@@ -1452,7 +1452,7 @@
       "High52": 13.7,
       "Low52": 12.25,
       "esmStage": "ESM :Stage 1",
-      "LastUpdated": "Mon, 24 Aug, 2026, 01:24:16 am"
+      "LastUpdated": "Mon, 24 Aug, 2026, 01:26:13 am"
     },
     "544417": {
       "SecurityCode": "544417",
@@ -1464,7 +1464,7 @@
       "High52": 20.01,
       "Low52": 20,
       "esmStage": "None",
-      "LastUpdated": "Mon, 24 Aug, 2026, 01:24:16 am"
+      "LastUpdated": "Mon, 24 Aug, 2026, 01:26:13 am"
     },
     "544440": {
       "SecurityCode": "544440",
@@ -1476,7 +1476,7 @@
       "High52": 400.3,
       "Low52": 400.3,
       "esmStage": "ESM :Stage 2",
-      "LastUpdated": "Mon, 24 Aug, 2026, 01:24:16 am"
+      "LastUpdated": "Mon, 24 Aug, 2026, 01:26:13 am"
     },
     "544442": {
       "SecurityCode": "544442",
@@ -1488,7 +1488,7 @@
       "High52": 181.3,
       "Low52": 181.3,
       "esmStage": "None",
-      "LastUpdated": "Mon, 24 Aug, 2026, 01:24:16 am"
+      "LastUpdated": "Mon, 24 Aug, 2026, 01:26:13 am"
     },
     "544444": {
       "SecurityCode": "544444",
@@ -1500,7 +1500,7 @@
       "High52": 125,
       "Low52": 118.6,
       "esmStage": "ESM :Stage 1",
-      "LastUpdated": "Mon, 24 Aug, 2026, 01:24:16 am"
+      "LastUpdated": "Mon, 24 Aug, 2026, 01:26:13 am"
     },
     "544502": {
       "SecurityCode": "544502",
@@ -1512,7 +1512,7 @@
       "High52": 195.35,
       "Low52": 186,
       "esmStage": "ESM :Stage 1",
-      "LastUpdated": "Mon, 24 Aug, 2026, 01:24:16 am"
+      "LastUpdated": "Mon, 24 Aug, 2026, 01:26:13 am"
     },
     "544503": {
       "SecurityCode": "544503",
@@ -1524,7 +1524,7 @@
       "High52": 180,
       "Low52": 178,
       "esmStage": "None",
-      "LastUpdated": "Mon, 24 Aug, 2026, 01:24:16 am"
+      "LastUpdated": "Mon, 24 Aug, 2026, 01:26:13 am"
     },
     "544538": {
       "SecurityCode": "544538",
@@ -1536,7 +1536,7 @@
       "High52": 78.95,
       "Low52": 78.5,
       "esmStage": "ESM :Stage 1",
-      "LastUpdated": "Mon, 24 Aug, 2026, 01:24:16 am"
+      "LastUpdated": "Mon, 24 Aug, 2026, 01:26:13 am"
     },
     "544539": {
       "SecurityCode": "544539",
@@ -1548,7 +1548,7 @@
       "High52": 21.85,
       "Low52": 19.77,
       "esmStage": "ESM :Stage 2",
-      "LastUpdated": "Mon, 24 Aug, 2026, 01:24:16 am"
+      "LastUpdated": "Mon, 24 Aug, 2026, 01:26:13 am"
     },
     "544557": {
       "SecurityCode": "544557",
@@ -1560,7 +1560,7 @@
       "High52": 66.5,
       "Low52": 66,
       "esmStage": "None",
-      "LastUpdated": "Mon, 24 Aug, 2026, 01:24:16 am"
+      "LastUpdated": "Mon, 24 Aug, 2026, 01:26:13 am"
     },
     "544607": {
       "SecurityCode": "544607",
@@ -1572,7 +1572,7 @@
       "High52": 94.75,
       "Low52": 93.1,
       "esmStage": "None",
-      "LastUpdated": "Mon, 24 Aug, 2026, 01:24:16 am"
+      "LastUpdated": "Mon, 24 Aug, 2026, 01:26:13 am"
     },
     "544628": {
       "SecurityCode": "544628",
@@ -1584,7 +1584,7 @@
       "High52": 17.48,
       "Low52": 17.48,
       "esmStage": "None",
-      "LastUpdated": "Mon, 24 Aug, 2026, 01:24:16 am"
+      "LastUpdated": "Mon, 24 Aug, 2026, 01:26:13 am"
     },
     "544680": {
       "SecurityCode": "544680",
@@ -1596,7 +1596,7 @@
       "High52": 334,
       "Low52": 334,
       "esmStage": "None",
-      "LastUpdated": "Mon, 24 Aug, 2026, 01:24:16 am"
+      "LastUpdated": "Mon, 24 Aug, 2026, 01:26:13 am"
     },
     "544683": {
       "SecurityCode": "544683",
@@ -1608,7 +1608,7 @@
       "High52": 13.03,
       "Low52": 12.75,
       "esmStage": "None",
-      "LastUpdated": "Mon, 24 Aug, 2026, 01:24:16 am"
+      "LastUpdated": "Mon, 24 Aug, 2026, 01:26:13 am"
     },
     "544684": {
       "SecurityCode": "544684",
@@ -1620,7 +1620,7 @@
       "High52": 214.8,
       "Low52": 204.6,
       "esmStage": "ESM :Stage 2",
-      "LastUpdated": "Mon, 24 Aug, 2026, 01:24:16 am"
+      "LastUpdated": "Mon, 24 Aug, 2026, 01:26:13 am"
     },
     "544694": {
       "SecurityCode": "544694",
@@ -1632,7 +1632,7 @@
       "High52": 292.95,
       "Low52": 286,
       "esmStage": "None",
-      "LastUpdated": "Mon, 24 Aug, 2026, 01:24:16 am"
+      "LastUpdated": "Mon, 24 Aug, 2026, 01:26:13 am"
     },
     "544702": {
       "SecurityCode": "544702",
@@ -1644,7 +1644,7 @@
       "High52": 79.01,
       "Low52": 70.61,
       "esmStage": "None",
-      "LastUpdated": "Mon, 24 Aug, 2026, 01:24:16 am"
+      "LastUpdated": "Mon, 24 Aug, 2026, 01:26:13 am"
     },
     "544756": {
       "SecurityCode": "544756",
@@ -1656,7 +1656,7 @@
       "High52": 38,
       "Low52": 35.54,
       "esmStage": "None",
-      "LastUpdated": "Mon, 24 Aug, 2026, 01:24:16 am"
+      "LastUpdated": "Mon, 24 Aug, 2026, 01:26:13 am"
     },
     "544757": {
       "SecurityCode": "544757",
@@ -1668,7 +1668,7 @@
       "High52": 91,
       "Low52": 87,
       "esmStage": "None",
-      "LastUpdated": "Mon, 24 Aug, 2026, 01:24:16 am"
+      "LastUpdated": "Mon, 24 Aug, 2026, 01:26:13 am"
     },
     "544793": {
       "SecurityCode": "544793",
@@ -1680,7 +1680,7 @@
       "High52": 325,
       "Low52": 311.15,
       "esmStage": "ESM :Stage 1",
-      "LastUpdated": "Mon, 24 Aug, 2026, 01:24:16 am"
+      "LastUpdated": "Mon, 24 Aug, 2026, 01:26:13 am"
     },
     "AAKAAR": {
       "Symbol": "AAKAAR",
@@ -2361,6 +2361,23 @@
       "isEsmEligible": true,
       "LastUpdated": "Mon, 24 Aug, 2026, 01:19:10 am"
     },
+    "ARMOUR": {
+      "Symbol": "ARMOUR",
+      "Exchange": "NSE",
+      "Series": "ST",
+      "CompanyName": "Armour Security (India) Limited",
+      "LTP": 18.55,
+      "PrevClose": 18.3,
+      "LotSize": 2000,
+      "TotalSecurities": 16870000,
+      "MarketCapCr": 31.46,
+      "FreeFloatMcapCr": 8.67,
+      "ListingDate": "22-Jan-2026 00:00:00",
+      "High52": 45.6,
+      "Low52": 17.1,
+      "isEsmEligible": true,
+      "LastUpdated": "Mon, 24 Aug, 2026, 01:26:05 am"
+    },
     "ARUNAYA": {
       "Symbol": "ARUNAYA",
       "Exchange": "NSE",
@@ -2376,7 +2393,7 @@
       "High52": 31.45,
       "Low52": 13.9,
       "isEsmEligible": true,
-      "LastUpdated": "Mon, 24 Aug, 2026, 01:24:09 am"
+      "LastUpdated": "Mon, 24 Aug, 2026, 01:26:05 am"
     },
     "ARVINDPORT": {
       "Symbol": "ARVINDPORT",
@@ -2393,7 +2410,7 @@
       "High52": 71.25,
       "Low52": 24.4,
       "isEsmEligible": true,
-      "LastUpdated": "Mon, 24 Aug, 2026, 01:24:09 am"
+      "LastUpdated": "Mon, 24 Aug, 2026, 01:26:05 am"
     },
     "ASHALOG": {
       "Symbol": "ASHALOG",
@@ -2410,7 +2427,7 @@
       "High52": 92.6,
       "Low52": 49.6,
       "isEsmEligible": true,
-      "LastUpdated": "Mon, 24 Aug, 2026, 01:24:09 am"
+      "LastUpdated": "Mon, 24 Aug, 2026, 01:26:05 am"
     },
     "ATMASTCO": {
       "Symbol": "ATMASTCO",
@@ -2427,7 +2444,24 @@
       "High52": 268,
       "Low52": 98,
       "isEsmEligible": true,
-      "LastUpdated": "Mon, 24 Aug, 2026, 01:24:09 am"
+      "LastUpdated": "Mon, 24 Aug, 2026, 01:26:05 am"
+    },
+    "APS": {
+      "Symbol": "APS",
+      "Exchange": "NSE",
+      "Series": "SM",
+      "CompanyName": "Australian Premium Solar (India) Limited",
+      "LTP": 259.85,
+      "PrevClose": 242.25,
+      "LotSize": 250,
+      "TotalSecurities": 20160000,
+      "MarketCapCr": 532.02,
+      "FreeFloatMcapCr": 145.69,
+      "ListingDate": "18-Jan-2024 00:00:00",
+      "High52": 543.95,
+      "Low52": 228,
+      "isEsmEligible": false,
+      "LastUpdated": "Mon, 24 Aug, 2026, 01:26:05 am"
     },
     "AVANA": {
       "Symbol": "AVANA",
@@ -2444,41 +2478,24 @@
       "High52": 168.05,
       "Low52": 60.1,
       "isEsmEligible": true,
-      "LastUpdated": "Mon, 24 Aug, 2026, 01:24:09 am"
+      "LastUpdated": "Mon, 24 Aug, 2026, 01:26:05 am"
     },
-    "AVATAR": {
-      "Symbol": "AVATAR",
-      "Exchange": "NSE",
-      "Series": "ST",
-      "CompanyName": "AVATAR Industries Limited",
-      "LTP": 253,
-      "PrevClose": 248.85,
-      "LotSize": 2000,
-      "TotalSecurities": 10417090,
-      "MarketCapCr": 263.55,
-      "FreeFloatMcapCr": 88.75,
-      "ListingDate": "18-Apr-2017 00:00:00",
-      "High52": 258,
-      "Low52": 45.5,
-      "isEsmEligible": true,
-      "LastUpdated": "Mon, 24 Aug, 2026, 01:24:09 am"
-    },
-    "AVPINFRA": {
-      "Symbol": "AVPINFRA",
+    "BAGDIGITAL": {
+      "Symbol": "BAGDIGITAL",
       "Exchange": "NSE",
       "Series": "SM",
-      "CompanyName": "AVP Infracon Limited",
-      "LTP": 59.2,
-      "PrevClose": 57.45,
-      "LotSize": 800,
-      "TotalSecurities": 24979200,
-      "MarketCapCr": 149.88,
-      "FreeFloatMcapCr": 56.34,
-      "ListingDate": "20-Mar-2024 00:00:00",
-      "High52": 191,
-      "Low52": 54.5,
+      "CompanyName": "B.A.G. Convergence Limited",
+      "LTP": 105,
+      "PrevClose": 105.3,
+      "LotSize": 1600,
+      "TotalSecurities": 21218800,
+      "MarketCapCr": 222.8,
+      "FreeFloatMcapCr": 58.8,
+      "ListingDate": "08-Oct-2025 00:00:00",
+      "High52": 139,
+      "Low52": 95.75,
       "isEsmEligible": true,
-      "LastUpdated": "Mon, 24 Aug, 2026, 01:24:09 am"
+      "LastUpdated": "Mon, 24 Aug, 2026, 01:26:05 am"
     },
     "BAHETI": {
       "Symbol": "BAHETI",
@@ -2495,7 +2512,7 @@
       "High52": 821,
       "Low52": 478,
       "isEsmEligible": false,
-      "LastUpdated": "Mon, 24 Aug, 2026, 01:24:09 am"
+      "LastUpdated": "Mon, 24 Aug, 2026, 01:26:05 am"
     },
     "BALAJIPHOS": {
       "Symbol": "BALAJIPHOS",
@@ -2512,7 +2529,7 @@
       "High52": 184.7,
       "Low52": 78.8,
       "isEsmEligible": true,
-      "LastUpdated": "Mon, 24 Aug, 2026, 01:24:09 am"
+      "LastUpdated": "Mon, 24 Aug, 2026, 01:26:05 am"
     },
     "BARFLEX": {
       "Symbol": "BARFLEX",
@@ -2529,7 +2546,7 @@
       "High52": 82.4,
       "Low52": 50.05,
       "isEsmEligible": true,
-      "LastUpdated": "Mon, 24 Aug, 2026, 01:24:09 am"
+      "LastUpdated": "Mon, 24 Aug, 2026, 01:26:05 am"
     },
     "BAWEJA": {
       "Symbol": "BAWEJA",
@@ -2546,7 +2563,7 @@
       "High52": 61,
       "Low52": 21.1,
       "isEsmEligible": true,
-      "LastUpdated": "Mon, 24 Aug, 2026, 01:24:09 am"
+      "LastUpdated": "Mon, 24 Aug, 2026, 01:26:05 am"
     },
     "BEACON": {
       "Symbol": "BEACON",
@@ -2563,24 +2580,7 @@
       "High52": 124.8,
       "Low52": 50,
       "isEsmEligible": true,
-      "LastUpdated": "Mon, 24 Aug, 2026, 01:24:09 am"
-    },
-    "BHADORA": {
-      "Symbol": "BHADORA",
-      "Exchange": "NSE",
-      "Series": "ST",
-      "CompanyName": "Bhadora Industries Limited",
-      "LTP": 120.05,
-      "PrevClose": 118.05,
-      "LotSize": 1200,
-      "TotalSecurities": 18600000,
-      "MarketCapCr": 224.87,
-      "FreeFloatMcapCr": 58.9,
-      "ListingDate": "11-Aug-2025 00:00:00",
-      "High52": 128.85,
-      "Low52": 49.5,
-      "isEsmEligible": true,
-      "LastUpdated": "Mon, 24 Aug, 2026, 01:24:09 am"
+      "LastUpdated": "Mon, 24 Aug, 2026, 01:26:05 am"
     },
     "BIKEWO": {
       "Symbol": "BIKEWO",
@@ -2597,7 +2597,7 @@
       "High52": 115.8,
       "Low52": 13.65,
       "isEsmEligible": true,
-      "LastUpdated": "Mon, 24 Aug, 2026, 01:24:09 am"
+      "LastUpdated": "Mon, 24 Aug, 2026, 01:26:05 am"
     },
     "BIOPOL": {
       "Symbol": "BIOPOL",
@@ -2614,7 +2614,7 @@
       "High52": 133.75,
       "Low52": 84,
       "isEsmEligible": true,
-      "LastUpdated": "Mon, 24 Aug, 2026, 01:24:09 am"
+      "LastUpdated": "Mon, 24 Aug, 2026, 01:26:05 am"
     },
     "BLUEWATER": {
       "Symbol": "BLUEWATER",
@@ -2631,7 +2631,7 @@
       "High52": 490.5,
       "Low52": 128,
       "isEsmEligible": true,
-      "LastUpdated": "Mon, 24 Aug, 2026, 01:24:09 am"
+      "LastUpdated": "Mon, 24 Aug, 2026, 01:26:05 am"
     },
     "BMETRICS": {
       "Symbol": "BMETRICS",
@@ -2648,58 +2648,24 @@
       "High52": 56.9,
       "Low52": 33.3,
       "isEsmEligible": true,
-      "LastUpdated": "Mon, 24 Aug, 2026, 01:24:09 am"
+      "LastUpdated": "Mon, 24 Aug, 2026, 01:26:05 am"
     },
-    "BOSS": {
-      "Symbol": "BOSS",
+    "BULKCORP": {
+      "Symbol": "BULKCORP",
       "Exchange": "NSE",
       "Series": "SM",
-      "CompanyName": "Boss Packaging Solutions Limited",
-      "LTP": 53.05,
-      "PrevClose": 54.5,
-      "LotSize": 2000,
-      "TotalSecurities": 4446260,
-      "MarketCapCr": 23.59,
-      "FreeFloatMcapCr": 6.76,
-      "ListingDate": "06-Sep-2024 00:00:00",
-      "High52": 57.2,
-      "Low52": 31.75,
+      "CompanyName": "Bulkcorp International Limited",
+      "LTP": 67.4,
+      "PrevClose": 70.85,
+      "LotSize": 1200,
+      "TotalSecurities": 7514064,
+      "MarketCapCr": 50.61,
+      "FreeFloatMcapCr": 14.04,
+      "ListingDate": "06-Aug-2024 00:00:00",
+      "High52": 86.95,
+      "Low52": 38.05,
       "isEsmEligible": true,
-      "LastUpdated": "Mon, 24 Aug, 2026, 01:24:09 am"
-    },
-    "BRACEPORT": {
-      "Symbol": "BRACEPORT",
-      "Exchange": "NSE",
-      "Series": "SM",
-      "CompanyName": "Brace Port Logistics Limited",
-      "LTP": 64.1,
-      "PrevClose": 65,
-      "LotSize": 1600,
-      "TotalSecurities": 11301200,
-      "MarketCapCr": 72.44,
-      "FreeFloatMcapCr": 20.23,
-      "ListingDate": "26-Aug-2024 00:00:00",
-      "High52": 98.8,
-      "Low52": 42.9,
-      "isEsmEligible": true,
-      "LastUpdated": "Mon, 24 Aug, 2026, 01:24:09 am"
-    },
-    "BRANDMAN": {
-      "Symbol": "BRANDMAN",
-      "Exchange": "NSE",
-      "Series": "SM",
-      "CompanyName": "Brandman Retail Limited",
-      "LTP": 160.45,
-      "PrevClose": 158.7,
-      "LotSize": 800,
-      "TotalSecurities": 18457186,
-      "MarketCapCr": 295.31,
-      "FreeFloatMcapCr": 67.08,
-      "ListingDate": "11-Feb-2026 00:00:00",
-      "High52": 243.8,
-      "Low52": 109.35,
-      "isEsmEligible": true,
-      "LastUpdated": "Mon, 24 Aug, 2026, 01:24:09 am"
+      "LastUpdated": "Mon, 24 Aug, 2026, 01:26:05 am"
     },
     "CKKRETAIL": {
       "Symbol": "CKKRETAIL",
@@ -2716,41 +2682,58 @@
       "High52": 265.25,
       "Low52": 112.2,
       "isEsmEligible": true,
-      "LastUpdated": "Mon, 24 Aug, 2026, 01:24:09 am"
+      "LastUpdated": "Mon, 24 Aug, 2026, 01:26:05 am"
     },
-    "C2C": {
-      "Symbol": "C2C",
+    "CPS": {
+      "Symbol": "CPS",
       "Exchange": "NSE",
       "Series": "SM",
-      "CompanyName": "C2C Advanced Systems Limited",
-      "LTP": 229.95,
-      "PrevClose": 239.45,
+      "CompanyName": "C P S Shapers Limited",
+      "LTP": 1146.05,
+      "PrevClose": 1122,
       "LotSize": 150,
-      "TotalSecurities": 16968433,
-      "MarketCapCr": 391.12,
-      "FreeFloatMcapCr": 227.55,
-      "ListingDate": "03-Dec-2024 00:00:00",
-      "High52": 888,
-      "Low52": 204.5,
+      "TotalSecurities": 2309295,
+      "MarketCapCr": 260.95,
+      "FreeFloatMcapCr": 80.39,
+      "ListingDate": "07-Sep-2023 00:00:00",
+      "High52": 1349.25,
+      "Low52": 679.25,
       "isEsmEligible": true,
-      "LastUpdated": "Mon, 24 Aug, 2026, 01:24:09 am"
+      "LastUpdated": "Mon, 24 Aug, 2026, 01:26:05 am"
     },
-    "CANARYS": {
-      "Symbol": "CANARYS",
+    "CEDAAR": {
+      "Symbol": "CEDAAR",
+      "Exchange": "NSE",
+      "Series": "ST",
+      "CompanyName": "Cedaar Textile Limited",
+      "LTP": 13.8,
+      "PrevClose": 13.15,
+      "LotSize": 1000,
+      "TotalSecurities": 13878600,
+      "MarketCapCr": 19.15,
+      "FreeFloatMcapCr": 6,
+      "ListingDate": "07-Jul-2025 00:00:00",
+      "High52": 122,
+      "Low52": 12.55,
+      "isEsmEligible": true,
+      "LastUpdated": "Mon, 24 Aug, 2026, 01:26:05 am"
+    },
+    "CELLPOINT": {
+      "Symbol": "CELLPOINT",
       "Exchange": "NSE",
       "Series": "SM",
-      "CompanyName": "Canarys Automations Limited",
-      "LTP": 23.35,
-      "PrevClose": 22.7,
-      "LotSize": 4000,
-      "TotalSecurities": 58744893,
-      "MarketCapCr": 136.88,
-      "FreeFloatMcapCr": 56.48,
-      "ListingDate": "11-Oct-2023 00:00:00",
-      "High52": 35.2,
-      "Low52": 14.6,
+      "CompanyName": "Cell Point (India) Limited",
+      "LTP": 15.25,
+      "PrevClose": 15,
+      "LotSize": 1200,
+      "TotalSecurities": 18685600,
+      "MarketCapCr": 28.5,
+      "FreeFloatMcapCr": 7.68,
+      "ListingDate": "28-Jun-2023 00:00:00",
+      "High52": 21.1,
+      "Low52": 11.7,
       "isEsmEligible": true,
-      "LastUpdated": "Mon, 24 Aug, 2026, 01:24:09 am"
+      "LastUpdated": "Mon, 24 Aug, 2026, 01:26:05 am"
     },
     "CMNL": {
       "Symbol": "CMNL",
@@ -2767,41 +2750,7 @@
       "High52": 183.9,
       "Low52": 90,
       "isEsmEligible": true,
-      "LastUpdated": "Mon, 24 Aug, 2026, 01:24:09 am"
-    },
-    "CHANDAN": {
-      "Symbol": "CHANDAN",
-      "Exchange": "NSE",
-      "Series": "SM",
-      "CompanyName": "Chandan Healthcare Limited",
-      "LTP": 230.85,
-      "PrevClose": 235.6,
-      "LotSize": 800,
-      "TotalSecurities": 24452064,
-      "MarketCapCr": 563.62,
-      "FreeFloatMcapCr": 221.7,
-      "ListingDate": "17-Feb-2025 00:00:00",
-      "High52": 358,
-      "Low52": 185.4,
-      "isEsmEligible": false,
-      "LastUpdated": "Mon, 24 Aug, 2026, 01:24:09 am"
-    },
-    "CHAVDA": {
-      "Symbol": "CHAVDA",
-      "Exchange": "NSE",
-      "Series": "SM",
-      "CompanyName": "Chavda Infra Limited",
-      "LTP": 137.15,
-      "PrevClose": 135,
-      "LotSize": 1000,
-      "TotalSecurities": 32656000,
-      "MarketCapCr": 447.39,
-      "FreeFloatMcapCr": 90.04,
-      "ListingDate": "25-Sep-2023 00:00:00",
-      "High52": 148,
-      "Low52": 80.6,
-      "isEsmEligible": true,
-      "LastUpdated": "Mon, 24 Aug, 2026, 01:24:09 am"
+      "LastUpdated": "Mon, 24 Aug, 2026, 01:26:05 am"
     },
     "CLASSICEIL": {
       "Symbol": "CLASSICEIL",
@@ -2818,24 +2767,7 @@
       "High52": 113.9,
       "Low52": 34.75,
       "isEsmEligible": true,
-      "LastUpdated": "Mon, 24 Aug, 2026, 01:24:09 am"
-    },
-    "CLAYCRAFT": {
-      "Symbol": "CLAYCRAFT",
-      "Exchange": "NSE",
-      "Series": "SM",
-      "CompanyName": "Clay Craft India Limited",
-      "LTP": 155.5,
-      "PrevClose": 164.2,
-      "LotSize": 600,
-      "TotalSecurities": 20570280,
-      "MarketCapCr": 318.84,
-      "FreeFloatMcapCr": 59.22,
-      "ListingDate": "24-Jun-2026 00:00:00",
-      "High52": 224,
-      "Low52": 149,
-      "isEsmEligible": true,
-      "LastUpdated": "Mon, 24 Aug, 2026, 01:24:09 am"
+      "LastUpdated": "Mon, 24 Aug, 2026, 01:26:05 am"
     },
     "CSSL": {
       "Symbol": "CSSL",
@@ -2852,7 +2784,7 @@
       "High52": 164,
       "Low52": 89,
       "isEsmEligible": true,
-      "LastUpdated": "Mon, 24 Aug, 2026, 01:24:09 am"
+      "LastUpdated": "Mon, 24 Aug, 2026, 01:26:05 am"
     },
     "COMMITTED": {
       "Symbol": "COMMITTED",
@@ -2869,24 +2801,7 @@
       "High52": 350,
       "Low52": 174.25,
       "isEsmEligible": true,
-      "LastUpdated": "Mon, 24 Aug, 2026, 01:24:09 am"
-    },
-    "CONNPLEX": {
-      "Symbol": "CONNPLEX",
-      "Exchange": "NSE",
-      "Series": "SM",
-      "CompanyName": "Connplex Cinemas Limited",
-      "LTP": 217.95,
-      "PrevClose": 214.85,
-      "LotSize": 800,
-      "TotalSecurities": 19100000,
-      "MarketCapCr": 416.38,
-      "FreeFloatMcapCr": 110.27,
-      "ListingDate": "14-Aug-2025 00:00:00",
-      "High52": 311.9,
-      "Low52": 177,
-      "isEsmEligible": true,
-      "LastUpdated": "Mon, 24 Aug, 2026, 01:24:09 am"
+      "LastUpdated": "Mon, 24 Aug, 2026, 01:26:05 am"
     },
     "COOLCAPS": {
       "Symbol": "COOLCAPS",
@@ -2903,7 +2818,7 @@
       "High52": 99.5,
       "Low52": 19,
       "isEsmEligible": true,
-      "LastUpdated": "Mon, 24 Aug, 2026, 01:24:09 am"
+      "LastUpdated": "Mon, 24 Aug, 2026, 01:26:05 am"
     },
     "CRAYONS": {
       "Symbol": "CRAYONS",
@@ -2920,24 +2835,24 @@
       "High52": 64,
       "Low52": 23.6,
       "isEsmEligible": true,
-      "LastUpdated": "Mon, 24 Aug, 2026, 01:24:09 am"
+      "LastUpdated": "Mon, 24 Aug, 2026, 01:26:05 am"
     },
-    "CGRAPHICS": {
-      "Symbol": "CGRAPHICS",
+    "CREDENT": {
+      "Symbol": "CREDENT",
       "Exchange": "NSE",
-      "Series": "SM",
-      "CompanyName": "Creative Graphics Solutions India Limited",
-      "LTP": 147,
-      "PrevClose": 138.1,
-      "LotSize": 800,
-      "TotalSecurities": 24286000,
-      "MarketCapCr": 357,
-      "FreeFloatMcapCr": 113.59,
-      "ListingDate": "09-Apr-2024 00:00:00",
-      "High52": 259,
-      "Low52": 122,
-      "isEsmEligible": true,
-      "LastUpdated": "Mon, 24 Aug, 2026, 01:24:09 am"
+      "Series": "ST",
+      "CompanyName": "Credent Connect N Care Limited",
+      "LTP": 375,
+      "PrevClose": 377.05,
+      "LotSize": 600,
+      "TotalSecurities": 18222900,
+      "MarketCapCr": 676.07,
+      "FreeFloatMcapCr": 129.91,
+      "ListingDate": "20-Aug-2026 00:00:00",
+      "High52": 380,
+      "Low52": 358.2,
+      "isEsmEligible": false,
+      "LastUpdated": "Mon, 24 Aug, 2026, 01:26:05 am"
     },
     "CLSL": {
       "Symbol": "CLSL",
@@ -2954,24 +2869,7 @@
       "High52": 83.2,
       "Low52": 39.05,
       "isEsmEligible": true,
-      "LastUpdated": "Mon, 24 Aug, 2026, 01:24:09 am"
-    },
-    "CURIS": {
-      "Symbol": "CURIS",
-      "Exchange": "NSE",
-      "Series": "SM",
-      "CompanyName": "Curis Lifesciences Limited",
-      "LTP": 121,
-      "PrevClose": 124,
-      "LotSize": 1000,
-      "TotalSecurities": 8084434,
-      "MarketCapCr": 97.82,
-      "FreeFloatMcapCr": 26.81,
-      "ListingDate": "14-Nov-2025 00:00:00",
-      "High52": 147.9,
-      "Low52": 83.6,
-      "isEsmEligible": true,
-      "LastUpdated": "Mon, 24 Aug, 2026, 01:24:09 am"
+      "LastUpdated": "Mon, 24 Aug, 2026, 01:26:05 am"
     },
     "DKEGL": {
       "Symbol": "DKEGL",
@@ -2988,7 +2886,7 @@
       "High52": 89.6,
       "Low52": 60,
       "isEsmEligible": true,
-      "LastUpdated": "Mon, 24 Aug, 2026, 01:24:09 am"
+      "LastUpdated": "Mon, 24 Aug, 2026, 01:26:05 am"
     },
     "DCCL": {
       "Symbol": "DCCL",
@@ -3005,92 +2903,41 @@
       "High52": 60.8,
       "Low52": 33,
       "isEsmEligible": true,
-      "LastUpdated": "Mon, 24 Aug, 2026, 01:24:09 am"
+      "LastUpdated": "Mon, 24 Aug, 2026, 01:26:05 am"
     },
-    "DENEERS": {
-      "Symbol": "DENEERS",
-      "Exchange": "NSE",
-      "Series": "SM",
-      "CompanyName": "De Neers Tools Limited",
-      "LTP": 170,
-      "PrevClose": 174.45,
-      "LotSize": 600,
-      "TotalSecurities": 8846400,
-      "MarketCapCr": 150.39,
-      "FreeFloatMcapCr": 76.75,
-      "ListingDate": "11-May-2023 00:00:00",
-      "High52": 325,
-      "Low52": 132,
-      "isEsmEligible": true,
-      "LastUpdated": "Mon, 24 Aug, 2026, 01:24:09 am"
-    },
-    "DELAPLEX": {
-      "Symbol": "DELAPLEX",
-      "Exchange": "NSE",
-      "Series": "SM",
-      "CompanyName": "Delaplex Limited",
-      "LTP": 83.15,
-      "PrevClose": 82.8,
-      "LotSize": 600,
-      "TotalSecurities": 9158480,
-      "MarketCapCr": 76.47,
-      "FreeFloatMcapCr": 19.69,
-      "ListingDate": "02-Feb-2024 00:00:00",
-      "High52": 194.85,
-      "Low52": 81.15,
-      "isEsmEligible": true,
-      "LastUpdated": "Mon, 24 Aug, 2026, 01:24:09 am"
-    },
-    "DELTIC": {
-      "Symbol": "DELTIC",
-      "Exchange": "NSE",
-      "Series": "SM",
-      "CompanyName": "Delta Autocorp Limited",
-      "LTP": 36.9,
-      "PrevClose": 35.4,
-      "LotSize": 1000,
-      "TotalSecurities": 15289698,
-      "MarketCapCr": 55.65,
-      "FreeFloatMcapCr": 16.12,
-      "ListingDate": "14-Jan-2025 00:00:00",
-      "High52": 71.6,
-      "Low52": 28.05,
-      "isEsmEligible": true,
-      "LastUpdated": "Mon, 24 Aug, 2026, 01:24:09 am"
-    },
-    "DHARARAIL": {
-      "Symbol": "DHARARAIL",
+    "DEEM": {
+      "Symbol": "DEEM",
       "Exchange": "NSE",
       "Series": "ST",
-      "CompanyName": "Dhara Rail Projects Limited",
-      "LTP": 147.5,
-      "PrevClose": 145.95,
+      "CompanyName": "Deem Roll Tech Limited",
+      "LTP": 40.2,
+      "PrevClose": 40.45,
       "LotSize": 1000,
-      "TotalSecurities": 15084000,
-      "MarketCapCr": 222.49,
-      "FreeFloatMcapCr": 53.87,
-      "ListingDate": "31-Dec-2025 00:00:00",
-      "High52": 172.5,
-      "Low52": 90.05,
+      "TotalSecurities": 8337272,
+      "MarketCapCr": 33.52,
+      "FreeFloatMcapCr": 11.03,
+      "ListingDate": "27-Feb-2024 00:00:00",
+      "High52": 64.45,
+      "Low52": 29.35,
       "isEsmEligible": true,
-      "LastUpdated": "Mon, 24 Aug, 2026, 01:24:09 am"
+      "LastUpdated": "Mon, 24 Aug, 2026, 01:26:05 am"
     },
-    "DHARIWAL": {
-      "Symbol": "DHARIWAL",
+    "DHANLAXMI": {
+      "Symbol": "DHANLAXMI",
       "Exchange": "NSE",
       "Series": "SM",
-      "CompanyName": "Dhariwalcorp Limited",
-      "LTP": 18.8,
-      "PrevClose": 17.95,
-      "LotSize": 3000,
-      "TotalSecurities": 94014000,
-      "MarketCapCr": 176.75,
-      "FreeFloatMcapCr": 63.31,
-      "ListingDate": "08-Aug-2024 00:00:00",
-      "High52": 48.3,
-      "Low52": 15.98,
+      "CompanyName": "Dhanlaxmi Crop Science Limited",
+      "LTP": 25,
+      "PrevClose": 25,
+      "LotSize": 2000,
+      "TotalSecurities": 16328000,
+      "MarketCapCr": 40.82,
+      "FreeFloatMcapCr": 10.63,
+      "ListingDate": "16-Dec-2024 00:00:00",
+      "High52": 45.85,
+      "Low52": 20.05,
       "isEsmEligible": true,
-      "LastUpdated": "Mon, 24 Aug, 2026, 01:24:09 am"
+      "LastUpdated": "Mon, 24 Aug, 2026, 01:26:05 am"
     },
     "DTL": {
       "Symbol": "DTL",
@@ -3107,7 +2954,41 @@
       "High52": 178,
       "Low52": 82.05,
       "isEsmEligible": true,
-      "LastUpdated": "Mon, 24 Aug, 2026, 01:24:09 am"
+      "LastUpdated": "Mon, 24 Aug, 2026, 01:26:05 am"
+    },
+    "DIGIKORE": {
+      "Symbol": "DIGIKORE",
+      "Exchange": "NSE",
+      "Series": "SM",
+      "CompanyName": "Digikore Studios Limited",
+      "LTP": 36.25,
+      "PrevClose": 35.15,
+      "LotSize": 400,
+      "TotalSecurities": 12665600,
+      "MarketCapCr": 44.96,
+      "FreeFloatMcapCr": 18.68,
+      "ListingDate": "04-Oct-2023 00:00:00",
+      "High52": 100,
+      "Low52": 32.4,
+      "isEsmEligible": true,
+      "LastUpdated": "Mon, 24 Aug, 2026, 01:26:05 am"
+    },
+    "DIVINEHIRA": {
+      "Symbol": "DIVINEHIRA",
+      "Exchange": "NSE",
+      "Series": "ST",
+      "CompanyName": "Divine Hira Jewellers Limited",
+      "LTP": 111.9,
+      "PrevClose": 111.95,
+      "LotSize": 1200,
+      "TotalSecurities": 39141300,
+      "MarketCapCr": 438.19,
+      "FreeFloatMcapCr": 118.81,
+      "ListingDate": "24-Mar-2025 00:00:00",
+      "High52": 126.5,
+      "Low52": 26.83,
+      "isEsmEligible": true,
+      "LastUpdated": "Mon, 24 Aug, 2026, 01:26:05 am"
     },
     "DPEL": {
       "Symbol": "DPEL",
@@ -3124,41 +3005,24 @@
       "High52": 599,
       "Low52": 130,
       "isEsmEligible": false,
-      "LastUpdated": "Mon, 24 Aug, 2026, 01:24:09 am"
+      "LastUpdated": "Mon, 24 Aug, 2026, 01:26:05 am"
     },
-    "DOLLEX": {
-      "Symbol": "DOLLEX",
+    "DUCOL": {
+      "Symbol": "DUCOL",
       "Exchange": "NSE",
       "Series": "SM",
-      "CompanyName": "Dollex Agrotech Limited",
-      "LTP": 33.1,
-      "PrevClose": 33.3,
-      "LotSize": 4000,
-      "TotalSecurities": 39948800,
-      "MarketCapCr": 135.43,
-      "FreeFloatMcapCr": 62.03,
-      "ListingDate": "28-Dec-2022 00:00:00",
-      "High52": 43.55,
-      "Low52": 26,
+      "CompanyName": "Ducol Organics And Colours Limited",
+      "LTP": 106.7,
+      "PrevClose": 106.2,
+      "LotSize": 800,
+      "TotalSecurities": 18058655,
+      "MarketCapCr": 192.69,
+      "FreeFloatMcapCr": 93.78,
+      "ListingDate": "19-Jan-2023 00:00:00",
+      "High52": 209.5,
+      "Low52": 90,
       "isEsmEligible": true,
-      "LastUpdated": "Mon, 24 Aug, 2026, 01:24:09 am"
-    },
-    "DRONE": {
-      "Symbol": "DRONE",
-      "Exchange": "NSE",
-      "Series": "SM",
-      "CompanyName": "Drone Destination Limited",
-      "LTP": 36.7,
-      "PrevClose": 38.2,
-      "LotSize": 500,
-      "TotalSecurities": 24399998,
-      "MarketCapCr": 90.04,
-      "FreeFloatMcapCr": 35.09,
-      "ListingDate": "21-Jul-2023 00:00:00",
-      "High52": 101.85,
-      "Low52": 35.9,
-      "isEsmEligible": true,
-      "LastUpdated": "Mon, 24 Aug, 2026, 01:24:09 am"
+      "LastUpdated": "Mon, 24 Aug, 2026, 01:26:05 am"
     },
     "DUGLOBAL": {
       "Symbol": "DUGLOBAL",
@@ -3175,7 +3039,41 @@
       "High52": 49,
       "Low52": 23.5,
       "isEsmEligible": true,
-      "LastUpdated": "Mon, 24 Aug, 2026, 01:24:09 am"
+      "LastUpdated": "Mon, 24 Aug, 2026, 01:26:05 am"
+    },
+    "DYNAMIC": {
+      "Symbol": "DYNAMIC",
+      "Exchange": "NSE",
+      "Series": "ST",
+      "CompanyName": "Dynamic Services & Security Limited",
+      "LTP": 141.2,
+      "PrevClose": 140.05,
+      "LotSize": 500,
+      "TotalSecurities": 23518192,
+      "MarketCapCr": 337.49,
+      "FreeFloatMcapCr": 135.58,
+      "ListingDate": "13-Oct-2021 00:00:00",
+      "High52": 183.9,
+      "Low52": 84.7,
+      "isEsmEligible": true,
+      "LastUpdated": "Mon, 24 Aug, 2026, 01:26:05 am"
+    },
+    "EFACTOR": {
+      "Symbol": "EFACTOR",
+      "Exchange": "NSE",
+      "Series": "SM",
+      "CompanyName": "E Factor Experiences Limited",
+      "LTP": 203,
+      "PrevClose": 205,
+      "LotSize": 400,
+      "TotalSecurities": 13131398,
+      "MarketCapCr": 266.57,
+      "FreeFloatMcapCr": 81.13,
+      "ListingDate": "09-Oct-2023 00:00:00",
+      "High52": 348,
+      "Low52": 150,
+      "isEsmEligible": true,
+      "LastUpdated": "Mon, 24 Aug, 2026, 01:26:05 am"
     },
     "E2ERAIL": {
       "Symbol": "E2ERAIL",
@@ -3192,7 +3090,7 @@
       "High52": 347.1,
       "Low52": 171,
       "isEsmEligible": false,
-      "LastUpdated": "Mon, 24 Aug, 2026, 01:24:09 am"
+      "LastUpdated": "Mon, 24 Aug, 2026, 01:26:05 am"
     },
     "ECOLINE": {
       "Symbol": "ECOLINE",
@@ -3209,24 +3107,41 @@
       "High52": 216,
       "Low52": 111,
       "isEsmEligible": true,
-      "LastUpdated": "Mon, 24 Aug, 2026, 01:24:09 am"
+      "LastUpdated": "Mon, 24 Aug, 2026, 01:26:05 am"
     },
-    "EMAPARTNER": {
-      "Symbol": "EMAPARTNER",
+    "ELGNZ": {
+      "Symbol": "ELGNZ",
       "Exchange": "NSE",
       "Series": "SM",
-      "CompanyName": "EMA Partners India Limited",
-      "LTP": 82,
-      "PrevClose": 84.2,
+      "CompanyName": "Eleganz Interiors Limited",
+      "LTP": 86.8,
+      "PrevClose": 84.6,
       "LotSize": 1000,
-      "TotalSecurities": 22521426,
-      "MarketCapCr": 184.68,
-      "FreeFloatMcapCr": 50.9,
-      "ListingDate": "24-Jan-2025 00:00:00",
-      "High52": 112,
-      "Low52": 65.25,
+      "TotalSecurities": 22599626,
+      "MarketCapCr": 196.39,
+      "FreeFloatMcapCr": 58.29,
+      "ListingDate": "14-Feb-2025 00:00:00",
+      "High52": 163,
+      "Low52": 52,
       "isEsmEligible": true,
-      "LastUpdated": "Mon, 24 Aug, 2026, 01:24:09 am"
+      "LastUpdated": "Mon, 24 Aug, 2026, 01:26:05 am"
+    },
+    "ETML": {
+      "Symbol": "ETML",
+      "Exchange": "NSE",
+      "Series": "SM",
+      "CompanyName": "Emerald Tyre Manufacturers Limited",
+      "LTP": 83.2,
+      "PrevClose": 82.65,
+      "LotSize": 1200,
+      "TotalSecurities": 19476512,
+      "MarketCapCr": 162.53,
+      "FreeFloatMcapCr": 77.68,
+      "ListingDate": "12-Dec-2024 00:00:00",
+      "High52": 152.55,
+      "Low52": 72.5,
+      "isEsmEligible": true,
+      "LastUpdated": "Mon, 24 Aug, 2026, 01:26:05 am"
     },
     "EMKAYTOOLS": {
       "Symbol": "EMKAYTOOLS",
@@ -3243,75 +3158,92 @@
       "High52": 198,
       "Low52": 83.1,
       "isEsmEligible": true,
-      "LastUpdated": "Mon, 24 Aug, 2026, 01:24:09 am"
+      "LastUpdated": "Mon, 24 Aug, 2026, 01:26:05 am"
     },
-    "ETL": {
-      "Symbol": "ETL",
+    "ENCOMPAS": {
+      "Symbol": "ENCOMPAS",
       "Exchange": "NSE",
       "Series": "SM",
-      "CompanyName": "Emkay Tools Limited",
-      "LTP": 1055,
-      "PrevClose": 1015,
-      "LotSize": 150,
-      "TotalSecurities": 10671300,
-      "MarketCapCr": 1125.82,
-      "FreeFloatMcapCr": 281.53,
-      "ListingDate": "08-Jul-2025 00:00:00",
-      "High52": 1090,
-      "Low52": 721.1,
-      "isEsmEligible": false,
-      "LastUpdated": "Mon, 24 Aug, 2026, 01:24:09 am"
-    },
-    "EMMIL": {
-      "Symbol": "EMMIL",
-      "Exchange": "NSE",
-      "Series": "SM",
-      "CompanyName": "Energy Mission Machineries (India) Limited",
-      "LTP": 124.55,
-      "PrevClose": 124,
-      "LotSize": 250,
-      "TotalSecurities": 11326500,
-      "MarketCapCr": 141.01,
-      "FreeFloatMcapCr": 37,
-      "ListingDate": "16-May-2024 00:00:00",
-      "High52": 207,
-      "Low52": 110,
+      "CompanyName": "Encompass Design India Limited",
+      "LTP": 234.2,
+      "PrevClose": 242.4,
+      "LotSize": 400,
+      "TotalSecurities": 14183544,
+      "MarketCapCr": 333.31,
+      "FreeFloatMcapCr": 88.32,
+      "ListingDate": "12-Dec-2025 00:00:00",
+      "High52": 302.9,
+      "Low52": 167.35,
       "isEsmEligible": true,
-      "LastUpdated": "Mon, 24 Aug, 2026, 01:24:09 am"
+      "LastUpdated": "Mon, 24 Aug, 2026, 01:26:05 am"
     },
-    "ENSER": {
-      "Symbol": "ENSER",
+    "ENFUSE": {
+      "Symbol": "ENFUSE",
       "Exchange": "NSE",
       "Series": "SM",
-      "CompanyName": "Enser Communications Limited",
-      "LTP": 15.35,
-      "PrevClose": 15.1,
-      "LotSize": 5000,
-      "TotalSecurities": 87160590,
-      "MarketCapCr": 133.79,
-      "FreeFloatMcapCr": 44.92,
+      "CompanyName": "Enfuse Solutions Limited",
+      "LTP": 153,
+      "PrevClose": 164,
+      "LotSize": 600,
+      "TotalSecurities": 8847600,
+      "MarketCapCr": 135.37,
+      "FreeFloatMcapCr": 39.77,
       "ListingDate": "22-Mar-2024 00:00:00",
-      "High52": 23.25,
-      "Low52": 7.8,
+      "High52": 284,
+      "Low52": 148,
       "isEsmEligible": true,
-      "LastUpdated": "Mon, 24 Aug, 2026, 01:24:09 am"
+      "LastUpdated": "Mon, 24 Aug, 2026, 01:26:05 am"
     },
-    "EPWINDIA": {
-      "Symbol": "EPWINDIA",
+    "ESCONET": {
+      "Symbol": "ESCONET",
       "Exchange": "NSE",
-      "Series": "ST",
-      "CompanyName": "EPW India Limited",
-      "LTP": 261.25,
-      "PrevClose": 248.85,
-      "LotSize": 1200,
-      "TotalSecurities": 11479600,
-      "MarketCapCr": 299.9,
-      "FreeFloatMcapCr": 85.68,
-      "ListingDate": "30-Dec-2025 00:00:00",
-      "High52": 282.05,
-      "Low52": 98,
+      "Series": "SM",
+      "CompanyName": "Esconet Technologies Limited",
+      "LTP": 184.8,
+      "PrevClose": 187.35,
+      "LotSize": 400,
+      "TotalSecurities": 13196238,
+      "MarketCapCr": 238.19,
+      "FreeFloatMcapCr": 94.84,
+      "ListingDate": "23-Feb-2024 00:00:00",
+      "High52": 280,
+      "Low52": 91.25,
       "isEsmEligible": true,
-      "LastUpdated": "Mon, 24 Aug, 2026, 01:24:09 am"
+      "LastUpdated": "Mon, 24 Aug, 2026, 01:26:05 am"
+    },
+    "ESPRIT": {
+      "Symbol": "ESPRIT",
+      "Exchange": "NSE",
+      "Series": "SM",
+      "CompanyName": "Esprit Stones Limited",
+      "LTP": 67,
+      "PrevClose": 67,
+      "LotSize": 1600,
+      "TotalSecurities": 21945200,
+      "MarketCapCr": 147.03,
+      "FreeFloatMcapCr": 38.77,
+      "ListingDate": "02-Aug-2024 00:00:00",
+      "High52": 100.5,
+      "Low52": 52,
+      "isEsmEligible": true,
+      "LastUpdated": "Mon, 24 Aug, 2026, 01:26:05 am"
+    },
+    "ESFL": {
+      "Symbol": "ESFL",
+      "Exchange": "NSE",
+      "Series": "SM",
+      "CompanyName": "Essen Speciality Films Limited",
+      "LTP": 121.95,
+      "PrevClose": 125.95,
+      "LotSize": 360,
+      "TotalSecurities": 24839040,
+      "MarketCapCr": 302.91,
+      "FreeFloatMcapCr": 88.29,
+      "ListingDate": "06-Jul-2023 00:00:00",
+      "High52": 425,
+      "Low52": 108.3,
+      "isEsmEligible": true,
+      "LastUpdated": "Mon, 24 Aug, 2026, 01:26:05 am"
     },
     "EXIMROUTES": {
       "Symbol": "EXIMROUTES",
@@ -3328,7 +3260,7 @@
       "High52": 281.9,
       "Low52": 90,
       "isEsmEligible": true,
-      "LastUpdated": "Mon, 24 Aug, 2026, 01:24:09 am"
+      "LastUpdated": "Mon, 24 Aug, 2026, 01:26:05 am"
     }
   }
 }
