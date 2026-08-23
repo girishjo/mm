@@ -910,6 +910,13 @@ function upadtePortfolioTable(stockList) {
         }
     }
 
+    const cash = getPortfolioCash();
+    if (cash !== 0) {
+        addPortfolioCashRow(cash, refs1, refs2);
+        totalInvestment += cash;
+        currentValue += cash;
+    }
+
     if (totalInvestment != 0) {
         for (let i = 0; i < refs1.length; i++) {
             refs1[i].innerText = (refs1[i].innerText * 100 / totalInvestment).toCustomString(2) + " %";
@@ -964,6 +971,66 @@ function upadtePortfolioTable(stockList) {
             newRow.cells[12].title = "Partial data";
         }
     }
+}
+
+function getPortfolioCash() {
+    const withCash = document.getElementById('chkPortfolioWithCash');
+    const cashInput = document.getElementById('portfolioCash');
+    if (!withCash?.checked || !cashInput) return 0;
+    const cash = Number(cashInput.value);
+    return Number.isFinite(cash) && cash > 0 ? cash : 0;
+}
+
+function addPortfolioCashRow(cash, refs1, refs2) {
+    const newRow = addEmptyRow(portfolioTable);
+    newRow.cells[1].innerText = 'Cash';
+    newRow.cells[2].innerText = '1';
+    newRow.cells[3].innerText = cash.toCustomString(2);
+    newRow.cells[4].innerText = cash.toCustomString();
+    refs1.push(newRow.cells[5]);
+    newRow.cells[5].innerText = cash;
+    newRow.cells[6].innerText = cash.toCustomString(2);
+    newRow.cells[7].innerText = cash.toCustomString();
+    refs2.push(newRow.cells[8]);
+    newRow.cells[8].innerText = cash;
+    newRow.cells[9].innerText = '0';
+    newRow.cells[10].innerText = '0.00 %';
+    newRow.cells[11].innerText = '0';
+    newRow.cells[12].innerText = '0.00 %';
+}
+
+function savePortfolioPreferences() {
+    if (!settings) return;
+    if (!settings.configs) settings.configs = {};
+    settings.configs.portfolioWithCash = document.getElementById('chkPortfolioWithCash')?.checked === true;
+    settings.configs.portfolioCash = document.getElementById('portfolioCash')?.value || '';
+    window.localStorage.setItem('userSettings', JSON.stringify(settings));
+}
+
+function togglePortfolioCash() {
+    const withCash = document.getElementById('chkPortfolioWithCash');
+    const cashInput = document.getElementById('portfolioCash');
+    if (!withCash || !cashInput) return;
+    cashInput.style.display = withCash.checked ? 'inline-block' : 'none';
+    savePortfolioPreferences();
+    updatePortfolioTable();
+}
+
+function restorePortfolioPreferences() {
+    const withCash = document.getElementById('chkPortfolioWithCash');
+    const cashInput = document.getElementById('portfolioCash');
+    if (!withCash || !cashInput || !settings?.configs) return;
+    withCash.checked = settings.configs.portfolioWithCash === true;
+    cashInput.value = settings.configs.portfolioCash || '';
+    cashInput.style.display = withCash.checked ? 'inline-block' : 'none';
+}
+
+function updatePortfolioTable() {
+    const portfolioDateInput = document.getElementById('portfolioDate');
+    if (!portfolioDateInput?.value || !watchlists?.[activeWL]) return;
+    resetTable(portfolioTable);
+    upadtePortfolioTableForDate(getWatchlistDataInDisplayOrder(watchlists[activeWL]), new Date(portfolioDateInput.value));
+    updateRowNumber(portfolioTable);
 }
 
 listTable.addEventListener('click', function (e) {
@@ -1337,6 +1404,14 @@ function upadtePortfolioTableForDate(stockList, targetDate) {
                 }
             }
         }
+    }
+
+    const cash = getPortfolioCash();
+    if (cash !== 0) {
+        addPortfolioCashRow(cash, refs1, refs2);
+        totalInvestment += cash;
+        currentValue += cash;
+        dataFoundForDate = true;
     }
 
     if (totalInvestment != 0) {

@@ -76,6 +76,7 @@ function openTab(tabId) {
         case "portfolioDiv":
             // Show watchlist dropdown but hide management buttons
             watchlistDiv.style.display = 'flex';
+            restorePortfolioPreferences();
             if (lblShowAllWatchlists) lblShowAllWatchlists.style.display = 'inline-block';
             if (lblPrivacyMode) lblPrivacyMode.style.display = 'inline-block';
             // Initialize portfolio date if not set
