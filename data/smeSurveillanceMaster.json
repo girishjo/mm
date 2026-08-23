@@ -1,6 +1,6 @@
 {
-  "dateTimeStamp": "Mon, 24 Aug, 2026, 02:33:31 am",
-  "totalSecurities": 551,
+  "dateTimeStamp": "Mon, 24 Aug, 2026, 02:35:54 am",
+  "totalSecurities": 578,
   "data": {
     "500009": {
       "SecurityCode": "500009",
@@ -103,7 +103,7 @@
       "esmStage": "ESM :Stage 1",
       "asmStage": "None",
       "isEsmEligible": true,
-      "LastUpdated": "Mon, 24 Aug, 2026, 02:33:30 am"
+      "LastUpdated": "Mon, 24 Aug, 2026, 02:35:54 am"
     },
     "503031": {
       "SecurityCode": "503031",
@@ -122,7 +122,7 @@
       "esmStage": "ESM :Stage 1",
       "asmStage": "None",
       "isEsmEligible": true,
-      "LastUpdated": "Mon, 24 Aug, 2026, 02:33:30 am"
+      "LastUpdated": "Mon, 24 Aug, 2026, 02:35:54 am"
     },
     "503639": {
       "SecurityCode": "503639",
@@ -141,7 +141,7 @@
       "esmStage": "ESM :Stage 1",
       "asmStage": "None",
       "isEsmEligible": true,
-      "LastUpdated": "Mon, 24 Aug, 2026, 02:33:30 am"
+      "LastUpdated": "Mon, 24 Aug, 2026, 02:35:54 am"
     },
     "503659": {
       "SecurityCode": "503659",
@@ -160,7 +160,7 @@
       "esmStage": "ESM :Stage 1",
       "asmStage": "None",
       "isEsmEligible": true,
-      "LastUpdated": "Mon, 24 Aug, 2026, 02:33:30 am"
+      "LastUpdated": "Mon, 24 Aug, 2026, 02:35:54 am"
     },
     "503663": {
       "SecurityCode": "503663",
@@ -215,7 +215,7 @@
       "esmStage": "ESM :Stage 1",
       "asmStage": "None",
       "isEsmEligible": true,
-      "LastUpdated": "Mon, 24 Aug, 2026, 02:33:30 am"
+      "LastUpdated": "Mon, 24 Aug, 2026, 02:35:54 am"
     },
     "504398": {
       "SecurityCode": "504398",
@@ -234,7 +234,7 @@
       "esmStage": "ESM :Stage 1",
       "asmStage": "None",
       "isEsmEligible": true,
-      "LastUpdated": "Mon, 24 Aug, 2026, 02:33:30 am"
+      "LastUpdated": "Mon, 24 Aug, 2026, 02:35:54 am"
     },
     "504786": {
       "SecurityCode": "504786",
@@ -265,7 +265,7 @@
       "esmStage": "ESM :Stage 1",
       "asmStage": "None",
       "isEsmEligible": true,
-      "LastUpdated": "Mon, 24 Aug, 2026, 02:33:30 am"
+      "LastUpdated": "Mon, 24 Aug, 2026, 02:35:54 am"
     },
     "505368": {
       "SecurityCode": "505368",
@@ -356,7 +356,7 @@
       "esmStage": "ESM :Stage 1",
       "asmStage": "None",
       "isEsmEligible": true,
-      "LastUpdated": "Mon, 24 Aug, 2026, 02:33:30 am"
+      "LastUpdated": "Mon, 24 Aug, 2026, 02:35:54 am"
     },
     "507438": {
       "SecurityCode": "507438",
@@ -423,7 +423,7 @@
       "esmStage": "ESM :Stage 1",
       "asmStage": "None",
       "isEsmEligible": true,
-      "LastUpdated": "Mon, 24 Aug, 2026, 02:33:30 am"
+      "LastUpdated": "Mon, 24 Aug, 2026, 02:35:54 am"
     },
     "509486": {
       "SecurityCode": "509486",
@@ -490,7 +490,7 @@
       "esmStage": "ESM :Stage 1",
       "asmStage": "None",
       "isEsmEligible": true,
-      "LastUpdated": "Mon, 24 Aug, 2026, 02:33:30 am"
+      "LastUpdated": "Mon, 24 Aug, 2026, 02:35:54 am"
     },
     "512093": {
       "SecurityCode": "512093",
@@ -521,7 +521,7 @@
       "esmStage": "ESM :Stage 1",
       "asmStage": "None",
       "isEsmEligible": true,
-      "LastUpdated": "Mon, 24 Aug, 2026, 02:33:30 am"
+      "LastUpdated": "Mon, 24 Aug, 2026, 02:35:54 am"
     },
     "512301": {
       "SecurityCode": "512301",
@@ -540,7 +540,7 @@
       "esmStage": "ESM :Stage 1",
       "asmStage": "None",
       "isEsmEligible": true,
-      "LastUpdated": "Mon, 24 Aug, 2026, 02:33:30 am"
+      "LastUpdated": "Mon, 24 Aug, 2026, 02:35:54 am"
     },
     "512345": {
       "SecurityCode": "512345",
@@ -715,7 +715,7 @@
       "esmStage": "ESM :Stage 1",
       "asmStage": "None",
       "isEsmEligible": true,
-      "LastUpdated": "Mon, 24 Aug, 2026, 02:33:30 am"
+      "LastUpdated": "Mon, 24 Aug, 2026, 02:35:54 am"
     },
     "519471": {
       "SecurityCode": "519471",
@@ -734,7 +734,7 @@
       "esmStage": "ESM :Stage 1",
       "asmStage": "None",
       "isEsmEligible": true,
-      "LastUpdated": "Mon, 24 Aug, 2026, 02:33:30 am"
+      "LastUpdated": "Mon, 24 Aug, 2026, 02:35:54 am"
     },
     "521003": {
       "SecurityCode": "521003",
@@ -813,7 +813,7 @@
       "esmStage": "ESM :Stage 1",
       "asmStage": "None",
       "isEsmEligible": true,
-      "LastUpdated": "Mon, 24 Aug, 2026, 02:33:30 am"
+      "LastUpdated": "Mon, 24 Aug, 2026, 02:35:54 am"
     },
     "524336": {
       "SecurityCode": "524336",
@@ -928,7 +928,7 @@
       "esmStage": "ESM :Stage 1",
       "asmStage": "None",
       "isEsmEligible": true,
-      "LastUpdated": "Mon, 24 Aug, 2026, 02:33:30 am"
+      "LastUpdated": "Mon, 24 Aug, 2026, 02:35:54 am"
     },
     "526971": {
       "SecurityCode": "526971",
@@ -959,7 +959,7 @@
       "esmStage": "ESM :Stage 1",
       "asmStage": "None",
       "isEsmEligible": true,
-      "LastUpdated": "Mon, 24 Aug, 2026, 02:33:30 am"
+      "LastUpdated": "Mon, 24 Aug, 2026, 02:35:54 am"
     },
     "530197": {
       "SecurityCode": "530197",
@@ -1050,7 +1050,7 @@
       "esmStage": "ESM :Stage 1",
       "asmStage": "None",
       "isEsmEligible": true,
-      "LastUpdated": "Mon, 24 Aug, 2026, 02:33:30 am"
+      "LastUpdated": "Mon, 24 Aug, 2026, 02:35:54 am"
     },
     "530757": {
       "SecurityCode": "530757",
@@ -1081,7 +1081,7 @@
       "esmStage": "ESM :Stage 1",
       "asmStage": "None",
       "isEsmEligible": true,
-      "LastUpdated": "Mon, 24 Aug, 2026, 02:33:30 am"
+      "LastUpdated": "Mon, 24 Aug, 2026, 02:35:54 am"
     },
     "530871": {
       "SecurityCode": "530871",
@@ -1136,7 +1136,7 @@
       "esmStage": "ESM :Stage 1",
       "asmStage": "None",
       "isEsmEligible": true,
-      "LastUpdated": "Mon, 24 Aug, 2026, 02:33:30 am"
+      "LastUpdated": "Mon, 24 Aug, 2026, 02:35:54 am"
     },
     "531049": {
       "SecurityCode": "531049",
@@ -1215,7 +1215,7 @@
       "esmStage": "ESM :Stage 1",
       "asmStage": "None",
       "isEsmEligible": true,
-      "LastUpdated": "Mon, 24 Aug, 2026, 02:33:30 am"
+      "LastUpdated": "Mon, 24 Aug, 2026, 02:35:54 am"
     },
     "531417": {
       "SecurityCode": "531417",
@@ -1294,7 +1294,7 @@
       "esmStage": "ESM :Stage 1",
       "asmStage": "None",
       "isEsmEligible": true,
-      "LastUpdated": "Mon, 24 Aug, 2026, 02:33:30 am"
+      "LastUpdated": "Mon, 24 Aug, 2026, 02:35:54 am"
     },
     "531780": {
       "SecurityCode": "531780",
@@ -1553,7 +1553,7 @@
       "esmStage": "ESM :Stage 1",
       "asmStage": "None",
       "isEsmEligible": true,
-      "LastUpdated": "Mon, 24 Aug, 2026, 02:33:30 am"
+      "LastUpdated": "Mon, 24 Aug, 2026, 02:35:54 am"
     },
     "533048": {
       "SecurityCode": "533048",
@@ -1680,7 +1680,7 @@
       "esmStage": "None",
       "asmStage": "None",
       "isEsmEligible": true,
-      "LastUpdated": "Mon, 24 Aug, 2026, 02:33:31 am"
+      "LastUpdated": "Mon, 24 Aug, 2026, 02:35:54 am"
     },
     "534755": {
       "SecurityCode": "534755",
@@ -1699,7 +1699,7 @@
       "esmStage": "ESM :Stage 1",
       "asmStage": "None",
       "isEsmEligible": true,
-      "LastUpdated": "Mon, 24 Aug, 2026, 02:33:30 am"
+      "LastUpdated": "Mon, 24 Aug, 2026, 02:35:54 am"
     },
     "534839": {
       "SecurityCode": "534839",
@@ -2042,7 +2042,7 @@
       "esmStage": "None",
       "asmStage": "None",
       "isEsmEligible": true,
-      "LastUpdated": "Mon, 24 Aug, 2026, 02:33:31 am"
+      "LastUpdated": "Mon, 24 Aug, 2026, 02:35:54 am"
     },
     "538921": {
       "SecurityCode": "538921",
@@ -2133,7 +2133,7 @@
       "esmStage": "ESM :Stage 1",
       "asmStage": "None",
       "isEsmEligible": true,
-      "LastUpdated": "Mon, 24 Aug, 2026, 02:33:30 am"
+      "LastUpdated": "Mon, 24 Aug, 2026, 02:35:54 am"
     },
     "539273": {
       "SecurityCode": "539273",
@@ -2164,7 +2164,7 @@
       "esmStage": "ESM :Stage 1",
       "asmStage": "None",
       "isEsmEligible": true,
-      "LastUpdated": "Mon, 24 Aug, 2026, 02:33:30 am"
+      "LastUpdated": "Mon, 24 Aug, 2026, 02:35:54 am"
     },
     "539337": {
       "SecurityCode": "539337",
@@ -2207,7 +2207,7 @@
       "esmStage": "None",
       "asmStage": "None",
       "isEsmEligible": true,
-      "LastUpdated": "Mon, 24 Aug, 2026, 02:33:31 am"
+      "LastUpdated": "Mon, 24 Aug, 2026, 02:35:54 am"
     },
     "539521": {
       "SecurityCode": "539521",
@@ -2334,7 +2334,7 @@
       "esmStage": "ESM :Stage 1",
       "asmStage": "None",
       "isEsmEligible": true,
-      "LastUpdated": "Mon, 24 Aug, 2026, 02:33:30 am"
+      "LastUpdated": "Mon, 24 Aug, 2026, 02:35:54 am"
     },
     "539985": {
       "SecurityCode": "539985",
@@ -2449,7 +2449,7 @@
       "esmStage": "ESM :Stage 1",
       "asmStage": "None",
       "isEsmEligible": true,
-      "LastUpdated": "Mon, 24 Aug, 2026, 02:33:30 am"
+      "LastUpdated": "Mon, 24 Aug, 2026, 02:35:54 am"
     },
     "540269": {
       "SecurityCode": "540269",
@@ -2684,7 +2684,7 @@
       "esmStage": "None",
       "asmStage": "None",
       "isEsmEligible": true,
-      "LastUpdated": "Mon, 24 Aug, 2026, 02:33:31 am"
+      "LastUpdated": "Mon, 24 Aug, 2026, 02:35:54 am"
     },
     "540786": {
       "SecurityCode": "540786",
@@ -2703,7 +2703,7 @@
       "esmStage": "ESM :Stage 1",
       "asmStage": "None",
       "isEsmEligible": true,
-      "LastUpdated": "Mon, 24 Aug, 2026, 02:33:30 am"
+      "LastUpdated": "Mon, 24 Aug, 2026, 02:35:54 am"
     },
     "540811": {
       "SecurityCode": "540811",
@@ -2890,7 +2890,7 @@
       "esmStage": "None",
       "asmStage": "None",
       "isEsmEligible": true,
-      "LastUpdated": "Mon, 24 Aug, 2026, 02:33:31 am"
+      "LastUpdated": "Mon, 24 Aug, 2026, 02:35:54 am"
     },
     "541353": {
       "SecurityCode": "541353",
@@ -2933,7 +2933,7 @@
       "esmStage": "None",
       "asmStage": "None",
       "isEsmEligible": true,
-      "LastUpdated": "Mon, 24 Aug, 2026, 02:33:31 am"
+      "LastUpdated": "Mon, 24 Aug, 2026, 02:35:54 am"
     },
     "541445": {
       "SecurityCode": "541445",
@@ -3084,7 +3084,7 @@
       "esmStage": "None",
       "asmStage": "None",
       "isEsmEligible": true,
-      "LastUpdated": "Mon, 24 Aug, 2026, 02:33:31 am"
+      "LastUpdated": "Mon, 24 Aug, 2026, 02:35:54 am"
     },
     "542477": {
       "SecurityCode": "542477",
@@ -3379,7 +3379,7 @@
       "esmStage": "None",
       "asmStage": "None",
       "isEsmEligible": true,
-      "LastUpdated": "Mon, 24 Aug, 2026, 02:33:31 am"
+      "LastUpdated": "Mon, 24 Aug, 2026, 02:35:54 am"
     },
     "543958": {
       "SecurityCode": "543958",
@@ -3398,7 +3398,7 @@
       "esmStage": "ESM :Stage 1",
       "asmStage": "None",
       "isEsmEligible": true,
-      "LastUpdated": "Mon, 24 Aug, 2026, 02:33:30 am"
+      "LastUpdated": "Mon, 24 Aug, 2026, 02:35:54 am"
     },
     "543970": {
       "SecurityCode": "543970",
@@ -3417,7 +3417,7 @@
       "esmStage": "None",
       "asmStage": "None",
       "isEsmEligible": true,
-      "LastUpdated": "Mon, 24 Aug, 2026, 02:33:31 am"
+      "LastUpdated": "Mon, 24 Aug, 2026, 02:35:54 am"
     },
     "543982": {
       "SecurityCode": "543982",
@@ -3448,7 +3448,7 @@
       "esmStage": "ESM :Stage 1",
       "asmStage": "None",
       "isEsmEligible": true,
-      "LastUpdated": "Mon, 24 Aug, 2026, 02:33:30 am"
+      "LastUpdated": "Mon, 24 Aug, 2026, 02:35:54 am"
     },
     "544281": {
       "SecurityCode": "544281",
@@ -3587,7 +3587,7 @@
       "esmStage": "None",
       "asmStage": "None",
       "isEsmEligible": true,
-      "LastUpdated": "Mon, 24 Aug, 2026, 02:33:31 am"
+      "LastUpdated": "Mon, 24 Aug, 2026, 02:35:54 am"
     },
     "544538": {
       "SecurityCode": "544538",
@@ -3618,7 +3618,7 @@
       "esmStage": "ESM :Stage 2",
       "asmStage": "None",
       "isEsmEligible": true,
-      "LastUpdated": "Mon, 24 Aug, 2026, 02:33:30 am"
+      "LastUpdated": "Mon, 24 Aug, 2026, 02:35:54 am"
     },
     "544557": {
       "SecurityCode": "544557",
@@ -3637,7 +3637,7 @@
       "esmStage": "None",
       "asmStage": "None",
       "isEsmEligible": true,
-      "LastUpdated": "Mon, 24 Aug, 2026, 02:33:31 am"
+      "LastUpdated": "Mon, 24 Aug, 2026, 02:35:54 am"
     },
     "544607": {
       "SecurityCode": "544607",
@@ -3656,7 +3656,7 @@
       "esmStage": "None",
       "asmStage": "None",
       "isEsmEligible": true,
-      "LastUpdated": "Mon, 24 Aug, 2026, 02:33:31 am"
+      "LastUpdated": "Mon, 24 Aug, 2026, 02:35:54 am"
     },
     "544628": {
       "SecurityCode": "544628",
@@ -3675,7 +3675,7 @@
       "esmStage": "None",
       "asmStage": "None",
       "isEsmEligible": true,
-      "LastUpdated": "Mon, 24 Aug, 2026, 02:33:30 am"
+      "LastUpdated": "Mon, 24 Aug, 2026, 02:35:54 am"
     },
     "544680": {
       "SecurityCode": "544680",
@@ -3694,7 +3694,7 @@
       "esmStage": "None",
       "asmStage": "None",
       "isEsmEligible": true,
-      "LastUpdated": "Mon, 24 Aug, 2026, 02:33:30 am"
+      "LastUpdated": "Mon, 24 Aug, 2026, 02:35:54 am"
     },
     "544683": {
       "SecurityCode": "544683",
@@ -3713,7 +3713,7 @@
       "esmStage": "None",
       "asmStage": "None",
       "isEsmEligible": true,
-      "LastUpdated": "Mon, 24 Aug, 2026, 02:33:30 am"
+      "LastUpdated": "Mon, 24 Aug, 2026, 02:35:54 am"
     },
     "544684": {
       "SecurityCode": "544684",
@@ -3732,7 +3732,7 @@
       "esmStage": "ESM :Stage 2",
       "asmStage": "None",
       "isEsmEligible": true,
-      "LastUpdated": "Mon, 24 Aug, 2026, 02:33:30 am"
+      "LastUpdated": "Mon, 24 Aug, 2026, 02:35:54 am"
     },
     "544693": {
       "SecurityCode": "544693",
@@ -3799,7 +3799,7 @@
       "esmStage": "None",
       "asmStage": "None",
       "isEsmEligible": true,
-      "LastUpdated": "Mon, 24 Aug, 2026, 02:33:30 am"
+      "LastUpdated": "Mon, 24 Aug, 2026, 02:35:54 am"
     },
     "544757": {
       "SecurityCode": "544757",
@@ -3830,7 +3830,7 @@
       "esmStage": "ESM :Stage 1",
       "asmStage": "None",
       "isEsmEligible": true,
-      "LastUpdated": "Mon, 24 Aug, 2026, 02:33:30 am"
+      "LastUpdated": "Mon, 24 Aug, 2026, 02:35:54 am"
     },
     "AAKAAR": {
       "Symbol": "AAKAAR",
@@ -7054,10 +7054,21 @@
     "METALIC": {
       "Symbol": "METALIC",
       "Exchange": "NSE",
+      "Series": "SM",
       "CompanyName": "Metalic Technoforge Limited",
-      "ISIN": "INE1II801013",
+      "LTP": 147.2,
+      "PrevClose": 151.5,
+      "LotSize": 1600,
+      "TotalSecurities": 0,
+      "MarketCapCr": 0,
+      "FreeFloatMarketCapCr": 69.23,
+      "ListingDate": "28-Jul-2026 00:00:00",
+      "High52": 161.95,
+      "Low52": 81.4,
       "esmStage": "ESM :Stage 1",
-      "LastUpdated": "Mon, 24 Aug, 2026, 01:36:18 am"
+      "asmStage": "None",
+      "isEsmEligible": true,
+      "LastUpdated": "Mon, 24 Aug, 2026, 02:35:44 am"
     },
     "MYSORPETRO": {
       "Symbol": "MYSORPETRO",
@@ -7860,7 +7871,26 @@
       "esmStage": "None",
       "asmStage": "None",
       "isEsmEligible": true,
-      "LastUpdated": "Mon, 24 Aug, 2026, 02:33:24 am"
+      "LastUpdated": "Mon, 24 Aug, 2026, 02:35:44 am"
+    },
+    "JFLLIFE": {
+      "Symbol": "JFLLIFE",
+      "Exchange": "NSE",
+      "Series": "SM",
+      "CompanyName": "Jfl Life Sciences Limited",
+      "LTP": 10.9,
+      "PrevClose": 11.2,
+      "LotSize": 6000,
+      "TotalSecurities": 0,
+      "MarketCapCr": 0,
+      "FreeFloatMarketCapCr": 23.4,
+      "ListingDate": "08-Sep-2022 00:00:00",
+      "High52": 14.67,
+      "Low52": 8.55,
+      "esmStage": "None",
+      "asmStage": "None",
+      "isEsmEligible": true,
+      "LastUpdated": "Mon, 24 Aug, 2026, 02:35:44 am"
     },
     "KALANA": {
       "Symbol": "KALANA",
@@ -7879,7 +7909,7 @@
       "esmStage": "None",
       "asmStage": "None",
       "isEsmEligible": true,
-      "LastUpdated": "Mon, 24 Aug, 2026, 02:33:24 am"
+      "LastUpdated": "Mon, 24 Aug, 2026, 02:35:44 am"
     },
     "KATARIA": {
       "Symbol": "KATARIA",
@@ -7898,7 +7928,7 @@
       "esmStage": "None",
       "asmStage": "None",
       "isEsmEligible": true,
-      "LastUpdated": "Mon, 24 Aug, 2026, 02:33:24 am"
+      "LastUpdated": "Mon, 24 Aug, 2026, 02:35:44 am"
     },
     "KCEIL": {
       "Symbol": "KCEIL",
@@ -7917,7 +7947,26 @@
       "esmStage": "None",
       "asmStage": "None",
       "isEsmEligible": true,
-      "LastUpdated": "Mon, 24 Aug, 2026, 02:33:24 am"
+      "LastUpdated": "Mon, 24 Aug, 2026, 02:35:44 am"
+    },
+    "KHFM": {
+      "Symbol": "KHFM",
+      "Exchange": "NSE",
+      "Series": "SM",
+      "CompanyName": "Khfm Hospitality And Facility Management Services Limited",
+      "LTP": 47.45,
+      "PrevClose": 46.7,
+      "LotSize": 1550,
+      "TotalSecurities": 0,
+      "MarketCapCr": 0,
+      "FreeFloatMarketCapCr": 65.84,
+      "ListingDate": "12-Apr-2019 00:00:00",
+      "High52": 86.7,
+      "Low52": 42,
+      "esmStage": "None",
+      "asmStage": "None",
+      "isEsmEligible": true,
+      "LastUpdated": "Mon, 24 Aug, 2026, 02:35:44 am"
     },
     "LAMOSAIC": {
       "Symbol": "LAMOSAIC",
@@ -7936,7 +7985,26 @@
       "esmStage": "None",
       "asmStage": "None",
       "isEsmEligible": true,
-      "LastUpdated": "Mon, 24 Aug, 2026, 02:33:24 am"
+      "LastUpdated": "Mon, 24 Aug, 2026, 02:35:44 am"
+    },
+    "MAKS": {
+      "Symbol": "MAKS",
+      "Exchange": "NSE",
+      "Series": "SM",
+      "CompanyName": "Maks Energy Solutions India Limited",
+      "LTP": 14.05,
+      "PrevClose": 14.75,
+      "LotSize": 1500,
+      "TotalSecurities": 0,
+      "MarketCapCr": 0,
+      "FreeFloatMarketCapCr": 1.94,
+      "ListingDate": "28-Sep-2022 00:00:00",
+      "High52": 36,
+      "Low52": 14.05,
+      "esmStage": "None",
+      "asmStage": "None",
+      "isEsmEligible": true,
+      "LastUpdated": "Mon, 24 Aug, 2026, 02:35:44 am"
     },
     "MDL": {
       "Symbol": "MDL",
@@ -7955,7 +8023,7 @@
       "esmStage": "None",
       "asmStage": "None",
       "isEsmEligible": true,
-      "LastUpdated": "Mon, 24 Aug, 2026, 02:33:24 am"
+      "LastUpdated": "Mon, 24 Aug, 2026, 02:35:44 am"
     },
     "MGSL": {
       "Symbol": "MGSL",
@@ -7974,7 +8042,7 @@
       "esmStage": "None",
       "asmStage": "None",
       "isEsmEligible": true,
-      "LastUpdated": "Mon, 24 Aug, 2026, 02:33:24 am"
+      "LastUpdated": "Mon, 24 Aug, 2026, 02:35:44 am"
     },
     "MAXVOLT": {
       "Symbol": "MAXVOLT",
@@ -7993,7 +8061,26 @@
       "esmStage": "None",
       "asmStage": "None",
       "isEsmEligible": true,
-      "LastUpdated": "Mon, 24 Aug, 2026, 02:33:24 am"
+      "LastUpdated": "Mon, 24 Aug, 2026, 02:35:44 am"
+    },
+    "MEDISTEP": {
+      "Symbol": "MEDISTEP",
+      "Exchange": "NSE",
+      "Series": "SM",
+      "CompanyName": "Medistep Healthcare Limited",
+      "LTP": 18.95,
+      "PrevClose": 18.55,
+      "LotSize": 3000,
+      "TotalSecurities": 0,
+      "MarketCapCr": 0,
+      "FreeFloatMarketCapCr": 7.09,
+      "ListingDate": "18-Aug-2025 00:00:00",
+      "High52": 45.45,
+      "Low52": 16.5,
+      "esmStage": "None",
+      "asmStage": "None",
+      "isEsmEligible": true,
+      "LastUpdated": "Mon, 24 Aug, 2026, 02:35:44 am"
     },
     "MEGAFLEX": {
       "Symbol": "MEGAFLEX",
@@ -8012,7 +8099,7 @@
       "esmStage": "None",
       "asmStage": "None",
       "isEsmEligible": true,
-      "LastUpdated": "Mon, 24 Aug, 2026, 02:33:24 am"
+      "LastUpdated": "Mon, 24 Aug, 2026, 02:35:44 am"
     },
     "MEGATHERM": {
       "Symbol": "MEGATHERM",
@@ -8031,7 +8118,45 @@
       "esmStage": "None",
       "asmStage": "None",
       "isEsmEligible": true,
-      "LastUpdated": "Mon, 24 Aug, 2026, 02:33:24 am"
+      "LastUpdated": "Mon, 24 Aug, 2026, 02:35:44 am"
+    },
+    "MILTON": {
+      "Symbol": "MILTON",
+      "Exchange": "NSE",
+      "Series": "SM",
+      "CompanyName": "Milton Industries Limited",
+      "LTP": 40.5,
+      "PrevClose": 40.5,
+      "LotSize": 2200,
+      "TotalSecurities": 0,
+      "MarketCapCr": 0,
+      "FreeFloatMarketCapCr": 18.61,
+      "ListingDate": "16-Oct-2017 00:00:00",
+      "High52": 53.5,
+      "Low52": 24.85,
+      "esmStage": "None",
+      "asmStage": "None",
+      "isEsmEligible": true,
+      "LastUpdated": "Mon, 24 Aug, 2026, 02:35:44 am"
+    },
+    "MHHL": {
+      "Symbol": "MHHL",
+      "Exchange": "NSE",
+      "Series": "SM",
+      "CompanyName": "Mohini Health & Hygiene Limited",
+      "LTP": 34.8,
+      "PrevClose": 36.6,
+      "LotSize": 1500,
+      "TotalSecurities": 0,
+      "MarketCapCr": 0,
+      "FreeFloatMarketCapCr": 22.19,
+      "ListingDate": "16-Feb-2018 00:00:00",
+      "High52": 56.5,
+      "Low52": 29.2,
+      "esmStage": "None",
+      "asmStage": "None",
+      "isEsmEligible": true,
+      "LastUpdated": "Mon, 24 Aug, 2026, 02:35:44 am"
     },
     "MONOPHARMA": {
       "Symbol": "MONOPHARMA",
@@ -8050,7 +8175,45 @@
       "esmStage": "None",
       "asmStage": "None",
       "isEsmEligible": true,
-      "LastUpdated": "Mon, 24 Aug, 2026, 02:33:24 am"
+      "LastUpdated": "Mon, 24 Aug, 2026, 02:35:44 am"
+    },
+    "MONOLITH": {
+      "Symbol": "MONOLITH",
+      "Exchange": "NSE",
+      "Series": "SM",
+      "CompanyName": "Monolithisch India Limited",
+      "LTP": 999.4,
+      "PrevClose": 1007.6,
+      "LotSize": 250,
+      "TotalSecurities": 0,
+      "MarketCapCr": 0,
+      "FreeFloatMarketCapCr": 560.9,
+      "ListingDate": "19-Jun-2025 00:00:00",
+      "High52": 1044,
+      "Low52": 367,
+      "esmStage": "None",
+      "asmStage": "None",
+      "isEsmEligible": true,
+      "LastUpdated": "Mon, 24 Aug, 2026, 02:35:44 am"
+    },
+    "MOS": {
+      "Symbol": "MOS",
+      "Exchange": "NSE",
+      "Series": "ST",
+      "CompanyName": "Mos Utility Limited",
+      "LTP": 11.85,
+      "PrevClose": 12.25,
+      "LotSize": 4000,
+      "TotalSecurities": 0,
+      "MarketCapCr": 0,
+      "FreeFloatMarketCapCr": 140.18,
+      "ListingDate": "18-Apr-2023 00:00:00",
+      "High52": 28.55,
+      "Low52": 9.05,
+      "esmStage": "None",
+      "asmStage": "None",
+      "isEsmEligible": true,
+      "LastUpdated": "Mon, 24 Aug, 2026, 02:35:44 am"
     },
     "MMEL": {
       "Symbol": "MMEL",
@@ -8069,7 +8232,26 @@
       "esmStage": "None",
       "asmStage": "None",
       "isEsmEligible": true,
-      "LastUpdated": "Mon, 24 Aug, 2026, 02:33:24 am"
+      "LastUpdated": "Mon, 24 Aug, 2026, 02:35:44 am"
+    },
+    "MUNISH": {
+      "Symbol": "MUNISH",
+      "Exchange": "NSE",
+      "Series": "SM",
+      "CompanyName": "Munish Forge Limited",
+      "LTP": 74.05,
+      "PrevClose": 75,
+      "LotSize": 1200,
+      "TotalSecurities": 0,
+      "MarketCapCr": 0,
+      "FreeFloatMarketCapCr": 57.02,
+      "ListingDate": "08-Oct-2025 00:00:00",
+      "High52": 143,
+      "Low52": 50.2,
+      "esmStage": "None",
+      "asmStage": "None",
+      "isEsmEligible": true,
+      "LastUpdated": "Mon, 24 Aug, 2026, 02:35:44 am"
     },
     "MYMUDRA": {
       "Symbol": "MYMUDRA",
@@ -8088,7 +8270,64 @@
       "esmStage": "None",
       "asmStage": "None",
       "isEsmEligible": true,
-      "LastUpdated": "Mon, 24 Aug, 2026, 02:33:24 am"
+      "LastUpdated": "Mon, 24 Aug, 2026, 02:35:44 am"
+    },
+    "NRVANDANA": {
+      "Symbol": "NRVANDANA",
+      "Exchange": "NSE",
+      "Series": "ST",
+      "CompanyName": "N R Vandana Tex Industries Limited",
+      "LTP": 67.55,
+      "PrevClose": 64.65,
+      "LotSize": 3000,
+      "TotalSecurities": 0,
+      "MarketCapCr": 0,
+      "FreeFloatMarketCapCr": 41.87,
+      "ListingDate": "04-Jun-2025 00:00:00",
+      "High52": 82.9,
+      "Low52": 41,
+      "esmStage": "None",
+      "asmStage": "None",
+      "isEsmEligible": true,
+      "LastUpdated": "Mon, 24 Aug, 2026, 02:35:44 am"
+    },
+    "NAMAN": {
+      "Symbol": "NAMAN",
+      "Exchange": "NSE",
+      "Series": "SM",
+      "CompanyName": "Naman Industries Proxima Limited",
+      "LTP": 44,
+      "PrevClose": 43.1,
+      "LotSize": 800,
+      "TotalSecurities": 0,
+      "MarketCapCr": 0,
+      "FreeFloatMarketCapCr": 23.61,
+      "ListingDate": "02-Apr-2024 00:00:00",
+      "High52": 99.9,
+      "Low52": 38.95,
+      "esmStage": "None",
+      "asmStage": "None",
+      "isEsmEligible": true,
+      "LastUpdated": "Mon, 24 Aug, 2026, 02:35:44 am"
+    },
+    "NAMOEWASTE": {
+      "Symbol": "NAMOEWASTE",
+      "Exchange": "NSE",
+      "Series": "ST",
+      "CompanyName": "Namo eWaste Management Limited",
+      "LTP": 280.25,
+      "PrevClose": 279.45,
+      "LotSize": 800,
+      "TotalSecurities": 0,
+      "MarketCapCr": 0,
+      "FreeFloatMarketCapCr": 177.62,
+      "ListingDate": "11-Sep-2024 00:00:00",
+      "High52": 319.4,
+      "Low52": 134,
+      "esmStage": "None",
+      "asmStage": "None",
+      "isEsmEligible": true,
+      "LastUpdated": "Mon, 24 Aug, 2026, 02:35:44 am"
     },
     "NEOCHEM": {
       "Symbol": "NEOCHEM",
@@ -8107,7 +8346,45 @@
       "esmStage": "None",
       "asmStage": "None",
       "isEsmEligible": true,
-      "LastUpdated": "Mon, 24 Aug, 2026, 02:33:24 am"
+      "LastUpdated": "Mon, 24 Aug, 2026, 02:35:44 am"
+    },
+    "NEPHROCARE": {
+      "Symbol": "NEPHROCARE",
+      "Exchange": "NSE",
+      "Series": "ST",
+      "CompanyName": "Nephro Care India Limited",
+      "LTP": 89.5,
+      "PrevClose": 0,
+      "LotSize": 400,
+      "TotalSecurities": 0,
+      "MarketCapCr": 0,
+      "FreeFloatMarketCapCr": 56.43,
+      "ListingDate": "05-Jul-2024 00:00:00",
+      "High52": 183,
+      "Low52": 50.05,
+      "esmStage": "None",
+      "asmStage": "None",
+      "isEsmEligible": true,
+      "LastUpdated": "Mon, 24 Aug, 2026, 02:35:44 am"
+    },
+    "NEPTUNE": {
+      "Symbol": "NEPTUNE",
+      "Exchange": "NSE",
+      "Series": "SM",
+      "CompanyName": "Neptune Petrochemicals Limited",
+      "LTP": 179.05,
+      "PrevClose": 179,
+      "LotSize": 500,
+      "TotalSecurities": 0,
+      "MarketCapCr": 0,
+      "FreeFloatMarketCapCr": 107.4,
+      "ListingDate": "04-Jun-2025 00:00:00",
+      "High52": 246.9,
+      "Low52": 136.1,
+      "esmStage": "None",
+      "asmStage": "None",
+      "isEsmEligible": true,
+      "LastUpdated": "Mon, 24 Aug, 2026, 02:35:44 am"
     },
     "NEWJAISA": {
       "Symbol": "NEWJAISA",
@@ -8125,7 +8402,7 @@
       "esmStage": "None",
       "asmStage": "None",
       "isEsmEligible": true,
-      "LastUpdated": "Mon, 24 Aug, 2026, 02:33:24 am"
+      "LastUpdated": "Mon, 24 Aug, 2026, 02:35:44 am"
     },
     "NFPSAMPOOR": {
       "Symbol": "NFPSAMPOOR",
@@ -8144,7 +8421,26 @@
       "esmStage": "None",
       "asmStage": "None",
       "isEsmEligible": true,
-      "LastUpdated": "Mon, 24 Aug, 2026, 02:33:24 am"
+      "LastUpdated": "Mon, 24 Aug, 2026, 02:35:44 am"
+    },
+    "NIDAN": {
+      "Symbol": "NIDAN",
+      "Exchange": "NSE",
+      "Series": "SM",
+      "CompanyName": "Nidan Laboratories and Healthcare Limited",
+      "LTP": 13.35,
+      "PrevClose": 13.85,
+      "LotSize": 1000,
+      "TotalSecurities": 0,
+      "MarketCapCr": 0,
+      "FreeFloatMarketCapCr": 8,
+      "ListingDate": "12-Nov-2021 00:00:00",
+      "High52": 24.9,
+      "Low52": 11.5,
+      "esmStage": "None",
+      "asmStage": "None",
+      "isEsmEligible": true,
+      "LastUpdated": "Mon, 24 Aug, 2026, 02:35:44 am"
     },
     "NIKITA": {
       "Symbol": "NIKITA",
@@ -8163,7 +8459,64 @@
       "esmStage": "None",
       "asmStage": "None",
       "isEsmEligible": true,
-      "LastUpdated": "Mon, 24 Aug, 2026, 02:33:24 am"
+      "LastUpdated": "Mon, 24 Aug, 2026, 02:35:44 am"
+    },
+    "NIRMAN": {
+      "Symbol": "NIRMAN",
+      "Exchange": "NSE",
+      "Series": "SM",
+      "CompanyName": "Nirman Agri Genetics Limited",
+      "LTP": 29.05,
+      "PrevClose": 30.95,
+      "LotSize": 300,
+      "TotalSecurities": 0,
+      "MarketCapCr": 0,
+      "FreeFloatMarketCapCr": 12.93,
+      "ListingDate": "28-Mar-2023 00:00:00",
+      "High52": 231,
+      "Low52": 28,
+      "esmStage": "None",
+      "asmStage": "None",
+      "isEsmEligible": true,
+      "LastUpdated": "Mon, 24 Aug, 2026, 02:35:44 am"
+    },
+    "OBSCP": {
+      "Symbol": "OBSCP",
+      "Exchange": "NSE",
+      "Series": "SM",
+      "CompanyName": "OBSC Perfection Limited",
+      "LTP": 835.2,
+      "PrevClose": 855.85,
+      "LotSize": 400,
+      "TotalSecurities": 0,
+      "MarketCapCr": 0,
+      "FreeFloatMarketCapCr": 534.71,
+      "ListingDate": "29-Oct-2024 00:00:00",
+      "High52": 921,
+      "Low52": 269.95,
+      "esmStage": "None",
+      "asmStage": "None",
+      "isEsmEligible": true,
+      "LastUpdated": "Mon, 24 Aug, 2026, 02:35:44 am"
+    },
+    "ONDOOR": {
+      "Symbol": "ONDOOR",
+      "Exchange": "NSE",
+      "Series": "SM",
+      "CompanyName": "On Door Concepts Limited",
+      "LTP": 245.05,
+      "PrevClose": 246.05,
+      "LotSize": 300,
+      "TotalSecurities": 0,
+      "MarketCapCr": 0,
+      "FreeFloatMarketCapCr": 90.59,
+      "ListingDate": "01-Nov-2023 00:00:00",
+      "High52": 285,
+      "Low52": 100,
+      "esmStage": "None",
+      "asmStage": "None",
+      "isEsmEligible": true,
+      "LastUpdated": "Mon, 24 Aug, 2026, 02:35:44 am"
     },
     "OLIL": {
       "Symbol": "OLIL",
@@ -8182,7 +8535,45 @@
       "esmStage": "None",
       "asmStage": "None",
       "isEsmEligible": true,
-      "LastUpdated": "Mon, 24 Aug, 2026, 02:33:24 am"
+      "LastUpdated": "Mon, 24 Aug, 2026, 02:35:44 am"
+    },
+    "OPTIMYSTIX": {
+      "Symbol": "OPTIMYSTIX",
+      "Exchange": "NSE",
+      "Series": "ST",
+      "CompanyName": "Optimystix Entertainment India Limited",
+      "LTP": 174,
+      "PrevClose": 179.95,
+      "LotSize": 800,
+      "TotalSecurities": 0,
+      "MarketCapCr": 0,
+      "FreeFloatMarketCapCr": 80.75,
+      "ListingDate": "14-Aug-2026 00:00:00",
+      "High52": 195,
+      "Low52": 172.6,
+      "esmStage": "None",
+      "asmStage": "None",
+      "isEsmEligible": true,
+      "LastUpdated": "Mon, 24 Aug, 2026, 02:35:44 am"
+    },
+    "OPTIVALUE": {
+      "Symbol": "OPTIVALUE",
+      "Exchange": "NSE",
+      "Series": "ST",
+      "CompanyName": "Optivalue Tek Consulting Limited",
+      "LTP": 183.9,
+      "PrevClose": 180,
+      "LotSize": 1600,
+      "TotalSecurities": 0,
+      "MarketCapCr": 0,
+      "FreeFloatMarketCapCr": 113.46,
+      "ListingDate": "10-Sep-2025 00:00:00",
+      "High52": 194.5,
+      "Low52": 56.05,
+      "esmStage": "None",
+      "asmStage": "None",
+      "isEsmEligible": true,
+      "LastUpdated": "Mon, 24 Aug, 2026, 02:35:44 am"
     },
     "ORIANA": {
       "Symbol": "ORIANA",
@@ -8201,7 +8592,45 @@
       "esmStage": "None",
       "asmStage": "None",
       "isEsmEligible": true,
-      "LastUpdated": "Mon, 24 Aug, 2026, 02:33:24 am"
+      "LastUpdated": "Mon, 24 Aug, 2026, 02:35:44 am"
+    },
+    "OSELDEVICE": {
+      "Symbol": "OSELDEVICE",
+      "Exchange": "NSE",
+      "Series": "SM",
+      "CompanyName": "Osel Devices Limited",
+      "LTP": 400.55,
+      "PrevClose": 384.15,
+      "LotSize": 200,
+      "TotalSecurities": 0,
+      "MarketCapCr": 0,
+      "FreeFloatMarketCapCr": 185.52,
+      "ListingDate": "24-Sep-2024 00:00:00",
+      "High52": 835,
+      "Low52": 357.15,
+      "esmStage": "None",
+      "asmStage": "None",
+      "isEsmEligible": true,
+      "LastUpdated": "Mon, 24 Aug, 2026, 02:35:44 am"
+    },
+    "OWAIS": {
+      "Symbol": "OWAIS",
+      "Exchange": "NSE",
+      "Series": "ST",
+      "CompanyName": "Owais Metal And Mineral Processing Limited",
+      "LTP": 61.15,
+      "PrevClose": 64.35,
+      "LotSize": 100,
+      "TotalSecurities": 0,
+      "MarketCapCr": 0,
+      "FreeFloatMarketCapCr": 30.41,
+      "ListingDate": "04-Mar-2024 00:00:00",
+      "High52": 580,
+      "Low52": 61.15,
+      "esmStage": "None",
+      "asmStage": "None",
+      "isEsmEligible": true,
+      "LastUpdated": "Mon, 24 Aug, 2026, 02:35:44 am"
     },
     "PSRAJ": {
       "Symbol": "PSRAJ",
@@ -8220,7 +8649,26 @@
       "esmStage": "None",
       "asmStage": "None",
       "isEsmEligible": true,
-      "LastUpdated": "Mon, 24 Aug, 2026, 02:33:24 am"
+      "LastUpdated": "Mon, 24 Aug, 2026, 02:35:44 am"
+    },
+    "PROPEQUITY": {
+      "Symbol": "PROPEQUITY",
+      "Exchange": "NSE",
+      "Series": "SM",
+      "CompanyName": "P. E. Analytics Limited",
+      "LTP": 212,
+      "PrevClose": 220,
+      "LotSize": 600,
+      "TotalSecurities": 0,
+      "MarketCapCr": 0,
+      "FreeFloatMarketCapCr": 57.66,
+      "ListingDate": "04-Apr-2022 00:00:00",
+      "High52": 268,
+      "Low52": 145,
+      "esmStage": "None",
+      "asmStage": "None",
+      "isEsmEligible": true,
+      "LastUpdated": "Mon, 24 Aug, 2026, 02:35:44 am"
     },
     "PARAGON": {
       "Symbol": "PARAGON",
@@ -8239,7 +8687,7 @@
       "esmStage": "None",
       "asmStage": "None",
       "isEsmEligible": true,
-      "LastUpdated": "Mon, 24 Aug, 2026, 02:33:24 am"
+      "LastUpdated": "Mon, 24 Aug, 2026, 02:35:44 am"
     },
     "PARAMOUNT": {
       "Symbol": "PARAMOUNT",
@@ -8258,7 +8706,83 @@
       "esmStage": "None",
       "asmStage": "None",
       "isEsmEligible": true,
-      "LastUpdated": "Mon, 24 Aug, 2026, 02:33:24 am"
+      "LastUpdated": "Mon, 24 Aug, 2026, 02:35:44 am"
+    },
+    "PSFL": {
+      "Symbol": "PSFL",
+      "Exchange": "NSE",
+      "Series": "SM",
+      "CompanyName": "Paramount Speciality Forgings Limited",
+      "LTP": 31.05,
+      "PrevClose": 32.5,
+      "LotSize": 2000,
+      "TotalSecurities": 0,
+      "MarketCapCr": 0,
+      "FreeFloatMarketCapCr": 16.93,
+      "ListingDate": "25-Sep-2024 00:00:00",
+      "High52": 43.05,
+      "Low52": 21.15,
+      "esmStage": "None",
+      "asmStage": "None",
+      "isEsmEligible": true,
+      "LastUpdated": "Mon, 24 Aug, 2026, 02:35:44 am"
+    },
+    "PARIN": {
+      "Symbol": "PARIN",
+      "Exchange": "NSE",
+      "Series": "SM",
+      "CompanyName": "Parin Enterprises Limited",
+      "LTP": 707,
+      "PrevClose": 714,
+      "LotSize": 250,
+      "TotalSecurities": 0,
+      "MarketCapCr": 0,
+      "FreeFloatMarketCapCr": 207.53,
+      "ListingDate": "09-Oct-2018 00:00:00",
+      "High52": 748,
+      "Low52": 406.05,
+      "esmStage": "None",
+      "asmStage": "None",
+      "isEsmEligible": true,
+      "LastUpdated": "Mon, 24 Aug, 2026, 02:35:44 am"
+    },
+    "PARTH": {
+      "Symbol": "PARTH",
+      "Exchange": "NSE",
+      "Series": "SM",
+      "CompanyName": "Parth Electricals & Engineering Limited",
+      "LTP": 491.65,
+      "PrevClose": 485.4,
+      "LotSize": 400,
+      "TotalSecurities": 0,
+      "MarketCapCr": 0,
+      "FreeFloatMarketCapCr": 202.7,
+      "ListingDate": "11-Aug-2025 00:00:00",
+      "High52": 536.95,
+      "Low52": 188.55,
+      "esmStage": "None",
+      "asmStage": "None",
+      "isEsmEligible": true,
+      "LastUpdated": "Mon, 24 Aug, 2026, 02:35:44 am"
+    },
+    "PARTYCRUS": {
+      "Symbol": "PARTYCRUS",
+      "Exchange": "NSE",
+      "Series": "SM",
+      "CompanyName": "Party Cruisers Limited",
+      "LTP": 77.35,
+      "PrevClose": 78,
+      "LotSize": 1000,
+      "TotalSecurities": 0,
+      "MarketCapCr": 0,
+      "FreeFloatMarketCapCr": 29.04,
+      "ListingDate": "05-Mar-2021 00:00:00",
+      "High52": 113.85,
+      "Low52": 63.05,
+      "esmStage": "None",
+      "asmStage": "None",
+      "isEsmEligible": true,
+      "LastUpdated": "Mon, 24 Aug, 2026, 02:35:44 am"
     }
   }
 }
