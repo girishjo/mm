@@ -346,8 +346,9 @@
             <div style="margin-bottom: 10px;">
                 <label for="chkPortfolioWithCash" style="margin-right: 10px;"><input type="checkbox"
                         id="chkPortfolioWithCash" onchange="togglePortfolioCash();"> with Cash</label>
-                <input type="number" id="portfolioCash" min="0" step="0.01" placeholder="Cash value"
-                    style="width: 120px; margin-right: 20px; display: none;" onchange="savePortfolioPreferences(); updatePortfolioTable();">
+                <input type="text" id="portfolioCash" inputmode="decimal" placeholder="Cash value"
+                    style="width: 120px; margin-right: 20px;" disabled onchange="savePortfolioPreferences(); updatePortfolioTable();"
+                    onblur="formatPortfolioCash();">
                 <label for="portfolioDate" style="font-weight: bold; margin-right: 10px;">Portfolio as on:</label>
                 <span id="portfolioDateDisplay"
                     style="font-weight: bold; color: #333; margin-right: 10px; display: inline-block; width: 80px; text-align: right;"></span>

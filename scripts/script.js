@@ -977,8 +977,23 @@ function getPortfolioCash() {
     const withCash = document.getElementById('chkPortfolioWithCash');
     const cashInput = document.getElementById('portfolioCash');
     if (!withCash?.checked || !cashInput) return 0;
-    const cash = Number(cashInput.value);
+    const cash = Number(cashInput.value.replace(/,/g, ''));
     return Number.isFinite(cash) && cash > 0 ? cash : 0;
+}
+
+function formatPortfolioCash() {
+    const cashInput = document.getElementById('portfolioCash');
+    if (!cashInput) return;
+    const rawValue = cashInput.value.replace(/,/g, '').trim();
+    if (!rawValue) return;
+    const cash = Number(rawValue);
+    if (Number.isFinite(cash) && cash >= 0) {
+        cashInput.value = cash.toLocaleString('en-IN', {
+            maximumFractionDigits: 2
+        });
+        savePortfolioPreferences();
+        updatePortfolioTable();
+    }
 }
 
 function addPortfolioCashRow(cash, refs1, refs2) {
@@ -1003,7 +1018,8 @@ function savePortfolioPreferences() {
     if (!settings) return;
     if (!settings.configs) settings.configs = {};
     settings.configs.portfolioWithCash = document.getElementById('chkPortfolioWithCash')?.checked === true;
-    settings.configs.portfolioCash = document.getElementById('portfolioCash')?.value || '';
+    const cashValue = document.getElementById('portfolioCash')?.value || '';
+    settings.configs.portfolioCash = cashValue.replace(/,/g, '');
     window.localStorage.setItem('userSettings', JSON.stringify(settings));
 }
 
@@ -1011,7 +1027,7 @@ function togglePortfolioCash() {
     const withCash = document.getElementById('chkPortfolioWithCash');
     const cashInput = document.getElementById('portfolioCash');
     if (!withCash || !cashInput) return;
-    cashInput.style.display = withCash.checked ? 'inline-block' : 'none';
+    cashInput.disabled = !withCash.checked;
     savePortfolioPreferences();
     updatePortfolioTable();
 }
@@ -1022,7 +1038,8 @@ function restorePortfolioPreferences() {
     if (!withCash || !cashInput || !settings?.configs) return;
     withCash.checked = settings.configs.portfolioWithCash === true;
     cashInput.value = settings.configs.portfolioCash || '';
-    cashInput.style.display = withCash.checked ? 'inline-block' : 'none';
+    formatPortfolioCash();
+    cashInput.disabled = !withCash.checked;
 }
 
 function updatePortfolioTable() {
