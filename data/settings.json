@@ -20,7 +20,35 @@
             "T",
             "BE"
         ],
-        "moveStockTo": "top"
+        "moveStockTo": "top",
+        "esm": {
+            "enabled": false,
+            "lookbackDays": 65,
+            "maxMcapCr": 500,
+            "warningBufferPct": 0.85,
+            "stage1": {
+                "highLowVarPct": {
+                    "m3": 75,
+                    "m6": 100,
+                    "m12": 150
+                },
+                "c2cVarPct": {
+                    "m3": 50,
+                    "m6": 75,
+                    "m12": 100
+                }
+            },
+            "stage2": {
+                "consecutive5dC2cPct": 15,
+                "monthlyC2cPct": 30,
+                "stageDownMonthlyC2cPct": 8
+            },
+            "alertBadges": {
+                "warning": "ESM Warn",
+                "stage1": "ESM 1 Imminent",
+                "stage2": "ESM 2 Imminent"
+            }
+        }
     },
     "marketHolidays": [
         "15-Jan-2026",
@@ -33,7 +61,7 @@
         "01-May-2026",
         "28-May-2026",
         "26-Jun-2026",
-        "14-Sep-2026",    
+        "14-Sep-2026",
         "02-Oct-2026",
         "20-Oct-2026",
         "10-Nov-2026",

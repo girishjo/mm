@@ -152,7 +152,6 @@ function loadDataFromLocal() {
                 else {
                     ShowMessage('No saved Watchlist found, loading default watchlists');
                     watchlists = defaultWatchlists;
-                    //saveDataOnLocal(true, true);
                 }
             }
         }
@@ -163,7 +162,6 @@ function loadDataFromLocal() {
                 const storedData = JSON.parse(stocksListValue);
                 if (storedData instanceof Array) {
                     watchlists[0].data = storedData;
-                    //saveDataOnLocal(true, true);
                 }
             }
         }
@@ -175,7 +173,6 @@ function loadDataFromLocal() {
     else {
         ShowMessage('No saved Watchlist found, loading default watchlists');
         watchlists = defaultWatchlists;
-        //saveDataOnLocal(true, true);
     }
     ensureWatchlistIds();
     refreshDynamicWatchlists();
@@ -204,11 +201,9 @@ function saveDataOnLocal(silentUpdate = false, loadDefault = false) {
     }
 
     window.localStorage.setItem("watchlists", JSON.stringify(newWatchlists));
-    // window.localStorage.removeItem("stocksList");
     if (!silentUpdate) {
         ShowMessage('Watchlists saved');
     }
-    // window.location.reload();
 }
 
 function ResetWatchlist(deleteExisting = true) {
@@ -277,7 +272,7 @@ function filterWatchlistsForPortfolio() {
         if (item) item.style.display = visible ? '' : 'none';
         if (radio.checked && !visible) needsReselect = true;
     });
-    // If current selection is hidden, select first visible
+
     if (needsReselect) {
         for (const radio of radios) {
             if (radio.style.display !== 'none') {
@@ -346,10 +341,8 @@ function UpdateWatchList(saveLast = true) {
     if (document.getElementById("portfolioDiv").style.display == "block") {
         const portfolioDateInput = document.getElementById('portfolioDate');
         if (portfolioDateInput && portfolioDateInput.value) {
-            // Use date-specific portfolio function
             UpdatePortfolioForDate();
         } else {
-            // Fallback to regular portfolio function for today
             UpdateLoader(true, "Loading Portfolio data", 0.5);
             resetTable(portfolioTable);
             upadtePortfolioTable(getWatchlistDataInDisplayOrder(watchlists[activeWL]));
@@ -396,7 +389,6 @@ function MoveStock() {
         }
 
         listTable.deleteRow(stockDetails.rowIndex);
-        //watchlists[activeWL].data = toObject(listTable);
         if (listTable.rows.length == 2) {
             addEmptyRow(listTable);
         }
@@ -420,7 +412,6 @@ function AddWatchlist() {
     const watchlistName = document.getElementById('newWatchList');
     const wlName = watchlistName.value.trim();
     if (wlName != '') {
-        let i = 0;
         for (const key of Object.keys(watchlists)) {
             if (watchlists[key].name == wlName) {
                 alert('Watchlist name should be unique.');
@@ -543,7 +534,6 @@ function downloadWatchlists() {
 function loadDefaultWatchLists() {
     if (confirm("It will overwrite any unsaved data in watchlists. Proceed?")) {
         watchlists = defaultWatchlists;
-        //saveDataOnLocal(true, true);
         ResetWatchlist(true);
     }
 }
@@ -597,9 +587,6 @@ function updateDataTable(table, name, nseCode, bseCode, data = undefined, rowInd
     stockData.Name = name;
     if (stockData.PrevClose != undefined && stockData.PrevClose != 0)
         stockData.Change = (stockData.Close - stockData.PrevClose) * 100 / stockData.PrevClose;
-    // else
-    //     stockData.Change = 'N/A';
-
 
     let newRow;
     if (stockData.Name) {
@@ -652,6 +639,86 @@ function updateDataTable(table, name, nseCode, bseCode, data = undefined, rowInd
             newRow.cells[1].appendChild(t2tLabel);
         }
 
+        // Render ESM surveillance badge with comprehensive data points
+        if (settings.configs.esm && stockData["ESM"] && stockData["ESM"].flag > 0) {
+            var esmLabel = document.createElement('label');
+            esmLabel.classList.add("highlight");
+
+            const esmData = stockData["ESM"];
+            const metrics = esmData.metrics || {};
+
+            // 1. Color Styling by Stage/Risk
+            if (esmData.flag === 3) {
+                esmLabel.classList.add("esm-stage2");
+            } else if (esmData.flag === 2) {
+                esmLabel.classList.add("esm-stage1");
+            } else {
+                esmLabel.classList.add("esm-warning");
+            }
+
+            esmLabel.innerText = esmData.badge || (esmData.stage === "ESM_STAGE_2" ? "ESM Stage II" : "ESM Stage I");
+
+            // 2. Data Points & Tooltip Construction
+            const lines = [];
+
+            if (esmData.stage === "ESM_STAGE_2") {
+                lines.push("🔴 ESM STAGE II (Active)");
+                lines.push("• Price Band: 2%");
+                lines.push("• Margin: 100%");
+                lines.push("• Settlement: Trade-for-Trade (T2T)");
+                lines.push("• Trading: Periodic Call Auction (Mondays Only)");
+            } else if (esmData.stage === "ESM_STAGE_1") {
+                lines.push("🟠 ESM STAGE I (Active)");
+                lines.push("• Price Band: 5%");
+                lines.push("• Margin: 100%");
+                lines.push("• Settlement: Trade-for-Trade (T2T) Daily");
+                lines.push("• Trading: Normal Continuous Market");
+            } else if (esmData.flag === 2) {
+                lines.push("🟠 STAGE I IMMINENT (Threshold Breach)");
+                lines.push("• Action: Eligible for immediate Stage I placement");
+            } else if (esmData.flag === 1) {
+                lines.push("🟡 EARLY WARNING ZONE (Near Threshold)");
+                lines.push("• Action: Reached >85% of Stage I entry limits");
+            }
+
+            lines.push("───────────────────────────────");
+            lines.push("PRICE METRICS (Lookback Period):");
+            lines.push(`• Current Price: ₹${(metrics.currentPrice || stockData.Close || 0).toFixed(2)}`);
+            if (metrics.periodHigh && metrics.periodLow) {
+                lines.push(`• Period Range: ₹${metrics.periodLow.toFixed(2)} - ₹${metrics.periodHigh.toFixed(2)}`);
+            }
+
+            lines.push("───────────────────────────────");
+            // Surveillance Data Points & Unified Listing/Trading Age
+            lines.push("SURVEILLANCE DATA POINTS:");
+            lines.push(`• High-Low Variation: ${(metrics.highLowVar || 0).toFixed(2)}% (Limit: ≥75%)`);
+            lines.push(`• Close-to-Close (3M): ${(metrics.c2cVar || 0).toFixed(2)}% (Limit: ≥50%)`);
+
+            if (metrics.c2c5D !== undefined && metrics.c2c5D !== 0) {
+                lines.push(`• 5-Day Momentum: ${metrics.c2c5D > 0 ? '+' : ''}${metrics.c2c5D.toFixed(2)}% (Limit: ≥15%)`);
+            }
+            if (metrics.c2cMonthly !== undefined && metrics.c2cMonthly !== 0) {
+                lines.push(`• Monthly Momentum: ${metrics.c2cMonthly > 0 ? '+' : ''}${metrics.c2cMonthly.toFixed(2)}% (Limit: ≥30%)`);
+            }
+
+            if (metrics.listingDate && metrics.listingDate !== "N/A") {
+                lines.push(`• Listing Date: ${metrics.listingDate}`);
+                lines.push(`• Age / Sample: ${metrics.daysSinceListing} calendar days, ${metrics.lookbackBars || metrics.expectedTradingDays} trading days`);
+            } else {
+                lines.push(`• Sample Size: ${metrics.lookbackBars} trading days`);
+            }
+
+            const allReasons = (esmData.breaches || []).concat(esmData.warnings || []);
+            if (allReasons.length > 0) {
+                lines.push("───────────────────────────────");
+                lines.push("SPECIFIC TRIGGER REASONS:");
+                allReasons.forEach(r => lines.push(`• ${r}`));
+            }
+
+            esmLabel.title = lines.join("\n");
+            newRow.cells[1].appendChild(esmLabel);
+        }
+
         if (Number(stockData.Total)) {
             newRow.cells[2].innerText = stockData.Total.toLocaleString('en-In');
         }
@@ -684,28 +751,18 @@ function updateDataTable(table, name, nseCode, bseCode, data = undefined, rowInd
                     newRow.cells[3].classList.add('attention');
                     newRow.cells[4].classList.add('attention');
 
-                    // Check if exchanges have data for today (global availability)
                     const nseHasGlobalData = nseData && nseData.dateTimeStamp;
                     const bseHasGlobalData = bseData && bseData.dateTimeStamp;
 
-                    // Check if this specific stock has data from each exchange
                     const nseHasStockData = nseData[nseCode].Total !== undefined;
                     const bseHasStockData = bseData[bseCode].Total !== undefined;
 
                     let msg = "";
 
                     if (nseHasStockData && !bseHasStockData) {
-                        if (bseHasGlobalData) {
-                            msg = "BSE delivery data not available for this stock";
-                        } else {
-                            msg = "BSE delivery data not available yet";
-                        }
+                        msg = bseHasGlobalData ? "BSE delivery data not available for this stock" : "BSE delivery data not available yet";
                     } else if (!nseHasStockData && bseHasStockData) {
-                        if (nseHasGlobalData) {
-                            msg = "NSE delivery data not available for this stock";
-                        } else {
-                            msg = "NSE delivery data not available yet";
-                        }
+                        msg = nseHasGlobalData ? "NSE delivery data not available for this stock" : "NSE delivery data not available yet";
                     } else if (!nseHasStockData && !bseHasStockData) {
                         if (nseHasGlobalData && bseHasGlobalData) {
                             msg = "Delivery data not available for this stock on both exchanges";
@@ -773,21 +830,13 @@ function upadtePortfolioTable(stockList) {
                 let stockData = { ...MergeStockData(nseData[stockDetails[1]], bseData[stockDetails[2]]) };
                 newRow = addEmptyRow(portfolioTable);
 
-                // name
                 newRow.cells[columnCounter++].innerText = stockDetails[0];
                 if (stockDetails[3] && stockDetails[3] != 0) {
-
-                    // qty
                     newRow.cells[columnCounter++].innerText = stockDetails[3];
-
-                    // buy avg
                     newRow.cells[columnCounter++].innerText = stockDetails[4].toCustomString(2);
                     totalInvestment += stockDetails[3] * stockDetails[4];
-
-                    // buy value
                     newRow.cells[columnCounter++].innerText = (stockDetails[3] * stockDetails[4]).toCustomString();
 
-                    // pf %
                     refs1.push(newRow.cells[columnCounter]);
                     newRow.cells[columnCounter++].innerText = stockDetails[3] * stockDetails[4];
 
@@ -796,22 +845,17 @@ function upadtePortfolioTable(stockList) {
                         lastClosing = stockData.History[0].Close;
                     }
                     if (stockData.Close != undefined || lastClosing != undefined) {
-                        // close
                         newRow.cells[columnCounter++].innerText = (stockData.Close || lastClosing).toCustomString(2);
                         currentValue += stockDetails[3] * (stockData.Close || lastClosing);
 
-                        // present value
                         newRow.cells[columnCounter++].innerText = (stockDetails[3] * (stockData.Close || lastClosing)).toCustomString();
 
-                        // pf %
                         refs2.push(newRow.cells[columnCounter]);
                         newRow.cells[columnCounter++].innerText = stockDetails[3] * (stockData.Close || lastClosing);
 
-                        // p&l
                         newRow.cells[columnCounter++].innerText = (stockDetails[3] * ((stockData.Close || lastClosing) - stockDetails[4])).toCustomString();
                         const netChange = ((stockData.Close || lastClosing) - stockDetails[4]) * 100 / stockDetails[4];
 
-                        // net chg %
                         newRow.cells[columnCounter++].innerText = netChange.toCustomString(2) + " %";
                         if ((netChange > 0 && stockDetails[3] > 0) || (netChange < 0 && stockDetails[3] < 0)) {
                             newRow.cells[columnCounter - 2].style.color = 'green';
@@ -830,11 +874,8 @@ function upadtePortfolioTable(stockList) {
                             let dayAbsoluteChange = stockDetails[3] * ((stockData.Close || lastClosing) - stockData.PrevClose);
                             dayPnL += dayAbsoluteChange;
 
-                            // day chg
                             newRow.cells[columnCounter++].innerText = dayAbsoluteChange.toCustomString();
-
-                            // day chg %
-                            newRow.cells[columnCounter++].innerText = stockData.Change.toCustomString(2) + " %"
+                            newRow.cells[columnCounter++].innerText = stockData.Change.toCustomString(2) + " %";
                             if ((stockData.Change > 0 && stockDetails[3] > 0) || (stockData.Change < 0 && stockDetails[3] < 0)) {
                                 newRow.cells[columnCounter - 2].style.color = 'green';
                                 newRow.cells[columnCounter - 1].style.color = 'green';
@@ -845,12 +886,8 @@ function upadtePortfolioTable(stockList) {
                             }
                         }
                         else {
-
-                            // day chg
                             newRow.cells[columnCounter++].innerText = 0;
-
-                            // day chg %
-                            newRow.cells[columnCounter++].innerText = (0).toFixed(2).toLocaleString('en-In') + " %"
+                            newRow.cells[columnCounter++].innerText = (0).toFixed(2).toLocaleString('en-In') + " %";
                         }
 
                         if (stockData.Close == undefined) {
@@ -932,7 +969,7 @@ function upadtePortfolioTable(stockList) {
 listTable.addEventListener('click', function (e) {
     if (isDynamicWatchlist(watchlists[activeWL])) return;
     const cell = e.target.closest('td');
-    if (!cell) { return; } // Quit, not clicked on a cell
+    if (!cell) return;
     const row = cell.parentElement;
     if (cell.classList.contains('add')) {
         addEmptyRow(listTable, row.rowIndex + 1);
@@ -971,9 +1008,7 @@ listTable.addEventListener('dragend', function () {
     if (isDynamicWatchlist(watchlists[activeWL])) saveDataOnLocal(true, false);
 });
 
-// Portfolio date functionality
 function GetLastAvailableDate() {
-    // Check both NSE and BSE data for the most recent timestamp
     let lastDate = null;
 
     if (nseData && nseData.dateTimeStamp) {
@@ -990,9 +1025,7 @@ function GetLastAvailableDate() {
         }
     }
 
-    // If no data timestamp available, use todayDateHour for proper date handling
     if (!lastDate) {
-        // After midnight before market hours, use previous working day
         lastDate = typeof todayDateHour !== 'undefined' ? new Date(todayDateHour) : new Date();
     }
 
@@ -1004,17 +1037,13 @@ function SetTodayPortfolioDate() {
     const currentTime = new Date();
     const lastAvailableDate = GetLastAvailableDate();
 
-    // Use todayDateHour to determine the appropriate date to show
     const effectiveDate = typeof todayDateHour !== 'undefined' ? new Date(todayDateHour) : currentTime;
-
-    // Check if current effective date's data is available
     const isCurrentData = lastAvailableDate.toDateString() === effectiveDate.toDateString();
 
     if (isCurrentData) {
         portfolioDateInput.value = effectiveDate.toISOString().split('T')[0];
         UpdatePortfolioDateDisplay(effectiveDate);
     } else {
-        // Use last available date if effective date's data is not available
         portfolioDateInput.value = lastAvailableDate.toISOString().split('T')[0];
         UpdatePortfolioDateDisplay(lastAvailableDate);
     }
@@ -1031,15 +1060,12 @@ function SetSmartPortfolioDate() {
     UpdatePortfolioForDate();
 }
 
-// Helper function to check if a date is a working day
 function IsWorkingDay(date) {
-    // Use existing utility functions if available
     if (typeof IsTradingDay === 'function') {
         return IsTradingDay(date);
     } else {
-        // Manual logic - check if it's not weekend and not holiday
         const dayOfWeek = date.getDay();
-        const isWeekend = (dayOfWeek === 0 || dayOfWeek === 6); // Sunday = 0, Saturday = 6
+        const isWeekend = (dayOfWeek === 0 || dayOfWeek === 6);
 
         let isHoliday = false;
         if (typeof CheckForHoliday === 'function') {
@@ -1058,27 +1084,17 @@ function PreviousWorkingDate() {
     const portfolioDateInput = document.getElementById('portfolioDate');
     const currentDate = new Date(portfolioDateInput.value);
 
-    if (!currentDate || isNaN(currentDate)) {
-        return;
-    }
+    if (!currentDate || isNaN(currentDate)) return;
 
-    // Find previous working date
     let previousDate = new Date(currentDate);
     let attempts = 0;
-    const maxAttempts = 30; // Prevent infinite loops
+    const maxAttempts = 30;
 
     do {
         previousDate.setDate(previousDate.getDate() - 1);
         attempts++;
-
-        // Safety check to prevent infinite loops
-        if (attempts > maxAttempts) {
-            break;
-        }
-
-        if (IsWorkingDay(previousDate)) {
-            break;
-        }
+        if (attempts > maxAttempts) break;
+        if (IsWorkingDay(previousDate)) break;
     } while (attempts < maxAttempts);
 
     portfolioDateInput.value = previousDate.toISOString().split('T')[0];
@@ -1090,45 +1106,27 @@ function NextWorkingDate() {
     const portfolioDateInput = document.getElementById('portfolioDate');
     const currentDate = new Date(portfolioDateInput.value);
 
-    if (!currentDate || isNaN(currentDate)) {
-        return;
-    }
+    if (!currentDate || isNaN(currentDate)) return;
 
-    // Check if we're already at today's date
     const today = new Date();
     const todayDateString = today.toISOString().split('T')[0];
     const currentDateString = currentDate.toISOString().split('T')[0];
 
-    if (currentDateString >= todayDateString) {
-        // Already at or beyond today's date, don't advance
-        return;
-    }
+    if (currentDateString >= todayDateString) return;
 
-    // Find next working date
     let nextDate = new Date(currentDate);
     let attempts = 0;
-    const maxAttempts = 30; // Prevent infinite loops
+    const maxAttempts = 30;
 
     do {
         nextDate.setDate(nextDate.getDate() + 1);
         attempts++;
-
-        // Don't go beyond today's date
         if (nextDate.toISOString().split('T')[0] > todayDateString) {
-            // If we would go beyond today, stay at today
             nextDate = new Date(today.getFullYear(), today.getMonth(), today.getDate());
             break;
         }
-
-        // Safety check to prevent infinite loops
-        if (attempts > maxAttempts) {
-            break;
-        }
-
-        // Use existing utility functions if available
-        if (IsWorkingDay(nextDate)) {
-            break;
-        }
+        if (attempts > maxAttempts) break;
+        if (IsWorkingDay(nextDate)) break;
     } while (attempts < maxAttempts);
 
     portfolioDateInput.value = nextDate.toISOString().split('T')[0];
@@ -1145,7 +1143,6 @@ function UpdatePortfolioForDate() {
         return;
     }
 
-    // Update the date display with day of the week
     UpdatePortfolioDateDisplay(selectedDate);
 
     if (document.getElementById("portfolioDiv").style.display == "block") {
@@ -1178,81 +1175,53 @@ function UpdatePortfolioDateDisplay(date) {
 
 function upadtePortfolioTableForDate(stockList, targetDate) {
     let totalInvestment = 0, currentValue = 0, dayPnL = 0;
-    let flag = false;
     let refs1 = [];
     let refs2 = [];
     let dataFoundForDate = false;
 
-    // Cache expensive operations
     const targetDateString = targetDate.toLocaleDateString('en-In', {
         weekday: "short", year: "numeric", month: "short", day: "2-digit"
     });
 
-    // Use todayDateHour for proper date comparison instead of new Date()
     const effectiveToday = typeof todayDateHour !== 'undefined' ? new Date(todayDateHour) : new Date();
     const isToday = targetDate.toDateString() === effectiveToday.toDateString();
 
-    // Helper function to find data for a specific date
     function findDataForDate(stockData, targetDateString, isToday) {
         if (!stockData) return null;
-
-        // Check historical data first
         if (stockData.History && stockData.History.length > 0) {
             const data = stockData.History.find(h => h.HistoryDate === targetDateString);
             if (data) return data;
         }
-
-        // For today, use current data if no historical data found
-        if (isToday && stockData) {
-            return stockData;
-        }
-
+        if (isToday && stockData) return stockData;
         return null;
     }
 
-    // Helper function to get sorted history (cached per stock)
     function getSortedHistory(stockData) {
         if (!stockData || !stockData.History) return [];
-
-        // Cache sorted history to avoid repeated sorting
         if (!stockData._sortedHistory) {
-            stockData._sortedHistory = [...stockData.History].sort((a, b) => {
-                return new Date(b.HistoryDate) - new Date(a.HistoryDate);
-            });
+            stockData._sortedHistory = [...stockData.History].sort((a, b) => new Date(b.HistoryDate) - new Date(a.HistoryDate));
         }
         return stockData._sortedHistory;
     }
 
-    // Helper function to find previous day data
     function findPreviousDayData(stockData, targetDateString, isToday) {
         const sortedHistory = getSortedHistory(stockData);
         if (sortedHistory.length === 0) return null;
-
-        if (isToday) {
-            // For today, use most recent historical data
-            return sortedHistory[0];
-        } else {
-            // Find previous day data for historical dates
-            const currentIndex = sortedHistory.findIndex(h => h.HistoryDate === targetDateString);
-            if (currentIndex !== -1 && currentIndex < sortedHistory.length - 1) {
-                return sortedHistory[currentIndex + 1];
-            }
+        if (isToday) return sortedHistory[0];
+        const currentIndex = sortedHistory.findIndex(h => h.HistoryDate === targetDateString);
+        if (currentIndex !== -1 && currentIndex < sortedHistory.length - 1) {
+            return sortedHistory[currentIndex + 1];
         }
         return null;
     }
 
-    // Helper function to calculate and apply day change
     function calculateDayChange(priceToUse, previousClose, stockDetails, newRow, columnCounter) {
         const dayChange = (priceToUse - previousClose) * 100 / previousClose;
         const dayAbsoluteChange = stockDetails[3] * (priceToUse - previousClose);
 
-        // day chg
         newRow.cells[columnCounter].innerText = dayAbsoluteChange.toCustomString();
-
-        // day chg %
         newRow.cells[columnCounter + 1].innerText = dayChange.toCustomString(2) + " %";
 
-        // Apply color coding
         const isPositiveChange = (dayChange > 0 && stockDetails[3] > 0) || (dayChange < 0 && stockDetails[3] < 0);
         const isNegativeChange = (dayChange < 0 && stockDetails[3] > 0) || (dayChange > 0 && stockDetails[3] < 0);
 
@@ -1273,15 +1242,12 @@ function upadtePortfolioTableForDate(stockList, targetDate) {
             const stockDetails = stockList[i];
             let newRow;
             if (stockDetails[0] && stockDetails[3] && stockDetails[3] != 0) {
-                // Get individual NSE and BSE data
                 const nseStockData = nseData[stockDetails[1]];
                 const bseStockData = bseData[stockDetails[2]];
 
-                // Find data for the target date from both sources
                 const nseCurrentData = findDataForDate(nseStockData, targetDateString, isToday);
                 const bseCurrentData = findDataForDate(bseStockData, targetDateString, isToday);
 
-                // Determine which source to use (prefer higher close price)
                 let dateSpecificData = null;
                 let dataSource = null;
 
@@ -1303,25 +1269,16 @@ function upadtePortfolioTableForDate(stockList, targetDate) {
                     dataSource = bseStockData;
                 }
 
-                // Find previous day data from the same source
                 const previousDayData = dataSource ? findPreviousDayData(dataSource, targetDateString, isToday) : null;
-                // Always create a row for each stock
                 newRow = addEmptyRow(portfolioTable);
 
-                // name
                 newRow.cells[columnCounter++].innerText = stockDetails[0];
-
-                // qty
                 newRow.cells[columnCounter++].innerText = stockDetails[3];
-
-                // buy avg
                 newRow.cells[columnCounter++].innerText = stockDetails[4].toCustomString(2);
                 totalInvestment += stockDetails[3] * stockDetails[4];
 
-                // buy value
                 newRow.cells[columnCounter++].innerText = (stockDetails[3] * stockDetails[4]).toCustomString();
 
-                // pf %
                 refs1.push(newRow.cells[columnCounter]);
                 newRow.cells[columnCounter++].innerText = stockDetails[3] * stockDetails[4];
 
@@ -1329,22 +1286,17 @@ function upadtePortfolioTableForDate(stockList, targetDate) {
                     dataFoundForDate = true;
                     const priceToUse = dateSpecificData.Close || dateSpecificData.Open;
 
-                    // close
                     newRow.cells[columnCounter++].innerText = priceToUse.toCustomString(2);
                     currentValue += stockDetails[3] * priceToUse;
 
-                    // present value
                     newRow.cells[columnCounter++].innerText = (stockDetails[3] * priceToUse).toCustomString();
 
-                    // pf %
                     refs2.push(newRow.cells[columnCounter]);
                     newRow.cells[columnCounter++].innerText = stockDetails[3] * priceToUse;
 
-                    // p&l
                     newRow.cells[columnCounter++].innerText = (stockDetails[3] * (priceToUse - stockDetails[4])).toCustomString();
                     const netChange = (priceToUse - stockDetails[4]) * 100 / stockDetails[4];
 
-                    // net chg %
                     newRow.cells[columnCounter++].innerText = netChange.toCustomString(2) + " %";
                     if ((netChange > 0 && stockDetails[3] > 0) || (netChange < 0 && stockDetails[3] < 0)) {
                         newRow.cells[columnCounter - 2].style.color = 'green';
@@ -1355,58 +1307,38 @@ function upadtePortfolioTableForDate(stockList, targetDate) {
                         newRow.cells[columnCounter - 1].style.color = 'red';
                     }
 
-                    // Calculate day change if previous day data is available
                     let dayChangeCalculated = false;
 
                     if (previousDayData && previousDayData.Close && priceToUse) {
                         const dayAbsoluteChange = calculateDayChange(priceToUse, previousDayData.Close, stockDetails, newRow, columnCounter);
                         dayPnL += dayAbsoluteChange;
                         dayChangeCalculated = true;
-                        columnCounter += 2; // Skip both day change columns
+                        columnCounter += 2;
                     }
-                    // Fallback: try to use PrevClose from dateSpecificData if available
                     else if (dateSpecificData.PrevClose && dateSpecificData.PrevClose > 0 && priceToUse) {
                         const dayAbsoluteChange = calculateDayChange(priceToUse, dateSpecificData.PrevClose, stockDetails, newRow, columnCounter);
                         dayPnL += dayAbsoluteChange;
                         dayChangeCalculated = true;
-                        columnCounter += 2; // Skip both day change columns
+                        columnCounter += 2;
                     }
 
                     if (!dayChangeCalculated) {
-                        // day chg
                         newRow.cells[columnCounter++].innerText = "N/A";
-                        // day chg %
                         newRow.cells[columnCounter++].innerText = "N/A";
                     }
                 } else {
-                    // No data available for this date - show N/A for price-dependent columns
-
-                    // close
                     newRow.cells[columnCounter++].innerText = "N/A";
-
-                    // present value
                     newRow.cells[columnCounter++].innerText = "N/A";
-
-                    // pf %
                     newRow.cells[columnCounter++].innerText = "N/A";
-
-                    // p&l
                     newRow.cells[columnCounter++].innerText = "N/A";
-
-                    // net chg %
                     newRow.cells[columnCounter++].innerText = "N/A";
-
-                    // day chg
                     newRow.cells[columnCounter++].innerText = "N/A";
-
-                    // day chg %
                     newRow.cells[columnCounter++].innerText = "N/A";
                 }
             }
         }
     }
 
-    // Update portfolio percentages and totals
     if (totalInvestment != 0) {
         for (let i = 0; i < refs1.length; i++) {
             refs1[i].innerText = (refs1[i].innerText * 100 / totalInvestment).toCustomString(2) + " %";
@@ -1425,13 +1357,11 @@ function upadtePortfolioTableForDate(stockList, targetDate) {
         newRow.cells[5].innerText = (100).toCustomString(2) + " %";
 
         if (dataFoundForDate) {
-            // Show actual values when data is available
             newRow.cells[7].innerText = currentValue.toCustomString();
             newRow.cells[8].innerText = (100).toCustomString(2) + " %";
             newRow.cells[9].innerText = (currentValue - totalInvestment).toCustomString();
             newRow.cells[10].innerText = ((currentValue - totalInvestment) * 100 / totalInvestment).toCustomString(2) + " %";
 
-            // Apply color coding for P&L
             if ((currentValue - totalInvestment) > 0) {
                 newRow.cells[9].style.color = 'green';
                 newRow.cells[10].style.color = 'green';
@@ -1444,7 +1374,6 @@ function upadtePortfolioTableForDate(stockList, targetDate) {
             newRow.cells[11].innerText = dayPnL.toCustomString();
             newRow.cells[12].innerText = currentValue > dayPnL ? (dayPnL * 100 / (currentValue - dayPnL)).toCustomString(2) + " %" : "0.00 %";
 
-            // Apply color coding for day P&L
             if (dayPnL > 0) {
                 newRow.cells[11].style.color = 'green';
                 newRow.cells[12].style.color = 'green';
@@ -1454,17 +1383,15 @@ function upadtePortfolioTableForDate(stockList, targetDate) {
                 newRow.cells[12].style.color = 'red';
             }
         } else {
-            // Show N/A when no data is available for the selected date
-            newRow.cells[7].innerText = "N/A";  // present value
-            newRow.cells[8].innerText = "N/A";  // pf %
-            newRow.cells[9].innerText = "N/A";  // p&l
-            newRow.cells[10].innerText = "N/A"; // net chg %
-            newRow.cells[11].innerText = "N/A"; // day chg
-            newRow.cells[12].innerText = "N/A"; // day chg %
+            newRow.cells[7].innerText = "N/A";
+            newRow.cells[8].innerText = "N/A";
+            newRow.cells[9].innerText = "N/A";
+            newRow.cells[10].innerText = "N/A";
+            newRow.cells[11].innerText = "N/A";
+            newRow.cells[12].innerText = "N/A";
         }
     }
 
-    // Update info text
     const portfolioDateInfo = document.getElementById('portfolioDateInfo');
     const lastAvailableDate = GetLastAvailableDate();
     const isLatestData = targetDate.toDateString() === lastAvailableDate.toDateString();
@@ -1483,16 +1410,13 @@ function upadtePortfolioTableForDate(stockList, targetDate) {
     }
 }
 
-// Initialize portfolio date to last available date when the page loads
 window.addEventListener('load', () => {
     setTimeout(() => {
-        // Restore show all watchlists preference
         const chkShowAll = document.getElementById('chkShowAllWatchlists');
         if (chkShowAll) {
             chkShowAll.checked = localStorage.getItem('showAllWatchlists') === 'true';
         }
 
-        // Restore privacy mode preference
         const chkPrivacy = document.getElementById('chkPrivacyMode');
         if (chkPrivacy) {
             chkPrivacy.checked = localStorage.getItem('privacyMode') === 'true';
@@ -1501,7 +1425,6 @@ window.addEventListener('load', () => {
 
         SetSmartPortfolioDate();
 
-        // Add keyboard navigation for portfolio date input
         const portfolioDateInput = document.getElementById('portfolioDate');
         if (portfolioDateInput) {
             portfolioDateInput.addEventListener('keydown', function (event) {
@@ -1514,7 +1437,6 @@ window.addEventListener('load', () => {
                 }
             });
 
-            // Update day display when user manually changes date
             portfolioDateInput.addEventListener('change', function (event) {
                 const selectedDate = new Date(event.target.value);
                 if (selectedDate && !isNaN(selectedDate)) {
@@ -1525,7 +1447,6 @@ window.addEventListener('load', () => {
     }, 1000);
 });
 
-// Auto-complete functionality for stock names and codes
 let autoCompleteCache = {
     stockNames: [],
     nseCodes: [],
@@ -1541,23 +1462,13 @@ let autoCompleteState = {
     suggestions: []
 };
 
-// Helper function to get SecurityName from stock data or history
 function getSecurityName(stock) {
-    // Try current data first
-    if (stock.SecurityName) {
-        return stock.SecurityName;
-    }
-
-    // If no current SecurityName, check history
+    if (stock.SecurityName) return stock.SecurityName;
     if (stock.History && Array.isArray(stock.History) && stock.History.length > 0) {
-        // Look through history entries to find a SecurityName
         for (const historyEntry of stock.History) {
-            if (historyEntry.SecurityName) {
-                return historyEntry.SecurityName;
-            }
+            if (historyEntry.SecurityName) return historyEntry.SecurityName;
         }
     }
-
     return null;
 }
 
@@ -1568,7 +1479,6 @@ function initializeAutoCompleteData() {
     const nseCodes = new Set();
     const bseCodes = new Set();
 
-    // Collect NSE data
     if (nseData && typeof nseData === 'object') {
         for (const code in nseData) {
             const stock = nseData[code];
@@ -1578,7 +1488,6 @@ function initializeAutoCompleteData() {
         }
     }
 
-    // Collect BSE data
     if (bseData && typeof bseData === 'object') {
         for (const code in bseData) {
             const stock = bseData[code];
@@ -1606,21 +1515,14 @@ function showAutoComplete(element, type) {
     let suggestions = [];
     switch (type) {
         case 'stockName':
-            // Search in stock names, NSE codes, and BSE codes
             const allMatches = [];
-
-            // Search by stock names (fuzzy matching)
             const allNames = autoCompleteCache.stockNames;
             const normalizedInput = normalizeCompanyName(inputValue);
             for (const name of allNames) {
-                // Normalize both input and name for better matching
                 const normalizedName = normalizeCompanyName(name);
-
                 if (normalizedName.includes(normalizedInput)) {
-                    // Exact substring match gets priority
                     allMatches.push({ text: name, similarity: 1.0, priority: 1, type: 'name' });
                 } else {
-                    // Fuzzy match
                     const similarity = calculateSimilarity(inputValue, name);
                     if (similarity > 0.6) {
                         allMatches.push({ text: name, similarity, priority: 2, type: 'name' });
@@ -1628,12 +1530,8 @@ function showAutoComplete(element, type) {
                 }
             }
 
-            // Search by NSE codes
-            const matchingNSECodes = autoCompleteCache.nseCodes.filter(code =>
-                code.toLowerCase().includes(inputValue)
-            );
+            const matchingNSECodes = autoCompleteCache.nseCodes.filter(code => code.toLowerCase().includes(inputValue));
             for (const code of matchingNSECodes) {
-                // For codes, find the corresponding stock name to display
                 if (nseData && nseData[code]) {
                     const securityName = getSecurityName(nseData[code]);
                     if (securityName) {
@@ -1648,12 +1546,8 @@ function showAutoComplete(element, type) {
                 }
             }
 
-            // Search by BSE codes
-            const matchingBSECodes = autoCompleteCache.bseCodes.filter(code =>
-                code.toLowerCase().includes(inputValue)
-            );
+            const matchingBSECodes = autoCompleteCache.bseCodes.filter(code => code.toLowerCase().includes(inputValue));
             for (const code of matchingBSECodes) {
-                // For codes, find the corresponding stock name to display
                 if (bseData && bseData[code]) {
                     const securityName = getSecurityName(bseData[code]);
                     if (securityName) {
@@ -1668,7 +1562,6 @@ function showAutoComplete(element, type) {
                 }
             }
 
-            // Remove duplicates and sort by priority, then similarity
             const uniqueMatches = [];
             const seenNames = new Set();
 
@@ -1688,14 +1581,10 @@ function showAutoComplete(element, type) {
             suggestions = uniqueMatches.slice(0, 10).map(match => match.text);
             break;
         case 'nseCode':
-            suggestions = autoCompleteCache.nseCodes.filter(code =>
-                code.toLowerCase().includes(inputValue)
-            ).slice(0, 10);
+            suggestions = autoCompleteCache.nseCodes.filter(code => code.toLowerCase().includes(inputValue)).slice(0, 10);
             break;
         case 'bseCode':
-            suggestions = autoCompleteCache.bseCodes.filter(code =>
-                code.toLowerCase().includes(inputValue)
-            ).slice(0, 10);
+            suggestions = autoCompleteCache.bseCodes.filter(code => code.toLowerCase().includes(inputValue)).slice(0, 10);
             break;
     }
 
@@ -1704,7 +1593,6 @@ function showAutoComplete(element, type) {
         return;
     }
 
-    // Update state
     autoCompleteState.currentElement = element;
     autoCompleteState.currentType = type;
     autoCompleteState.suggestions = suggestions;
@@ -1713,67 +1601,47 @@ function showAutoComplete(element, type) {
     showAutoCompleteDropdown(element, suggestions, type);
 }
 
-// Helper function to normalize company names for fuzzy matching
 function normalizeCompanyName(name) {
     if (!name) return '';
-
     return name
         .toLowerCase()
-        .replace(/\s+(ltd|limited|company|corp|corporation|inc|incorporated)\b/g, '') // Remove common suffixes
-        .replace(/\s+/g, ' ') // Normalize multiple spaces
+        .replace(/\s+(ltd|limited|company|corp|corporation|inc|incorporated)\b/g, '')
+        .replace(/\s+/g, ' ')
         .trim();
 }
 
-// Helper function to calculate string similarity (Levenshtein distance based)
 function calculateSimilarity(str1, str2) {
     const normalized1 = normalizeCompanyName(str1);
     const normalized2 = normalizeCompanyName(str2);
-
-    if (normalized1 === normalized2) return 1.0; // Perfect match
+    if (normalized1 === normalized2) return 1.0;
 
     const maxLength = Math.max(normalized1.length, normalized2.length);
     if (maxLength === 0) return 1.0;
 
-    // Simple similarity based on common characters and length
     const commonLength = Math.min(normalized1.length, normalized2.length);
     let matches = 0;
-
     for (let i = 0; i < commonLength; i++) {
-        if (normalized1[i] === normalized2[i]) {
-            matches++;
-        }
+        if (normalized1[i] === normalized2[i]) matches++;
     }
 
-    // Consider both character matches and length difference
-    const similarity = matches / maxLength;
-    return similarity;
+    return matches / maxLength;
 }
 
-// Helper function to find stock data by any identifier
 function findStockData(identifier, searchType) {
     let stockData = null;
-    let searchIdentifier = identifier;
-    let actualSearchType = searchType;
-
-    // Handle formatted suggestions from name field (e.g., "Stock Name (CODE)")
     if (searchType === 'stockName' && identifier.includes('(') && identifier.includes(')')) {
         const nameMatch = identifier.match(/^(.*?)\s*\(([^)]+)\)$/);
         if (nameMatch) {
             const stockName = nameMatch[1].trim();
             const code = nameMatch[2].trim();
-
-            // Try to find by code first (more specific)
             stockData = findStockDataByCode(code) || findStockDataByName(stockName);
             return stockData;
         }
     }
 
-    // For exact code matches, search by code
     if (searchType === 'nseCode' || searchType === 'bseCode') {
         return findStockDataByCode(identifier);
-    }
-    // For stock name searches, search by name
-    else if (searchType === 'stockName') {
+    } else if (searchType === 'stockName') {
         return findStockDataByName(identifier);
     }
 
@@ -1783,7 +1651,6 @@ function findStockData(identifier, searchType) {
 function findStockDataByCode(code) {
     let foundStock = null;
 
-    // Search in NSE data first
     if (nseData && typeof nseData === 'object') {
         for (const nseCode in nseData) {
             const stock = nseData[nseCode];
@@ -1800,14 +1667,12 @@ function findStockDataByCode(code) {
         }
     }
 
-    // Search in BSE data if not found in NSE or if we found an NSE match but need BSE code
     if (bseData && typeof bseData === 'object') {
         for (const bseCode in bseData) {
             const stock = bseData[bseCode];
             if (bseCode === code ||
                 (stock.NSECode && stock.NSECode.toLowerCase() === code.toLowerCase())) {
                 if (!foundStock) {
-                    // Found only in BSE data
                     foundStock = {
                         name: getSecurityName(stock),
                         nseCode: stock.NSECode || '',
@@ -1815,7 +1680,6 @@ function findStockDataByCode(code) {
                         source: 'BSE'
                     };
                 } else {
-                    // Found in both - merge BSE code if missing
                     if (!foundStock.bseCode) {
                         foundStock.bseCode = bseCode;
                     }
@@ -1825,7 +1689,6 @@ function findStockDataByCode(code) {
         }
     }
 
-    // If we found by NSE code but still missing BSE code, try to find it by name matching
     if (foundStock && foundStock.source === 'NSE' && !foundStock.bseCode && foundStock.name) {
         if (bseData && typeof bseData === 'object') {
             for (const bseCode in bseData) {
@@ -1839,7 +1702,6 @@ function findStockDataByCode(code) {
         }
     }
 
-    // If we found by BSE code but still missing NSE code, try to find it by name matching  
     if (foundStock && foundStock.source === 'BSE' && !foundStock.nseCode && foundStock.name) {
         if (nseData && typeof nseData === 'object') {
             for (const nseCode in nseData) {
@@ -1854,7 +1716,6 @@ function findStockDataByCode(code) {
     }
 
     if (foundStock) {
-        // Clean up the response - remove the source property
         return {
             name: foundStock.name,
             nseCode: foundStock.nseCode,
@@ -1867,19 +1728,15 @@ function findStockDataByCode(code) {
 
 function findStockDataByName(stockName) {
     let stockData = null;
-    let bestMatch = null;
-    let bestSimilarity = 0;
-
     const allCandidates = [];
 
-    // Collect all potential matches from NSE
     if (nseData && typeof nseData === 'object') {
         for (const code in nseData) {
             const stock = nseData[code];
             const securityName = getSecurityName(stock);
             if (securityName) {
                 const similarity = calculateSimilarity(stockName, securityName);
-                if (similarity > 0.7) { // Threshold for considering a match
+                if (similarity > 0.7) {
                     allCandidates.push({
                         similarity,
                         data: {
@@ -1894,7 +1751,6 @@ function findStockDataByName(stockName) {
         }
     }
 
-    // Collect all potential matches from BSE
     if (bseData && typeof bseData === 'object') {
         for (const code in bseData) {
             const stock = bseData[code];
@@ -1916,16 +1772,11 @@ function findStockDataByName(stockName) {
         }
     }
 
-    // Find the best match and try to merge NSE/BSE data if they're the same company
     if (allCandidates.length > 0) {
-        // Sort by similarity
         allCandidates.sort((a, b) => b.similarity - a.similarity);
-
         const topMatch = allCandidates[0];
 
-        // Try to find corresponding data from other exchange
         if (topMatch.data.source === 'NSE' && !topMatch.data.bseCode) {
-            // Look for BSE equivalent
             for (let i = 1; i < allCandidates.length; i++) {
                 const candidate = allCandidates[i];
                 if (candidate.data.source === 'BSE' && candidate.similarity > 0.8) {
@@ -1934,7 +1785,6 @@ function findStockDataByName(stockName) {
                 }
             }
         } else if (topMatch.data.source === 'BSE' && !topMatch.data.nseCode) {
-            // Look for NSE equivalent
             for (let i = 1; i < allCandidates.length; i++) {
                 const candidate = allCandidates[i];
                 if (candidate.data.source === 'NSE' && candidate.similarity > 0.8) {
@@ -1961,7 +1811,6 @@ function showAutoCompleteDropdown(element, suggestions, type) {
         item.setAttribute('data-index', index);
 
         item.addEventListener('mouseenter', function () {
-            // Clear previous selection
             updateSelection(index);
         });
 
@@ -1970,14 +1819,13 @@ function showAutoCompleteDropdown(element, suggestions, type) {
         });
 
         item.addEventListener('mousedown', function (e) {
-            e.preventDefault(); // Prevent blur event
+            e.preventDefault();
             selectSuggestion(suggestion, element, type);
         });
 
         dropdown.appendChild(item);
     });
 
-    // Position dropdown below the element
     const rect = element.getBoundingClientRect();
     dropdown.style.left = rect.left + 'px';
     dropdown.style.top = (rect.bottom) + 'px';
@@ -1986,7 +1834,6 @@ function showAutoCompleteDropdown(element, suggestions, type) {
 
     autoCompleteState.isVisible = true;
 
-    // Add keyboard event listener
     if (!element.hasAutoCompleteKeyListener) {
         element.addEventListener('keydown', handleAutoCompleteKeydown);
         element.hasAutoCompleteKeyListener = true;
@@ -1997,12 +1844,10 @@ function updateSelection(newIndex) {
     const dropdown = document.getElementById('autoCompleteDropdown');
     const items = dropdown.children;
 
-    // Clear previous selection
     for (let i = 0; i < items.length; i++) {
         items[i].style.backgroundColor = '';
     }
 
-    // Set new selection
     if (newIndex >= 0 && newIndex < items.length) {
         autoCompleteState.selectedIndex = newIndex;
         items[newIndex].style.backgroundColor = '#f0f0f0';
@@ -2046,34 +1891,20 @@ function handleAutoCompleteKeydown(e) {
 }
 
 function selectSuggestion(suggestion, element, type) {
-    // Fill the selected field
     element.textContent = suggestion;
-
-    // Find the row containing this element
     const row = element.closest('tr');
     if (row) {
-        // Get the stock data for this selection
         const stockData = findStockData(suggestion, type);
-
-        // Always clear and update all three fields to prevent stale data
         const cells = row.cells;
         if (cells.length >= 7) {
-            // Clear all fields first
-            cells[4].textContent = ''; // Stock name
-            cells[5].textContent = ''; // NSE code
-            cells[6].textContent = ''; // BSE code
+            cells[4].textContent = '';
+            cells[5].textContent = '';
+            cells[6].textContent = '';
 
             if (stockData) {
-                // Fill with new data
-                if (stockData.name) {
-                    cells[4].textContent = stockData.name;
-                }
-                if (stockData.nseCode) {
-                    cells[5].textContent = stockData.nseCode;
-                }
-                if (stockData.bseCode) {
-                    cells[6].textContent = stockData.bseCode;
-                }
+                if (stockData.name) cells[4].textContent = stockData.name;
+                if (stockData.nseCode) cells[5].textContent = stockData.nseCode;
+                if (stockData.bseCode) cells[6].textContent = stockData.bseCode;
             }
         }
     }
@@ -2089,13 +1920,12 @@ function hideAutoComplete() {
             dropdown.style.display = 'none';
         }
 
-        // Reset state
         autoCompleteState.isVisible = false;
         autoCompleteState.selectedIndex = -1;
         autoCompleteState.currentElement = null;
         autoCompleteState.currentType = null;
         autoCompleteState.suggestions = [];
-    }, 150); // Small delay to allow click events to register
+    }, 150);
 }
 
 function toggleCombinedWatchlistForm() {

@@ -1,5 +1,6 @@
 var nseData = { data: {} };
 var bseData = { data: {} };
+var esmSurveillanceMaster = {};
 var newListingsData = null;
 
 const dataFiles = [
@@ -43,6 +44,15 @@ async function LoadData() {
     }
   }
 
+  // 1. Ingest SME Surveillance Master Dataset
+  try {
+    UpdateLoader(true, 'Downloading Surveillance Master', 0.4);
+    const survJson = await GetData('smeSurveillanceMaster.json', true);
+    esmSurveillanceMaster = (survJson && survJson.data) ? survJson.data : {};
+  } catch (e) {
+    esmSurveillanceMaster = {};
+  }
+
   if (settings.configs.t2t) {
     UpdateLoader(true, "Checking for T2T stocks", 0.5);
     CheckForT10(nseData);
@@ -59,7 +69,26 @@ async function LoadData() {
   nseData = preserveTimestamp(nseData);
   bseData = preserveTimestamp(bseData);
 
+  // 2. Await new listings data BEFORE running surveillance scans
   await MergeTodayListings();
+
+  // 3. Run ESM Surveillance Checks
+  if (typeof ESM_ENGINE !== 'undefined' && settings.configs?.esm?.enabled) {
+    UpdateLoader(true, "Checking for ESM", 0.5);
+    UpdateLoader(true, "Scanning ESM surveillance criteria", 0.7);
+    const nseEsmSummary = ESM_ENGINE.processDataset(nseData, settings);
+    const bseEsmSummary = ESM_ENGINE.processDataset(bseData, settings);
+
+    const alertCount = nseEsmSummary.stage1Imminent.length + nseEsmSummary.stage2Imminent.length +
+      bseEsmSummary.stage1Imminent.length + bseEsmSummary.stage2Imminent.length;
+
+    if (alertCount > 0) {
+      console.warn(`[ESM Surveillance Alert] ${alertCount} scrip(s) qualify for ESM Stage I / II:`, {
+        NSE: nseEsmSummary,
+        BSE: bseEsmSummary
+      });
+    }
+  }
 
   // Reinitialize auto-complete cache with new data
   if (typeof autoCompleteCache !== 'undefined') {
@@ -79,20 +108,23 @@ async function MergeTodayListings() {
     newListingsData = {};
   }
 
-  const previousWorkingDate = GetLastWorkingDay(todayDate);
+  if (!newListingsData) newListingsData = {};
 
+  // Preserve all issue prices and link to bseData/nseData
   Object.keys(newListingsData).forEach(isin => {
     const entry = newListingsData[isin];
-    const listingDate = new Date(entry.listingDate);
-    const isRelevantListingDate = listingDate.toDateString() === todayDate.toDateString() ||
-      listingDate.toDateString() === previousWorkingDate.toDateString();
+    if (!entry) return;
 
-    if (isRelevantListingDate) {
-      if (entry.nseCode && entry.exchanges?.includes('NSE') && !newListingsData[isin]["issuePrice"]) {
-        newListingsData[isin]["issuePrice"] = (nseData[entry.nseCode]?.History && nseData[entry.nseCode]?.History[0].PrevClose) || nseData[entry.nseCode]?.PrevClose;
+    if (entry.nseCode && nseData[entry.nseCode]) {
+      if (!entry.issuePrice) {
+        entry.issuePrice = (nseData[entry.nseCode].History && nseData[entry.nseCode].History[0]?.PrevClose) || nseData[entry.nseCode].PrevClose;
       }
-      if (entry.bseCode && bseData[entry.bseCode] && !bseData[entry.bseCode].PrevClose) {
-        bseData[entry.bseCode].PrevClose = newListingsData[isin].issuePrice;
+    }
+
+    const bseKey = entry.bseCode ? String(entry.bseCode) : null;
+    if (bseKey && bseData[bseKey]) {
+      if (!bseData[bseKey].PrevClose && entry.issuePrice) {
+        bseData[bseKey].PrevClose = entry.issuePrice;
       }
     }
   });
@@ -141,26 +173,20 @@ function GetNthDay(startDate, nthDay, forward = true) {
   while (counter < nthDay) {
     endDate = new Date(endDate.setDate(endDate.getDate() + (forward ? 1 : -1)));
 
-    // Check if this day should be counted for nth day calculation
     let shouldCount = false;
 
-    // Check if it's a special trading day first
     if (typeof IsSpecialTradingDay === 'function') {
       const specialDay = IsSpecialTradingDay(endDate);
       if (specialDay) {
-        // Only count if countForNthDay is not explicitly set to false
         shouldCount = specialDay.countForNthDay !== false;
       } else {
-        // Regular day - check if it's a normal trading day
         if (typeof IsTradingDay === 'function') {
           shouldCount = IsTradingDay(endDate);
         } else {
-          // Fallback to original logic
           shouldCount = !(endDate.getDay() == 0 || endDate.getDay() == 6 || CheckForHoliday(endDate));
         }
       }
     } else {
-      // Fallback to original logic when IsSpecialTradingDay is not available
       if (typeof IsTradingDay === 'function') {
         shouldCount = IsTradingDay(endDate);
       } else {
@@ -216,28 +242,3 @@ async function CheckForLatestData() {
     flag && setTimeout(CheckForLatestData, settings.constants.refreshDataTimeOut * 60 * 1000);
   }
 };
-
-// async function CheckForLatestData() {
-//   if (document.getElementById('updatedDataAvailable').style.display != 'block') {
-
-//     let flags = new Array(2);
-//     flags[0] = new Array(3).fill(true);
-//     flags[1] = new Array(3).fill(true);
-
-//     loop1:
-//     for (let j = 0; j < dataFiles[0].length; j++) {
-//       for (let i = 0; i < dataFiles.length; i++) {
-//         let dataJson = await GetData(dataFiles[i][j]);
-//         if (new Date(dataJson.dateTimeStamp) > new Date(dataValidityTable.rows[i + 1].cells[j + 1].innerText)) {
-//           document.getElementById('updatedDataAvailable').style.display = 'block';
-//           flags[i][j] = false;
-//           break loop1;
-//         }
-//         else if (new Date(dataJson.dateTimeStamp).getTime() == new Date(dataValidityTable.rows[i + 1].cells[j + 1].innerText).getTime()) {
-//           flags[i][j] = false;
-//         }
-//       }
-//     }
-//     flags.flat().indexOf(true) != -1 && setTimeout(CheckForLatestData, settings.constants.refreshDataTimeOut* 60 * 1000);
-//   }
-// };

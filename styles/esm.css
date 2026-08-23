@@ -1,0 +1,40 @@
+/* Base highlight class preserving animation and right alignment */
+.highlight {
+    -webkit-animation: highlight 1s 10 alternate-reverse forwards;
+    -moz-animation: highlight 1s 10 alternate-reverse forwards;
+    -o-animation: highlight 1s 10 alternate-reverse forwards;
+    animation: highlight 1s 10 alternate-reverse forwards;
+    margin-left: 5px;
+    margin-bottom: 0%;
+    float: right;
+    padding: 2px 6px;
+    font-size: 11px;
+    font-weight: 600;
+    line-height: 1.2;
+    border-radius: 3px;
+    white-space: nowrap;
+    text-shadow: none;
+}
+
+/* ESM Stage II (Critical Escalation - Solid Red Background with Crisp White Text) */
+.highlight.esm-stage2 {
+    background-color: #d9534f !important;
+    color: #ffffff !important;
+}
+
+.highlight.esm-stage1 {
+    background-color: #f0ad4e !important;
+    color: #ffffff !important;
+}
+
+.highlight.esm-warning {
+    background-color: #ffeb3b !important;
+    color: #333333 !important;
+}
+
+/* T2T Badges (Ensures text stays dark and legible against default yellow animation) */
+.highlight:not(.esm-stage1):not(.esm-stage2):not(.esm-warning) {
+    background-color: #ffe082;
+    color: #212121 !important;
+    border: 1px solid #ffd54f;
+}
