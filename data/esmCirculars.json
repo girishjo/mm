@@ -1,7 +1,14 @@
 {
-  "dateTimeStamp": "Mon, 24 Aug, 2026, 02:24:21 PM",
+  "dateTimeStamp": "Mon, 24 Aug, 2026, 08:23:40 PM",
   "data": {
     "NSE": [
+      {
+        "Exchange": "NSE",
+        "NoticeNo": "NSE/SURV/75911",
+        "Date": "August 24, 2026",
+        "Subject": "Applicability of Enhanced Surveillance Measure (ESM)",
+        "FileLink": "https://nsearchives.nseindia.com/content/circulars/SURV75911.zip"
+      },
       {
         "Exchange": "NSE",
         "NoticeNo": "NSE/SURV/75872",
@@ -169,16 +176,32 @@
         "Date": "July 20, 2026",
         "Subject": "Applicability of Enhanced Surveillance Measure (ESM)",
         "FileLink": "https://nsearchives.nseindia.com/content/circulars/SURV75287.zip"
-      },
-      {
-        "Exchange": "NSE",
-        "NoticeNo": "NSE/SURV/75256",
-        "Date": "July 17, 2026",
-        "Subject": "Applicability of Enhanced Surveillance Measure (ESM)",
-        "FileLink": "https://nsearchives.nseindia.com/content/circulars/SURV75256.zip"
       }
     ],
     "BSE": [
+      {
+        "Exchange": "BSE",
+        "NoticeNo": "20260824-38",
+        "Date": "2026-08-24",
+        "Subject": "Enhanced Surveillance Measure (ESM)",
+        "FileLink": "https://www.bseindia.com/downloads/UploadDocs/Notices/20260824-38/20260824-38.pdf",
+        "ScripCodes": [
+          "544187",
+          "500421",
+          "504369",
+          "541799",
+          "544554",
+          "544755",
+          "544555",
+          "544156",
+          "530745",
+          "512379",
+          "532801",
+          "522235",
+          "544861",
+          "520151"
+        ]
+      },
       {
         "Exchange": "BSE",
         "NoticeNo": "20260821-35",
