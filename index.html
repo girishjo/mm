@@ -115,22 +115,17 @@
                 <thead>
                     <tr>
                         <th class="fitwidth">No.</th>
-                        <th class="fitwidth">Add</th>
-                        <th class="fitwidth">Remove</th>
-                        <th class="fitwidth">Move</th>
                         <th class="text"><a href="#" class="sort-by">Stock Name</a></th>
                         <th class="text">NSE Code</th>
                         <th class="text">BSE Code</th>
                         <th class="number"><a href="#" class="sort-by">Quantity</a></th>
                         <th class="number"><a href="#" class="sort-by">Price</a></th>
+                        <th class="fitwidth">Actions</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr class="hide" draggable="true" ondragstart="DragStart();" ondragover="DragOver();">
                         <td class="number">0</td>
-                        <td class="icon add">&#43;</td>
-                        <td class="icon remove">&#10539;</td>
-                        <td class="icon move">&#8594;</td>
                         <td contenteditable="true" class="text" oninput="showAutoComplete(this, 'stockName')"
                             onblur="hideAutoComplete()" onkeydown="if(event.key==='Tab') hideAutoComplete()"></td>
                         <td contenteditable="true" class="text" oninput="showAutoComplete(this, 'nseCode')"
@@ -141,6 +136,16 @@
                             onkeydown="if(event.key==='Tab') hideAutoComplete()"></td>
                         <td contenteditable="true" class="number"></td>
                         <td contenteditable="true" class="number"></td>
+                        <td class="fitwidth">
+                            <div class="watchlist-row-actions">
+                                <button class="watchlist-actions-button" title="More actions" aria-label="More actions"
+                                    onclick="toggleWatchlistActions(event, this.nextElementSibling)">...</button>
+                                <div class="watchlist-actions-menu">
+                                    <button class="icon add" title="Add new row">Add New Row</button>
+                                    <button class="icon remove" title="Remove stock">Remove Row</button>
+                                </div>
+                            </div>
+                        </td>
                     </tr>
                 </tbody>
             </table>
@@ -150,18 +155,6 @@
                 style="position: absolute; background: white; border: 1px solid #ccc; border-radius: 4px; max-height: 200px; overflow-y: auto; z-index: 1000; display: none; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
             </div>
 
-            <div id="watchlistModal" class="modal">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <span id="watchlistModalCloser" class="close" style="float: right;">&times;</span>
-                        <h2 id="otherWatchlistsHeader" style="width: 200px;">Move this stock to: </h2>
-                    </div>
-                    <div id="otherWatchlistsDiv" class="modal-body">
-                        <select id="ddlMoveToWatchlist" onchange="MoveStock();">
-                        </select>
-                    </div>
-                </div>
-            </div>
         </div>
         <div id="stockDataDiv" class="tabcontent" style="display: block;">
             <table id="stockData">
@@ -347,8 +340,8 @@
                 <label for="chkPortfolioWithCash" style="margin-right: 10px;"><input type="checkbox"
                         id="chkPortfolioWithCash" onchange="togglePortfolioCash();"> with Cash</label>
                 <input type="text" id="portfolioCash" inputmode="decimal" placeholder="Cash value"
-                    style="width: 120px; margin-right: 20px;" disabled onchange="savePortfolioPreferences(); updatePortfolioTable();"
-                    onblur="formatPortfolioCash();">
+                    style="width: 120px; margin-right: 20px;" disabled
+                    onchange="savePortfolioPreferences(); updatePortfolioTable();" onblur="formatPortfolioCash();">
                 <label for="portfolioDate" style="font-weight: bold; margin-right: 10px;">Portfolio as on:</label>
                 <span id="portfolioDateDisplay"
                     style="font-weight: bold; color: #333; margin-right: 10px; display: inline-block; width: 80px; text-align: right;"></span>
@@ -479,6 +472,7 @@
                             <th class="text sort"><a href="#" class="sort-by">Issue Price</a></th>
                             <th class="text sort"><a href="#" class="sort-by">Free Float</a></th>
                             <th class="text sort"><a href="#" class="sort-by">Lot Size</a></th>
+                            <th class="fitwidth">Actions</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -494,9 +488,21 @@
                             <td class="number"></td>
                             <td class="number"></td>
                             <td class="number"></td>
+                            <td class="fitwidth"></td>
                         </tr>
                     </tbody>
                 </table>
+            </div>
+        </div>
+        <div id="watchlistModal" class="modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <span id="watchlistModalCloser" class="close" style="float: right;">&times;</span>
+                    <h2 id="otherWatchlistsHeader" style="width: 200px;">Move this stock to: </h2>
+                </div>
+                <div id="otherWatchlistsDiv" class="modal-body">
+                    <select id="ddlMoveToWatchlist"></select>
+                </div>
             </div>
         </div>
         <div id="settingsDiv" class="tabcontent" style="display: none;">

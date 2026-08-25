@@ -86,7 +86,7 @@ function getWatchlistDataInDisplayOrder(watchlist) {
         return ordered.concat(data.filter(stock => !watchlist.displayOrder.includes(getStockIdentity(stock))));
     }
     if (!watchlist.sort) return data;
-    const dataColumn = Number(watchlist.sort.column) - 4;
+    const dataColumn = Number(watchlist.sort.column) - 1;
     if (dataColumn < 0 || dataColumn > 4) return data;
     const direction = watchlist.sort.direction === 'desc' ? -1 : 1;
     return data.sort((first, second) => {
@@ -110,8 +110,8 @@ function saveDynamicDisplayOrder() {
     if (!isDynamicWatchlist(watchlist)) return;
     const order = [];
     for (const row of listTable.tBodies[0].rows) {
-        if (row.classList.contains('hide') || !row.cells[4].innerText.trim()) continue;
-        order.push(getStockIdentity([row.cells[4].innerText, row.cells[5].innerText, row.cells[6].innerText]));
+        if (row.classList.contains('hide') || !row.cells[1].innerText.trim()) continue;
+        order.push(getStockIdentity([row.cells[1].innerText, row.cells[2].innerText, row.cells[3].innerText]));
     }
     watchlist.displayOrder = order;
     delete watchlist.sort;
@@ -182,7 +182,7 @@ function loadDataFromLocal() {
 
 function saveDataOnLocal(silentUpdate = false, loadDefault = false) {
     if (!silentUpdate && !isDynamicWatchlist(watchlists[activeWL])) {
-        let listTableObj = toObject(listTable);
+        let listTableObj = toObject(listTable, 0);
         watchlists[activeWL].data = listTableObj;
     }
     if (isDynamicWatchlist(watchlists[activeWL])) saveDynamicDisplayOrder();
@@ -311,7 +311,7 @@ function UpdateWatchList(saveLast = true) {
         UpdateLoader(true, "Loading Watchlists", 0.5);
         if (saveLast && lastSelectedWL != activeWL) {
             if (watchlists[lastSelectedWL] && !isDynamicWatchlist(watchlists[lastSelectedWL])) {
-                watchlists[lastSelectedWL].data = toObject(listTable);
+                watchlists[lastSelectedWL].data = toObject(listTable, 0);
                 refreshDynamicWatchlists();
             }
         }
@@ -357,6 +357,8 @@ function UpdateWatchList(saveLast = true) {
 function AddMoveToContent() {
     const ddlMoveToWatchlist = document.getElementById('ddlMoveToWatchlist');
     ddlMoveToWatchlist.innerHTML = '';
+    ddlMoveToWatchlist.onchange = MoveStock;
+    document.getElementById('otherWatchlistsHeader').innerText = 'Move this stock to:';
 
     ddlMoveToWatchlist.appendChild(new Option("Select watchlist", "-1"));
     for (const wlValue in watchlists) {
@@ -561,11 +563,32 @@ function updateListTable(stockList) {
         for (let i = 0; i < orderedData.length; i++) {
             if (orderedData[i][0]) {
                 const newRow = addEmptyRow(listTable);
-                newRow.cells[4].innerText = orderedData[i][0];
-                newRow.cells[5].innerText = orderedData[i][1];
-                newRow.cells[6].innerText = orderedData[i][2];
-                orderedData[i][3] && (newRow.cells[7].innerText = orderedData[i][3]);
-                orderedData[i][4] && (newRow.cells[8].innerText = orderedData[i][4]);
+                newRow.cells[1].innerText = orderedData[i][0];
+                newRow.cells[2].innerText = orderedData[i][1];
+                newRow.cells[3].innerText = orderedData[i][2];
+                orderedData[i][3] && (newRow.cells[4].innerText = orderedData[i][3]);
+                orderedData[i][4] && (newRow.cells[5].innerText = orderedData[i][4]);
+                newRow.cells[6].innerHTML = '';
+                const actions = document.createElement('div');
+                actions.className = 'watchlist-row-actions';
+                const actionsButton = document.createElement('button');
+                actionsButton.className = 'watchlist-actions-button';
+                actionsButton.innerText = '...';
+                actionsButton.title = 'More actions';
+                actionsButton.setAttribute('aria-label', 'More actions');
+                const menu = document.createElement('div');
+                menu.className = 'watchlist-actions-menu';
+                [['add', 'Add New Row', 'Add new row'], ['remove', 'Remove Stock', 'Remove stock'], ['move', 'Move to', 'Move stock']].forEach(([className, text, title]) => {
+                    const action = document.createElement('button');
+                    action.className = 'icon ' + className;
+                    action.innerText = text;
+                    action.title = title;
+                    menu.appendChild(action);
+                });
+                actionsButton.onclick = event => toggleWatchlistActions(event, menu);
+                actions.appendChild(actionsButton);
+                actions.appendChild(menu);
+                newRow.cells[6].appendChild(actions);
             }
         }
     }
@@ -1050,11 +1073,27 @@ function updatePortfolioTable() {
     updateRowNumber(portfolioTable);
 }
 
+function toggleWatchlistActions(event, menu) {
+    event.stopPropagation();
+    document.querySelectorAll('.watchlist-actions-menu.is-open').forEach(openMenu => {
+        if (openMenu !== menu) openMenu.classList.remove('is-open');
+    });
+    menu.classList.toggle('is-open');
+}
+
+document.addEventListener('click', event => {
+    if (!event.target.closest('.watchlist-row-actions')) {
+        document.querySelectorAll('.watchlist-actions-menu.is-open').forEach(menu => menu.classList.remove('is-open'));
+    }
+});
+
 listTable.addEventListener('click', function (e) {
     if (isDynamicWatchlist(watchlists[activeWL])) return;
-    const cell = e.target.closest('td');
+    const action = e.target.closest('.add, .remove, .move');
+    const cell = action || e.target.closest('td');
     if (!cell) return;
-    const row = cell.parentElement;
+    if (action) action.closest('.watchlist-actions-menu')?.classList.remove('is-open');
+    const row = cell.closest('tr');
     if (cell.classList.contains('add')) {
         addEmptyRow(listTable, row.rowIndex + 1);
         updateRowNumber(listTable);
@@ -1067,14 +1106,14 @@ listTable.addEventListener('click', function (e) {
         updateRowNumber(listTable);
     }
     else if (cell.classList.contains('move')) {
-        if (listTable.rows[row.rowIndex].cells[4].innerText.trim() != '') {
+                if (listTable.rows[row.rowIndex].cells[1].innerText.trim() != '') {
             const stockDetails = {
                 rowIndex: row.rowIndex,
-                stockName: listTable.rows[row.rowIndex].cells[4].innerText,
-                stockNseCode: listTable.rows[row.rowIndex].cells[5].innerText,
-                stockBseCode: listTable.rows[row.rowIndex].cells[6].innerText,
-                stockQuantity: listTable.rows[row.rowIndex].cells[7].innerText,
-                stockPrice: listTable.rows[row.rowIndex].cells[8].innerText
+                stockName: listTable.rows[row.rowIndex].cells[1].innerText,
+                stockNseCode: listTable.rows[row.rowIndex].cells[2].innerText,
+                stockBseCode: listTable.rows[row.rowIndex].cells[3].innerText,
+                stockQuantity: listTable.rows[row.rowIndex].cells[4].innerText,
+                stockPrice: listTable.rows[row.rowIndex].cells[5].innerText
             };
 
             const otherWatchlistsDiv = document.getElementById('otherWatchlistsDiv');
@@ -1989,14 +2028,14 @@ function selectSuggestion(suggestion, element, type) {
         const stockData = findStockData(suggestion, type);
         const cells = row.cells;
         if (cells.length >= 7) {
-            cells[4].textContent = '';
-            cells[5].textContent = '';
-            cells[6].textContent = '';
+            cells[1].textContent = '';
+            cells[2].textContent = '';
+            cells[3].textContent = '';
 
             if (stockData) {
-                if (stockData.name) cells[4].textContent = stockData.name;
-                if (stockData.nseCode) cells[5].textContent = stockData.nseCode;
-                if (stockData.bseCode) cells[6].textContent = stockData.bseCode;
+                if (stockData.name) cells[1].textContent = stockData.name;
+                if (stockData.nseCode) cells[2].textContent = stockData.nseCode;
+                if (stockData.bseCode) cells[3].textContent = stockData.bseCode;
             }
         }
     }
@@ -2069,7 +2108,7 @@ function combineSelectedWatchlists() {
     }
 
     if (document.getElementById('stockListDiv').style.display === 'block' && watchlists[activeWL]) {
-        watchlists[activeWL].data = toObject(listTable);
+        watchlists[activeWL].data = toObject(listTable, 0);
     }
     let name = document.getElementById('combinedWatchlistName').value.trim();
     if (!name) {

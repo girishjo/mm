@@ -1,6 +1,75 @@
 const circuitChangeTable = document.getElementById("circuitChangeTable");
 var circuitChangeStocks = [];
 var selectedCircuitDate = null;
+var circuitStockToAdd = null;
+
+function OpenCircuitAddToWatchlist(stock) {
+    circuitStockToAdd = stock;
+    const select = document.getElementById('ddlMoveToWatchlist');
+    select.innerHTML = '';
+    select.appendChild(new Option('Select watchlist', '-1'));
+    for (const [key, watchlist] of Object.entries(watchlists)) {
+        if (isDynamicWatchlist(watchlist)) continue;
+        select.appendChild(new Option(watchlist.name, key));
+    }
+    if (select.options.length === 1) {
+        select.innerHTML = '';
+        ShowMessage('No editable watchlist available');
+        return;
+    }
+    document.getElementById('otherWatchlistsHeader').innerText = 'Add this stock to:';
+    select.onchange = AddCircuitStockToWatchlist;
+    document.getElementById('watchlistModal').style.display = 'block';
+    document.body.setAttribute('modal-shown', 'true');
+}
+
+function AddCircuitStockToWatchlist() {
+    if (!circuitStockToAdd) return;
+    const select = document.getElementById('ddlMoveToWatchlist');
+    const watchlist = watchlists[select.value];
+    if (!watchlist || isDynamicWatchlist(watchlist)) return;
+
+    const stockIdentity = getStockIdentity([circuitStockToAdd.name, circuitStockToAdd.nseCode, circuitStockToAdd.bseCode]);
+    const alreadyAdded = (watchlist.data || []).some(stock => getStockIdentity(stock) === stockIdentity);
+    if (alreadyAdded) {
+        ShowMessage('Stock is already in this watchlist');
+    } else {
+        const stockData = [circuitStockToAdd.name, circuitStockToAdd.nseCode, circuitStockToAdd.bseCode];
+        if (settings.configs.moveStockTo === 'top') watchlist.data = [stockData, ...(watchlist.data || [])];
+        else watchlist.data = [...(watchlist.data || []), stockData];
+        saveDataOnLocal(true, false);
+        ShowMessage('Stock added to watchlist');
+    }
+    CloseCircuitAddWatchlistModal();
+}
+
+function CloseCircuitAddWatchlistModal() {
+    const select = document.getElementById('ddlMoveToWatchlist');
+    select.onchange = MoveStock;
+    select.value = '-1';
+    document.getElementById('otherWatchlistsHeader').innerText = 'Move this stock to:';
+    document.getElementById('watchlistModal').style.display = 'none';
+    document.body.removeAttribute('modal-shown');
+    circuitStockToAdd = null;
+}
+
+function toggleCircuitActions(event, menu) {
+    event.stopPropagation();
+    document.querySelectorAll('.circuit-actions-menu.is-open').forEach(openMenu => {
+        if (openMenu !== menu) openMenu.classList.remove('is-open');
+    });
+    menu.classList.toggle('is-open');
+}
+
+function hideCircuitActions(button) {
+    button.closest('.circuit-actions-menu')?.classList.remove('is-open');
+}
+
+document.addEventListener('click', event => {
+    if (!event.target.closest('.circuit-row-actions')) {
+        document.querySelectorAll('.circuit-actions-menu.is-open').forEach(menu => menu.classList.remove('is-open'));
+    }
+});
 
 async function InitCircuitChange() {
     if (!selectedCircuitDate) {
@@ -103,6 +172,8 @@ function BuildCircuitChangeStocks() {
         const tableEntry = {
             code: (entry.ticker || entry.nseCode || entry.bseCode || '').trim(),
             name: entry.name || entry.nseCode || entry.bseCode || '',
+            nseCode: nseCode,
+            bseCode: (entry.bseCode || '').toString().trim(),
             series: series,
             type: isSME ? 'SME' : 'MainBoard',
             exchanges: entry.exchanges || '',
@@ -189,6 +260,28 @@ function UpdateCircuitChangeTable() {
 
         // 0. Sr No
         row.cells[0].innerText = i + 1;
+
+        // Row actions
+        const actions = document.createElement('div');
+        actions.className = 'circuit-row-actions';
+        const actionsButton = document.createElement('button');
+        actionsButton.className = 'circuit-actions-button';
+        actionsButton.innerText = '...';
+        actionsButton.title = 'More actions';
+        actionsButton.setAttribute('aria-label', 'More actions');
+        const menu = document.createElement('div');
+        menu.className = 'circuit-actions-menu';
+        const addAction = document.createElement('button');
+        addAction.innerText = 'Add to watchlist';
+        addAction.onclick = () => {
+            OpenCircuitAddToWatchlist(stock);
+            hideCircuitActions(addAction);
+        };
+        actionsButton.onclick = event => toggleCircuitActions(event, menu);
+        menu.appendChild(addAction);
+        actions.appendChild(actionsButton);
+        actions.appendChild(menu);
+        row.cells[11].appendChild(actions);
 
         // 1. Circuit Change Date
         if (stock.circuitChangeDate && stock.circuitChangeDate.toLocaleDateString) {

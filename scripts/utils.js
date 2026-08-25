@@ -275,6 +275,7 @@ function toObject(table, col = 3) {
             const res = [];
             for (let j = 0; j < row.cells.length; j++) {
                 const cell = row.cells[j];
+                if (table.id === 'stocksList' && j === row.cells.length - 1) continue;
                 j > col && res.push(cell.textContent);
             }
             res.length > 0 && res[0].trim() != "" && result.push(res);

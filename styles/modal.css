@@ -34,14 +34,14 @@
 }
 
 .modal-content {
-    bottom: 0;
-    left: 0;
-    margin: auto;
+    left: 50%;
+    top: 50%;
+    bottom: auto;
+    margin: 0;
     max-height: calc(100% - 100px);
     max-width: calc(100% - 100px);
     position: fixed;
-    right: 0;
-    top: 0;
+    transform: translate(-50%, -50%);
     overflow: auto;
 }
 

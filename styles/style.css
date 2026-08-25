@@ -210,6 +210,101 @@ label[for] {
     cursor: pointer;
 }
 
+.watchlist-row-actions {
+    position: relative;
+    display: inline-flex;
+}
+
+.watchlist-actions-button {
+    width: 30px;
+    height: 30px;
+    padding: 0;
+    margin: 0;
+    border: 1px solid #cccccc;
+    background: transparent;
+    font-size: 21px;
+    line-height: 20px;
+}
+
+.watchlist-actions-menu {
+    display: none;
+    position: absolute;
+    right: 0;
+    top: calc(100% + 4px);
+    z-index: 5;
+    min-width: 150px;
+    padding: 4px;
+    border: 1px solid #cccccc;
+    background: white;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.18);
+}
+
+.watchlist-actions-menu.is-open {
+    display: block;
+}
+
+.watchlist-actions-menu button {
+    width: 100%;
+    margin: 0;
+    padding: 7px 9px;
+    text-align: left;
+    white-space: nowrap;
+    background: white;
+    border: 0;
+}
+
+.watchlist-actions-menu button:hover,
+.watchlist-actions-menu button:focus {
+    background: #eeeeee;
+}
+
+.circuit-row-actions {
+    position: relative;
+    display: inline-flex;
+}
+
+.circuit-actions-button {
+    width: 30px;
+    height: 30px;
+    padding: 0;
+    margin: 0;
+    border: 1px solid #cccccc;
+    background: transparent;
+    font-size: 22px;
+    line-height: 20px;
+}
+
+.circuit-actions-menu {
+    display: none;
+    position: absolute;
+    right: 0;
+    top: calc(100% + 4px);
+    z-index: 5;
+    min-width: 150px;
+    padding: 4px;
+    border: 1px solid #cccccc;
+    background: white;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.18);
+}
+
+.circuit-actions-menu.is-open {
+    display: block;
+}
+
+.circuit-actions-menu button {
+    width: 100%;
+    margin: 0;
+    padding: 7px 9px;
+    text-align: left;
+    background: white;
+    border: 0;
+}
+
+.circuit-actions-menu button:hover,
+.circuit-actions-menu button:focus {
+    background: #eeeeee;
+}
+
 #watchlistDiv {
     display: flex;
     align-items: center;
