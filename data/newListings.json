@@ -974,5 +974,26 @@
     "nseNoticeNo": null,
     "bseCircular": null,
     "bseNoticeNo": null
+  },
+  "INE1KZI01025": {
+    "isin": "INE1KZI01025",
+    "nseCode": "TEMPSENS",
+    "bseCode": "",
+    "ticker": "TEMPSENS",
+    "name": "Tempsens Instruments (India) Limited",
+    "series": "EQ",
+    "type": "MainBoard",
+    "listingDate": "Fri, 28 Aug, 2026",
+    "exchanges": "NSE",
+    "issuePrice": 300,
+    "ltp": null,
+    "lotSize": 1,
+    "totalSecurities": 83832691,
+    "freeShares": 17198318,
+    "freeFloatPercentage": 20.52,
+    "nseCircular": "https://nsearchives.nseindia.com/content/circulars/CML76000.zip",
+    "nseNoticeNo": "76000",
+    "bseCircular": null,
+    "bseNoticeNo": null
   }
 }
