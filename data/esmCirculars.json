@@ -1,5 +1,5 @@
 {
-  "dateTimeStamp": "Thu, 27 Aug, 2026, 08:23:38 PM",
+  "dateTimeStamp": "Fri, 28 Aug, 2026, 02:24:17 PM",
   "data": {
     "NSE": [
       {
@@ -378,24 +378,6 @@
           "507917",
           "509953",
           "521137"
-        ]
-      },
-      {
-        "Exchange": "BSE",
-        "NoticeNo": "20260817-35",
-        "Date": "2026-08-17",
-        "Subject": "Enhanced Surveillance Measure (ESM)",
-        "FileLink": "https://www.bseindia.com/downloads/UploadDocs/Notices/20260817-35/20260817-35.pdf",
-        "ScripCodes": [
-          "517356",
-          "531613",
-          "532470",
-          "530525",
-          "530907",
-          "543914",
-          "530579",
-          "500450",
-          "530557"
         ]
       }
     ]
