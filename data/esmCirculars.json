@@ -1,21 +1,7 @@
 {
-  "dateTimeStamp": "Fri, 28 Aug, 2026, 02:24:17 PM",
+  "dateTimeStamp": "Fri, 28 Aug, 2026, 08:23:37 PM",
   "data": {
     "NSE": [
-      {
-        "Exchange": "NSE",
-        "NoticeNo": "NSE/SURV/76003",
-        "Date": "August 27, 2026",
-        "Subject": "Applicability of Enhanced Surveillance Measure (ESM)",
-        "FileLink": "https://nsearchives.nseindia.com/content/circulars/SURV76003.zip"
-      },
-      {
-        "Exchange": "NSE",
-        "NoticeNo": "NSE/SURV/75979",
-        "Date": "August 26, 2026",
-        "Subject": "Applicability of Enhanced Surveillance Measure (ESM)",
-        "FileLink": "https://nsearchives.nseindia.com/content/circulars/SURV75979.zip"
-      },
       {
         "Exchange": "NSE",
         "NoticeNo": "NSE/SURV/75967",
@@ -176,9 +162,77 @@
         "Date": "July 23, 2026",
         "Subject": "Applicability of Enhanced Surveillance Measure (ESM)",
         "FileLink": "https://nsearchives.nseindia.com/content/circulars/SURV75355.zip"
+      },
+      {
+        "Exchange": "NSE",
+        "NoticeNo": "NSE/SURV/75333",
+        "Date": "July 22, 2026",
+        "Subject": "Applicability of Enhanced Surveillance Measure (ESM)",
+        "FileLink": "https://nsearchives.nseindia.com/content/circulars/SURV75333.zip"
+      },
+      {
+        "Exchange": "NSE",
+        "NoticeNo": "NSE/SURV/75310",
+        "Date": "July 21, 2026",
+        "Subject": "Applicability of Enhanced Surveillance Measure (ESM)",
+        "FileLink": "https://nsearchives.nseindia.com/content/circulars/SURV75310.zip"
       }
     ],
     "BSE": [
+      {
+        "Exchange": "BSE",
+        "NoticeNo": "20260828-23",
+        "Date": "2026-08-28",
+        "Subject": "Enhanced Surveillance Measure (ESM)",
+        "FileLink": "https://www.bseindia.com/downloads/UploadDocs/Notices/20260828-23/20260828-23.pdf",
+        "ScripCodes": [
+          "506122",
+          "531680",
+          "540775",
+          "540615",
+          "530705",
+          "524723",
+          "540788",
+          "544703",
+          "531155",
+          "544709",
+          "513528",
+          "542332",
+          "523387",
+          "526604",
+          "534422",
+          "538860",
+          "521180",
+          "541402",
+          "524370",
+          "532941",
+          "543651",
+          "544239",
+          "524444",
+          "530197",
+          "524624",
+          "532767",
+          "530317",
+          "544682",
+          "542592",
+          "532774",
+          "531780",
+          "538778",
+          "524280",
+          "532740",
+          "523888",
+          "519003",
+          "506261",
+          "540416",
+          "544698",
+          "543982",
+          "544236",
+          "532776",
+          "539017",
+          "514260",
+          "530697"
+        ]
+      },
       {
         "Exchange": "BSE",
         "NoticeNo": "20260827-29",
