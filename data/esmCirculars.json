@@ -1,7 +1,28 @@
 {
-  "dateTimeStamp": "Fri, 28 Aug, 2026, 08:23:37 PM",
+  "dateTimeStamp": "Sat, 29 Aug, 2026, 02:24:17 PM",
   "data": {
     "NSE": [
+      {
+        "Exchange": "NSE",
+        "NoticeNo": "NSE/SURV/76035",
+        "Date": "August 28, 2026",
+        "Subject": "Applicability of Enhanced Surveillance Measure (ESM)",
+        "FileLink": "https://nsearchives.nseindia.com/content/circulars/SURV76035.zip"
+      },
+      {
+        "Exchange": "NSE",
+        "NoticeNo": "NSE/SURV/76003",
+        "Date": "August 27, 2026",
+        "Subject": "Applicability of Enhanced Surveillance Measure (ESM)",
+        "FileLink": "https://nsearchives.nseindia.com/content/circulars/SURV76003.zip"
+      },
+      {
+        "Exchange": "NSE",
+        "NoticeNo": "NSE/SURV/75979",
+        "Date": "August 26, 2026",
+        "Subject": "Applicability of Enhanced Surveillance Measure (ESM)",
+        "FileLink": "https://nsearchives.nseindia.com/content/circulars/SURV75979.zip"
+      },
       {
         "Exchange": "NSE",
         "NoticeNo": "NSE/SURV/75967",
@@ -155,27 +176,6 @@
         "Date": "July 24, 2026",
         "Subject": "Applicability of Enhanced Surveillance Measure (ESM)",
         "FileLink": "https://nsearchives.nseindia.com/content/circulars/SURV75396.zip"
-      },
-      {
-        "Exchange": "NSE",
-        "NoticeNo": "NSE/SURV/75355",
-        "Date": "July 23, 2026",
-        "Subject": "Applicability of Enhanced Surveillance Measure (ESM)",
-        "FileLink": "https://nsearchives.nseindia.com/content/circulars/SURV75355.zip"
-      },
-      {
-        "Exchange": "NSE",
-        "NoticeNo": "NSE/SURV/75333",
-        "Date": "July 22, 2026",
-        "Subject": "Applicability of Enhanced Surveillance Measure (ESM)",
-        "FileLink": "https://nsearchives.nseindia.com/content/circulars/SURV75333.zip"
-      },
-      {
-        "Exchange": "NSE",
-        "NoticeNo": "NSE/SURV/75310",
-        "Date": "July 21, 2026",
-        "Subject": "Applicability of Enhanced Surveillance Measure (ESM)",
-        "FileLink": "https://nsearchives.nseindia.com/content/circulars/SURV75310.zip"
       }
     ],
     "BSE": [
@@ -416,22 +416,6 @@
           "539562",
           "500009",
           "506528"
-        ]
-      },
-      {
-        "Exchange": "BSE",
-        "NoticeNo": "20260818-32",
-        "Date": "2026-08-18",
-        "Subject": "Enhanced Surveillance Measure (ESM)",
-        "FileLink": "https://www.bseindia.com/downloads/UploadDocs/Notices/20260818-32/20260818-32.pdf",
-        "ScripCodes": [
-          "514454",
-          "540652",
-          "526397",
-          "500464",
-          "507917",
-          "509953",
-          "521137"
         ]
       }
     ]
