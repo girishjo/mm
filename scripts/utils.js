@@ -615,6 +615,7 @@ async function ShareTableAsImage(tableId, heading = "Shared from mm.girishjoshi.
 
                 const detailRow = document.createElement('tr');
                 detailRow.innerHTML = `${cells.slice(3).map(c => c.outerHTML).join('')}`;
+                detailRow.setAttribute('exchange', row.cells[2].getAttribute('exchange'));
                 acc[stock].push(detailRow);
                 return acc;
             }, {});
@@ -625,7 +626,9 @@ async function ShareTableAsImage(tableId, heading = "Shared from mm.girishjoshi.
             Object.keys(grouped).forEach(stock => {
                 // 1. Prepare Header
                 const header = document.createElement('tr');
-                header.innerHTML = `<td colspan="100%" style="background:#bbb; font-weight:bold; padding:8px; border-bottom:1px solid #777;">${stock}</td>`;
+                const exchange = grouped[stock][0].getAttribute('exchange');
+                const exchangeLabel = exchange?.trim() ? ` (${exchange.trim()})` : '';
+                header.innerHTML = `<td colspan="100%" style="background:#bbb; font-weight:bold; padding:8px; border-bottom:1px solid #777;">${stock}${exchangeLabel}</td>`;
 
                 // 2. Prepare Data Rows
                 const detailRows = grouped[stock].map((detailRow, idx) => {
@@ -777,24 +780,36 @@ function GetFormattedTableText(tableId, isGrouped = true, addDate = true) {
         const date = cells[1]?.innerText.trim() || 'Unknown Date';
         const stock = cells[2]?.innerText.trim() || 'Unknown Stock';
 
+        // Extract exchange attribute from the row (or from cells[2] if stored on the cell)
+        const exchangeAttr = row.getAttribute('exchange') || cells[2]?.getAttribute('exchange') || '';
+        const exchange = exchangeAttr.trim();
+
         let indicator = "\u26AA";
         if (type.toLowerCase().includes("buy")) indicator = "\uD83D\uDFE2";
         if (type.toLowerCase().includes("sell")) indicator = "\uD83D\uDD34";
 
         const details = Array.from(cells).slice(3).map(c => c.innerText.trim()).join(' | ');
-        return { date, stock, details: `${indicator} ${details}` };
+        return { date, stock, exchange, details: `${indicator} ${details}` };
     });
 
     // Option 1: Return as Flat List
     if (!isGrouped) {
-        return data.map((item, index) => `${index + 1}. ${item.date} | *${item.stock}* | ${item.details}`).join('\n');
+        return data.map((item, index) => {
+            const ex = item.exchange ? ` (${item.exchange})` : '';
+            return `${index + 1}. ${item.date} | *${item.stock}${ex}* | ${item.details}`;
+        }).join('\n');
     }
 
     // Option 2: Return as Grouped Report
     const grouped = data.reduce((acc, item) => {
         if (!acc[item.date]) acc[item.date] = {};
-        if (!acc[item.date][item.stock]) acc[item.date][item.stock] = [];
-        acc[item.date][item.stock].push(item.details);
+        if (!acc[item.date][item.stock]) {
+            acc[item.date][item.stock] = {
+                exchange: item.exchange,
+                details: []
+            };
+        }
+        acc[item.date][item.stock].details.push(item.details);
         return acc;
     }, {});
 
@@ -804,9 +819,12 @@ function GetFormattedTableText(tableId, isGrouped = true, addDate = true) {
         addDate && (report += `Date: ${date},\n\n`);
         const stocks = Object.keys(grouped[date]);
         stocks.forEach((stock, stockIndex) => {
+            const stockData = grouped[date][stock];
             const stockLabel = String.fromCharCode(65 + stockIndex);
-            report += `${stockLabel}. *${stock}*\n`;
-            grouped[date][stock].forEach((detail, dealIndex) => {
+            const exLabel = stockData.exchange ? ` (${stockData.exchange})` : '';
+
+            report += `${stockLabel}. *${stock}${exLabel}*\n`;
+            stockData.details.forEach((detail, dealIndex) => {
                 report += `  ${dealIndex + 1}. ${detail}\n`;
             });
             if (stockIndex < stocks.length - 1) report += "\n";
