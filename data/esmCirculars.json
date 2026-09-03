@@ -1,7 +1,14 @@
 {
-  "dateTimeStamp": "Thu, 03 Sep, 2026, 02:24:18 PM",
+  "dateTimeStamp": "Thu, 03 Sep, 2026, 08:23:39 PM",
   "data": {
     "NSE": [
+      {
+        "Exchange": "NSE",
+        "NoticeNo": "NSE/SURV/76164",
+        "Date": "September 03, 2026",
+        "Subject": "Applicability of Enhanced Surveillance Measure (ESM)",
+        "FileLink": "https://nsearchives.nseindia.com/content/circulars/SURV76164.zip"
+      },
       {
         "Exchange": "NSE",
         "NoticeNo": "NSE/SURV/76127",
@@ -169,13 +176,6 @@
         "Date": "July 30, 2026",
         "Subject": "Applicability of Enhanced Surveillance Measure (ESM)",
         "FileLink": "https://nsearchives.nseindia.com/content/circulars/SURV75478.zip"
-      },
-      {
-        "Exchange": "NSE",
-        "NoticeNo": "NSE/SURV/75449",
-        "Date": "July 29, 2026",
-        "Subject": "Applicability of Enhanced Surveillance Measure (ESM)",
-        "FileLink": "https://nsearchives.nseindia.com/content/circulars/SURV75449.zip"
       }
     ],
     "BSE": [
