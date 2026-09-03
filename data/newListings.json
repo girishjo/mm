@@ -1,46 +1,4 @@
 {
-  "INE1FFX01018": {
-    "isin": "INE1FFX01018",
-    "nseCode": "PROPSHOP",
-    "ticker": "PROPSHOP",
-    "name": "Propshop Events and Exhibitions Limited",
-    "series": "SM",
-    "type": "SME",
-    "listingDate": "Mon, 03 Aug, 2026",
-    "exchanges": "NSE",
-    "issuePrice": 69,
-    "freeShares": 4140000,
-    "totalSecurities": 14630804,
-    "freeFloatPercentage": 28.3,
-    "circularNo": "NSE/CML/75516",
-    "circular": "https://nsearchives.nseindia.com/content/circulars/CML75516.zip",
-    "lotSize": 2000,
-    "bseCode": "",
-    "ltp": null,
-    "nseCircular": null,
-    "nseNoticeNo": null,
-    "bseCircular": null,
-    "bseNoticeNo": null,
-    "bandChange": {
-      "series": "SM",
-      "bandFrom": "5",
-      "bandTo": "20",
-      "dateEffectiveFrom": "Mon, 17 Aug, 2026"
-    }
-  },
-  "INE13ZJ01010": {
-    "isin": "INE13ZJ01010",
-    "nseCode": "",
-    "ticker": "ADVANCETL",
-    "name": "Advance Technoforge Ltd",
-    "series": "MT",
-    "type": "SME",
-    "listingDate": "Mon, 03 Aug, 2026",
-    "exchanges": "BSE",
-    "bseCode": 544843,
-    "issuePrice": 95,
-    "ltp": 89.3
-  },
   "INE288301026": {
     "isin": "INE288301026",
     "nseCode": "",
@@ -632,7 +590,13 @@
     "nseCircular": "https://nsearchives.nseindia.com/content/circulars/CML75849.zip",
     "nseNoticeNo": "75849",
     "bseCircular": null,
-    "bseNoticeNo": null
+    "bseNoticeNo": null,
+    "bandChange": {
+      "series": "SM",
+      "bandFrom": "5",
+      "bandTo": "10",
+      "dateEffectiveFrom": "Fri, 04 Sep, 2026"
+    }
   },
   "INE19QK01022": {
     "isin": "INE19QK01022",
