@@ -592,7 +592,7 @@
     "bseCode": "",
     "ticker": "CREDENT",
     "name": "Credent Connect N Care Limited",
-    "series": "ST",
+    "series": "SM",
     "type": "SME",
     "listingDate": "Thu, 20 Aug, 2026",
     "exchanges": "NSE",
@@ -605,7 +605,13 @@
     "nseCircular": "https://nsearchives.nseindia.com/content/circulars/CML75834.zip",
     "nseNoticeNo": "75834",
     "bseCircular": null,
-    "bseNoticeNo": null
+    "bseNoticeNo": null,
+    "bandChange": {
+      "series": "SM",
+      "bandFrom": "5",
+      "bandTo": "20",
+      "dateEffectiveFrom": "Thu, 03 Sep, 2026"
+    }
   },
   "INE0VFE01017": {
     "isin": "INE0VFE01017",
@@ -1024,6 +1030,48 @@
     "freeFloatPercentage": 28.37,
     "nseCircular": "https://nsearchives.nseindia.com/content/circulars/CML76115.zip",
     "nseNoticeNo": "76115",
+    "bseCircular": null,
+    "bseNoticeNo": null
+  },
+  "INE185Q01025": {
+    "isin": "INE185Q01025",
+    "nseCode": "LUMINO",
+    "bseCode": "544894",
+    "ticker": "LUMINO",
+    "name": "Lumino Industries Limited",
+    "series": "EQ",
+    "type": "MainBoard",
+    "listingDate": "Thu, 03 Sep, 2026",
+    "exchanges": "NSE, BSE",
+    "issuePrice": 82,
+    "ltp": null,
+    "lotSize": 1,
+    "totalSecurities": 304553705,
+    "freeShares": 60121950,
+    "freeFloatPercentage": 19.74,
+    "nseCircular": "https://nsearchives.nseindia.com/content/circulars/CML76134.zip",
+    "nseNoticeNo": "76134",
+    "bseCircular": null,
+    "bseNoticeNo": null
+  },
+  "INE1SFA01019": {
+    "isin": "INE1SFA01019",
+    "nseCode": "",
+    "bseCode": "544895",
+    "ticker": "KWICK",
+    "name": "Kwick Forensic Solutions Ltd",
+    "series": "MT",
+    "type": "SME",
+    "listingDate": "Thu, 03 Sep, 2026",
+    "exchanges": "BSE",
+    "issuePrice": 90,
+    "ltp": null,
+    "lotSize": null,
+    "totalSecurities": null,
+    "freeShares": null,
+    "freeFloatPercentage": null,
+    "nseCircular": null,
+    "nseNoticeNo": null,
     "bseCircular": null,
     "bseNoticeNo": null
   }
