@@ -1057,8 +1057,8 @@
     "freeFloatPercentage": 13.22,
     "nseCircular": "https://nsearchives.nseindia.com/content/circulars/CML76171.zip",
     "nseNoticeNo": "76171",
-    "bseCircular": null,
-    "bseNoticeNo": null
+    "bseCircular": "https://www.bseindia.com/downloads/UploadDocs/Notices/20260903-29/20260903-29.pdf",
+    "bseNoticeNo": "20260903-29"
   },
   "INE15EH01014": {
     "isin": "INE15EH01014",
@@ -1078,8 +1078,8 @@
     "freeFloatPercentage": 18.63,
     "nseCircular": "https://nsearchives.nseindia.com/content/circulars/CML76162.zip",
     "nseNoticeNo": "76162",
-    "bseCircular": null,
-    "bseNoticeNo": null
+    "bseCircular": "https://www.bseindia.com/downloads/UploadDocs/Notices/20260903-34/20260903-34.pdf",
+    "bseNoticeNo": "20260903-34"
   },
   "INE0LHB01010": {
     "isin": "INE0LHB01010",
@@ -1093,14 +1093,14 @@
     "exchanges": "BSE",
     "issuePrice": 48,
     "ltp": null,
-    "lotSize": null,
-    "totalSecurities": null,
-    "freeShares": null,
-    "freeFloatPercentage": null,
+    "lotSize": 3000,
+    "totalSecurities": 20822282,
+    "freeShares": 5076253,
+    "freeFloatPercentage": 24.38,
     "nseCircular": null,
     "nseNoticeNo": null,
-    "bseCircular": null,
-    "bseNoticeNo": null
+    "bseCircular": "https://www.bseindia.com/downloads/UploadDocs/Notices/20260903-35/20260903-35.pdf",
+    "bseNoticeNo": "20260903-35"
   },
   "INE2K6801014": {
     "isin": "INE2K6801014",
@@ -1114,13 +1114,13 @@
     "exchanges": "BSE",
     "issuePrice": 135,
     "ltp": null,
-    "lotSize": null,
-    "totalSecurities": null,
-    "freeShares": null,
-    "freeFloatPercentage": null,
+    "lotSize": 1000,
+    "totalSecurities": 20560000,
+    "freeShares": 3971000,
+    "freeFloatPercentage": 19.31,
     "nseCircular": null,
     "nseNoticeNo": null,
-    "bseCircular": null,
-    "bseNoticeNo": null
+    "bseCircular": "https://www.bseindia.com/downloads/UploadDocs/Notices/20260903-30/20260903-30.pdf",
+    "bseNoticeNo": "20260903-30"
   }
 }
