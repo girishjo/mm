@@ -170,6 +170,7 @@ function BuildCircuitChangeStocks() {
             ));
 
         const tableEntry = {
+            isin: isin, // <--- Added ISIN here (from the Object key)
             code: (entry.ticker || entry.nseCode || entry.bseCode || '').trim(),
             name: entry.name || entry.nseCode || entry.bseCode || '',
             nseCode: nseCode,
@@ -184,6 +185,8 @@ function BuildCircuitChangeStocks() {
             freeShares: entry.freeShares || null,
             circular: entry.circular || null,
             circularNo: entry.circularNo || null,
+            nseCircular: entry.nseCircular || null, // <--- Added explicit NSE link
+            bseCircular: entry.bseCircular || null, // <--- Added explicit BSE link
             refListedMBNotInT2T: isRefListed && !isSME && !isT2TSeries,
             isInT2TSeries: isT2TSeries
         };
@@ -445,25 +448,74 @@ async function ShareCircuitChanges() {
     let text;
     let title = '*';
     if (showToday) {
+        // --- NEW DETAILED FORMAT FOR TODAY ONLY ---
         const listingWord = rows.length > 1 ? 'listings' : 'listing';
         const prefix = isToday ? `Today's ${listingWord}` : `${dateFormatted} ${listingWord}`;
         title += `${prefix},*\n\n`;
         text = title;
+
+        // Helper function to convert any number into emoji digits
+        const getEmojiNumber = (num) => {
+            if (num === 10) return '🔟'; // Special single emoji for 10
+            const digitEmojis = ['0️⃣', '1️⃣', '2️⃣', '3️⃣', '4️⃣', '5️⃣', '6️⃣', '7️⃣', '8️⃣', '9️⃣'];
+            return num.toString().split('').map(digit => digitEmojis[digit]).join('');
+        };
+
         rows.forEach((row, i) => {
-            const stock = circuitChangeStocks.find(s => s.code === row.cells[3].innerText);
             const ticker = row.cells[3].innerText;
-            const price = row.cells[8].innerText;
-            const type = row.cells[6].innerText === 'SME' ? 'SME' : 'MB';
-            const isT2TStock = row.cells[2].dataset.isInT2TSeries === 'true';
-            const t2tSuffix = isT2TStock ? ', *T2T*' : '';
+            const stock = circuitChangeStocks.find(s => s.code === ticker) || {};
 
-            let extraDetails = [];
-            if (type === 'SME' && stock?.lotSize) extraDetails.push(`*Lot*: ${stock.lotSize.toLocaleString('en-IN')}`);
-            if (stock?.freeShares) extraDetails.push(`*FF*: ${stock.freeShares.toLocaleString('en-IN')}`);
+            const numEmoji = getEmojiNumber(i + 1);
 
-            const extraSuffix = extraDetails.length > 0 ? `, ${extraDetails.join(', ')}` : '';
+            // Extract all values
+            const name = stock.companyName || stock.name || ticker;
+            const type = stock.type || (row.cells[6].innerText === 'SME' ? 'SME' : 'MainBoard');
+            const ipoPrice = stock.ipoPrice || stock.issuePrice || row.cells[8].innerText || 'N/A';
 
-            text += `${i + 1}. *${ticker}* (${type}${t2tSuffix}), *Price*: ${price}${extraSuffix}\n`;
+            // Format numbers with commas if they exist, otherwise fallback to table or N/A
+            const lotSize = stock.lotSize ? stock.lotSize.toLocaleString('en-IN') : (row.cells[10].innerText !== '-' ? row.cells[10].innerText : 'N/A');
+            const freeShares = stock.freeShares ? stock.freeShares.toLocaleString('en-IN') : (row.cells[9].innerText !== '-' ? row.cells[9].innerText : 'N/A');
+
+            const series = stock.series || 'N/A';
+            const exchanges = stock.exchanges || row.cells[7].innerText || 'N/A';
+            const isin = stock.isin || 'N/A';
+
+            // --- BUILDER PATTERN FOR CLEANER STRING CONCATENATION ---
+            let details = [];
+
+            details.push(`${numEmoji} *${name}*`);
+            details.push(`🔖 Ticker: *${ticker}*`);
+            details.push(`📌 Type: ${type}`);
+
+            // Fixes the '₹N/A' visual bug
+            details.push(`💰 IPO Price: ${ipoPrice !== 'N/A' && ipoPrice !== '' ? '₹' + ipoPrice : 'N/A'}`);
+
+            // Only show these if they actually have data
+            if (lotSize !== 'N/A') details.push(`📦 Lot Size: ${lotSize}`);
+            if (freeShares !== 'N/A') details.push(`📊 Free Float: ${freeShares}`);
+            if (stock.isInT2TSeries) details.push(`🚦 T2T: Yes`);
+            if (series !== 'N/A' && series !== '') details.push(`🔠 Series: ${series}`);
+
+            details.push(`🏛️ Exchange: ${exchanges}`);
+
+            if (exchanges.includes('NSE')) {
+                const nseSym = stock.nseCode || ticker;
+                if (nseSym !== ticker) details.push(`🆔 NSE Symbol: *${nseSym}*`);
+            }
+            if (exchanges.includes('BSE')) {
+                const bseCd = stock.bseCode || ticker;
+                details.push(`🆔 BSE Code: *${bseCd}*`);
+            }
+
+            if (isin !== 'N/A' && isin !== '') details.push(`🔢 ISIN: ${isin}`);
+
+            // Circular Links
+            if (stock.nseCircular) details.push(`🔗 NSE Circular: ${stock.nseCircular}`);
+            if (stock.bseCircular) details.push(`🔗 BSE Circular: ${stock.bseCircular}`);
+            if (!stock.nseCircular && !stock.bseCircular && stock.circular) details.push(`🔗 Circular: ${stock.circular}`);
+
+            // Join everything with line breaks and add spacing for the next stock
+            text += details.join('\n') + `\n\n`;
         });
     } else {
         if (showSME && !showMB) title += 'SME ';
