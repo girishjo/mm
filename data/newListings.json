@@ -439,9 +439,9 @@
     "bseNoticeNo": null,
     "bandChange": {
       "series": "SM",
-      "bandFrom": "5",
-      "bandTo": "10",
-      "dateEffectiveFrom": "Fri, 04 Sep, 2026"
+      "bandFrom": "10",
+      "bandTo": "5",
+      "dateEffectiveFrom": "Wed, 09 Sep, 2026"
     }
   },
   "INE19QK01022": {
@@ -910,7 +910,13 @@
     "nseCircular": "https://nsearchives.nseindia.com/content/circulars/CML76171.zip",
     "nseNoticeNo": "76171",
     "bseCircular": "https://www.bseindia.com/downloads/UploadDocs/Notices/20260903-29/20260903-29.pdf",
-    "bseNoticeNo": "20260903-29"
+    "bseNoticeNo": "20260903-29",
+    "bandChange": {
+      "series": "EQ",
+      "bandFrom": "20",
+      "bandTo": "10",
+      "dateEffectiveFrom": "Wed, 09 Sep, 2026"
+    }
   },
   "INE15EH01014": {
     "isin": "INE15EH01014",
@@ -1146,14 +1152,14 @@
   "INE0IBX01013": {
     "isin": "INE0IBX01013",
     "nseCode": "",
-    "bseCode": "",
+    "bseCode": "544907",
     "ticker": "FINANCE",
-    "name": "Seksaria Finance Limited",
-    "series": "OF",
+    "name": "Seksaria Finance Ltd",
+    "series": "XT",
     "type": "MainBoard",
-    "listingDate": "Mon, 07 Sep, 2026",
+    "listingDate": "Wed, 09 Sep, 2026",
     "exchanges": "BSE",
-    "issuePrice": null,
+    "issuePrice": 10,
     "ltp": null,
     "lotSize": 1,
     "totalSecurities": 10080000,
