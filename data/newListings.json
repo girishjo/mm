@@ -1,34 +1,4 @@
 {
-  "INE1J5V01013": {
-    "isin": "INE1J5V01013",
-    "nseCode": "ANAWIL",
-    "ticker": "ANAWIL",
-    "name": "Anawil Wire and Engineering Limited",
-    "series": "SM",
-    "type": "SME",
-    "listingDate": "Mon, 10 Aug, 2026",
-    "exchanges": "NSE",
-    "issuePrice": 270,
-    "freeShares": 4710000,
-    "totalSecurities": 24999800,
-    "freeFloatPercentage": 18.84,
-    "circularNo": "NSE/CML/75648",
-    "circular": "https://nsearchives.nseindia.com/content/circulars/CML75648.zip",
-    "lotSize": 400,
-    "marketLot": 400,
-    "bseCode": "",
-    "ltp": null,
-    "nseCircular": null,
-    "nseNoticeNo": null,
-    "bseCircular": null,
-    "bseNoticeNo": null,
-    "bandChange": {
-      "series": "SM",
-      "bandFrom": "5",
-      "bandTo": "20",
-      "dateEffectiveFrom": "Mon, 24 Aug, 2026"
-    }
-  },
   "INE0WR901013": {
     "isin": "INE0WR901013",
     "nseCode": "",
@@ -1175,5 +1145,26 @@
     "nseNoticeNo": null,
     "bseCircular": "https://www.bseindia.com/downloads/UploadDocs/Notices/20260907-18/20260907-18.pdf",
     "bseNoticeNo": "20260907-18"
+  },
+  "INE1XJ401012": {
+    "isin": "INE1XJ401012",
+    "nseCode": "QUALIANCE",
+    "bseCode": "",
+    "ticker": "QUALIANCE",
+    "name": "Qualiance International Limited",
+    "series": "ST",
+    "type": "SME",
+    "listingDate": "Fri, 11 Sep, 2026",
+    "exchanges": "NSE",
+    "issuePrice": 127,
+    "ltp": null,
+    "lotSize": 1000,
+    "totalSecurities": 13452000,
+    "freeShares": 2543000,
+    "freeFloatPercentage": 18.9,
+    "nseCircular": "https://nsearchives.nseindia.com/content/circulars/CML76294.zip",
+    "nseNoticeNo": "76294",
+    "bseCircular": null,
+    "bseNoticeNo": null
   }
 }
