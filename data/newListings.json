@@ -508,9 +508,9 @@
     "bseNoticeNo": null,
     "bandChange": {
       "series": "SM",
-      "bandFrom": "5",
-      "bandTo": "10",
-      "dateEffectiveFrom": "Mon, 07 Sep, 2026"
+      "bandFrom": "10",
+      "bandTo": "5",
+      "dateEffectiveFrom": "Thu, 10 Sep, 2026"
     }
   },
   "INE685T01010": {
@@ -553,7 +553,13 @@
     "nseCircular": "https://nsearchives.nseindia.com/content/circulars/CML75873.zip",
     "nseNoticeNo": "75873",
     "bseCircular": "https://www.bseindia.com/downloads/UploadDocs/Notices/20260821-31/20260821-31.pdf",
-    "bseNoticeNo": "20260821-31"
+    "bseNoticeNo": "20260821-31",
+    "bandChange": {
+      "series": "EQ",
+      "bandFrom": "10",
+      "bandTo": "5",
+      "dateEffectiveFrom": "Thu, 10 Sep, 2026"
+    }
   },
   "INE1WFC01025": {
     "isin": "INE1WFC01025",
