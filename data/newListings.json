@@ -1166,5 +1166,26 @@
     "nseNoticeNo": "76294",
     "bseCircular": null,
     "bseNoticeNo": null
+  },
+  "INE0JHH01011": {
+    "isin": "INE0JHH01011",
+    "nseCode": "DOLLEX",
+    "bseCode": "544908",
+    "ticker": "DOLLEX",
+    "name": "Dollex Agrotech Limited",
+    "series": "EQ",
+    "type": "MainBoard",
+    "listingDate": "Fri, 11 Sep, 2026",
+    "exchanges": "NSE, BSE",
+    "issuePrice": 10,
+    "ltp": null,
+    "lotSize": null,
+    "totalSecurities": null,
+    "freeShares": null,
+    "freeFloatPercentage": null,
+    "nseCircular": null,
+    "nseNoticeNo": null,
+    "bseCircular": null,
+    "bseNoticeNo": null
   }
 }
