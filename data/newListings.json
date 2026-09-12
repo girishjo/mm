@@ -1,17 +1,4 @@
 {
-  "INE0WR901013": {
-    "isin": "INE0WR901013",
-    "nseCode": "",
-    "ticker": "AEGEUS",
-    "name": "Aegeus Technologies Ltd",
-    "series": "MT",
-    "type": "SME",
-    "listingDate": "Tue, 11 Aug, 2026",
-    "exchanges": "BSE",
-    "bseCode": "544858",
-    "issuePrice": 105,
-    "ltp": 130.7
-  },
   "INE0XNF01022": {
     "isin": "INE0XNF01022",
     "nseCode": "ARDEE",
@@ -1187,5 +1174,47 @@
     "nseNoticeNo": null,
     "bseCircular": null,
     "bseNoticeNo": null
+  },
+  "INE0H4201019": {
+    "isin": "INE0H4201019",
+    "nseCode": "PRANAV",
+    "bseCode": "544909",
+    "ticker": "PRANAV",
+    "name": "Pranav Constructions Limited",
+    "series": "EQ",
+    "type": "MainBoard",
+    "listingDate": "Tue, 15 Sep, 2026",
+    "exchanges": "NSE, BSE",
+    "issuePrice": 124,
+    "ltp": null,
+    "lotSize": 1,
+    "totalSecurities": 112622782,
+    "freeShares": 21514447,
+    "freeFloatPercentage": 19.1,
+    "nseCircular": "https://nsearchives.nseindia.com/content/circulars/CML76313.zip",
+    "nseNoticeNo": "76313",
+    "bseCircular": "https://www.bseindia.com/downloads/UploadDocs/Notices/20260911-28/20260911-28.pdf",
+    "bseNoticeNo": "20260911-28"
+  },
+  "INE1ET101019": {
+    "isin": "INE1ET101019",
+    "nseCode": "",
+    "bseCode": "544910",
+    "ticker": "544910",
+    "name": "544910",
+    "series": "B",
+    "type": "MainBoard",
+    "listingDate": "Fri, 11 Sep, 2026",
+    "exchanges": "BSE",
+    "issuePrice": null,
+    "ltp": null,
+    "lotSize": null,
+    "totalSecurities": null,
+    "freeShares": null,
+    "freeFloatPercentage": null,
+    "nseCircular": null,
+    "nseNoticeNo": null,
+    "bseCircular": "https://www.bseindia.com/downloads/UploadDocs/Notices/20260911-25/20260911-25.pdf",
+    "bseNoticeNo": "20260911-25"
   }
 }
