@@ -1,26 +1,4 @@
 {
-  "INE0XNF01022": {
-    "isin": "INE0XNF01022",
-    "nseCode": "ARDEE",
-    "ticker": "ARDEE",
-    "name": "Ardee Industries Limited",
-    "series": "EQ",
-    "type": "MainBoard",
-    "listingDate": "Wed, 12 Aug, 2026",
-    "exchanges": "NSE, BSE",
-    "bseCode": "544860",
-    "issuePrice": 53,
-    "freeShares": 56246366,
-    "totalSecurities": 315200950,
-    "circular": "https://nsearchives.nseindia.com/content/circulars/CML75684.zip",
-    "lotSize": 1,
-    "ltp": null,
-    "freeFloatPercentage": 17.84,
-    "nseCircular": null,
-    "nseNoticeNo": null,
-    "bseCircular": null,
-    "bseNoticeNo": null
-  },
   "INE0GMR01016": {
     "isin": "INE0GMR01016",
     "nseCode": "SWARAJ",
@@ -48,19 +26,6 @@
       "bandTo": "5",
       "dateEffectiveFrom": "Wed, 26 Aug, 2026"
     }
-  },
-  "INE1ZGR01024": {
-    "isin": "INE1ZGR01024",
-    "nseCode": "",
-    "ticker": "GVELECTRIC",
-    "name": "G V Electricals Ltd",
-    "series": "MT",
-    "type": "SME",
-    "listingDate": "Wed, 12 Aug, 2026",
-    "exchanges": "BSE",
-    "bseCode": "544859",
-    "issuePrice": 130,
-    "ltp": 165.9
   },
   "INE880Y01017": {
     "isin": "INE880Y01017",
