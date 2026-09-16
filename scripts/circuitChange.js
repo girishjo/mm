@@ -448,15 +448,13 @@ async function ShareCircuitChanges() {
     let text;
     let title = '*';
     if (showToday) {
-        // --- NEW DETAILED FORMAT FOR TODAY ONLY ---
         const listingWord = rows.length > 1 ? 'listings' : 'listing';
         const prefix = isToday ? `Today's ${listingWord}` : `${dateFormatted} ${listingWord}`;
         title += `${prefix},*\n\n`;
         text = title;
 
-        // Helper function to convert any number into emoji digits
         const getEmojiNumber = (num) => {
-            if (num === 10) return '🔟'; // Special single emoji for 10
+            if (num === 10) return '🔟';
             const digitEmojis = ['0️⃣', '1️⃣', '2️⃣', '3️⃣', '4️⃣', '5️⃣', '6️⃣', '7️⃣', '8️⃣', '9️⃣'];
             return num.toString().split('').map(digit => digitEmojis[digit]).join('');
         };
@@ -464,57 +462,61 @@ async function ShareCircuitChanges() {
         rows.forEach((row, i) => {
             const ticker = row.cells[3].innerText;
             const stock = circuitChangeStocks.find(s => s.code === ticker) || {};
-
             const numEmoji = getEmojiNumber(i + 1);
 
-            // Extract all values
             const name = stock.companyName || stock.name || ticker;
-            const type = stock.type || (row.cells[6].innerText === 'SME' ? 'SME' : 'MainBoard');
-            const ipoPrice = stock.ipoPrice || stock.issuePrice || row.cells[8].innerText || 'N/A';
+            const rawType = stock.type || (row.cells[6].innerText === 'SME' ? 'SME' : 'MainBoard');
+            const type = rawType === 'MainBoard' ? 'MB' : rawType;
 
-            // Format numbers with commas if they exist, otherwise fallback to table or N/A
+            const ipoPrice = stock.ipoPrice || stock.issuePrice || row.cells[8].innerText || 'N/A';
             const lotSize = stock.lotSize ? stock.lotSize.toLocaleString('en-IN') : (row.cells[10].innerText !== '-' ? row.cells[10].innerText : 'N/A');
             const freeShares = stock.freeShares ? stock.freeShares.toLocaleString('en-IN') : (row.cells[9].innerText !== '-' ? row.cells[9].innerText : 'N/A');
 
             const series = stock.series || 'N/A';
             const exchanges = stock.exchanges || row.cells[7].innerText || 'N/A';
-            const isin = stock.isin || 'N/A';
 
-            // --- BUILDER PATTERN FOR CLEANER STRING CONCATENATION ---
             let details = [];
 
-            details.push(`${numEmoji} *${name}*`);
-            details.push(`🔖 Ticker: *${ticker}*`);
-            details.push(`📌 Type: ${type}`);
+            // Line 1: Emoji, Ticker, and Full Name
+            details.push(`${numEmoji} *${ticker}* (*${name}*)`);
 
-            // Fixes the '₹N/A' visual bug
-            details.push(`💰 IPO Price: ${ipoPrice !== 'N/A' && ipoPrice !== '' ? '₹' + ipoPrice : 'N/A'}`);
+            // Line 2: Free Float (Bolded value)
+            if (freeShares !== 'N/A') {
+                details.push(`📊 Free Float: *${freeShares}*`);
+            }
 
-            // Only show these if they actually have data
-            if (lotSize !== 'N/A') details.push(`📦 Lot Size: ${lotSize}`);
-            if (freeShares !== 'N/A') details.push(`📊 Free Float: ${freeShares}`);
-            if (stock.isInT2TSeries) details.push(`🚦 T2T: Yes`);
-            if (series !== 'N/A' && series !== '') details.push(`🔠 Series: ${series}`);
+            // Line 3: Type, Series/T2T, and Lot Size (SME only for Lot Size; Exchange dropped)
+            let typeStr = `📌 Type: *${type}*`;
+            let seriesParts = [];
+            if (series !== 'N/A' && series !== '') seriesParts.push(series);
+            if (stock.isInT2TSeries) seriesParts.push('*T2T*');
 
-            details.push(`🏛️ Exchange: ${exchanges}`);
+            if (seriesParts.length > 0) {
+                typeStr += ` (${seriesParts.join(', ')})`;
+            }
 
+            let metaParts = [typeStr];
+            if (type === 'SME') {
+                if (lotSize !== 'N/A') metaParts.push(`📦 LotSize:${lotSize}`);
+            }
+            details.push(metaParts.join(', '));
+
+            // Line 4: IPO Price
+            if (ipoPrice !== 'N/A' && ipoPrice !== '') {
+                details.push(`💰 IPO Price: ₹${ipoPrice}`);
+            }
+
+            // NSE Symbol (if applicable)
             if (exchanges.includes('NSE')) {
                 const nseSym = stock.nseCode || ticker;
                 if (nseSym !== ticker) details.push(`🆔 NSE Symbol: *${nseSym}*`);
             }
-            if (exchanges.includes('BSE')) {
-                const bseCd = stock.bseCode || ticker;
-                details.push(`🆔 BSE Code: *${bseCd}*`);
-            }
-
-            if (isin !== 'N/A' && isin !== '') details.push(`🔢 ISIN: ${isin}`);
 
             // Circular Links
-            if (stock.nseCircular) details.push(`🔗 NSE Circular: ${stock.nseCircular}`);
-            if (stock.bseCircular) details.push(`🔗 BSE Circular: ${stock.bseCircular}`);
+            if (stock.nseCircular) details.push(`🔗 NSE_Circular: ${stock.nseCircular}`);
+            if (stock.bseCircular) details.push(`🔗 BSE_Circular: ${stock.bseCircular}`);
             if (!stock.nseCircular && !stock.bseCircular && stock.circular) details.push(`🔗 Circular: ${stock.circular}`);
 
-            // Join everything with line breaks and add spacing for the next stock
             text += details.join('\n') + `\n\n`;
         });
     } else {
