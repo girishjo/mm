@@ -1,46 +1,4 @@
 {
-  "INE01NH01023": {
-    "isin": "INE01NH01023",
-    "nseCode": "DHOOTTRANS",
-    "bseCode": "544867",
-    "ticker": "DHOOTTRANS",
-    "name": "Dhoot Transmission Limited",
-    "series": "EQ",
-    "type": "MainBoard",
-    "listingDate": "Mon, 17 Aug, 2026",
-    "exchanges": "NSE, BSE",
-    "issuePrice": 871,
-    "ltp": 1187.5,
-    "lotSize": 1,
-    "totalSecurities": 204548057,
-    "freeShares": 24686890,
-    "freeFloatPercentage": 12.07,
-    "nseCircular": "https://nsearchives.nseindia.com/content/circulars/CML75769.zip",
-    "nseNoticeNo": "75769",
-    "bseCircular": "https://www.bseindia.com/downloads/UploadDocs/Notices/20260814-32/20260814-32.pdf",
-    "bseNoticeNo": "20260814-32"
-  },
-  "INE869T01028": {
-    "isin": "INE869T01028",
-    "nseCode": "MOLBIO",
-    "bseCode": "544866",
-    "ticker": "MOLBIO",
-    "name": "Molbio Diagnostics Limited",
-    "series": "EQ",
-    "type": "MainBoard",
-    "listingDate": "Mon, 17 Aug, 2026",
-    "exchanges": "NSE, BSE",
-    "issuePrice": 807,
-    "ltp": 1036.3,
-    "lotSize": 1,
-    "totalSecurities": 115239996,
-    "freeShares": 21435279,
-    "freeFloatPercentage": 18.6,
-    "nseCircular": "https://nsearchives.nseindia.com/content/circulars/CML75760.zip",
-    "nseNoticeNo": "75760",
-    "bseCircular": "https://www.bseindia.com/downloads/UploadDocs/Notices/20260814-42/20260814-42.pdf",
-    "bseNoticeNo": "20260814-42"
-  },
   "INE00IT01020": {
     "isin": "INE00IT01020",
     "nseCode": "MILKYMIST",
@@ -567,9 +525,9 @@
     "bseNoticeNo": null,
     "bandChange": {
       "series": "SM",
-      "bandFrom": "5",
-      "bandTo": "20",
-      "dateEffectiveFrom": "Wed, 16 Sep, 2026"
+      "bandFrom": "20",
+      "bandTo": "10",
+      "dateEffectiveFrom": "Fri, 18 Sep, 2026"
     }
   },
   "INE1P5601010": {
@@ -594,9 +552,9 @@
     "bseNoticeNo": null,
     "bandChange": {
       "series": "SM",
-      "bandFrom": "5",
-      "bandTo": "20",
-      "dateEffectiveFrom": "Wed, 16 Sep, 2026"
+      "bandFrom": "20",
+      "bandTo": "10",
+      "dateEffectiveFrom": "Fri, 18 Sep, 2026"
     }
   },
   "INE0LEG01024": {
@@ -1351,8 +1309,8 @@
     "ltp": null,
     "lotSize": 1,
     "totalSecurities": 48750000,
-    "freeShares": 10500000,
-    "freeFloatPercentage": 21.54,
+    "freeShares": 38250001,
+    "freeFloatPercentage": 78.46,
     "nseCircular": "https://nsearchives.nseindia.com/content/circulars/CML76393.zip",
     "nseNoticeNo": "76393",
     "bseCircular": "https://www.bseindia.com/downloads/UploadDocs/Notices/20260917-24/20260917-24.pdf",
