@@ -24,7 +24,8 @@
       "bandFrom": "5",
       "bandTo": "20",
       "dateEffectiveFrom": "Thu, 03 Sep, 2026"
-    }
+    },
+    "amountOfIssueSize": null
   },
   "INE0VFE01017": {
     "isin": "INE0VFE01017",
@@ -51,7 +52,8 @@
       "bandFrom": "10",
       "bandTo": "5",
       "dateEffectiveFrom": "Wed, 09 Sep, 2026"
-    }
+    },
+    "amountOfIssueSize": null
   },
   "INE19QK01022": {
     "isin": "INE19QK01022",
@@ -120,7 +122,8 @@
       "bandFrom": "10",
       "bandTo": "5",
       "dateEffectiveFrom": "Thu, 10 Sep, 2026"
-    }
+    },
+    "amountOfIssueSize": null
   },
   "INE685T01010": {
     "isin": "INE685T01010",
@@ -141,7 +144,8 @@
     "nseCircular": "https://nsearchives.nseindia.com/content/circulars/CML75887.zip",
     "nseNoticeNo": "75887",
     "bseCircular": "https://www.bseindia.com/downloads/UploadDocs/Notices/20260821-28/20260821-28.pdf",
-    "bseNoticeNo": "20260821-28"
+    "bseNoticeNo": "20260821-28",
+    "amountOfIssueSize": null
   },
   "INE0K9O01026": {
     "isin": "INE0K9O01026",
@@ -168,7 +172,8 @@
       "bandFrom": "10",
       "bandTo": "5",
       "dateEffectiveFrom": "Thu, 10 Sep, 2026"
-    }
+    },
+    "amountOfIssueSize": null
   },
   "INE1WFC01025": {
     "isin": "INE1WFC01025",
@@ -189,7 +194,8 @@
     "nseCircular": "https://nsearchives.nseindia.com/content/circulars/CML75930.zip",
     "nseNoticeNo": "75930",
     "bseCircular": null,
-    "bseNoticeNo": null
+    "bseNoticeNo": null,
+    "amountOfIssueSize": null
   },
   "INE1B3O01011": {
     "isin": "INE1B3O01011",
@@ -216,7 +222,8 @@
       "bandFrom": "20",
       "bandTo": "10",
       "dateEffectiveFrom": "Wed, 16 Sep, 2026"
-    }
+    },
+    "amountOfIssueSize": null
   },
   "INE18UN01038": {
     "isin": "INE18UN01038",
@@ -237,7 +244,8 @@
     "nseCircular": "https://nsearchives.nseindia.com/content/circulars/CML75963.zip",
     "nseNoticeNo": "75963",
     "bseCircular": null,
-    "bseNoticeNo": null
+    "bseNoticeNo": null,
+    "amountOfIssueSize": null
   },
   "INE2F5H01015": {
     "isin": "INE2F5H01015",
@@ -300,7 +308,8 @@
     "nseCircular": "https://nsearchives.nseindia.com/content/circulars/CML76000.zip",
     "nseNoticeNo": "76000",
     "bseCircular": null,
-    "bseNoticeNo": null
+    "bseNoticeNo": null,
+    "amountOfIssueSize": null
   },
   "INE16W401027": {
     "isin": "INE16W401027",
@@ -321,7 +330,8 @@
     "nseCircular": "https://nsearchives.nseindia.com/content/circulars/CML76037.zip",
     "nseNoticeNo": "76037",
     "bseCircular": null,
-    "bseNoticeNo": null
+    "bseNoticeNo": null,
+    "amountOfIssueSize": null
   },
   "INE0PX301025": {
     "isin": "INE0PX301025",
@@ -342,7 +352,8 @@
     "nseCircular": "https://nsearchives.nseindia.com/content/circulars/CML76083.zip",
     "nseNoticeNo": "76083",
     "bseCircular": null,
-    "bseNoticeNo": null
+    "bseNoticeNo": null,
+    "amountOfIssueSize": null
   },
   "INE899I01028": {
     "isin": "INE899I01028",
@@ -363,7 +374,8 @@
     "nseCircular": "https://nsearchives.nseindia.com/content/circulars/CML76079.zip",
     "nseNoticeNo": "76079",
     "bseCircular": null,
-    "bseNoticeNo": null
+    "bseNoticeNo": null,
+    "amountOfIssueSize": null
   },
   "INE1R2M01019": {
     "isin": "INE1R2M01019",
@@ -390,7 +402,8 @@
       "bandFrom": "20",
       "bandTo": "10",
       "dateEffectiveFrom": "Fri, 18 Sep, 2026"
-    }
+    },
+    "amountOfIssueSize": null
   },
   "INE1P5601010": {
     "isin": "INE1P5601010",
@@ -417,7 +430,8 @@
       "bandFrom": "20",
       "bandTo": "10",
       "dateEffectiveFrom": "Fri, 18 Sep, 2026"
-    }
+    },
+    "amountOfIssueSize": null
   },
   "INE0LEG01024": {
     "isin": "INE0LEG01024",
@@ -444,7 +458,8 @@
       "bandFrom": "5",
       "bandTo": "20",
       "dateEffectiveFrom": "Wed, 16 Sep, 2026"
-    }
+    },
+    "amountOfIssueSize": null
   },
   "INE11Z001019": {
     "isin": "INE11Z001019",
@@ -471,7 +486,8 @@
       "bandFrom": "5",
       "bandTo": "20",
       "dateEffectiveFrom": "Thu, 17 Sep, 2026"
-    }
+    },
+    "amountOfIssueSize": null
   },
   "INE103001017": {
     "isin": "INE103001017",
@@ -498,7 +514,8 @@
       "bandFrom": "5",
       "bandTo": "20",
       "dateEffectiveFrom": "Thu, 17 Sep, 2026"
-    }
+    },
+    "amountOfIssueSize": null
   },
   "INE185Q01025": {
     "isin": "INE185Q01025",
@@ -519,7 +536,8 @@
     "nseCircular": "https://nsearchives.nseindia.com/content/circulars/CML76134.zip",
     "nseNoticeNo": "76134",
     "bseCircular": null,
-    "bseNoticeNo": null
+    "bseNoticeNo": null,
+    "amountOfIssueSize": null
   },
   "INE1SFA01019": {
     "isin": "INE1SFA01019",
@@ -567,7 +585,8 @@
       "bandFrom": "10",
       "bandTo": "5",
       "dateEffectiveFrom": "Tue, 15 Sep, 2026"
-    }
+    },
+    "amountOfIssueSize": null
   },
   "INE15EH01014": {
     "isin": "INE15EH01014",
@@ -588,7 +607,8 @@
     "nseCircular": "https://nsearchives.nseindia.com/content/circulars/CML76162.zip",
     "nseNoticeNo": "76162",
     "bseCircular": "https://www.bseindia.com/downloads/UploadDocs/Notices/20260903-34/20260903-34.pdf",
-    "bseNoticeNo": "20260903-34"
+    "bseNoticeNo": "20260903-34",
+    "amountOfIssueSize": null
   },
   "INE0LHB01010": {
     "isin": "INE0LHB01010",
@@ -651,7 +671,8 @@
     "nseCircular": "https://nsearchives.nseindia.com/content/circulars/CML76205.zip",
     "nseNoticeNo": "76205",
     "bseCircular": null,
-    "bseNoticeNo": null
+    "bseNoticeNo": null,
+    "amountOfIssueSize": null
   },
   "INE1ZEE01019": {
     "isin": "INE1ZEE01019",
@@ -672,7 +693,8 @@
     "nseCircular": "https://nsearchives.nseindia.com/content/circulars/CML76203.zip",
     "nseNoticeNo": "76203",
     "bseCircular": null,
-    "bseNoticeNo": null
+    "bseNoticeNo": null,
+    "amountOfIssueSize": null
   },
   "INE0I1B01016": {
     "isin": "INE0I1B01016",
@@ -693,7 +715,8 @@
     "nseCircular": "https://nsearchives.nseindia.com/content/circulars/CML76199.zip",
     "nseNoticeNo": "76199",
     "bseCircular": "https://www.bseindia.com/downloads/UploadDocs/Notices/20260904-12/20260904-12.pdf",
-    "bseNoticeNo": "20260904-12"
+    "bseNoticeNo": "20260904-12",
+    "amountOfIssueSize": null
   },
   "INE24YP01017": {
     "isin": "INE24YP01017",
@@ -735,7 +758,8 @@
     "nseCircular": "https://nsearchives.nseindia.com/content/circulars/CML76228.zip",
     "nseNoticeNo": "76228",
     "bseCircular": "https://www.bseindia.com/downloads/UploadDocs/Notices/20260907-19/20260907-19.pdf",
-    "bseNoticeNo": "20260907-19"
+    "bseNoticeNo": "20260907-19",
+    "amountOfIssueSize": null
   },
   "INE1FCO01014": {
     "isin": "INE1FCO01014",
@@ -756,7 +780,8 @@
     "nseCircular": "https://nsearchives.nseindia.com/content/circulars/CML76229.zip",
     "nseNoticeNo": "76229",
     "bseCircular": null,
-    "bseNoticeNo": null
+    "bseNoticeNo": null,
+    "amountOfIssueSize": null
   },
   "INE2J7801015": {
     "isin": "INE2J7801015",
@@ -840,7 +865,8 @@
     "nseCircular": "https://nsearchives.nseindia.com/content/circulars/CML76294.zip",
     "nseNoticeNo": "76294",
     "bseCircular": null,
-    "bseNoticeNo": null
+    "bseNoticeNo": null,
+    "amountOfIssueSize": null
   },
   "INE0JHH01011": {
     "isin": "INE0JHH01011",
@@ -861,7 +887,8 @@
     "nseCircular": null,
     "nseNoticeNo": null,
     "bseCircular": null,
-    "bseNoticeNo": null
+    "bseNoticeNo": null,
+    "amountOfIssueSize": null
   },
   "INE0H4201019": {
     "isin": "INE0H4201019",
@@ -882,7 +909,8 @@
     "nseCircular": "https://nsearchives.nseindia.com/content/circulars/CML76313.zip",
     "nseNoticeNo": "76313",
     "bseCircular": "https://www.bseindia.com/downloads/UploadDocs/Notices/20260911-28/20260911-28.pdf",
-    "bseNoticeNo": "20260911-28"
+    "bseNoticeNo": "20260911-28",
+    "amountOfIssueSize": 3510300000
   },
   "INE1ET101019": {
     "isin": "INE1ET101019",
@@ -919,12 +947,13 @@
     "ltp": 215.35,
     "lotSize": 1,
     "totalSecurities": 87935253,
-    "freeShares": 24732952,
-    "freeFloatPercentage": 28.13,
+    "freeShares": 16457298,
+    "freeFloatPercentage": 18.72,
     "nseCircular": "https://nsearchives.nseindia.com/content/circulars/CML76337.zip",
     "nseNoticeNo": "76337",
     "bseCircular": "https://www.bseindia.com/downloads/UploadDocs/Notices/20260915-38/20260915-38.pdf",
-    "bseNoticeNo": "20260915-38"
+    "bseNoticeNo": "20260915-38",
+    "amountOfIssueSize": 4278900000
   },
   "INE455U01024": {
     "isin": "INE455U01024",
@@ -945,7 +974,8 @@
     "nseCircular": "https://nsearchives.nseindia.com/content/circulars/CML76336.zip",
     "nseNoticeNo": "76336",
     "bseCircular": "https://www.bseindia.com/downloads/UploadDocs/Notices/20260915-33/20260915-33.pdf",
-    "bseNoticeNo": "20260915-33"
+    "bseNoticeNo": "20260915-33",
+    "amountOfIssueSize": 5000000000
   },
   "INE877D01025": {
     "isin": "INE877D01025",
@@ -966,7 +996,8 @@
     "nseCircular": "https://nsearchives.nseindia.com/content/circulars/CML76340.zip",
     "nseNoticeNo": "76340",
     "bseCircular": "https://www.bseindia.com/downloads/UploadDocs/Notices/20260915-37/20260915-37.pdf",
-    "bseNoticeNo": "20260915-37"
+    "bseNoticeNo": "20260915-37",
+    "amountOfIssueSize": 10557400000
   },
   "INE08T701025": {
     "isin": "INE08T701025",
@@ -982,12 +1013,13 @@
     "ltp": 532.95,
     "lotSize": 1,
     "totalSecurities": 104114824,
-    "freeShares": 51417869,
-    "freeFloatPercentage": 49.39,
+    "freeShares": 21771344,
+    "freeFloatPercentage": 20.91,
     "nseCircular": "https://nsearchives.nseindia.com/content/circulars/CML76379.zip",
     "nseNoticeNo": "76379",
     "bseCircular": "https://www.bseindia.com/downloads/UploadDocs/Notices/20260916-46/20260916-46.pdf",
-    "bseNoticeNo": "20260916-46"
+    "bseNoticeNo": "20260916-46",
+    "amountOfIssueSize": 12555700000
   },
   "INE148G01016": {
     "isin": "INE148G01016",
@@ -1008,7 +1040,8 @@
     "nseCircular": "https://nsearchives.nseindia.com/content/circulars/CML76378.zip",
     "nseNoticeNo": "76378",
     "bseCircular": "https://www.bseindia.com/downloads/UploadDocs/Notices/20260916-47/20260916-47.pdf",
-    "bseNoticeNo": "20260916-47"
+    "bseNoticeNo": "20260916-47",
+    "amountOfIssueSize": 7329700000
   },
   "INE241U01028": {
     "isin": "INE241U01028",
@@ -1024,12 +1057,13 @@
     "ltp": 345.75,
     "lotSize": 1,
     "totalSecurities": 231804528,
-    "freeShares": 52661488,
-    "freeFloatPercentage": 22.72,
+    "freeShares": 13060472,
+    "freeFloatPercentage": 5.63,
     "nseCircular": "https://nsearchives.nseindia.com/content/circulars/CML76376.zip",
     "nseNoticeNo": "76376",
     "bseCircular": "https://www.bseindia.com/downloads/UploadDocs/Notices/20260916-3/20260916-3.pdf",
-    "bseNoticeNo": "20260916-3"
+    "bseNoticeNo": "20260916-3",
+    "amountOfIssueSize": 8050000000
   },
   "INE590T01012": {
     "isin": "INE590T01012",
@@ -1045,12 +1079,13 @@
     "ltp": 351.95,
     "lotSize": 1,
     "totalSecurities": 321822799,
-    "freeShares": 25795013,
-    "freeFloatPercentage": 8.02,
+    "freeShares": 24114173,
+    "freeFloatPercentage": 7.49,
     "nseCircular": "https://nsearchives.nseindia.com/content/circulars/CML76372.zip",
     "nseNoticeNo": "76372",
     "bseCircular": "https://www.bseindia.com/downloads/UploadDocs/Notices/20260916-49/20260916-49.pdf",
-    "bseNoticeNo": "20260916-49"
+    "bseNoticeNo": "20260916-49",
+    "amountOfIssueSize": 8750000000
   },
   "INE0FRO01022": {
     "isin": "INE0FRO01022",
@@ -1071,7 +1106,8 @@
     "nseCircular": "https://nsearchives.nseindia.com/content/circulars/CML76371.zip",
     "nseNoticeNo": "76371",
     "bseCircular": "https://www.bseindia.com/downloads/UploadDocs/Notices/20260916-48/20260916-48.pdf",
-    "bseNoticeNo": "20260916-48"
+    "bseNoticeNo": "20260916-48",
+    "amountOfIssueSize": 4140000000
   },
   "INE1A5U01014": {
     "isin": "INE1A5U01014",
@@ -1092,7 +1128,8 @@
     "nseCircular": "https://nsearchives.nseindia.com/content/circulars/CML76367.zip",
     "nseNoticeNo": "76367",
     "bseCircular": null,
-    "bseNoticeNo": null
+    "bseNoticeNo": null,
+    "amountOfIssueSize": null
   },
   "INE1FPN01026": {
     "isin": "INE1FPN01026",
@@ -1113,7 +1150,8 @@
     "nseCircular": "https://nsearchives.nseindia.com/content/circulars/CML76364.zip",
     "nseNoticeNo": "76364",
     "bseCircular": "https://www.bseindia.com/downloads/UploadDocs/Notices/20260916-34/20260916-34.pdf",
-    "bseNoticeNo": "20260916-34"
+    "bseNoticeNo": "20260916-34",
+    "amountOfIssueSize": 4271400000
   },
   "INE1YC401018": {
     "isin": "INE1YC401018",
@@ -1176,12 +1214,13 @@
     "nseCircular": "https://nsearchives.nseindia.com/content/circulars/CML76393.zip",
     "nseNoticeNo": "76393",
     "bseCircular": "https://www.bseindia.com/downloads/UploadDocs/Notices/20260917-24/20260917-24.pdf",
-    "bseNoticeNo": "20260917-24"
+    "bseNoticeNo": "20260917-24",
+    "amountOfIssueSize": 2100000000
   },
   "INE1S7M01017": {
     "isin": "INE1S7M01017",
     "nseCode": "",
-    "bseCode": "544924",
+    "bseCode": "364084",
     "ticker": "RAKSAN",
     "name": "Raksan Transformers Ltd",
     "series": "MT",
@@ -1197,7 +1236,8 @@
     "nseCircular": null,
     "nseNoticeNo": null,
     "bseCircular": "https://www.bseindia.com/downloads/UploadDocs/Notices/20260917-43/20260917-43.pdf",
-    "bseNoticeNo": "20260917-43"
+    "bseNoticeNo": "20260917-43",
+    "amountOfIssueSize": 1504900000
   },
   "INE0SVD01012": {
     "isin": "INE0SVD01012",
@@ -1214,11 +1254,12 @@
     "lotSize": 600,
     "totalSecurities": 16345140,
     "freeShares": 3081000,
-    "freeFloatPercentage": null,
+    "freeFloatPercentage": 18.85,
     "nseCircular": null,
     "nseNoticeNo": null,
     "bseCircular": "https://www.bseindia.com/downloads/UploadDocs/Notices/20260917-32/20260917-32.pdf",
-    "bseNoticeNo": "20260917-32"
+    "bseNoticeNo": "20260917-32",
+    "amountOfIssueSize": 801300000
   },
   "INE0VXN01011": {
     "isin": "INE0VXN01011",
@@ -1281,14 +1322,15 @@
     "nseCircular": "https://nsearchives.nseindia.com/content/circulars/CML76421.zip",
     "nseNoticeNo": "76421",
     "bseCircular": "https://www.bseindia.com/downloads/UploadDocs/Notices/20260918-31/20260918-31.pdf",
-    "bseNoticeNo": "20260918-31"
+    "bseNoticeNo": "20260918-31",
+    "amountOfIssueSize": 1255000000
   },
   "INE1JJF01019": {
     "isin": "INE1JJF01019",
     "nseCode": "",
     "bseCode": "544930",
     "ticker": "INJECTO",
-    "name": "INJECTO POLYMERS LIMITED",
+    "name": "INJECTO POLYMERS Ltd",
     "series": "MT",
     "type": "SME",
     "listingDate": "Mon, 21 Sep, 2026",
@@ -1302,7 +1344,8 @@
     "nseCircular": null,
     "nseNoticeNo": null,
     "bseCircular": "https://www.bseindia.com/downloads/UploadDocs/Notices/20260918-34/20260918-34.pdf",
-    "bseNoticeNo": "20260918-34"
+    "bseNoticeNo": "20260918-34",
+    "amountOfIssueSize": 561200000
   },
   "INE16VF01010": {
     "isin": "INE16VF01010",
@@ -1323,6 +1366,7 @@
     "nseCircular": null,
     "nseNoticeNo": null,
     "bseCircular": "https://www.bseindia.com/downloads/UploadDocs/Notices/20260918-33/20260918-33.pdf",
-    "bseNoticeNo": "20260918-33"
+    "bseNoticeNo": "20260918-33",
+    "amountOfIssueSize": null
   }
 }
