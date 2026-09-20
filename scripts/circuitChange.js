@@ -188,7 +188,8 @@ function BuildCircuitChangeStocks() {
             nseCircular: entry.nseCircular || null, // <--- Added explicit NSE link
             bseCircular: entry.bseCircular || null, // <--- Added explicit BSE link
             refListedMBNotInT2T: isRefListed && !isSME && !isT2TSeries,
-            isInT2TSeries: isT2TSeries
+            isInT2TSeries: isT2TSeries,
+            amountOfIssueSize: entry.amountOfIssueSize,
         };
 
         if (entry.bandChange) {
@@ -506,16 +507,29 @@ async function ShareCircuitChanges() {
                 details.push(`💰 IPO Price: ₹${ipoPrice}`);
             }
 
+            // Formatted Issue Size (Cr / Lakhs)
+            if (stock.amountOfIssueSize && !isNaN(stock.amountOfIssueSize)) {
+                let formattedSize = '';
+                if (stock.amountOfIssueSize >= 10000000) {
+                    formattedSize = (stock.amountOfIssueSize / 10000000).toFixed(2) + ' Cr';
+                } else {
+                    formattedSize = (stock.amountOfIssueSize / 100000).toFixed(2) + ' Lakh';
+                }
+                details.push(`💵 IssueSize: ₹${formattedSize}`);
+            }
+
             // NSE Symbol (if applicable)
             if (exchanges.includes('NSE')) {
                 const nseSym = stock.nseCode || ticker;
                 if (nseSym !== ticker) details.push(`🆔 NSE Symbol: *${nseSym}*`);
             }
 
-            // Circular Links
+            // Circular Links (Disabled for now)
+            /*
             if (stock.nseCircular) details.push(`🔗 NSE_Circular: ${stock.nseCircular}`);
             if (stock.bseCircular) details.push(`🔗 BSE_Circular: ${stock.bseCircular}`);
             if (!stock.nseCircular && !stock.bseCircular && stock.circular) details.push(`🔗 Circular: ${stock.circular}`);
+            */
 
             text += details.join('\n') + `\n\n`;
         });
