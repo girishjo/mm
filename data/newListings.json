@@ -1,32 +1,4 @@
 {
-  "INE1KPX01025": {
-    "isin": "INE1KPX01025",
-    "nseCode": "CREDENT",
-    "bseCode": "",
-    "ticker": "CREDENT",
-    "name": "Credent Connect N Care Limited",
-    "series": "SM",
-    "type": "SME",
-    "listingDate": "Thu, 20 Aug, 2026",
-    "exchanges": "NSE",
-    "issuePrice": 189,
-    "ltp": null,
-    "lotSize": 600,
-    "totalSecurities": 18222900,
-    "freeShares": 3564000,
-    "freeFloatPercentage": 19.56,
-    "nseCircular": "https://nsearchives.nseindia.com/content/circulars/CML75834.zip",
-    "nseNoticeNo": "75834",
-    "bseCircular": null,
-    "bseNoticeNo": null,
-    "bandChange": {
-      "series": "SM",
-      "bandFrom": "5",
-      "bandTo": "20",
-      "dateEffectiveFrom": "Thu, 03 Sep, 2026"
-    },
-    "amountOfIssueSize": null
-  },
   "INE0VFE01017": {
     "isin": "INE0VFE01017",
     "nseCode": "SKYTECH",
@@ -594,7 +566,7 @@
     "bseCode": "544899",
     "ticker": "PRIORITY",
     "name": "Priority Jewels Limited",
-    "series": "BE",
+    "series": "EQ",
     "type": "MainBoard",
     "listingDate": "Fri, 04 Sep, 2026",
     "exchanges": "NSE, BSE",
@@ -608,7 +580,13 @@
     "nseNoticeNo": "76162",
     "bseCircular": "https://www.bseindia.com/downloads/UploadDocs/Notices/20260903-34/20260903-34.pdf",
     "bseNoticeNo": "20260903-34",
-    "amountOfIssueSize": null
+    "amountOfIssueSize": null,
+    "bandChange": {
+      "series": "EQ",
+      "bandFrom": "5",
+      "bandTo": "20",
+      "dateEffectiveFrom": "Mon, 21 Sep, 2026"
+    }
   },
   "INE0LHB01010": {
     "isin": "INE0LHB01010",
@@ -1220,7 +1198,7 @@
   "INE1S7M01017": {
     "isin": "INE1S7M01017",
     "nseCode": "",
-    "bseCode": "544924",
+    "bseCode": "364084",
     "ticker": "RAKSAN",
     "name": "Raksan Transformers Ltd",
     "series": "MT",
