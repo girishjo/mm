@@ -1,74 +1,4 @@
 {
-  "INE0VFE01017": {
-    "isin": "INE0VFE01017",
-    "nseCode": "SKYTECH",
-    "bseCode": "",
-    "ticker": "SKYTECH",
-    "name": "Skytech Infinite Platform Limited",
-    "series": "SM",
-    "type": "SME",
-    "listingDate": "Fri, 21 Aug, 2026",
-    "exchanges": "NSE",
-    "issuePrice": 77,
-    "ltp": null,
-    "lotSize": 1600,
-    "totalSecurities": 9820600,
-    "freeShares": 2945600,
-    "freeFloatPercentage": 29.99,
-    "nseCircular": "https://nsearchives.nseindia.com/content/circulars/CML75849.zip",
-    "nseNoticeNo": "75849",
-    "bseCircular": null,
-    "bseNoticeNo": null,
-    "bandChange": {
-      "series": "SM",
-      "bandFrom": "10",
-      "bandTo": "5",
-      "dateEffectiveFrom": "Wed, 09 Sep, 2026"
-    },
-    "amountOfIssueSize": null
-  },
-  "INE19QK01022": {
-    "isin": "INE19QK01022",
-    "nseCode": "",
-    "bseCode": "544877",
-    "ticker": "TECHNOCRAT",
-    "name": "Technocrats Plasma Systems Ltd",
-    "series": "MT",
-    "type": "SME",
-    "listingDate": "Fri, 21 Aug, 2026",
-    "exchanges": "BSE",
-    "issuePrice": 132,
-    "ltp": 241.5,
-    "lotSize": 1000,
-    "totalSecurities": 17500000,
-    "freeShares": 3351500,
-    "freeFloatPercentage": 19.15,
-    "nseCircular": null,
-    "nseNoticeNo": null,
-    "bseCircular": "https://www.bseindia.com/downloads/UploadDocs/Notices/20260820-35/20260820-35.pdf",
-    "bseNoticeNo": "20260820-35"
-  },
-  "INE23ER01017": {
-    "isin": "INE23ER01017",
-    "nseCode": "",
-    "bseCode": "544876",
-    "ticker": "ENS",
-    "name": "ENS Enterprises Ltd",
-    "series": "MT",
-    "type": "SME",
-    "listingDate": "Fri, 21 Aug, 2026",
-    "exchanges": "BSE",
-    "issuePrice": 92,
-    "ltp": 100.8,
-    "lotSize": 1200,
-    "totalSecurities": 13594912,
-    "freeShares": 2576400,
-    "freeFloatPercentage": null,
-    "nseCircular": null,
-    "nseNoticeNo": null,
-    "bseCircular": "https://www.bseindia.com/downloads/UploadDocs/Notices/20260820-37/20260820-37.pdf",
-    "bseNoticeNo": "20260820-37"
-  },
   "INE1Q2D01019": {
     "isin": "INE1Q2D01019",
     "nseCode": "FASCINATE",
@@ -191,9 +121,9 @@
     "bseNoticeNo": null,
     "bandChange": {
       "series": "EQ",
-      "bandFrom": "20",
-      "bandTo": "10",
-      "dateEffectiveFrom": "Wed, 16 Sep, 2026"
+      "bandFrom": "10",
+      "bandTo": "5",
+      "dateEffectiveFrom": "Tue, 22 Sep, 2026"
     },
     "amountOfIssueSize": null
   },
@@ -650,7 +580,13 @@
     "nseNoticeNo": "76205",
     "bseCircular": null,
     "bseNoticeNo": null,
-    "amountOfIssueSize": null
+    "amountOfIssueSize": null,
+    "bandChange": {
+      "series": "SM",
+      "bandFrom": "5",
+      "bandTo": "20",
+      "dateEffectiveFrom": "Tue, 22 Sep, 2026"
+    }
   },
   "INE1ZEE01019": {
     "isin": "INE1ZEE01019",
@@ -672,7 +608,13 @@
     "nseNoticeNo": "76203",
     "bseCircular": null,
     "bseNoticeNo": null,
-    "amountOfIssueSize": null
+    "amountOfIssueSize": null,
+    "bandChange": {
+      "series": "SM",
+      "bandFrom": "5",
+      "bandTo": "20",
+      "dateEffectiveFrom": "Tue, 22 Sep, 2026"
+    }
   },
   "INE0I1B01016": {
     "isin": "INE0I1B01016",
@@ -1394,7 +1336,7 @@
   "INE0OAB01019": {
     "isin": "INE0OAB01019",
     "nseCode": "",
-    "bseCode": "544932",
+    "bseCode": "360290",
     "ticker": "QAL",
     "name": "QUANTO AGROWORLD LIMITED",
     "series": "MT",
@@ -1405,9 +1347,9 @@
     "ltp": null,
     "lotSize": 2000,
     "totalSecurities": 17487259,
-    "freeShares": null,
-    "freeFloatPercentage": null,
-    "amountOfIssueSize": null,
+    "freeShares": 4630000,
+    "freeFloatPercentage": 26.48,
+    "amountOfIssueSize": 310200000,
     "nseCircular": null,
     "nseNoticeNo": null,
     "bseCircular": "https://www.bseindia.com/downloads/UploadDocs/Notices/20260921-29/20260921-29.pdf",
