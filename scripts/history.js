@@ -147,7 +147,9 @@ function HideHistory(tableToUpdate) {
     }
     if (historyTable) {
         const newRowIndex = historyTable.rowIndex;
-        tableToUpdate.deleteRow(newRowIndex);
+        if (newRowIndex != -1) {
+            tableToUpdate.deleteRow(newRowIndex);
+        }
         historyTable = undefined;
     }
 }
