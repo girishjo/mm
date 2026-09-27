@@ -1375,7 +1375,7 @@
     "exchanges": "BSE",
     "issuePrice": 37,
     "ltp": null,
-    "lotSize": 6000,
+    "lotSize": 3000,
     "totalSecurities": 22250000,
     "freeShares": 4299000,
     "freeFloatPercentage": 19.32,
