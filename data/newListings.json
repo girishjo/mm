@@ -1758,5 +1758,27 @@
     "nseNoticeNo": null,
     "bseCircular": "https://www.bseindia.com/downloads/UploadDocs/Notices/20260930-36/20260930-36.pdf",
     "bseNoticeNo": "20260930-36"
+  },
+  "INE2BTZ01011": {
+    "isin": "INE2BTZ01011",
+    "nseCode": "",
+    "bseCode": "544954",
+    "ticker": "ROOPA",
+    "name": "Roopa Screen Limited",
+    "series": "MT",
+    "type": "SME",
+    "listingDate": "Thu, 01 Oct, 2026",
+    "exchanges": "BSE",
+    "issuePrice": 64,
+    "ltp": null,
+    "lotSize": 2000,
+    "totalSecurities": 11067500,
+    "freeShares": null,
+    "freeFloatPercentage": null,
+    "amountOfIssueSize": null,
+    "nseCircular": null,
+    "nseNoticeNo": null,
+    "bseCircular": "https://www.bseindia.com/downloads/UploadDocs/Notices/20260930-45/20260930-45.pdf",
+    "bseNoticeNo": "20260930-45"
   }
 }
