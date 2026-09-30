@@ -39,10 +39,26 @@ function InitStockBulkDeals() {
         ddlStocks.innerHTML = '';
         ddlStocks.add(new Option("Show all deals...", -1));
         let tempBulkDealers = {};
-        for (const stockCode of Object.keys(stockBulkDeals).sort((a, b) => stockBulkDeals[a][0].SecurityName.localeCompare(stockBulkDeals[b][0].SecurityName))) {
+
+        // 1. Get keys and sort them safely
+        const sortedKeys = Object.keys(stockBulkDeals).sort((a, b) => {
+            // Fallback to the stockCode (a or b) if SecurityName is empty, null, or undefined
+            const nameA = stockBulkDeals[a][0]?.SecurityName || a;
+            const nameB = stockBulkDeals[b][0]?.SecurityName || b;
+
+            return nameA.localeCompare(nameB);
+        });
+
+        // 2. Iterate through the safely sorted keys
+        for (const stockCode of sortedKeys) {
             tempBulkDealers[stockCode] = stockBulkDeals[stockCode];
-            ddlStocks.add(new Option(stockBulkDeals[stockCode][0].SecurityName + " [" + stockCode + "]", stockCode));
+
+            // Provide a fallback name for the dropdown display as well
+            const securityName = stockBulkDeals[stockCode][0]?.SecurityName || "Unknown";
+
+            ddlStocks.add(new Option(`${securityName} [${stockCode}]`, stockCode));
         }
+
         stockBulkDeals = tempBulkDealers;
 
         if (ddlStocks.options.length > 0) {
