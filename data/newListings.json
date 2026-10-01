@@ -1,26 +1,4 @@
 {
-  "INE16W401027": {
-    "isin": "INE16W401027",
-    "nseCode": "AUGMONT",
-    "bseCode": "544888",
-    "ticker": "AUGMONT",
-    "name": "Augmont Enterprises Limited",
-    "series": "EQ",
-    "type": "MainBoard",
-    "listingDate": "Mon, 31 Aug, 2026",
-    "exchanges": "NSE, BSE",
-    "issuePrice": 788,
-    "ltp": 907.75,
-    "lotSize": 1,
-    "totalSecurities": 91373505,
-    "freeShares": 7343907,
-    "freeFloatPercentage": 8.04,
-    "nseCircular": "https://nsearchives.nseindia.com/content/circulars/CML76037.zip",
-    "nseNoticeNo": "76037",
-    "bseCircular": null,
-    "bseNoticeNo": null,
-    "amountOfIssueSize": null
-  },
   "INE0PX301025": {
     "isin": "INE0PX301025",
     "nseCode": "SKYWAYS",
@@ -853,7 +831,13 @@
     "nseNoticeNo": "76367",
     "bseCircular": null,
     "bseNoticeNo": null,
-    "amountOfIssueSize": null
+    "amountOfIssueSize": null,
+    "bandChange": {
+      "series": "SM",
+      "bandFrom": "5",
+      "bandTo": "10",
+      "dateEffectiveFrom": "Thu, 01 Oct, 2026"
+    }
   },
   "INE1FPN01026": {
     "isin": "INE1FPN01026",
@@ -1707,9 +1691,9 @@
     "ltp": null,
     "lotSize": 1,
     "totalSecurities": 77234693,
-    "freeShares": 7063930,
-    "freeFloatPercentage": 9.15,
-    "amountOfIssueSize": null,
+    "freeShares": 7018830,
+    "freeFloatPercentage": 9.09,
+    "amountOfIssueSize": 4050000000,
     "nseCircular": "https://nsearchives.nseindia.com/content/circulars/CML76643.zip",
     "nseNoticeNo": "76643",
     "bseCircular": "https://www.bseindia.com/downloads/UploadDocs/Notices/20260930-49/20260930-49.pdf",
@@ -1729,9 +1713,9 @@
     "ltp": null,
     "lotSize": 1,
     "totalSecurities": 1760231268,
-    "freeShares": 307663526,
-    "freeFloatPercentage": 17.48,
-    "amountOfIssueSize": null,
+    "freeShares": 224757706,
+    "freeFloatPercentage": 12.77,
+    "amountOfIssueSize": 10916800000,
     "nseCircular": "https://nsearchives.nseindia.com/content/circulars/CML76642.zip",
     "nseNoticeNo": "76642",
     "bseCircular": "https://www.bseindia.com/downloads/UploadDocs/Notices/20260930-43/20260930-43.pdf",
