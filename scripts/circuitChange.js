@@ -449,9 +449,25 @@ async function ShareCircuitChanges() {
     let text;
     let title = '*';
     if (showToday) {
-        const listingWord = rows.length > 1 ? 'listings' : 'listing';
-        const prefix = isToday ? `Today's ${listingWord}` : `${dateFormatted} ${listingWord}`;
-        title += `${prefix},*\n\n`;
+        const listingWord = rows.length > 1 ? 'Listings' : 'Listing';
+
+        let datePrefix;
+        if (isToday) {
+            datePrefix = "Today's";
+        } else if (refDate.toDateString() === new Date(new Date().setDate(new Date().getDate() + 1)).toDateString()) {
+            datePrefix = "Tomorrow's (" + dateFormatted + ")";
+        } else {
+            datePrefix = dateFormatted;
+        }
+
+        let boardType = '';
+        if (showSME && !showMB) {
+            boardType = 'SME ';
+        } else if (showMB && !showSME) {
+            boardType = 'MB ';
+        }
+
+        title += `${datePrefix} ${boardType}${listingWord},*\n\n`;
         text = title;
 
         const getEmojiNumber = (num) => {
@@ -511,9 +527,9 @@ async function ShareCircuitChanges() {
             if (stock.amountOfIssueSize && !isNaN(stock.amountOfIssueSize)) {
                 let formattedSize = '';
                 if (stock.amountOfIssueSize >= 10000000) {
-                    formattedSize = (stock.amountOfIssueSize / 10000000).toFixed(2) + ' Cr';
+                    formattedSize = (stock.amountOfIssueSize / 10000000).toFixed(0) + ' Cr';
                 } else {
-                    formattedSize = (stock.amountOfIssueSize / 100000).toFixed(2) + ' Lakh';
+                    formattedSize = (stock.amountOfIssueSize / 100000).toFixed(0) + ' Lakh';
                 }
                 details.push(`💵 IssueSize: ₹${formattedSize}`);
             }
