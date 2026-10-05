@@ -712,7 +712,13 @@
     "nseNoticeNo": "76421",
     "bseCircular": "https://www.bseindia.com/downloads/UploadDocs/Notices/20260918-31/20260918-31.pdf",
     "bseNoticeNo": "20260918-31",
-    "amountOfIssueSize": 1255000000
+    "amountOfIssueSize": 1255000000,
+    "bandChange": {
+      "series": "EQ",
+      "bandFrom": "5",
+      "bandTo": "20",
+      "dateEffectiveFrom": "Tue, 06 Oct, 2026"
+    }
   },
   "INE1JJF01019": {
     "isin": "INE1JJF01019",
@@ -1570,8 +1576,8 @@
     "ltp": 298.95,
     "lotSize": 1,
     "totalSecurities": 147788829,
-    "freeShares": 17855224,
-    "freeFloatPercentage": 12.08,
+    "freeShares": 11513788,
+    "freeFloatPercentage": 7.79,
     "amountOfIssueSize": 5000000000,
     "nseCircular": "https://nsearchives.nseindia.com/content/circulars/CML76687.zip",
     "nseNoticeNo": "76687",
@@ -1638,7 +1644,7 @@
     "totalSecurities": 21153200,
     "freeShares": 3779440,
     "freeFloatPercentage": 17.87,
-    "amountOfIssueSize": null,
+    "amountOfIssueSize": 901700000,
     "nseCircular": "https://nsearchives.nseindia.com/content/circulars/CML76721.zip",
     "nseNoticeNo": "76721",
     "bseCircular": "https://www.bseindia.com/downloads/UploadDocs/Notices/20261005-41/20261005-41.pdf",
@@ -1660,7 +1666,7 @@
     "totalSecurities": 64271757,
     "freeShares": 12874130,
     "freeFloatPercentage": 20.03,
-    "amountOfIssueSize": null,
+    "amountOfIssueSize": 2184000000,
     "nseCircular": "https://nsearchives.nseindia.com/content/circulars/CML76706.zip",
     "nseNoticeNo": "76706",
     "bseCircular": "https://www.bseindia.com/downloads/UploadDocs/Notices/20261005-42/20261005-42.pdf",
@@ -1709,5 +1715,27 @@
     "nseNoticeNo": null,
     "bseCircular": "https://www.bseindia.com/downloads/UploadDocs/Notices/20261005-27/20261005-27.pdf",
     "bseNoticeNo": "20261005-27"
+  },
+  "INE0RNF01016": {
+    "isin": "INE0RNF01016",
+    "nseCode": "",
+    "bseCode": "544966",
+    "ticker": "PIND",
+    "name": "Pind Hospitality Ltd",
+    "series": "MT",
+    "type": "SME",
+    "listingDate": "Tue, 06 Oct, 2026",
+    "exchanges": "BSE",
+    "issuePrice": 99,
+    "ltp": null,
+    "lotSize": 1200,
+    "totalSecurities": 5997612,
+    "freeShares": 1798800,
+    "freeFloatPercentage": 29.99,
+    "amountOfIssueSize": 178100000,
+    "nseCircular": null,
+    "nseNoticeNo": null,
+    "bseCircular": "https://www.bseindia.com/downloads/UploadDocs/Notices/20261005-39/20261005-39.pdf",
+    "bseNoticeNo": "20261005-39"
   }
 }
