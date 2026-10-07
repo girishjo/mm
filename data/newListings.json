@@ -509,9 +509,9 @@
     "amountOfIssueSize": null,
     "bandChange": {
       "series": "SM",
-      "bandFrom": "5",
-      "bandTo": "10",
-      "dateEffectiveFrom": "Thu, 01 Oct, 2026"
+      "bandFrom": "10",
+      "bandTo": "5",
+      "dateEffectiveFrom": "Wed, 07 Oct, 2026"
     }
   },
   "INE1FPN01026": {
@@ -1664,8 +1664,8 @@
     "ltp": 155.05,
     "lotSize": 1,
     "totalSecurities": 64271757,
-    "freeShares": 12874130,
-    "freeFloatPercentage": 20.03,
+    "freeShares": 11760000,
+    "freeFloatPercentage": 18.3,
     "amountOfIssueSize": 2184000000,
     "nseCircular": "https://nsearchives.nseindia.com/content/circulars/CML76706.zip",
     "nseNoticeNo": "76706",
@@ -1787,7 +1787,7 @@
     "nseCode": "",
     "bseCode": "544972",
     "ticker": "BLACKOPAL",
-    "name": "BLACK OPAL CONSULTANTS LIMITED",
+    "name": "Black Opal Consultants Ltd",
     "series": "MT",
     "type": "SME",
     "listingDate": "Wed, 07 Oct, 2026",
@@ -1809,7 +1809,7 @@
     "nseCode": "",
     "bseCode": "544971",
     "ticker": "VANS",
-    "name": "VANS ELECTROENGINEERINGS LIMITED",
+    "name": "Vans Electroengineerings Ltd",
     "series": "MT",
     "type": "SME",
     "listingDate": "Wed, 07 Oct, 2026",
