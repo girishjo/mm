@@ -1891,7 +1891,7 @@
     "listingDate": "Mon, 12 Oct, 2026",
     "exchanges": "NSE, BSE",
     "issuePrice": 2,
-    "ltp": null,
+    "ltp": 683.85,
     "lotSize": 1,
     "totalSecurities": 104754338,
     "freeShares": null,
