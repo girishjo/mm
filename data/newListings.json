@@ -896,7 +896,7 @@
     "bseCode": "544801",
     "ticker": "GSPLTRANS",
     "name": "GSPL Transmission Limited",
-    "series": "BE",
+    "series": "EQ",
     "type": "MainBoard",
     "listingDate": "Wed, 30 Sep, 2026",
     "exchanges": "NSE, BSE",
@@ -910,7 +910,13 @@
     "nseCircular": null,
     "nseNoticeNo": null,
     "bseCircular": "https://www.bseindia.com/downloads/UploadDocs/Notices/20260928-41/20260928-41.pdf",
-    "bseNoticeNo": "20260928-41"
+    "bseNoticeNo": "20260928-41",
+    "bandChange": {
+      "series": "EQ",
+      "bandFrom": "5",
+      "bandTo": "20",
+      "dateEffectiveFrom": "Thu, 15 Oct, 2026"
+    }
   },
   "INE0XDX01018": {
     "isin": "INE0XDX01018",
@@ -940,7 +946,7 @@
     "bseCode": "544949",
     "ticker": "SWASTIKAIN",
     "name": "Swastika Infra Limited",
-    "series": "BE",
+    "series": "EQ",
     "type": "MainBoard",
     "listingDate": "Wed, 30 Sep, 2026",
     "exchanges": "NSE, BSE",
@@ -954,7 +960,13 @@
     "nseCircular": "https://nsearchives.nseindia.com/content/circulars/CML76628.zip",
     "nseNoticeNo": "76628",
     "bseCircular": "https://www.bseindia.com/downloads/UploadDocs/Notices/20260929-59/20260929-59.pdf",
-    "bseNoticeNo": "20260929-59"
+    "bseNoticeNo": "20260929-59",
+    "bandChange": {
+      "series": "EQ",
+      "bandFrom": "5",
+      "bandTo": "20",
+      "dateEffectiveFrom": "Thu, 15 Oct, 2026"
+    }
   },
   "INE0TWE01016": {
     "isin": "INE0TWE01016",
@@ -998,7 +1010,13 @@
     "nseCircular": "https://nsearchives.nseindia.com/content/circulars/CML76623.zip",
     "nseNoticeNo": "76623",
     "bseCircular": null,
-    "bseNoticeNo": null
+    "bseNoticeNo": null,
+    "bandChange": {
+      "series": "SM",
+      "bandFrom": "5",
+      "bandTo": "20",
+      "dateEffectiveFrom": "Thu, 15 Oct, 2026"
+    }
   },
   "INE1C2Q01017": {
     "isin": "INE1C2Q01017",
@@ -1020,7 +1038,13 @@
     "nseCircular": "https://nsearchives.nseindia.com/content/circulars/CML76620.zip",
     "nseNoticeNo": "76620",
     "bseCircular": null,
-    "bseNoticeNo": null
+    "bseNoticeNo": null,
+    "bandChange": {
+      "series": "SM",
+      "bandFrom": "5",
+      "bandTo": "20",
+      "dateEffectiveFrom": "Thu, 15 Oct, 2026"
+    }
   },
   "INE147X01013": {
     "isin": "INE147X01013",
@@ -1050,7 +1074,7 @@
     "bseCode": "544950",
     "ticker": "ADROITIND",
     "name": "Adroit Industries (India) Limited",
-    "series": "BE",
+    "series": "EQ",
     "type": "MainBoard",
     "listingDate": "Wed, 30 Sep, 2026",
     "exchanges": "NSE, BSE",
@@ -1064,7 +1088,13 @@
     "nseCircular": "https://nsearchives.nseindia.com/content/circulars/CML76616.zip",
     "nseNoticeNo": "76616",
     "bseCircular": "https://www.bseindia.com/downloads/UploadDocs/Notices/20260929-62/20260929-62.pdf",
-    "bseNoticeNo": "20260929-62"
+    "bseNoticeNo": "20260929-62",
+    "bandChange": {
+      "series": "EQ",
+      "bandFrom": "5",
+      "bandTo": "20",
+      "dateEffectiveFrom": "Thu, 15 Oct, 2026"
+    }
   },
   "INE0WOK01014": {
     "isin": "INE0WOK01014",
@@ -1951,12 +1981,12 @@
     "nseCode": "",
     "bseCode": "544987",
     "ticker": "TEMBO",
-    "name": "Securities",
+    "name": "Tembo Global Industries Ltd",
     "series": "B",
-    "type": "SME",
+    "type": "MainBoard",
     "listingDate": "Thu, 15 Oct, 2026",
     "exchanges": "BSE",
-    "issuePrice": null,
+    "issuePrice": 1,
     "ltp": null,
     "lotSize": 193551980,
     "totalSecurities": 193551980,
