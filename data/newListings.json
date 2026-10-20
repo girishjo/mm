@@ -581,10 +581,10 @@
     "bseCircular": null,
     "bseNoticeNo": null,
     "bandChange": {
-      "series": "SM",
-      "bandFrom": "5",
-      "bandTo": "20",
-      "dateEffectiveFrom": "Thu, 15 Oct, 2026"
+      "series": "ST",
+      "bandFrom": "20",
+      "bandTo": "5",
+      "dateEffectiveFrom": "Wed, 21 Oct, 2026"
     }
   },
   "INE1C2Q01017": {
@@ -1013,7 +1013,7 @@
     "bseCode": "544963",
     "ticker": "SHAHINVEST",
     "name": "Shah Investor's Home Limited",
-    "series": "BE",
+    "series": "EQ",
     "type": "MainBoard",
     "listingDate": "Tue, 06 Oct, 2026",
     "exchanges": "NSE, BSE",
@@ -1027,7 +1027,13 @@
     "nseCircular": "https://nsearchives.nseindia.com/content/circulars/CML76721.zip",
     "nseNoticeNo": "76721",
     "bseCircular": "https://www.bseindia.com/downloads/UploadDocs/Notices/20261005-41/20261005-41.pdf",
-    "bseNoticeNo": "20261005-41"
+    "bseNoticeNo": "20261005-41",
+    "bandChange": {
+      "series": "EQ",
+      "bandFrom": "5",
+      "bandTo": "20",
+      "dateEffectiveFrom": "Wed, 21 Oct, 2026"
+    }
   },
   "INE307K01028": {
     "isin": "INE307K01028",
@@ -1035,7 +1041,7 @@
     "bseCode": "544965",
     "ticker": "SRIT",
     "name": "SRIT India Limited",
-    "series": "BE",
+    "series": "EQ",
     "type": "MainBoard",
     "listingDate": "Tue, 06 Oct, 2026",
     "exchanges": "NSE, BSE",
@@ -1049,7 +1055,13 @@
     "nseCircular": "https://nsearchives.nseindia.com/content/circulars/CML76706.zip",
     "nseNoticeNo": "76706",
     "bseCircular": "https://www.bseindia.com/downloads/UploadDocs/Notices/20261005-42/20261005-42.pdf",
-    "bseNoticeNo": "20261005-42"
+    "bseNoticeNo": "20261005-42",
+    "bandChange": {
+      "series": "EQ",
+      "bandFrom": "5",
+      "bandTo": "20",
+      "dateEffectiveFrom": "Wed, 21 Oct, 2026"
+    }
   },
   "INE1KUL01020": {
     "isin": "INE1KUL01020",
@@ -1595,7 +1607,7 @@
     "totalSecurities": 175230000,
     "freeShares": 18420492,
     "freeFloatPercentage": 10.51,
-    "amountOfIssueSize": null,
+    "amountOfIssueSize": 7121300000,
     "nseCircular": "https://nsearchives.nseindia.com/content/circulars/CML77012.zip",
     "nseNoticeNo": "77012",
     "bseCircular": "https://www.bseindia.com/downloads/UploadDocs/Notices/20261019-29/20261019-29.pdf",
