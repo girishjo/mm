@@ -1,76 +1,4 @@
 {
-  "INE0KWF01020": {
-    "isin": "INE0KWF01020",
-    "nseCode": "MANIKA",
-    "bseCode": "544929",
-    "ticker": "MANIKA",
-    "name": "Manika Plastech Limited",
-    "series": "EQ",
-    "type": "MainBoard",
-    "listingDate": "Mon, 21 Sep, 2026",
-    "exchanges": "NSE, BSE",
-    "issuePrice": 43,
-    "ltp": 43,
-    "lotSize": 1,
-    "totalSecurities": 116511627,
-    "freeShares": 20430232,
-    "freeFloatPercentage": 17.53,
-    "nseCircular": "https://nsearchives.nseindia.com/content/circulars/CML76421.zip",
-    "nseNoticeNo": "76421",
-    "bseCircular": "https://www.bseindia.com/downloads/UploadDocs/Notices/20260918-31/20260918-31.pdf",
-    "bseNoticeNo": "20260918-31",
-    "amountOfIssueSize": 1255000000,
-    "bandChange": {
-      "series": "EQ",
-      "bandFrom": "5",
-      "bandTo": "20",
-      "dateEffectiveFrom": "Tue, 06 Oct, 2026"
-    }
-  },
-  "INE1JJF01019": {
-    "isin": "INE1JJF01019",
-    "nseCode": "",
-    "bseCode": "544930",
-    "ticker": "INJECTO",
-    "name": "Injecto Polymers Ltd",
-    "series": "MT",
-    "type": "SME",
-    "listingDate": "Mon, 21 Sep, 2026",
-    "exchanges": "BSE",
-    "issuePrice": 100,
-    "ltp": 95.95,
-    "lotSize": 1200,
-    "totalSecurities": 20789600,
-    "freeShares": 4654800,
-    "freeFloatPercentage": 22.39,
-    "nseCircular": null,
-    "nseNoticeNo": null,
-    "bseCircular": "https://www.bseindia.com/downloads/UploadDocs/Notices/20260918-34/20260918-34.pdf",
-    "bseNoticeNo": "20260918-34",
-    "amountOfIssueSize": 561200000
-  },
-  "INE16VF01010": {
-    "isin": "INE16VF01010",
-    "nseCode": "",
-    "bseCode": "544928",
-    "ticker": "CENTURYOOH",
-    "name": "Century Business Media Ltd",
-    "series": "MT",
-    "type": "SME",
-    "listingDate": "Mon, 21 Sep, 2026",
-    "exchanges": "BSE",
-    "issuePrice": 74,
-    "ltp": 73.92,
-    "lotSize": 1600,
-    "totalSecurities": 8761280,
-    "freeShares": 1657600,
-    "freeFloatPercentage": 18.92,
-    "nseCircular": null,
-    "nseNoticeNo": null,
-    "bseCircular": "https://www.bseindia.com/downloads/UploadDocs/Notices/20260918-33/20260918-33.pdf",
-    "bseNoticeNo": "20260918-33",
-    "amountOfIssueSize": null
-  },
   "INE1G7R01010": {
     "isin": "INE1G7R01010",
     "nseCode": "",
@@ -160,9 +88,9 @@
     "bseNoticeNo": "20260922-50",
     "bandChange": {
       "series": "EQ",
-      "bandFrom": "20",
-      "bandTo": "10",
-      "dateEffectiveFrom": "Mon, 28 Sep, 2026"
+      "bandFrom": "10",
+      "bandTo": "5",
+      "dateEffectiveFrom": "Thu, 22 Oct, 2026"
     }
   },
   "INE1EQW01028": {
@@ -1149,7 +1077,13 @@
     "nseCircular": "https://nsearchives.nseindia.com/content/circulars/CML76752.zip",
     "nseNoticeNo": "76752",
     "bseCircular": null,
-    "bseNoticeNo": null
+    "bseNoticeNo": null,
+    "bandChange": {
+      "series": "SM",
+      "bandFrom": "5",
+      "bandTo": "20",
+      "dateEffectiveFrom": "Thu, 22 Oct, 2026"
+    }
   },
   "INE1V7901010": {
     "isin": "INE1V7901010",
@@ -1171,7 +1105,13 @@
     "nseCircular": "https://nsearchives.nseindia.com/content/circulars/CML76746.zip",
     "nseNoticeNo": "76746",
     "bseCircular": null,
-    "bseNoticeNo": null
+    "bseNoticeNo": null,
+    "bandChange": {
+      "series": "SM",
+      "bandFrom": "5",
+      "bandTo": "10",
+      "dateEffectiveFrom": "Thu, 22 Oct, 2026"
+    }
   },
   "INE0M3101012": {
     "isin": "INE0M3101012",
@@ -1673,7 +1613,7 @@
     "totalSecurities": 144360333,
     "freeShares": 14241756,
     "freeFloatPercentage": 9.87,
-    "amountOfIssueSize": null,
+    "amountOfIssueSize": 7020000000,
     "nseCircular": "https://nsearchives.nseindia.com/content/circulars/CML77035.zip",
     "nseNoticeNo": "77035",
     "bseCircular": "https://www.bseindia.com/downloads/UploadDocs/Notices/20261021-16/20261021-16.pdf",
