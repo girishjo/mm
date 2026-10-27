@@ -611,7 +611,13 @@
     "nseCircular": "https://nsearchives.nseindia.com/content/circulars/CML76687.zip",
     "nseNoticeNo": "76687",
     "bseCircular": "https://www.bseindia.com/downloads/UploadDocs/Notices/20261001-45/20261001-45.pdf",
-    "bseNoticeNo": "20261001-45"
+    "bseNoticeNo": "20261001-45",
+    "bandChange": {
+      "series": "EQ",
+      "bandFrom": "10",
+      "bandTo": "5",
+      "dateEffectiveFrom": "Tue, 27 Oct, 2026"
+    }
   },
   "INE1DLN01012": {
     "isin": "INE1DLN01012",
@@ -1189,7 +1195,7 @@
     "bseCode": "544824",
     "ticker": "TRIVENIPT",
     "name": "Triveni Power Transmission Limited",
-    "series": "BE",
+    "series": "EQ",
     "type": "MainBoard",
     "listingDate": "Mon, 12 Oct, 2026",
     "exchanges": "NSE, BSE",
@@ -1203,7 +1209,13 @@
     "nseCircular": null,
     "nseNoticeNo": null,
     "bseCircular": "https://www.bseindia.com/downloads/UploadDocs/Notices/20261008-31/20261008-31.pdf",
-    "bseNoticeNo": "20261008-31"
+    "bseNoticeNo": "20261008-31",
+    "bandChange": {
+      "series": "EQ",
+      "bandFrom": "5",
+      "bandTo": "20",
+      "dateEffectiveFrom": "Tue, 27 Oct, 2026"
+    }
   },
   "INE719F01016": {
     "isin": "INE719F01016",
@@ -1247,7 +1259,13 @@
     "nseCircular": "https://nsearchives.nseindia.com/content/circulars/CML76831.zip",
     "nseNoticeNo": "76831",
     "bseCircular": null,
-    "bseNoticeNo": null
+    "bseNoticeNo": null,
+    "bandChange": {
+      "series": "SM",
+      "bandFrom": "5",
+      "bandTo": "20",
+      "dateEffectiveFrom": "Tue, 27 Oct, 2026"
+    }
   },
   "INE869Y01028": {
     "isin": "INE869Y01028",
