@@ -1518,7 +1518,7 @@
     "series": "EQ",
     "type": "MainBoard",
     "listingDate": "Wed, 28 Oct, 2026",
-    "exchanges": "NSE, BSE",
+    "exchanges": "BSE",
     "issuePrice": 693,
     "ltp": null,
     "lotSize": 1,
@@ -1528,8 +1528,8 @@
     "amountOfIssueSize": null,
     "nseCircular": "https://nsearchives.nseindia.com/content/circulars/CML77136.zip",
     "nseNoticeNo": "77136",
-    "bseCircular": "https://www.bseindia.com/downloads/UploadDocs/Notices/20261027-11/20261027-11.pdf",
-    "bseNoticeNo": "20261027-11"
+    "bseCircular": "https://www.bseindia.com/downloads/UploadDocs/Notices/20261027-41/20261027-41.pdf",
+    "bseNoticeNo": "20261027-41"
   },
   "INE0BJO01010": {
     "isin": "INE0BJO01010",
@@ -1540,7 +1540,7 @@
     "series": "EQ",
     "type": "MainBoard",
     "listingDate": "Wed, 28 Oct, 2026",
-    "exchanges": "NSE, BSE",
+    "exchanges": "BSE",
     "issuePrice": 1119,
     "ltp": null,
     "lotSize": 1,
