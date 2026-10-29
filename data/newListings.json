@@ -1495,7 +1495,7 @@
     "name": "Avenique Limited",
     "series": "XT",
     "type": "MainBoard",
-    "listingDate": "Wed, 28 Oct, 2026",
+    "listingDate": "Thu, 29 Oct, 2026",
     "exchanges": "BSE",
     "issuePrice": null,
     "ltp": null,
@@ -1508,5 +1508,27 @@
     "nseNoticeNo": null,
     "bseCircular": "https://www.bseindia.com/downloads/UploadDocs/Notices/20261028-28/20261028-28.pdf",
     "bseNoticeNo": "20261028-28"
+  },
+  "INE1RY601016": {
+    "isin": "INE1RY601016",
+    "nseCode": "",
+    "bseCode": "545007",
+    "ticker": "CORE4",
+    "name": "Core4 Engineers Limited",
+    "series": "MT",
+    "type": "SME",
+    "listingDate": "Fri, 30 Oct, 2026",
+    "exchanges": "BSE",
+    "issuePrice": 93,
+    "ltp": null,
+    "lotSize": 1200,
+    "totalSecurities": 20683245,
+    "freeShares": null,
+    "freeFloatPercentage": null,
+    "amountOfIssueSize": null,
+    "nseCircular": null,
+    "nseNoticeNo": null,
+    "bseCircular": "https://www.bseindia.com/downloads/UploadDocs/Notices/20261029-32/20261029-32.pdf",
+    "bseNoticeNo": "20261029-32"
   }
 }
