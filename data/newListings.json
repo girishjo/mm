@@ -1454,7 +1454,7 @@
     "listingDate": "Fri, 30 Oct, 2026",
     "exchanges": "BSE",
     "issuePrice": 93,
-    "ltp": null,
+    "ltp": 78.12,
     "lotSize": 1200,
     "totalSecurities": 20683245,
     "freeShares": null,
@@ -1464,5 +1464,27 @@
     "nseNoticeNo": null,
     "bseCircular": "https://www.bseindia.com/downloads/UploadDocs/Notices/20261029-32/20261029-32.pdf",
     "bseNoticeNo": "20261029-32"
+  },
+  "INE528L01027": {
+    "isin": "INE528L01027",
+    "nseCode": "EDELALTS",
+    "bseCode": "545008",
+    "ticker": "EDELALTS",
+    "name": "EAAA India Alternatives Limited",
+    "series": "EQ",
+    "type": "MainBoard",
+    "listingDate": "Mon, 02 Nov, 2026",
+    "exchanges": "NSE, BSE",
+    "issuePrice": 1665,
+    "ltp": null,
+    "lotSize": 1,
+    "totalSecurities": 64655246,
+    "freeShares": 5570046,
+    "freeFloatPercentage": 8.61,
+    "amountOfIssueSize": null,
+    "nseCircular": "https://nsearchives.nseindia.com/content/circulars/CML77192.zip",
+    "nseNoticeNo": "77192",
+    "bseCircular": "https://www.bseindia.com/downloads/UploadDocs/Notices/20261030-39/20261030-39.pdf",
+    "bseNoticeNo": "20261030-39"
   }
 }
