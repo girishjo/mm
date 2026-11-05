@@ -895,7 +895,13 @@
     "nseCircular": "https://nsearchives.nseindia.com/content/circulars/CML77041.zip",
     "nseNoticeNo": "77041",
     "bseCircular": null,
-    "bseNoticeNo": null
+    "bseNoticeNo": null,
+    "bandChange": {
+      "series": "SM",
+      "bandFrom": "5",
+      "bandTo": "20",
+      "dateEffectiveFrom": "Thu, 05 Nov, 2026"
+    }
   },
   "INE0N2201019": {
     "isin": "INE0N2201019",
@@ -1329,9 +1335,9 @@
     "ltp": 94.5,
     "lotSize": 1600,
     "totalSecurities": 13102805,
-    "freeShares": null,
-    "freeFloatPercentage": null,
-    "amountOfIssueSize": null,
+    "freeShares": 2539200,
+    "freeFloatPercentage": 19.38,
+    "amountOfIssueSize": 282800000,
     "nseCircular": null,
     "nseNoticeNo": null,
     "bseCircular": "https://www.bseindia.com/downloads/UploadDocs/Notices/20261103-32/20261103-32.pdf",
