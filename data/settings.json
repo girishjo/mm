@@ -77,6 +77,15 @@
                 "end": "15:30"
             },
             "countForNthDay": true
+        },
+        {
+            "date": "08-Nov-2026",
+            "reason": "Muhurat Trading (Diwali)",
+            "tradingHours": {
+                "start": "02:20",
+                "end": "15:30"
+            },
+            "countForNthDay": false
         }
     ]
 }
