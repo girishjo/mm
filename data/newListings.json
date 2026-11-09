@@ -858,5 +858,27 @@
     "nseNoticeNo": "77326",
     "bseCircular": null,
     "bseNoticeNo": null
+  },
+  "INE15Z101013": {
+    "isin": "INE15Z101013",
+    "nseCode": "",
+    "bseCode": "545024",
+    "ticker": "ANTALA",
+    "name": "Antala Industries Limited",
+    "series": "MT",
+    "type": "SME",
+    "listingDate": "Wed, 11 Nov, 2026",
+    "exchanges": "BSE",
+    "issuePrice": 66,
+    "ltp": null,
+    "lotSize": 2000,
+    "totalSecurities": 12156736,
+    "freeShares": null,
+    "freeFloatPercentage": null,
+    "amountOfIssueSize": null,
+    "nseCircular": null,
+    "nseNoticeNo": null,
+    "bseCircular": "https://www.bseindia.com/downloads/UploadDocs/Notices/20261109-31/20261109-31.pdf",
+    "bseNoticeNo": "20261109-31"
   }
 }
