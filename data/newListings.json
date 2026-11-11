@@ -782,7 +782,7 @@
     "listingDate": "Wed, 11 Nov, 2026",
     "exchanges": "BSE",
     "issuePrice": 66,
-    "ltp": null,
+    "ltp": 50.16,
     "lotSize": 2000,
     "totalSecurities": 12156736,
     "freeShares": null,
