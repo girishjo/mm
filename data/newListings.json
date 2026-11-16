@@ -1,26 +1,4 @@
 {
-  "INE869Y01028": {
-    "isin": "INE869Y01028",
-    "nseCode": "",
-    "bseCode": "544987",
-    "ticker": "TEMBO",
-    "name": "Tembo Global Industries Ltd",
-    "series": "B",
-    "type": "MainBoard",
-    "listingDate": "Thu, 15 Oct, 2026",
-    "exchanges": "BSE",
-    "issuePrice": 1,
-    "ltp": 57.25,
-    "lotSize": 193551980,
-    "totalSecurities": 193551980,
-    "freeShares": 4820,
-    "freeFloatPercentage": 0,
-    "amountOfIssueSize": null,
-    "nseCircular": null,
-    "nseNoticeNo": null,
-    "bseCircular": "https://www.bseindia.com/downloads/UploadDocs/Notices/20261014-27/20261014-27.pdf",
-    "bseNoticeNo": "20261014-27"
-  },
   "INE18AK01028": {
     "isin": "INE18AK01028",
     "nseCode": "HDFIRE",
