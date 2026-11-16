@@ -714,5 +714,27 @@
     "nseNoticeNo": null,
     "bseCircular": "https://www.bseindia.com/downloads/UploadDocs/Notices/20261109-31/20261109-31.pdf",
     "bseNoticeNo": "20261109-31"
+  },
+  "INE2OD001016": {
+    "isin": "INE2OD001016",
+    "nseCode": "",
+    "bseCode": "544956",
+    "ticker": "JKSHAH",
+    "name": "J.K. Shah Commerce Education Limited",
+    "series": "B",
+    "type": "MainBoard",
+    "listingDate": "Mon, 16 Nov, 2026",
+    "exchanges": "BSE",
+    "issuePrice": null,
+    "ltp": null,
+    "lotSize": 1,
+    "totalSecurities": 96506610,
+    "freeShares": null,
+    "freeFloatPercentage": null,
+    "amountOfIssueSize": null,
+    "nseCircular": null,
+    "nseNoticeNo": null,
+    "bseCircular": "https://www.bseindia.com/downloads/UploadDocs/Notices/20261116-19/20261116-19.pdf",
+    "bseNoticeNo": "20261116-19"
   }
 }
