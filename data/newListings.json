@@ -413,7 +413,7 @@
     "bseCode": "545013",
     "ticker": "IGLSPIRITS",
     "name": "IGL Spirits Limited",
-    "series": "BE",
+    "series": "EQ",
     "type": "MainBoard",
     "listingDate": "Wed, 04 Nov, 2026",
     "exchanges": "NSE, BSE",
@@ -427,7 +427,13 @@
     "nseCircular": null,
     "nseNoticeNo": null,
     "bseCircular": "https://www.bseindia.com/downloads/UploadDocs/Notices/20261102-44/20261102-44.pdf",
-    "bseNoticeNo": "20261102-44"
+    "bseNoticeNo": "20261102-44",
+    "bandChange": {
+      "series": "EQ",
+      "bandFrom": "5",
+      "bandTo": "20",
+      "dateEffectiveFrom": "Thu, 19 Nov, 2026"
+    }
   },
   "INE2WCT01016": {
     "isin": "INE2WCT01016",
@@ -435,7 +441,7 @@
     "bseCode": "545012",
     "ticker": "ENNATURE",
     "name": "Ennature Bio Pharma Limited",
-    "series": "BE",
+    "series": "EQ",
     "type": "MainBoard",
     "listingDate": "Wed, 04 Nov, 2026",
     "exchanges": "NSE, BSE",
@@ -449,7 +455,13 @@
     "nseCircular": null,
     "nseNoticeNo": null,
     "bseCircular": "https://www.bseindia.com/downloads/UploadDocs/Notices/20261102-43/20261102-43.pdf",
-    "bseNoticeNo": "20261102-43"
+    "bseNoticeNo": "20261102-43",
+    "bandChange": {
+      "series": "EQ",
+      "bandFrom": "5",
+      "bandTo": "20",
+      "dateEffectiveFrom": "Thu, 19 Nov, 2026"
+    }
   },
   "INE817A01050": {
     "isin": "INE817A01050",
