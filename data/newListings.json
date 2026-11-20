@@ -557,7 +557,7 @@
     "bseCode": "545018",
     "ticker": "BCSSL",
     "name": "Bombay Coated and Special Steels Limited",
-    "series": "BE",
+    "series": "EQ",
     "type": "MainBoard",
     "listingDate": "Thu, 05 Nov, 2026",
     "exchanges": "NSE, BSE",
@@ -571,7 +571,13 @@
     "nseCircular": "https://nsearchives.nseindia.com/content/circulars/CML77305.zip",
     "nseNoticeNo": "77305",
     "bseCircular": "https://www.bseindia.com/downloads/UploadDocs/Notices/20261104-40/20261104-40.pdf",
-    "bseNoticeNo": "20261104-40"
+    "bseNoticeNo": "20261104-40",
+    "bandChange": {
+      "series": "EQ",
+      "bandFrom": "5",
+      "bandTo": "20",
+      "dateEffectiveFrom": "Fri, 20 Nov, 2026"
+    }
   },
   "INE029Q01017": {
     "isin": "INE029Q01017",
