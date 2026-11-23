@@ -1,104 +1,4 @@
 {
-  "INE18AK01028": {
-    "isin": "INE18AK01028",
-    "nseCode": "HDFIRE",
-    "bseCode": "544994",
-    "ticker": "HDFIRE",
-    "name": "HD Fire Protect Limited",
-    "series": "EQ",
-    "type": "MainBoard",
-    "listingDate": "Wed, 21 Oct, 2026",
-    "exchanges": "NSE, BSE",
-    "issuePrice": 271,
-    "ltp": 307.2,
-    "lotSize": 1,
-    "totalSecurities": 175230000,
-    "freeShares": 18420492,
-    "freeFloatPercentage": 10.51,
-    "amountOfIssueSize": 7121300000,
-    "nseCircular": "https://nsearchives.nseindia.com/content/circulars/CML77012.zip",
-    "nseNoticeNo": "77012",
-    "bseCircular": "https://www.bseindia.com/downloads/UploadDocs/Notices/20261019-29/20261019-29.pdf",
-    "bseNoticeNo": "20261019-29"
-  },
-  "INE1KAA01025": {
-    "isin": "INE1KAA01025",
-    "nseCode": "LOANFRONT",
-    "bseCode": "",
-    "ticker": "LOANFRONT",
-    "name": "Vaibhav Vyapaar Limited",
-    "series": "SM",
-    "type": "SME",
-    "listingDate": "Wed, 21 Oct, 2026",
-    "exchanges": "NSE",
-    "issuePrice": 54,
-    "ltp": null,
-    "lotSize": 2000,
-    "totalSecurities": 28182423,
-    "freeShares": 5596000,
-    "freeFloatPercentage": 19.86,
-    "amountOfIssueSize": null,
-    "nseCircular": "https://nsearchives.nseindia.com/content/circulars/CML77010.zip",
-    "nseNoticeNo": "77010",
-    "bseCircular": null,
-    "bseNoticeNo": null,
-    "bandChange": {
-      "series": "SM",
-      "bandFrom": "5",
-      "bandTo": "20",
-      "dateEffectiveFrom": "Wed, 04 Nov, 2026"
-    }
-  },
-  "INE1UEL01023": {
-    "isin": "INE1UEL01023",
-    "nseCode": "RAVITA",
-    "bseCode": "",
-    "ticker": "RAVITA",
-    "name": "Ravita Engineering Services Limited",
-    "series": "SM",
-    "type": "SME",
-    "listingDate": "Thu, 22 Oct, 2026",
-    "exchanges": "NSE",
-    "issuePrice": 112,
-    "ltp": null,
-    "lotSize": 1200,
-    "totalSecurities": 37680682,
-    "freeShares": 7417122,
-    "freeFloatPercentage": 19.68,
-    "amountOfIssueSize": null,
-    "nseCircular": "https://nsearchives.nseindia.com/content/circulars/CML77041.zip",
-    "nseNoticeNo": "77041",
-    "bseCircular": null,
-    "bseNoticeNo": null,
-    "bandChange": {
-      "series": "SM",
-      "bandFrom": "5",
-      "bandTo": "20",
-      "dateEffectiveFrom": "Thu, 05 Nov, 2026"
-    }
-  },
-  "INE0N2201019": {
-    "isin": "INE0N2201019",
-    "nseCode": "FUSIONCX",
-    "bseCode": "544995",
-    "ticker": "FUSIONCX",
-    "name": "Fusion CX Limited",
-    "series": "EQ",
-    "type": "MainBoard",
-    "listingDate": "Thu, 22 Oct, 2026",
-    "exchanges": "NSE, BSE",
-    "issuePrice": 289,
-    "ltp": null,
-    "lotSize": 1,
-    "totalSecurities": 144360333,
-    "freeShares": 13359861,
-    "freeFloatPercentage": 9.25,
-    "amountOfIssueSize": 7020000000,
-    "nseCircular": "https://nsearchives.nseindia.com/content/circulars/CML77035.zip",
-    "nseNoticeNo": "77035",
-    "bseCircular": "https://www.bseindia.com/downloads/UploadDocs/Notices/20261021-16/20261021-16.pdf",
-    "bseNoticeNo": "20261021-16"
-  },
   "INE28SO01013": {
     "isin": "INE28SO01013",
     "nseCode": "BONFIG",
@@ -665,7 +565,13 @@
     "nseCircular": "https://nsearchives.nseindia.com/content/circulars/CML77323.zip",
     "nseNoticeNo": "77323",
     "bseCircular": null,
-    "bseNoticeNo": null
+    "bseNoticeNo": null,
+    "bandChange": {
+      "series": "SM",
+      "bandFrom": "5",
+      "bandTo": "20",
+      "dateEffectiveFrom": "Mon, 23 Nov, 2026"
+    }
   },
   "INE813R01012": {
     "isin": "INE813R01012",
@@ -687,7 +593,13 @@
     "nseCircular": "https://nsearchives.nseindia.com/content/circulars/CML77320.zip",
     "nseNoticeNo": "77320",
     "bseCircular": null,
-    "bseNoticeNo": null
+    "bseNoticeNo": null,
+    "bandChange": {
+      "series": "SM",
+      "bandFrom": "5",
+      "bandTo": "20",
+      "dateEffectiveFrom": "Mon, 23 Nov, 2026"
+    }
   },
   "INE2RWX01016": {
     "isin": "INE2RWX01016",
