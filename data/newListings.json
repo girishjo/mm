@@ -552,7 +552,7 @@
     "listingDate": "Thu, 26 Nov, 2026",
     "exchanges": "NSE, BSE",
     "issuePrice": 272,
-    "ltp": null,
+    "ltp": 277.85,
     "lotSize": 1,
     "totalSecurities": 163177583,
     "freeShares": 11764869,
@@ -584,5 +584,27 @@
     "nseNoticeNo": null,
     "bseCircular": "https://www.bseindia.com/downloads/UploadDocs/Notices/20261125-19/20261125-19.pdf",
     "bseNoticeNo": "20261125-19"
+  },
+  "INE03K401026": {
+    "isin": "INE03K401026",
+    "nseCode": "",
+    "bseCode": "545032",
+    "ticker": "MAHACOAL",
+    "name": "Mahanadi Coalfields Limited",
+    "series": "B",
+    "type": "MainBoard",
+    "listingDate": "Fri, 27 Nov, 2026",
+    "exchanges": "BSE",
+    "issuePrice": 136,
+    "ltp": null,
+    "lotSize": 1,
+    "totalSecurities": 6618363000,
+    "freeShares": null,
+    "freeFloatPercentage": null,
+    "amountOfIssueSize": null,
+    "nseCircular": null,
+    "nseNoticeNo": null,
+    "bseCircular": "https://www.bseindia.com/downloads/UploadDocs/Notices/20261126-36/20261126-36.pdf",
+    "bseNoticeNo": "20261126-36"
   }
 }
