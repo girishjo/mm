@@ -606,5 +606,27 @@
     "nseNoticeNo": null,
     "bseCircular": "https://www.bseindia.com/downloads/UploadDocs/Notices/20261126-36/20261126-36.pdf",
     "bseNoticeNo": "20261126-36"
+  },
+  "INE11NS01011": {
+    "isin": "INE11NS01011",
+    "nseCode": "WATRANA",
+    "bseCode": "",
+    "ticker": "WATRANA",
+    "name": "Watrana Rentals Limited",
+    "series": "ST",
+    "type": "SME",
+    "listingDate": "Fri, 27 Nov, 2026",
+    "exchanges": "NSE",
+    "issuePrice": null,
+    "ltp": null,
+    "lotSize": null,
+    "totalSecurities": null,
+    "freeShares": null,
+    "freeFloatPercentage": null,
+    "amountOfIssueSize": null,
+    "nseCircular": null,
+    "nseNoticeNo": null,
+    "bseCircular": null,
+    "bseNoticeNo": null
   }
 }
